@@ -13,15 +13,13 @@ class ViewController: UIViewController {
     
     @IBOutlet var password: UILabel!
     
-    
-    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         if Auth.auth().currentUser?.uid != nil {
             goHome()
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -48,14 +46,5 @@ class ViewController: UIViewController {
         self.present(bildflodeVC, animated: true,
                      completion: nil)
     }
-
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
 
