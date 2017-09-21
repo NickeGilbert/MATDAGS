@@ -9,9 +9,10 @@ import FirebaseAuth
 
 class ViewController: UIViewController {
 
-    @IBOutlet var emailText: UILabel!
+    @IBOutlet var emailText: UITextField!
     
-    @IBOutlet var password: UILabel!
+    @IBOutlet var password: UITextField!
+
     
     override func viewDidLoad() {
         
