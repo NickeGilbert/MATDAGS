@@ -4,9 +4,17 @@
 //  Copyright © 2017 Matdags. All rights reserved.
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
+    @IBOutlet var emailText: UILabel!
+    
+    @IBOutlet var password: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -14,6 +22,10 @@ class ViewController: UIViewController {
             goHome()
         }
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    @IBAction func loginButton(_ sender: Any) {
+        login()
     }
     
     func login(){
@@ -36,10 +48,7 @@ class ViewController: UIViewController {
         self.present(bildflodeVC, animated: true,
                      completion: nil)
     }
-    
-    @IBAction func logginButton(_ sender: Any) {
-        login()
-    }
+
     
     
     override func didReceiveMemoryWarning() {

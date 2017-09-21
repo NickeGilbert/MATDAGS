@@ -13,7 +13,6 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet var password: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

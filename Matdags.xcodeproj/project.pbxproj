@@ -16,6 +16,7 @@
 		0A91F4201F73CF9600304F32 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91F41F1F73CF9600304F32 /* CustomCamera.swift */; };
 		0A91F4221F73D19800304F32 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91F4211F73D19800304F32 /* RegisterViewController.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
+		A42DD9FA1F73D57400D04740 /* bildflodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* bildflodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0A91F41F1F73CF9600304F32 /* CustomCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		0A91F4211F73D19800304F32 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
+		A42DD9F91F73D57400D04740 /* bildflodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bildflodeViewController.swift; sourceTree = "<group>"; };
 		A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matdags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2FBC78928FB9B9A2D38EE1 /* Pods-Matdags.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 		0A706CBA1F73B70800B0345C /* Matdags */ = {
 			isa = PBXGroup;
 			children = (
+				A42DD9F91F73D57400D04740 /* bildflodeViewController.swift */,
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
 				0A91F41F1F73CF9600304F32 /* CustomCamera.swift */,
 				0A91F4211F73D19800304F32 /* RegisterViewController.swift */,
@@ -237,6 +240,7 @@
 				0A91F4201F73CF9600304F32 /* CustomCamera.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterViewController.swift in Sources */,
+				A42DD9FA1F73D57400D04740 /* bildflodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				INFOPLIST_FILE = Matdags/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.Matdags;
@@ -391,7 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				INFOPLIST_FILE = Matdags/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.Matdags;
