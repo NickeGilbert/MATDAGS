@@ -10,6 +10,7 @@ import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
+
     @IBOutlet var mail: UITextField!
     
     @IBOutlet var password: UITextField!
@@ -19,8 +20,8 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
-    @IBAction func registerAccount(_ sender: Any) {
+
+    @IBAction func Register(_ sender: Any) {
         Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: {
             user, error in
             
@@ -34,7 +35,7 @@ class RegisterViewController: UIViewController {
             }
         })
     }
-    
+
     func login(){
         Auth.auth().signIn(withEmail: mail.text!, password: password.text!, completion: {
             user, error in
