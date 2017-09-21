@@ -1,10 +1,7 @@
-//
 //  RegisterViewController.swift
 //  Matdags
-//
 //  Created by Nicklas Gilbertson on 2017-09-14.
 //  Copyright © 2017 Nicklas Gilbertson. All rights reserved.
-//
 
 import UIKit
 import Firebase

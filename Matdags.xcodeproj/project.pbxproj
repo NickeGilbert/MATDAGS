@@ -14,6 +14,7 @@
 		0A706CC61F73B70800B0345C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CC41F73B70800B0345C /* LaunchScreen.storyboard */; };
 		0A706CCE1F73BAF500B0345C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CCD1F73BAF500B0345C /* GoogleService-Info.plist */; };
 		0A91F4201F73CF9600304F32 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91F41F1F73CF9600304F32 /* CustomCamera.swift */; };
+		0A91F4221F73D19800304F32 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91F4211F73D19800304F32 /* RegisterViewController.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		0A706CC71F73B70800B0345C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A706CCD1F73BAF500B0345C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A91F41F1F73CF9600304F32 /* CustomCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
+		0A91F4211F73D19800304F32 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
 		A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matdags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2FBC78928FB9B9A2D38EE1 /* Pods-Matdags.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.debug.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			children = (
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
 				0A91F41F1F73CF9600304F32 /* CustomCamera.swift */,
+				0A91F4211F73D19800304F32 /* RegisterViewController.swift */,
 				0A706CBD1F73B70800B0345C /* ViewController.swift */,
 				0A706CBF1F73B70800B0345C /* Main.storyboard */,
 				0A706CC21F73B70800B0345C /* Assets.xcassets */,
@@ -233,6 +236,7 @@
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
 				0A91F4201F73CF9600304F32 /* CustomCamera.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
+				0A91F4221F73D19800304F32 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
