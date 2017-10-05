@@ -43,7 +43,8 @@ class ViewController: UIViewController {
     }
     
     func goHome() {
-        self.present(ImageFeedVC(), animated: true,
+        let homePage = ImageFeedVC()
+        self.present(homePage, animated: true,
                      completion: nil)
     }
 }

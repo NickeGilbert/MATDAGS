@@ -116,28 +116,19 @@
             </objects>
             <point key="canvasLocation" x="652" y="132.68365817091455"/>
         </scene>
-        <!--CameraVC-->
+        <!--nameMeVC-->
         <scene sceneID="6jx-6f-SLN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="HkU-ZP-HAQ" userLabel="CameraVC" customClass="CameraVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HkU-ZP-HAQ" userLabel="nameMeVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0V-a2-0Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="KAMERA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFO-yi-Aob">
-                                <rect key="frame" x="44" y="79" width="189" height="157"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ztq-h6-MNf"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="e8m-Lm-Iha"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2705" y="448"/>
         </scene>
@@ -209,6 +200,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="TabBar" destination="atX-y1-6fN" id="6fw-86-FO4"/>
                         <segue destination="ypM-Uw-J9l" kind="relationship" relationship="viewControllers" id="qek-Yy-8XX"/>
                         <segue destination="HkU-ZP-HAQ" kind="relationship" relationship="viewControllers" id="P1f-0h-cwh"/>
                         <segue destination="1IS-aF-BiB" kind="relationship" relationship="viewControllers" id="OhD-op-UbK"/>
