@@ -38,14 +38,14 @@
                                 <color key="backgroundColor" red="1" green="0.17840045218424339" blue="0.47822340945341502" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Registrera"/>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z73-ED-0zL">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z73-ED-0zL">
                                 <rect key="frame" x="125" y="227" width="214" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lösen" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xV9-dy-edu">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xV9-dy-edu">
                                 <rect key="frame" x="125" y="303" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2705" y="448"/>
+            <point key="canvasLocation" x="2705" y="346"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="GHa-Su-05S">
@@ -156,6 +156,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2694" y="1150"/>
+        </scene>
+        <!--CameraVC-->
+        <scene sceneID="dit-h1-QTu">
+            <objects>
+                <viewController id="mCS-RN-A8E" customClass="CameraVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2ks-JM-Sap">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="Os7-co-hZq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DuX-4C-vSx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i93-W2-w9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1782" y="-574"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -187,9 +203,12 @@
                                     <navigationItem title="Title" id="fti-d5-hcC">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="zNH-W5-2uC" userLabel="Nav Camera">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ya6-06-MhV" userLabel="Camera">
-                                                <rect key="frame" x="16" y="0.0" width="233" height="44"/>
+                                                <rect key="frame" x="16" y="11" width="22" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Camera" image="cameraicon"/>
+                                                <state key="normal" image="cameraicon"/>
+                                                <connections>
+                                                    <segue destination="mCS-RN-A8E" kind="presentation" id="LcG-cf-6AH"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -212,13 +231,6 @@
         <!--Tab BarC-->
         <scene sceneID="N0t-bh-Xm6">
             <objects>
-                <view contentMode="scaleToFill" id="rl7-SC-8Ox">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <viewLayoutGuide key="safeArea" id="Vgd-bW-BKd"/>
-                </view>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JB5-pf-o6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="oy8-aB-sha" customClass="TabBarC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="atX-y1-6fN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -232,6 +244,13 @@
                         <segue destination="1IS-aF-BiB" kind="relationship" relationship="viewControllers" id="OhD-op-UbK"/>
                     </connections>
                 </tabBarController>
+                <view contentMode="scaleToFill" id="rl7-SC-8Ox">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <viewLayoutGuide key="safeArea" id="Vgd-bW-BKd"/>
+                </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JB5-pf-o6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1782" y="132"/>
         </scene>

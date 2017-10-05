@@ -11,9 +11,11 @@ import UIKit
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
+        initCamera()
+    }
+    
+    func initCamera() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
