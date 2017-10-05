@@ -43,8 +43,7 @@ class ViewController: UIViewController {
     }
     
     func goHome() {
-        let bildflodeVC = bildflodeViewController()
-        self.present(bildflodeVC, animated: true,
+        self.present(ImageFeedVC(), animated: true,
                      completion: nil)
     }
 }
