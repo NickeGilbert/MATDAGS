@@ -12,7 +12,7 @@
 		0A706CC11F73B70800B0345C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CBF1F73B70800B0345C /* Main.storyboard */; };
 		0A706CC31F73B70800B0345C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CC21F73B70800B0345C /* Assets.xcassets */; };
 		0A706CC61F73B70800B0345C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CC41F73B70800B0345C /* LaunchScreen.storyboard */; };
-		0A91F4221F73D19800304F32 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91F4211F73D19800304F32 /* RegisterViewController.swift */; };
+		0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91F4211F73D19800304F32 /* RegisterVC.swift */; };
 		0AA373161F86450400E6FE92 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA3730D1F86450300E6FE92 /* FBSDKCoreKit.framework */; };
 		0AA373171F86450400E6FE92 /* FBNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA3730E1F86450300E6FE92 /* FBNotifications.framework */; };
 		0AA373181F86450400E6FE92 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA3730F1F86450300E6FE92 /* FBSDKShareKit.framework */; };
@@ -38,7 +38,7 @@
 		0A706CC21F73B70800B0345C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A706CC51F73B70800B0345C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A706CC71F73B70800B0345C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A91F4211F73D19800304F32 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A91F4211F73D19800304F32 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		0AA3730D1F86450300E6FE92 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0AA3730E1F86450300E6FE92 /* FBNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBNotifications.framework; path = FacebookSDK/FBNotifications.framework; sourceTree = "<group>"; };
 		0AA3730F1F86450300E6FE92 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 				0ABFCB301F862B1E0086DE20 /* CameraVC.swift */,
 				A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */,
 				0ABFCB321F862C340086DE20 /* ProfileVC.swift */,
-				0A91F4211F73D19800304F32 /* RegisterViewController.swift */,
+				0A91F4211F73D19800304F32 /* RegisterVC.swift */,
 				0ABFCB381F8637760086DE20 /* TabBarC.swift */,
 				0A706CBD1F73B70800B0345C /* ViewController.swift */,
 				0A706CBF1F73B70800B0345C /* Main.storyboard */,
@@ -283,7 +283,7 @@
 				0ABFCB311F862B1E0086DE20 /* CameraVC.swift in Sources */,
 				0ABFCB391F8637760086DE20 /* TabBarC.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
-				0A91F4221F73D19800304F32 /* RegisterViewController.swift in Sources */,
+				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,
 				A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

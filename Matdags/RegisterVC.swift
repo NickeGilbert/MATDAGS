@@ -8,7 +8,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class RegisterViewController: UIViewController {
+class RegisterVC: UIViewController {
 
 
     @IBOutlet var mail: UITextField!

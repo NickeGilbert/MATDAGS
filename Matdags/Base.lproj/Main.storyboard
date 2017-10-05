@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="131.78410794602701"/>
         </scene>
-        <!--Register View Controller-->
+        <!--RegisterVC-->
         <scene sceneID="mUS-Nq-D2X">
             <objects>
-                <viewController id="j2m-38-BdR" customClass="RegisterViewController" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="j2m-38-BdR" customClass="RegisterVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jbk-8c-xwI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
