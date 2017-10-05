@@ -15,8 +15,6 @@ class ImageFeedVC: UIViewController {
     
     override func viewDidLoad() {
         
-        super.viewDidLoad()
-        
         navTitle.title = "Matdags"
         
         self.navBar.setBackgroundImage(UIImage(), for: .default)
