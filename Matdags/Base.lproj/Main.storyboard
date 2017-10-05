@@ -37,6 +37,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.17840045218424339" blue="0.47822340945341502" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Registrera"/>
+                                <connections>
+                                    <segue destination="j2m-38-BdR" kind="push" id="YFA-tk-XJO"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z73-ED-0zL">
                                 <rect key="frame" x="125" y="227" width="214" height="30"/>
@@ -106,6 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="fmo-Ur-ITf"/>
                     </view>
+                    <navigationItem key="navigationItem" id="G7n-r8-n0R"/>
                     <connections>
                         <outlet property="mail" destination="w0G-vu-eNq" id="UJx-6t-jz1"/>
                         <outlet property="password" destination="GU7-eN-Xs0" id="0yv-U8-pfb"/>
@@ -212,13 +216,6 @@
         <!--Tab BarC-->
         <scene sceneID="N0t-bh-Xm6">
             <objects>
-                <view contentMode="scaleToFill" id="rl7-SC-8Ox">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <viewLayoutGuide key="safeArea" id="Vgd-bW-BKd"/>
-                </view>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JB5-pf-o6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="oy8-aB-sha" customClass="TabBarC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="atX-y1-6fN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -232,6 +229,13 @@
                         <segue destination="1IS-aF-BiB" kind="relationship" relationship="viewControllers" id="OhD-op-UbK"/>
                     </connections>
                 </tabBarController>
+                <view contentMode="scaleToFill" id="rl7-SC-8Ox">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <viewLayoutGuide key="safeArea" id="Vgd-bW-BKd"/>
+                </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JB5-pf-o6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1782" y="132"/>
         </scene>

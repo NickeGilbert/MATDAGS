@@ -32,7 +32,6 @@ class ViewController: UIViewController {
             user, error in
             
             if error != nil{
-                
                 print ("Incorrect")
             }
             else{
@@ -45,7 +44,7 @@ class ViewController: UIViewController {
     func goHome() {
         let homePage = ImageFeedVC()
         self.present(homePage, animated: true,
-                     completion: nil)
+                     completion: nil) //Denna koden stämmer inte, ska kolla senare
     }
 }
 
