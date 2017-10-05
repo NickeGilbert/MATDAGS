@@ -38,7 +38,7 @@
                                 <color key="backgroundColor" red="1" green="0.17840045218424339" blue="0.47822340945341502" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Registrera"/>
                                 <connections>
-                                    <segue destination="j2m-38-BdR" kind="push" id="YFA-tk-XJO"/>
+                                    <segue destination="j2m-38-BdR" kind="show" id="2wl-tW-JAl"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z73-ED-0zL">
@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="131.78410794602701"/>
+            <point key="canvasLocation" x="-214" y="133"/>
         </scene>
         <!--RegisterVC-->
         <scene sceneID="mUS-Nq-D2X">
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14C-76-Kei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="132.68365817091455"/>
+            <point key="canvasLocation" x="-247" y="913"/>
         </scene>
         <!--nameMeVC-->
         <scene sceneID="6jx-6f-SLN">
@@ -134,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2705" y="346"/>
+            <point key="canvasLocation" x="3268" y="346"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="GHa-Su-05S">
@@ -159,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2694" y="1150"/>
+            <point key="canvasLocation" x="2772" y="1118"/>
         </scene>
         <!--CameraVC-->
         <scene sceneID="dit-h1-QTu">
@@ -175,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i93-W2-w9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="-574"/>
+            <point key="canvasLocation" x="4494" y="-608"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -218,6 +218,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2p-BY-zaQ">
+                                <rect key="frame" x="174" y="301" width="130" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="loggaOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="jaz-Bs-PGE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="5bJ-SZ-EuZ"/>
@@ -226,11 +234,12 @@
                     <connections>
                         <outlet property="navBar" destination="LJd-5s-Ugr" id="F8C-4r-Hgb"/>
                         <outlet property="navTitle" destination="fti-d5-hcC" id="dP3-Og-YPn"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Ow8-GW-P5p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9B-8m-z1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2704.8000000000002" y="-351.27436281859076"/>
+            <point key="canvasLocation" x="3423" y="-607"/>
         </scene>
         <!--Tab BarC-->
         <scene sceneID="N0t-bh-Xm6">
@@ -246,6 +255,7 @@
                         <segue destination="ypM-Uw-J9l" kind="relationship" relationship="viewControllers" id="qek-Yy-8XX"/>
                         <segue destination="HkU-ZP-HAQ" kind="relationship" relationship="viewControllers" id="P1f-0h-cwh"/>
                         <segue destination="1IS-aF-BiB" kind="relationship" relationship="viewControllers" id="OhD-op-UbK"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="login" id="Esy-1X-UHD"/>
                     </connections>
                 </tabBarController>
                 <view contentMode="scaleToFill" id="rl7-SC-8Ox">
@@ -256,10 +266,13 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JB5-pf-o6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="132"/>
+            <point key="canvasLocation" x="1356" y="346"/>
         </scene>
     </scenes>
     <resources>
         <image name="cameraicon" width="22" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ow8-GW-P5p"/>
+    </inferredMetricsTieBreakers>
 </document>

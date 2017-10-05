@@ -12,15 +12,12 @@ class ViewController: UIViewController {
     @IBOutlet var emailText: UITextField!
     
     @IBOutlet var password: UITextField!
-
+    
+    var isConnected = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        if Auth.auth().currentUser?.uid != nil {
-            goHome()
-        }
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -35,16 +32,10 @@ class ViewController: UIViewController {
                 print ("Incorrect")
             }
             else{
-                self.goHome()
+                self.dismiss(animated: true, completion: nil)
                 print("Correct")
             }
         })
-    }
-    
-    func goHome() {
-        let homePage = ImageFeedVC()
-        self.present(homePage, animated: true,
-                     completion: nil) //Denna koden stämmer inte, ska kolla senare
     }
 }
 
