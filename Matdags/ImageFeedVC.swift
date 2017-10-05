@@ -8,7 +8,7 @@
 
 import UIKit
 
-class bildflodeViewController: UIViewController {
+class ImageFeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

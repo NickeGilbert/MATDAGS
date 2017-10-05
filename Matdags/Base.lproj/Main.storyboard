@@ -116,10 +116,11 @@
             </objects>
             <point key="canvasLocation" x="652" y="132.68365817091455"/>
         </scene>
-        <!--Item 2-->
+        <!--CameraVC-->
         <scene sceneID="6jx-6f-SLN">
             <objects>
-                <viewController id="HkU-ZP-HAQ" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="HkU-ZP-HAQ" userLabel="CameraVC" customClass="CameraVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0V-a2-0Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,14 +138,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="e8m-Lm-Iha"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2705" y="448"/>
         </scene>
-        <!--Item-->
+        <!--ProfileVC-->
         <scene sceneID="GHa-Su-05S">
             <objects>
-                <viewController id="1IS-aF-BiB" sceneMemberID="viewController">
+                <viewController id="1IS-aF-BiB" userLabel="ProfileVC" customClass="ProfileVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YeT-Gu-iAA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,10 +166,10 @@
             </objects>
             <point key="canvasLocation" x="2694" y="1150"/>
         </scene>
-        <!--Item 1-->
+        <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
             <objects>
-                <viewController id="ypM-Uw-J9l" customClass="bildflodeViewController" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ypM-Uw-J9l" userLabel="ImageFeedVC" customClass="ImageFeedVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="udC-lS-VJ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
