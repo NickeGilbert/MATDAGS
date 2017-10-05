@@ -10,7 +10,17 @@ import UIKit
 
 class ImageFeedVC: UIViewController {
 
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navTitle: UINavigationItem!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        navTitle.title = "Matdags"
+        
+        self.navBar.setBackgroundImage(UIImage(), for: .default)
+        //self.navBar.shadowImage = UIImage()
+        self.navBar.isTranslucent = true
     }
 }
