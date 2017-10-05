@@ -432,7 +432,7 @@
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"~/Documents/FacebookSDK",
+					"\"$(USER)/Documents/GitHub/MatDags\"",
 				);
 				INFOPLIST_FILE = Matdags/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
