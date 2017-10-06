@@ -134,11 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctE-BH-Sf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="3268" y="346"/>
-=======
             <point key="canvasLocation" x="2705" y="133"/>
->>>>>>> origin/master
         </scene>
         <!--ProfileVC-->
         <scene sceneID="GHa-Su-05S">
@@ -163,11 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="2772" y="1118"/>
-=======
             <point key="canvasLocation" x="2705" y="948"/>
->>>>>>> origin/master
         </scene>
         <!--CameraVC-->
         <scene sceneID="dit-h1-QTu">
@@ -232,11 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9B-8m-z1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="3423" y="-607"/>
-=======
             <point key="canvasLocation" x="2705" y="-574"/>
->>>>>>> origin/master
         </scene>
         <!--Tab BarC-->
         <scene sceneID="N0t-bh-Xm6">
