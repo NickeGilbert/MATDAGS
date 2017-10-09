@@ -1,35 +1,40 @@
-//
-//  bildflodeViewController.swift
+//  ImageFeedVC.swift
 //  Matdags
-//
 //  Created by Nicklas Gilbertson on 2017-09-15.
 //  Copyright © 2017 Nicklas Gilbertson. All rights reserved.
-//
 
 import UIKit
 import Firebase
 import FirebaseAuth
 
 class ImageFeedVC: UIViewController {
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
 
+    }
+    
     @IBAction func loggaOut(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
             performSegue(withIdentifier: "logout", sender: nil)
+            print("Logged out!")
         } catch {
             print("ERROR2")
         }
     }
-    @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var navTitle: UINavigationItem!
+}
+
+extension ImageFeedVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    override func viewDidLoad() {
+    @IBAction func cameraButton(_ sender: Any) {
+        let imgPicker = UIImagePickerController()
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = true
+        imgPicker.sourceType = UIImagePickerControllerSourceType.camera
         
-       /* navTitle.title = "Matdags"
-        
-        self.navBar.setBackgroundImage(UIImage(), for: .default)
-        //self.navBar.shadowImage = UIImage()
-        self.navBar.isTranslucent = true*/
+        self.present(imgPicker, animated: true, completion: nil)
     }
 }

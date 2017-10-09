@@ -32,10 +32,14 @@ class ViewController: UIViewController {
                 print ("Incorrect")
             }
             else{
-                self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                 print("Correct")
             }
         })
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 

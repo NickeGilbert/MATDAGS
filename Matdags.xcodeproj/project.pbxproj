@@ -22,9 +22,9 @@
 		0AA3731C1F86450400E6FE92 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA373131F86450400E6FE92 /* FBSDKMessengerShareKit.framework */; };
 		0AA3731D1F86450400E6FE92 /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AA373141F86450400E6FE92 /* AccountKitStrings.bundle */; };
 		0AA3731E1F86450400E6FE92 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA373151F86450400E6FE92 /* Bolts.framework */; };
-		0ABFCB311F862B1E0086DE20 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB301F862B1E0086DE20 /* CameraVC.swift */; };
 		0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB321F862C340086DE20 /* ProfileVC.swift */; };
 		0ABFCB391F8637760086DE20 /* TabBarC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB381F8637760086DE20 /* TabBarC.swift */; };
+		0ACD886F1F894A84005825A6 /* NavC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD886E1F894A84005825A6 /* NavC.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
@@ -48,9 +48,9 @@
 		0AA373131F86450400E6FE92 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = FacebookSDK/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
 		0AA373141F86450400E6FE92 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AccountKitStrings.bundle; path = FacebookSDK/AccountKitStrings.bundle; sourceTree = "<group>"; };
 		0AA373151F86450400E6FE92 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
-		0ABFCB301F862B1E0086DE20 /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
 		0ABFCB321F862C340086DE20 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0ABFCB381F8637760086DE20 /* TabBarC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarC.swift; sourceTree = "<group>"; };
+		0ACD886E1F894A84005825A6 /* NavC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavC.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -99,8 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
-				0ABFCB301F862B1E0086DE20 /* CameraVC.swift */,
 				A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */,
+				0ACD886E1F894A84005825A6 /* NavC.swift */,
 				0ABFCB321F862C340086DE20 /* ProfileVC.swift */,
 				0A91F4211F73D19800304F32 /* RegisterVC.swift */,
 				0ABFCB381F8637760086DE20 /* TabBarC.swift */,
@@ -278,9 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ACD886F1F894A84005825A6 /* NavC.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
-				0ABFCB311F862B1E0086DE20 /* CameraVC.swift in Sources */,
 				0ABFCB391F8637760086DE20 /* TabBarC.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,
