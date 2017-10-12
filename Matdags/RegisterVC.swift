@@ -18,7 +18,6 @@ class RegisterVC: UIViewController {
     var clicks = 0
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
     }
     

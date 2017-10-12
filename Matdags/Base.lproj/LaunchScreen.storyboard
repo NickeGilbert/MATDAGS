@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CharkGau2" translatesAutoresizingMaskIntoConstraints="NO" id="Txw-VG-vjh">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Charken" translatesAutoresizingMaskIntoConstraints="NO" id="Txw-VG-vjh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="1vG-qj-DUy">
@@ -46,7 +46,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CharkGau2" width="490" height="710"/>
+        <image name="Charken" width="490" height="710"/>
         <image name="logoMatdags" width="150" height="45"/>
     </resources>
 </document>
