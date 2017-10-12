@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Fw-8d-HNI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -189,6 +189,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCC-lJ-gtY">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Följare" id="77V-T1-lQn">
+                                        <barButtonItem key="leftBarButtonItem" title="Camera" image="cameraicon" id="eBV-63-t2b">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cameraButton:" destination="ypM-Uw-J9l" id="ydT-xK-1dw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="kCV-Zd-Kzl">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ail-YT-KMF">
+                                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="logout"/>
+                                                <connections>
+                                                    <action selector="loggaOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="EbZ-o4-zVe"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ztq-h6-MNf"/>
@@ -241,6 +265,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1c-BR-7P5">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Profil" id="KQb-ZI-DWl">
+                                        <barButtonItem key="leftBarButtonItem" title="Camera" image="cameraicon" id="v2c-yU-gKF">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cameraButton:" destination="ypM-Uw-J9l" id="udD-xI-PKx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="gPV-Hv-pCK">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vcH-9X-RSG">
+                                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="logout"/>
+                                                <connections>
+                                                    <action selector="loggaOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="F8l-uF-SmK"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
@@ -261,9 +309,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsR-Dv-XLS">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsR-Dv-XLS">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="1EG-mN-h6c"/>
+                                    <constraint firstAttribute="width" constant="375" id="9Ya-UZ-rUt"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Matdags" id="xrn-oX-qH1">
                                         <barButtonItem key="leftBarButtonItem" title="Camera" image="cameraicon" id="zI2-48-LAB">
@@ -274,7 +325,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="aPh-CH-Epm">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz">
-                                                <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                                <rect key="frame" x="337" y="11" width="22" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="logout"/>
                                                 <connections>
@@ -288,8 +339,40 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TAp-li-cdH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="MpQ-Ry-rWK">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionWindow" id="LP8-Gh-a4K" customClass="ImageFeedCell" customModule="Matdags" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ypM-Uw-J9l" id="6Ew-sd-AFy"/>
+                                    <outlet property="delegate" destination="ypM-Uw-J9l" id="u18-0Y-Erd"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="trailing" secondItem="TAp-li-cdH" secondAttribute="trailing" id="VEb-0D-lMn"/>
+                            <constraint firstItem="TAp-li-cdH" firstAttribute="leading" secondItem="5bJ-SZ-EuZ" secondAttribute="leading" id="WwW-6l-qoR"/>
+                            <constraint firstItem="bsR-Dv-XLS" firstAttribute="leading" secondItem="5bJ-SZ-EuZ" secondAttribute="leading" id="coc-oX-4kZ"/>
+                            <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="bottom" secondItem="TAp-li-cdH" secondAttribute="bottom" id="mKz-rq-N4n"/>
+                            <constraint firstItem="bsR-Dv-XLS" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" id="o3T-ug-Qdo"/>
+                            <constraint firstItem="TAp-li-cdH" firstAttribute="top" secondItem="bsR-Dv-XLS" secondAttribute="bottom" id="rqB-FY-Fyo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-SZ-EuZ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home-7" id="e9t-XX-NrY">
@@ -298,10 +381,13 @@
                     <navigationItem key="navigationItem" id="UXm-UH-lXh"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionFeed" destination="TAp-li-cdH" id="NYa-mG-oL4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9B-8m-z1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1678" y="-526"/>
+            <point key="canvasLocation" x="1677.5999999999999" y="-526.6866566716642"/>
         </scene>
     </scenes>
     <resources>
