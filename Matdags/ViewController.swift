@@ -34,6 +34,7 @@ class ViewController: UIViewController {
             
             if error != nil{
                 print ("Incorrect")
+                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
             }
             else{
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
@@ -44,6 +45,16 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func createAlertLogin (title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -25,6 +25,7 @@ class RegisterVC: UIViewController {
         
         if password.text != repassword.text {
             print("Please re-enter correct password")
+            self.createAlertRegister(title: "Stämmer ej", message: "Lösenorden stämmer inte överens, försök igen")
             return
         }
         
@@ -32,10 +33,9 @@ class RegisterVC: UIViewController {
             user, error in
             
             if error != nil {
-                self.login()
+//                self.login()
             }
             else {
-                
                 print ("User created")
                 self.login()
             }
@@ -71,5 +71,15 @@ class RegisterVC: UIViewController {
             repassword.isSecureTextEntry = true
         }
 
+    }
+    
+    func createAlertRegister (title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
