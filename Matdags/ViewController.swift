@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         if(Auth.auth().currentUser != nil){
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
