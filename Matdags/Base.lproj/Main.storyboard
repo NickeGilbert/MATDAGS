@@ -83,14 +83,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="oM7-BG-J95">
-                                <rect key="frame" x="88" y="10" width="200" height="100"/>
+                                <rect key="frame" x="87.5" y="10" width="200" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="1ze-g3-TNt"/>
                                     <constraint firstAttribute="width" constant="200" id="FvG-lO-rgo"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feq-2p-exR">
-                                <rect key="frame" x="163" y="330" width="50" height="25"/>
+                                <rect key="frame" x="162.5" y="330" width="50" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="7r5-dr-7yJ"/>
                                     <constraint firstAttribute="width" constant="50" id="RM4-j8-HvO"/>
