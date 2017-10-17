@@ -7,13 +7,22 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailText: UITextField!
-    
     @IBOutlet var password: UITextField!
     
     var isConnected = false
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if emailText.isEditing == true {
+            password.becomeFirstResponder()
+            return true
+        } else {
+            view.endEditing(true)
+            return true
+        }
+    }
     
     override func viewDidLoad() {
         
