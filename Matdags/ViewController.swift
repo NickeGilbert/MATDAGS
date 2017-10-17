@@ -6,6 +6,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FBSDKLoginKit
 
 class ViewController: UIViewController {
 
@@ -18,6 +19,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        let loginButton = FBSDKLoginButton()
+        view.addSubview(loginButton)
+        
+        loginButton.frame = CGRect(x: 16, y: 500, width: view.frame.width - 32, height: 50)
+        
+        
         if(Auth.auth().currentUser != nil){
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }

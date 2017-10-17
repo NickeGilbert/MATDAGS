@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Fw-8d-HNI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -99,17 +99,6 @@
                                 <color key="textColor" red="0.98696042610000001" green="1" blue="0.98816815999999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Rz-7i-niC">
-                                <rect key="frame" x="125" y="445" width="125" height="25"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="Of8-Px-g1c"/>
-                                    <constraint firstAttribute="width" constant="125" id="pV3-yW-Zyd"/>
-                                </constraints>
-                                <state key="normal" image="fblogin">
-                                    <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -120,10 +109,8 @@
                             <constraint firstItem="BFq-ui-eaI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CUC-bR-KpH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IHA-Hh-mX0" secondAttribute="trailing" constant="-15" id="D1P-Q9-wpd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IHA-Hh-mX0" secondAttribute="bottom" constant="-10" id="DY1-jO-Baw"/>
-                            <constraint firstItem="6Rz-7i-niC" firstAttribute="top" secondItem="BFq-ui-eaI" secondAttribute="bottom" constant="20" id="Gke-6n-pbt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xV9-dy-edu" secondAttribute="trailing" constant="60" id="H53-QE-EXW"/>
                             <constraint firstItem="feq-2p-exR" firstAttribute="top" secondItem="xV9-dy-edu" secondAttribute="bottom" constant="70" id="Hpf-pd-es3"/>
-                            <constraint firstItem="6Rz-7i-niC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NKk-aJ-pTi"/>
                             <constraint firstItem="Z73-ED-0zL" firstAttribute="top" secondItem="oM7-BG-J95" secondAttribute="bottom" constant="60" id="OOD-gr-H9A"/>
                             <constraint firstItem="Ylk-cS-VPh" firstAttribute="top" secondItem="xV9-dy-edu" secondAttribute="bottom" constant="10" id="Ox0-lU-qDu"/>
                             <constraint firstItem="oM7-BG-J95" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Rq3-Hs-UOc"/>
@@ -483,7 +470,6 @@
         <image name="Charken" width="490" height="710"/>
         <image name="cameraicon" width="22" height="22"/>
         <image name="circle-user-7" width="30" height="30"/>
-        <image name="fblogin" width="125" height="25"/>
         <image name="heart-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
         <image name="logoMatdags" width="150" height="45"/>
@@ -491,6 +477,6 @@
         <image name="spoon" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qav-lz-AQ2"/>
+        <segue reference="Pq7-cy-tEF"/>
     </inferredMetricsTieBreakers>
 </document>
