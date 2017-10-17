@@ -25,14 +25,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
         
-        //cell.myImages.image = UIImage(named: picArray[indexPath.row])
+        print("Nu sätts bilden i Collection View")
+        cell.myImages.image = picArray[indexPath.row] as UIImage
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indezPath: IndexPath) -> CGSize {
         
-        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)
-        
+        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)        
         return storleken
     }
     
@@ -41,13 +41,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         
         downloadImages()
-        
     }
     
     func downloadImages() {
         
         let storageRef = Storage.storage().reference()
-        let imagesRef = storageRef.child("images/BALL.png")
+        let imagesRef = storageRef.child("images/mat.jpeg")
         
         imagesRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
@@ -56,6 +55,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 print("Bildhämtningen gick bra")
                 let tempImage = UIImage(data: data!)!
                 self.picArray.append(tempImage)
+                self.collectionFeed.reloadData()
             }
         }
     }
