@@ -71,15 +71,3 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
 }
-
-extension ImageFeedVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    @IBAction func cameraButton(_ sender: Any) {
-        let imgPicker = UIImagePickerController()
-        imgPicker.delegate = self
-        imgPicker.allowsEditing = true
-        imgPicker.sourceType = UIImagePickerControllerSourceType.camera
-        
-        self.present(imgPicker, animated: true, completion: nil)
-    }
-}

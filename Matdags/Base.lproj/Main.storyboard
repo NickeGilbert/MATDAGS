@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -375,6 +375,66 @@
             </objects>
             <point key="canvasLocation" x="1679" y="1178"/>
         </scene>
+        <!--CameraImgPreVC-->
+        <scene sceneID="RgN-NC-Sg2">
+            <objects>
+                <viewController id="XY8-bG-91K" userLabel="CameraImgPreVC" customClass="CameraImgPreVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hKD-Hk-8et">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r7Z-5q-AXT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r7Z-5q-AXT" firstAttribute="bottom" secondItem="cOC-lu-dwV" secondAttribute="bottom" id="2PI-ED-3qy"/>
+                            <constraint firstItem="r7Z-5q-AXT" firstAttribute="top" secondItem="hKD-Hk-8et" secondAttribute="top" id="7xJ-72-YJq"/>
+                            <constraint firstItem="r7Z-5q-AXT" firstAttribute="trailing" secondItem="cOC-lu-dwV" secondAttribute="trailing" id="BbM-d1-Crd"/>
+                            <constraint firstItem="r7Z-5q-AXT" firstAttribute="leading" secondItem="cOC-lu-dwV" secondAttribute="leading" id="x6g-w4-e7D"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cOC-lu-dwV"/>
+                    </view>
+                    <connections>
+                        <outlet property="photo" destination="r7Z-5q-AXT" id="bFA-A0-ccz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcp-d9-4B5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215.19999999999999" y="-527.58620689655174"/>
+        </scene>
+        <!--CameraVC-->
+        <scene sceneID="SYS-gf-j6F">
+            <objects>
+                <viewController id="4Kr-8o-tES" userLabel="CameraVC" customClass="CameraVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SRo-SV-TsX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy2-AB-Mpr" userLabel="CaptureButton">
+                                <rect key="frame" x="164" y="576" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="captureButton:" destination="4Kr-8o-tES" eventType="touchUpInside" id="hmM-qa-ARE"/>
+                                    <segue destination="XY8-bG-91K" kind="show" id="87Q-VF-17W"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="9Sa-I2-jpB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WOQ-We-cVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="-527"/>
+        </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
             <objects>
@@ -395,6 +455,7 @@
                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="cameraButton:" destination="ypM-Uw-J9l" id="1ra-Al-4EC"/>
+                                                <segue destination="4Kr-8o-tES" kind="show" id="CL1-KG-g52"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="aPh-CH-Epm">
