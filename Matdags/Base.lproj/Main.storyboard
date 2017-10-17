@@ -227,7 +227,7 @@
         <!--nameMeVC-->
         <scene sceneID="6jx-6f-SLN">
             <objects>
-                <viewController id="HkU-ZP-HAQ" userLabel="nameMeVC" sceneMemberID="viewController">
+                <viewController id="HkU-ZP-HAQ" userLabel="nameMeVC" customClass="FollowersVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0V-a2-0Ne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +429,16 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DkF-U7-aiB">
+                                                    <rect key="frame" x="0.0" y="-2" width="120" height="122"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="myImages" destination="DkF-U7-aiB" id="W2h-zN-pYE"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

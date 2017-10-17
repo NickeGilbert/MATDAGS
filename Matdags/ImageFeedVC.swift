@@ -25,7 +25,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
         
-        cell.backgroundColor = UIColor.red
+        //cell.myImages.image = UIImage(named: picArray[indexPath.row])
         return cell
     }
     
@@ -53,7 +53,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let error = error {
                 print("Något fick fel i bildhämtning")
             } else {
-                print("Bildhämtningen gick bras")
+                print("Bildhämtningen gick bra")
                 let tempImage = UIImage(data: data!)!
                 self.picArray.append(tempImage)
             }
