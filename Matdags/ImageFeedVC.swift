@@ -27,6 +27,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         print("Nu sätts bilden i Collection View")
         cell.myImages.image = picArray[indexPath.row] as UIImage
+        cell.backgroundColor = .black
         return cell
     }
     

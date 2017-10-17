@@ -430,12 +430,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DkF-U7-aiB">
-                                                    <rect key="frame" x="0.0" y="-2" width="120" height="122"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DkF-U7-aiB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="DkF-U7-aiB" secondAttribute="trailing" id="1Fx-46-qdt"/>
+                                            <constraint firstItem="DkF-U7-aiB" firstAttribute="leading" secondItem="LP8-Gh-a4K" secondAttribute="leading" id="8yf-hT-2AB"/>
+                                            <constraint firstItem="DkF-U7-aiB" firstAttribute="top" secondItem="LP8-Gh-a4K" secondAttribute="top" id="T7R-zf-PtP"/>
+                                            <constraint firstAttribute="bottom" secondItem="DkF-U7-aiB" secondAttribute="bottom" id="t16-84-Yhr"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="myImages" destination="DkF-U7-aiB" id="W2h-zN-pYE"/>
                                         </connections>
