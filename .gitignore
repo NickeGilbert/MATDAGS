@@ -60,3 +60,5 @@ fastlane/test_output
 
 # End of https://www.gitignore.io/api/swift
 *.pbxproj
+
+Matdags.xcworkspace/xcuserdata/nicklasgilbertson.xcuserdatad/UserInterfaceState.xcuserstate

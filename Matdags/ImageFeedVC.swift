@@ -15,7 +15,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var database: Database!
     var databaseref: DatabaseReference!
-    
     var picArray = [UIImage] ()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -25,14 +24,15 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
         
-        cell.backgroundColor = UIColor.red
+        print("Nu sätts bilden i Collection View")
+        cell.myImages.image = picArray[indexPath.row] as UIImage
+        cell.backgroundColor = .black
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indezPath: IndexPath) -> CGSize {
         
-        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)
-        
+        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)        
         return storleken
     }
     
@@ -41,24 +41,38 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         
         downloadImages()
-        
     }
     
     func downloadImages() {
         
         let storageRef = Storage.storage().reference()
-        let imagesRef = storageRef.child("images/BALL.png")
+        let imagesRef = storageRef.child("images/mat.jpeg")
         
         imagesRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
                 print("Något fick fel i bildhämtning")
             } else {
-                print("Bildhämtningen gick bras")
+                print("Bildhämtningen gick bra")
                 let tempImage = UIImage(data: data!)!
                 self.picArray.append(tempImage)
+                self.collectionFeed.reloadData()
             }
         }
     }
+    
+    /*func randomString(_ length: Int) -> String {
+        let letters : NSString = "abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }*/
     
     @IBAction func loggaOut(_ sender: Any) {
         let firebaseAuth = Auth.auth()
@@ -69,5 +83,17 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         } catch {
             print("ERROR2")
         }
+    }
+}
+
+extension ImageFeedVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBAction func cameraButton(_ sender: Any) {
+        let imgPicker = UIImagePickerController()
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = true
+        imgPicker.sourceType = UIImagePickerControllerSourceType.camera
+        
+        self.present(imgPicker, animated: true, completion: nil)
     }
 }

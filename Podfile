@@ -11,4 +11,8 @@ target 'Matdags' do
     	pod ‘Firebase/Auth’
         pod ‘Firebase/Storage’
 
+	pod ‘FBSDKCoreKit’
+    	pod ‘FBSDKShareKit’
+    	pod ‘FBSDKLoginKit’
+
 end
