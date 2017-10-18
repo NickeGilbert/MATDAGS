@@ -23,13 +23,13 @@ class RegisterVC: UIViewController {
     @IBAction func infoViewClick(_ sender: Any) {
         if infoOpen == false {
             infoViewOutlet.isHidden = false
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.infoViewOutlet.frame.origin.y = self.infoStartValue
             }, completion: nil)
             infoOpen = true
         }else {
             
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.infoViewOutlet.frame.origin.y = 500
             }, completion: { (complete: Bool) in
                 self.infoViewOutlet.isHidden = true

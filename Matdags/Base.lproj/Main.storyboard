@@ -242,9 +242,12 @@
                                         <rect key="frame" x="0.0" y="290" width="375" height="213"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0m-k9-IAp">
-                                                <rect key="frame" x="60" y="20" width="255" height="193"/>
+                                                <rect key="frame" x="60" y="20" width="255" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="d2B-rT-abr"/>
+                                                </constraints>
                                                 <string key="text">Användarinformation, din personlig data du lämnar ifrån dig används endast för att koppla ihop flera konton på olika enheter som du själv väljer, ingen information ges ut till någon tredjepart.-</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                                                 <color key="textColor" red="0.98696042610000001" green="1" blue="0.98816815999999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -254,7 +257,6 @@
                                             <constraint firstItem="n0m-k9-IAp" firstAttribute="top" secondItem="xJl-EW-lfy" secondAttribute="top" constant="20" id="QjA-T0-jjA"/>
                                             <constraint firstAttribute="trailing" secondItem="n0m-k9-IAp" secondAttribute="trailing" constant="60" id="f8E-zD-PW5"/>
                                             <constraint firstItem="n0m-k9-IAp" firstAttribute="leading" secondItem="xJl-EW-lfy" secondAttribute="leading" constant="60" id="wlq-xC-W6L"/>
-                                            <constraint firstAttribute="bottom" secondItem="n0m-k9-IAp" secondAttribute="bottom" id="xl9-CM-nnp"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -546,7 +548,7 @@
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="aPh-CH-Epm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz">
                                                 <rect key="frame" x="337" y="11" width="22" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="logout"/>
