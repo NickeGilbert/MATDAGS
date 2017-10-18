@@ -18,7 +18,7 @@ class TabBarC : UITabBarController {
             performSegue(withIdentifier: "login", sender: nil)
     }
         else{
-            print("INLOGGAD2")
+            print("INLOGGAD22")
         }
     }
 }
