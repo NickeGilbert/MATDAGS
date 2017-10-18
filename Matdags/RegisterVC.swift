@@ -8,19 +8,53 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
+
 class RegisterVC: UIViewController {
     
     @IBOutlet weak var mail: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repassword: UITextField!
     @IBOutlet weak var showPass: UIButton!
+    @IBOutlet weak var infoViewOutlet: UIView!
+    
+    var infoStartValue : CGFloat = 0.0
+    var infoOpen = false
+    
+    @IBAction func infoViewClick(_ sender: Any) {
+        if infoOpen == false {
+            infoViewOutlet.isHidden = false
+            UIView.animate(withDuration: 1, animations: {
+                self.infoViewOutlet.frame.origin.y = self.infoStartValue
+            }, completion: nil)
+            infoOpen = true
+        }else {
+            
+            UIView.animate(withDuration: 1, animations: {
+                self.infoViewOutlet.frame.origin.y = 500
+            }, completion: { (complete: Bool) in
+                self.infoViewOutlet.isHidden = true
+                self.infoOpen = false
+            })
+            
+        }
+       
+    }
+
     
     var clicks = 0
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        infoViewOutlet.isHidden = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        infoStartValue = infoViewOutlet.frame.origin.y
+        print(infoStartValue)
+        infoViewOutlet.frame.origin.y = 500
+    }
+    
     
     @IBAction func Register(_ sender: Any) {
         
