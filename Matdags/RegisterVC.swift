@@ -39,7 +39,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         }
        
     }
-
     
     var clicks = 0
     
@@ -106,5 +105,20 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             repassword.isSecureTextEntry = true
         }
 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if mail.isEditing == true {
+            self.password.becomeFirstResponder()
+            return true
+        } else if password.isEditing == true {
+            self.repassword.becomeFirstResponder()
+            return true
+        } else {
+            self.view.endEditing(true)
+            return true
+        }
+        
     }
 }
