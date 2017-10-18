@@ -58,21 +58,42 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBAction func Register(_ sender: Any) {
         
         if password.text != repassword.text {
-            print("Please re-enter correct password")
+            self.createAlertLogin(title: "Inte samma", message: "Lösenorden du skrev överensstämmer inte, vänligen försök igen")
+            self.password.text = ""
+            self.repassword.text = ""
+            self.password.becomeFirstResponder()
             return
         }
         
         Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: {
-            user, error in
-            
+//            user, error in
+//
+//            if error != nil {
+//                self.login()
+//            }
+//            else {
+//
+//                print ("User created")
+//                self.login()
+//            }
+            (user, error) in
             if error != nil {
-                self.login()
-            }
-            else {
+                print("fel vid signup")
                 
-                print ("User created")
+                if (self.password.text?.count)! < 7 {
+                    print("lösenord är mindre än 5")
+                    self.createAlertLogin(title: "Lösenord", message: "Ditt lösenord måste vara mer fler än 5 tecken")
+                }
+                self.password.text = ""
+                self.repassword.text = ""
+                
+                self.createAlertLogin(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
+                
+            } else {
+                print("OK signup")
                 self.login()
             }
+        
         })
     }
 
@@ -121,4 +142,16 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    func createAlertLogin (title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
 }
