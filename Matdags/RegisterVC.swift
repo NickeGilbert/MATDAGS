@@ -9,7 +9,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mail: UITextField!
     @IBOutlet weak var password: UITextField!
