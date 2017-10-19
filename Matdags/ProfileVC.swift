@@ -10,6 +10,8 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var profileWrapperViewOutlet: UIView!
     @IBOutlet weak var profileInfoViewOutlet: UIView!
     @IBOutlet weak var profilePhotoOutlet: UIImageView!
+    @IBOutlet weak var followNumberLabelOutlet: UILabel!
+    @IBOutlet weak var followersNumberLabelOutlet: UILabel!
     
     
     
