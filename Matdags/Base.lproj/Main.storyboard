@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Fw-8d-HNI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -436,14 +436,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="jättehäftiga profilsaker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfv-3J-dMb">
-                                <rect key="frame" x="87" y="234" width="200" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1c-BR-7P5">
+                            <navigationBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1c-BR-7P5">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -467,13 +460,67 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ue-qd-7b9" userLabel="profileWrapperView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Charken" translatesAutoresizingMaskIntoConstraints="NO" id="fKL-3T-WB0">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbF-EJ-xgU" userLabel="profileInfoView">
+                                        <rect key="frame" x="0.0" y="115" width="375" height="503"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moiJapp" translatesAutoresizingMaskIntoConstraints="NO" id="QvX-Jc-jyi" userLabel="profilePhoto">
+                                        <rect key="frame" x="112" y="40" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="WbH-ZS-2xf"/>
+                                            <constraint firstAttribute="height" constant="150" id="c44-bu-keu"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.98696042610000001" green="1" blue="0.98816815999999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fKL-3T-WB0" secondAttribute="trailing" id="3LG-l1-mYk"/>
+                                    <constraint firstAttribute="bottom" secondItem="kbF-EJ-xgU" secondAttribute="bottom" id="A2d-rA-rrI"/>
+                                    <constraint firstItem="kbF-EJ-xgU" firstAttribute="top" secondItem="3Ue-qd-7b9" secondAttribute="top" constant="115" id="GbL-eR-tF3"/>
+                                    <constraint firstItem="QvX-Jc-jyi" firstAttribute="top" secondItem="3Ue-qd-7b9" secondAttribute="top" constant="40" id="MZF-Vh-eUy"/>
+                                    <constraint firstItem="QvX-Jc-jyi" firstAttribute="centerX" secondItem="3Ue-qd-7b9" secondAttribute="centerX" id="RcD-Jr-h8b"/>
+                                    <constraint firstAttribute="bottom" secondItem="fKL-3T-WB0" secondAttribute="bottom" id="Txn-j4-kYK"/>
+                                    <constraint firstItem="fKL-3T-WB0" firstAttribute="top" secondItem="3Ue-qd-7b9" secondAttribute="top" id="ZNX-xI-RUx"/>
+                                    <constraint firstAttribute="trailing" secondItem="kbF-EJ-xgU" secondAttribute="trailing" id="hdQ-Pj-8CW"/>
+                                    <constraint firstItem="kbF-EJ-xgU" firstAttribute="leading" secondItem="3Ue-qd-7b9" secondAttribute="leading" id="o8X-LH-At7"/>
+                                    <constraint firstItem="fKL-3T-WB0" firstAttribute="leading" secondItem="3Ue-qd-7b9" secondAttribute="leading" id="rNa-s0-gNt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="3Ue-qd-7b9" secondAttribute="bottom" id="MXM-ey-XRE"/>
+                            <constraint firstItem="3Ue-qd-7b9" firstAttribute="top" secondItem="YeT-Gu-iAA" secondAttribute="top" id="QLi-se-bs9"/>
+                            <constraint firstItem="3Ue-qd-7b9" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="ZUt-xt-5do"/>
+                            <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="3Ue-qd-7b9" secondAttribute="trailing" id="eHk-go-mvH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="circle-user-7" id="lP8-fs-3y6" userLabel="Item 3">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="profileInfoViewOutlet" destination="kbF-EJ-xgU" id="cMl-2c-dZe"/>
+                        <outlet property="profilePhotoOutlet" destination="QvX-Jc-jyi" id="c4a-Mg-5ms"/>
+                        <outlet property="profileWrapperViewOutlet" destination="3Ue-qd-7b9" id="nc7-fM-yjg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -563,7 +610,7 @@
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="aPh-CH-Epm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz">
                                                 <rect key="frame" x="337" y="11" width="22" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="logout"/>
@@ -639,6 +686,7 @@
         <image name="home-7" width="30" height="30"/>
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logout" width="22" height="22"/>
+        <image name="moiJapp" width="720" height="720"/>
         <image name="spoon" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
