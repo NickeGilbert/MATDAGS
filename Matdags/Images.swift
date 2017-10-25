@@ -7,4 +7,5 @@ import UIKit
 
 class Images: UICollectionViewCell {
     
+    var fbKey = ""
 }
