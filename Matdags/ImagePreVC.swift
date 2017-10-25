@@ -6,7 +6,7 @@
 import UIKit
 import AVFoundation
 
-class CameraImgPreVC: UIViewController{
+class ImagePreVC: UIViewController{
     
     @IBOutlet weak var photo: UIImageView!
     var image: UIImage!

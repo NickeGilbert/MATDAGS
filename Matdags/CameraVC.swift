@@ -72,7 +72,7 @@ class CameraVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPhoto" {
-            let previewVC = segue.destination as! CameraImgPreVC
+            let previewVC = segue.destination as! ImagePreVC
             previewVC.image = self.image
         }
     }

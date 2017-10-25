@@ -388,6 +388,63 @@
             </objects>
             <point key="canvasLocation" x="1679" y="1178"/>
         </scene>
+        <!--ImagePreviewVC-->
+        <scene sceneID="ard-oB-FFI">
+            <objects>
+                <viewController id="2ez-7q-i8j" userLabel="ImagePreviewVC" customClass="ImagePreVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heh-I0-F8Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cUn-EM-FWZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cUn-EM-FWZ" firstAttribute="bottom" secondItem="vmJ-rb-PPw" secondAttribute="bottom" id="QKg-lO-Q4z"/>
+                            <constraint firstItem="cUn-EM-FWZ" firstAttribute="top" secondItem="vmJ-rb-PPw" secondAttribute="top" id="SLp-M8-QeZ"/>
+                            <constraint firstItem="cUn-EM-FWZ" firstAttribute="trailing" secondItem="vmJ-rb-PPw" secondAttribute="trailing" id="eMs-Lf-9wM"/>
+                            <constraint firstItem="cUn-EM-FWZ" firstAttribute="leading" secondItem="vmJ-rb-PPw" secondAttribute="leading" id="lld-dF-9uV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vmJ-rb-PPw"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbv-vd-J5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218.40000000000001" y="-528.48575712143929"/>
+        </scene>
+        <!--CameraVC-->
+        <scene sceneID="hhI-Ad-C3A">
+            <objects>
+                <viewController id="wvw-nt-nff" userLabel="CameraVC" customClass="CameraVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heI-6Q-TLX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-TD-su1">
+                                <rect key="frame" x="164" y="559" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="captureButton:" destination="wvw-nt-nff" eventType="touchUpInside" id="sN2-D1-d7l"/>
+                                    <segue destination="2ez-7q-i8j" kind="presentation" id="sAK-eX-dlr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="mD4-1X-hTS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RVl-jS-qfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="-527"/>
+        </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
             <objects>
@@ -407,7 +464,8 @@
                                         <barButtonItem key="leftBarButtonItem" title="Camera" image="cameraicon" id="zI2-48-LAB">
                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="cameraButton:" destination="ypM-Uw-J9l" id="1ra-Al-4EC"/>
+                                                <action selector="cameraButtonClicked:" destination="ypM-Uw-J9l" id="0HL-K2-QXw"/>
+                                                <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="F3C-ho-Xp7"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="aPh-CH-Epm">

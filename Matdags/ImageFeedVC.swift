@@ -70,16 +70,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("ERROR2")
         }
     }
-}
-
-extension ImageFeedVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBAction func cameraButton(_ sender: Any) {
-        let imgPicker = UIImagePickerController()
-        imgPicker.delegate = self
-        imgPicker.allowsEditing = true
-        imgPicker.sourceType = UIImagePickerControllerSourceType.camera
-        
-        self.present(imgPicker, animated: true, completion: nil)
+    @IBAction func cameraButtonClicked(_ sender: Any) {
+        performSegue(withIdentifier: "cameraSeg", sender: nil)
     }
 }
