@@ -16,7 +16,7 @@ class NavC : UINavigationController {
         
         //NavigationBar Stuff
         self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationBar.tintColor = .white
+        self.navigationBar.tintColor = .black
         self.navigationBar.backgroundColor = .clear
         self.navigationBar.isTranslucent = true
         self.navigationBar.shadowImage = UIImage()
