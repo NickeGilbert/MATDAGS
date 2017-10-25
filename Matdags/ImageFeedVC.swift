@@ -52,7 +52,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let error = error {
                 print("Något fick fel i bildhämtning")
             } else {
-                print("Bildhämtningen gick bra")
+                print("Bildhämtningen gick bra!")
                 let tempImage = UIImage(data: data!)!
                 self.picArray.append(tempImage)
                 self.collectionFeed.reloadData()
