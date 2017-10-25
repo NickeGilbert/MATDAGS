@@ -62,3 +62,5 @@ fastlane/test_output
 *.pbxproj
 
 Matdags.xcworkspace/xcuserdata/nicklasgilbertson.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
+*.pbxproj

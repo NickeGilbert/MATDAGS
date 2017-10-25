@@ -13,6 +13,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
    
     @IBOutlet var collectionFeed: UICollectionView!
     
+    var s_item : Images? 
     var database: Database!
     var databaseref: DatabaseReference!
     var picArray = [UIImage] ()
