@@ -8,7 +8,7 @@ import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailText: UITextField!
     
@@ -40,7 +40,10 @@ class ViewController: UIViewController {
             user, error in
             
             if error != nil{
-                print ("Incorrect")
+                print("fel vid LOGIN")
+                self.createAlertLogin(title: "Problem", message: "Något problem hände när du försökte logga in, vänligen försök igen")
+                self.password.text = ""
+                print("Incorrect")
             }
             else{
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
@@ -52,5 +55,29 @@ class ViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if emailText.isEditing == true {
+            self.password.becomeFirstResponder()
+            return true
+        } else {
+            self.view.endEditing(true)
+            return true
+        }
+        
+    }
+    
+    func createAlertLogin (title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
 }
 
