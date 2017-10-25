@@ -30,6 +30,7 @@
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
+		A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
+		A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matdags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2FBC78928FB9B9A2D38EE1 /* Pods-Matdags.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 				A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */,
 				A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */,
 				A4AE137B1F9618AA005013EC /* FollowersVC.swift */,
+				A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */,
 				0ACD886E1F894A84005825A6 /* NavC.swift */,
 				0ABFCB321F862C340086DE20 /* ProfileVC.swift */,
 				0A91F4211F73D19800304F32 /* RegisterVC.swift */,
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ACD886F1F894A84005825A6 /* NavC.swift in Sources */,
+				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
 				0ABFCB391F8637760086DE20 /* TabBarC.swift in Sources */,
