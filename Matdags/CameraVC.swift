@@ -47,11 +47,13 @@ class CameraVC: UIViewController {
                 frontCamera = device
             }
         }
+        
+        currentCamera = backCamera
     }
     
     func setupInputOutput(){
         do{
-            let captureDeviceInput = try AVCaptureDeviceInput(device:currentCamera!)
+            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
             photoOutput = AVCapturePhotoOutput()
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)

@@ -409,6 +409,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vmJ-rb-PPw"/>
                     </view>
+                    <connections>
+                        <outlet property="photo" destination="cUn-EM-FWZ" id="gZn-oE-St5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbv-vd-J5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -422,13 +425,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-TD-su1">
-                                <rect key="frame" x="164" y="559" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-TD-su1">
+                                <rect key="frame" x="162" y="568" width="50" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
+                                        <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -438,6 +440,12 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="pul-TD-su1" firstAttribute="leading" secondItem="mD4-1X-hTS" secondAttribute="leading" constant="162" id="HGX-Cb-Cpa"/>
+                            <constraint firstItem="pul-TD-su1" firstAttribute="top" secondItem="mD4-1X-hTS" secondAttribute="top" constant="548" id="IfR-Nj-y1Q"/>
+                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="pul-TD-su1" secondAttribute="bottom" constant="49" id="cvc-8a-bpr"/>
+                            <constraint firstItem="mD4-1X-hTS" firstAttribute="trailing" secondItem="pul-TD-su1" secondAttribute="trailing" constant="163" id="jQj-pb-tn8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mD4-1X-hTS"/>
                     </view>
                 </viewController>
