@@ -14,8 +14,6 @@ class ViewController: UIViewController {
     
     @IBOutlet var password: UITextField!
     
-    var isConnected = false
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()

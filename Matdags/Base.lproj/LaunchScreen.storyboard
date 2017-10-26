@@ -17,12 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CharkGau" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-4F-wMr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CharkGau" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-4F-wMr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Jh-Es-bnb"/>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5bj-cn-dwY"/>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="pK1-zM-yvD"/>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="wYH-9o-ji7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

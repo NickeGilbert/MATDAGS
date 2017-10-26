@@ -47,7 +47,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func downloadImages() {
         
-        let storageRef = Storage.storage().reference()
+    /*    let storageRef = Storage.storage().reference()
         let imagesRef = storageRef.child("images/"+s_item!.fbKey)
         
         imagesRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
@@ -59,7 +59,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.picArray.append(tempImage)
                 self.collectionFeed.reloadData()
             }
-        }
+        }*/
     }
 
     @IBAction func loggaOut(_ sender: Any) {
