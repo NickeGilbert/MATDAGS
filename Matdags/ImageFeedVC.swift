@@ -9,7 +9,8 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 
-class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate {
    
     @IBOutlet var collectionFeed: UICollectionView!
     
