@@ -67,7 +67,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         do {
             try firebaseAuth.signOut()
             performSegue(withIdentifier: "logout", sender: nil)
-            print("U JUST LOGGED OUT :D")
+            print("U JUST LOGGED OUT BUDDY :D")
         } catch {
             print("U GOT AN ERROR BUDDY ;)")
         }
