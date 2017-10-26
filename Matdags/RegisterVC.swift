@@ -15,8 +15,6 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var repassword: UITextField!
     @IBOutlet weak var showPass: UIButton!
     
-    var clicks = 0
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
