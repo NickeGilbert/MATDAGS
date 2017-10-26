@@ -209,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14C-76-Kei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-216" y="1178"/>
+            <point key="canvasLocation" x="-215" y="1064"/>
         </scene>
         <!--nameMeVC-->
         <scene sceneID="6jx-6f-SLN">
@@ -386,7 +386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="1178"/>
+            <point key="canvasLocation" x="1678" y="1016"/>
         </scene>
         <!--ImagePreviewVC-->
         <scene sceneID="ard-oB-FFI">
@@ -569,6 +569,6 @@
         <image name="spoon" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pq7-cy-tEF"/>
+        <segue reference="qav-lz-AQ2"/>
     </inferredMetricsTieBreakers>
 </document>
