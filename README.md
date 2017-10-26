@@ -1,3 +1,3 @@
 # Matdags
 
-Matdags is an app for every foodlover! 
+An app for every foodlover! 
