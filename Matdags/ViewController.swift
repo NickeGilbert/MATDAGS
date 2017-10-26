@@ -40,11 +40,11 @@ class ViewController: UIViewController {
             user, error in
             
             if error != nil{
-                print ("Incorrect")
+                print ("INCORRECT BUDDY")
             }
             else{
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                print("Correct")
+                print("CORRECT BUDDY")
             }
         })
     }
