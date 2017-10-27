@@ -18,10 +18,12 @@ class ImagePreVC: UIViewController{
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func saveButton(_ sender: Any) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        dismiss(animated: false, completion: nil)
     }
     
 }
