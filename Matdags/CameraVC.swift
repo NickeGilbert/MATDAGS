@@ -70,7 +70,7 @@ class CameraVC: UIViewController {
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
     func startRunningCaptureSession(){
-        
+        captureSession.startRunning()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPhoto" {
