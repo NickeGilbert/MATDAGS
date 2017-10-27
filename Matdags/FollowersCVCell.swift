@@ -14,6 +14,8 @@ class FollowersCVCell: UICollectionViewCell {
     @IBOutlet var username: UILabel!
     @IBOutlet var postImageView: UIImageView!
     
+    
+    
     @IBOutlet var starButtons: [UIButton]!
     
     
