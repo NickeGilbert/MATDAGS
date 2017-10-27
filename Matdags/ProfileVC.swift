@@ -7,4 +7,17 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
+    
+    @IBOutlet weak var profilePictureOutlet: UIImageView!
+    
+    override func viewDidLoad() {
+        resizeImage()
+    }
+    
+    func resizeImage(){
+        profilePictureOutlet.layer.cornerRadius = profilePictureOutlet.frame.size.height / 2
+        profilePictureOutlet.clipsToBounds = true
+        self.profilePictureOutlet.layer.borderColor = UIColor.white.cgColor
+        self.profilePictureOutlet.layer.borderWidth = 4
+    }
 }
