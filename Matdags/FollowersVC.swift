@@ -32,7 +32,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         }

@@ -26,9 +26,6 @@ class CameraVC: UIViewController {
         startRunningCaptureSession()
         
     }
-    @IBAction func backButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func captureButton(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
