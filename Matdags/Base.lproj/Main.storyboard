@@ -536,6 +536,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="50" height="50"/>
         <image name="cameraicon" width="22" height="22"/>
         <image name="circle-user-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
@@ -23789,11 +23790,7 @@ ABVGkQAVRpYAAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAAABVGmA
         </image>
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logout" width="22" height="22"/>
-<<<<<<< HEAD
-        <image name="spoon" width="64" height="64"/>
         <image name="upload" width="50" height="50"/>
-=======
->>>>>>> 7970dbf94b587e7df54c0cc6ee587abaa621b7c5
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Pq7-cy-tEF"/>
