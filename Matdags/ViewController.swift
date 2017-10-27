@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
         
-        loginButton.frame = CGRect(x: 16, y: 500, width: view.frame.width - 32, height: 50)
+        loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         
         
         if(Auth.auth().currentUser != nil){
