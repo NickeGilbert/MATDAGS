@@ -32,7 +32,6 @@
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
 		A45462611FA343AF0058664E /* FollowersCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A454625F1FA343AF0058664E /* FollowersCVCell.swift */; };
-		A45462621FA343AF0058664E /* FollowersCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A45462601FA343AF0058664E /* FollowersCVCell.xib */; };
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
 		A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */; };
@@ -66,7 +65,6 @@
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A454625F1FA343AF0058664E /* FollowersCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCVCell.swift; sourceTree = "<group>"; };
-		A45462601FA343AF0058664E /* FollowersCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowersCVCell.xib; sourceTree = "<group>"; };
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
 		A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				0A8B33151FA08742007BAE27 /* ImagePreVC.swift */,
 				0A8B33181FA08742007BAE27 /* CameraVC.swift */,
 				A454625F1FA343AF0058664E /* FollowersCVCell.swift */,
-				A45462601FA343AF0058664E /* FollowersCVCell.xib */,
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
 				A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */,
 				A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */,
@@ -227,7 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A706CC61F73B70800B0345C /* LaunchScreen.storyboard in Resources */,
-				A45462621FA343AF0058664E /* FollowersCVCell.xib in Resources */,
 				0AA373191F86450400E6FE92 /* FacebookSDKStrings.bundle in Resources */,
 				0A706CC31F73B70800B0345C /* Assets.xcassets in Resources */,
 				0AA3731D1F86450400E6FE92 /* AccountKitStrings.bundle in Resources */,
