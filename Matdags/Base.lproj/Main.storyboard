@@ -235,7 +235,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="46U-GM-woM"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="1Um-M8-3VX" userLabel="Följare"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart-7" id="1Um-M8-3VX" userLabel="Följare">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="feedCollectionView" destination="nYZ-D1-55t" id="VTW-Ye-ma5"/>
                     </connections>
@@ -539,6 +541,7 @@
         <image name="back" width="50" height="50"/>
         <image name="cameraicon" width="22" height="22"/>
         <image name="circle-user-7" width="30" height="30"/>
+        <image name="heart-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
         <image name="imageView:IHA-Hh-mX0:image" width="490" height="710">
             <mutableData key="keyedArchiveRepresentation">
