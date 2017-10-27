@@ -10,16 +10,10 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FollowersVC: UIViewController {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
+    @IBOutlet var feedCollectionView: UICollectionView!
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowersPic", for: indexPath)
-        return cell
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
