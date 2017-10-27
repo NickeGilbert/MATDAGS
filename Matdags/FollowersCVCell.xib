@@ -33,6 +33,52 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LaV-aI-qgG">
+                        <rect key="frame" x="20" y="463" width="150" height="42"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uai-cA-9Ub">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="☆"/>
+                                <connections>
+                                    <action selector="starButtonsTapped:" destination="Hhy-NL-ALr" eventType="touchUpInside" id="jEo-pX-gr8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqU-an-tYu">
+                                <rect key="frame" x="30" y="0.0" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="☆"/>
+                                <connections>
+                                    <action selector="starButtonsTapped:" destination="Hhy-NL-ALr" eventType="touchUpInside" id="SU5-0k-HoT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLK-85-MSM">
+                                <rect key="frame" x="60" y="0.0" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="☆"/>
+                                <connections>
+                                    <action selector="starButtonsTapped:" destination="Hhy-NL-ALr" eventType="touchUpInside" id="1a5-iI-ZYd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZZ-BY-k9d">
+                                <rect key="frame" x="90" y="0.0" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="☆"/>
+                                <connections>
+                                    <action selector="starButtonsTapped:" destination="Hhy-NL-ALr" eventType="touchUpInside" id="zUU-Iu-Dar"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsO-px-yWa">
+                                <rect key="frame" x="120" y="0.0" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="☆"/>
+                                <connections>
+                                    <action selector="starButtonsTapped:" destination="Hhy-NL-ALr" eventType="touchUpInside" id="sz9-hO-tvM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="pZo-vq-0xH"/>
@@ -41,6 +87,11 @@
                 <outlet property="postImageView" destination="bCv-PF-0Sd" id="T2V-f0-bwK"/>
                 <outlet property="profileImage" destination="qGh-VD-ZMk" id="yfE-0d-alW"/>
                 <outlet property="username" destination="6vv-St-e29" id="VOV-0G-atf"/>
+                <outletCollection property="starButtons" destination="uai-cA-9Ub" collectionClass="NSMutableArray" id="puf-qf-ati"/>
+                <outletCollection property="starButtons" destination="YqU-an-tYu" collectionClass="NSMutableArray" id="Ceg-25-gXs"/>
+                <outletCollection property="starButtons" destination="lLK-85-MSM" collectionClass="NSMutableArray" id="8vN-dT-UFR"/>
+                <outletCollection property="starButtons" destination="TZZ-BY-k9d" collectionClass="NSMutableArray" id="xCI-dU-cWH"/>
+                <outletCollection property="starButtons" destination="tsO-px-yWa" collectionClass="NSMutableArray" id="WkI-VH-MH7"/>
             </connections>
             <point key="canvasLocation" x="-2121.5" y="-2436"/>
         </collectionViewCell>
