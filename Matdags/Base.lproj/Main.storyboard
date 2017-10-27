@@ -494,11 +494,6 @@
         </scene>
     </scenes>
     <resources>
-<<<<<<< HEAD
-        <image name="Matdags" width="1536" height="2048"/>
-        <image name="back" width="50" height="50"/>
-=======
->>>>>>> parent of 7aa932f... extra saker
         <image name="cameraicon" width="22" height="22"/>
         <image name="circle-user-7" width="30" height="30"/>
         <image name="heart-7" width="30" height="30"/>
