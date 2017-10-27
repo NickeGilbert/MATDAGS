@@ -11,23 +11,24 @@ import Firebase
 import FirebaseDatabase
 
 class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-   
     
     @IBOutlet var feedCollectionView: UICollectionView!
     
-    //var feedArray = [Post]()  Ska läggas in senare
-    let 
+    var feedArray = [Images]()
+    let cellIdentifier = "cell"
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        <#code#>
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return feedArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let followerscell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: IndexPath) as! FollowersCVCell
+        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FollowersCVCell
+        
+        return cell
     }
     
     
