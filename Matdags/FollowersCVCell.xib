@@ -79,6 +79,11 @@
                             </button>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLB-p5-Ymy">
+                        <rect key="frame" x="223" y="461" width="47" height="48"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button" image="comment"/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="pZo-vq-0xH"/>
@@ -98,5 +103,6 @@
     </objects>
     <resources>
         <image name="Matdags" width="1536" height="2048"/>
+        <image name="comment" width="200" height="200"/>
     </resources>
 </document>
