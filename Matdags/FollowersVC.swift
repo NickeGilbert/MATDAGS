@@ -21,7 +21,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var count:Int! = 0
     var lastCount:Int! = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

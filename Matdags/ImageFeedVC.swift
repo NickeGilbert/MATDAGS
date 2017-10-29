@@ -19,20 +19,32 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var databaseref: DatabaseReference!
     var picArray = [UIImage] ()
     
+    var taBortArray:[String] = ["1", "2", "3", "4", "5", "6", "1", "2", "3", "4", "5", "6", "1", "2", "3", "4", "5", "6", "1", "2", "3", "4", "5", "6"] //TEST ARRAY, SKA TAS BORT SEN
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return picArray.count
+        return taBortArray.count //Ska vara picArray
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    //TEST FÖR ATT FÅ UT NÅGOT PÅ SKÄRMEN, KAN TAS BORT SEN
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
+        cell.myImages.image = UIImage(named: taBortArray[indexPath.row] + ".jpg")
+        return cell
+    }
+    
+    
+    //DENNA ÄR DEN RIKTIGA SOM SKA ANVÄNDAS
+   /* func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
         
         print("Nu sätts bilden i Collection View")
         cell.myImages.image = picArray[indexPath.row] as UIImage
         cell.backgroundColor = .black
         return cell
-    }
+    }*/
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indezPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)        
         return storleken
