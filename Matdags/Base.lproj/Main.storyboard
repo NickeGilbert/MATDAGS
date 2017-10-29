@@ -364,6 +364,9 @@
                                                     <rect key="frame" x="193" y="452" width="41" height="41"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="comment"/>
+                                                    <connections>
+                                                        <segue destination="gae-Y4-Za0" kind="show" id="HO1-yx-Svc"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </view>
@@ -404,6 +407,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K0-30-kYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1677.5999999999999" y="241.52923538230885"/>
+        </scene>
+        <!--Kommentarer-->
+        <scene sceneID="xeu-y2-TbJ">
+            <objects>
+                <viewController id="Ejr-xe-kxe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tVL-1g-RNh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="poT-uZ-CjS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="291"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kommentera" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-Ax-Tdv">
+                                <rect key="frame" x="16" y="424" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="oox-h8-Vgb"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Kommentarer" id="KUQ-je-oog"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OO5-Ro-Odx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3485.5999999999999" y="234.33283358320841"/>
         </scene>
         <!--TabBarC-->
         <scene sceneID="t4O-Bj-2ec">
@@ -774,6 +810,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9B-8m-z1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1677.5999999999999" y="-526.6866566716642"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wGD-Pc-Mjz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gae-Y4-Za0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cUN-GB-AQR">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ejr-xe-kxe" kind="relationship" relationship="rootViewController" id="TtN-Dr-YRc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P1o-dB-Kji" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2633.5999999999999" y="235.68215892053973"/>
         </scene>
     </scenes>
     <resources>
