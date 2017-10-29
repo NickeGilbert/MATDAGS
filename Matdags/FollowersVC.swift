@@ -15,8 +15,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet var feedCollectionView: UICollectionView!
     
     var ref: DatabaseReference!
-    var feedArray = [Images]()
-    let cellIdentifier = "cell"
+    var feedArray = [FollowersCell]()
     
     var count:Int! = 0
     var lastCount:Int! = 0
@@ -59,17 +58,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }*/
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return feedArray.count
+        return 10 //Ska vara feedArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FollowersCVCell
-        
+        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+
         return cell
     }
 }

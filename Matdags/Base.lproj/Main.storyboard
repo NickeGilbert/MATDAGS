@@ -282,27 +282,123 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nYZ-D1-55t">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-U9-wWi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Edy-x9-xK9">
-                                    <size key="itemSize" width="375" height="496"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lAa-2o-ouY">
+                                    <size key="itemSize" width="372" height="563"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="followersCell" id="FLe-CQ-fiB" customClass="FollowersCell" customModule="Matdags" customModuleProvider="target">
+                                        <rect key="frame" x="1.5" y="0.0" width="372" height="563"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="372" height="563"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="a0b-Qj-CIY">
+                                                    <rect key="frame" x="0.0" y="96" width="372" height="341"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nicklas.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="TAF-ZM-Vl1">
+                                                    <rect key="frame" x="20" y="20" width="78" height="67"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Användarnamn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0R-Jk-APq">
+                                                    <rect key="frame" x="122" y="20" width="195" height="67"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EEi-u7-Xpj">
+                                                    <rect key="frame" x="20" y="450" width="150" height="42"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <state key="normal" title="☆"/>
+                                                            <connections>
+                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="4K3-ml-CLg"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi">
+                                                            <rect key="frame" x="30" y="0.0" width="30" height="42"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <state key="normal" title="☆"/>
+                                                            <connections>
+                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="Kp8-op-EGn"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign">
+                                                            <rect key="frame" x="60" y="0.0" width="30" height="42"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <state key="normal" title="☆"/>
+                                                            <connections>
+                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="bD0-hK-nYQ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd">
+                                                            <rect key="frame" x="90" y="0.0" width="30" height="42"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <state key="normal" title="☆"/>
+                                                            <connections>
+                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="y3Y-zg-dNe"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e">
+                                                            <rect key="frame" x="120" y="0.0" width="30" height="42"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <state key="normal" title="☆"/>
+                                                            <connections>
+                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="vgW-Wl-Phc"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CF-0P-OuL">
+                                                    <rect key="frame" x="193" y="452" width="41" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="comment"/>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="imageFeedView" destination="a0b-Qj-CIY" id="afh-xU-LHe"/>
+                                            <outlet property="profileImage" destination="TAF-ZM-Vl1" id="v5J-0v-Ba1"/>
+                                            <outlet property="usernameLabel" destination="h0R-Jk-APq" id="gNi-L7-q1h"/>
+                                            <outletCollection property="starButtons" destination="3YF-Lz-sNa" collectionClass="NSMutableArray" id="udA-pG-ac7"/>
+                                            <outletCollection property="starButtons" destination="G0p-OH-qWi" collectionClass="NSMutableArray" id="5ft-oj-ueO"/>
+                                            <outletCollection property="starButtons" destination="Zzy-oO-Ign" collectionClass="NSMutableArray" id="U0g-5J-s96"/>
+                                            <outletCollection property="starButtons" destination="v55-NH-lwd" collectionClass="NSMutableArray" id="6cD-m1-Rws"/>
+                                            <outletCollection property="starButtons" destination="7Zx-yP-U6e" collectionClass="NSMutableArray" id="Z6k-9r-yqh"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="et4-D1-BFC" id="tuD-ku-0vx"/>
+                                    <outlet property="delegate" destination="et4-D1-BFC" id="uHz-4N-fNV"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aJv-U9-wWi" firstAttribute="trailing" secondItem="46U-GM-woM" secondAttribute="trailing" id="9Kg-Ir-GZX"/>
+                            <constraint firstItem="aJv-U9-wWi" firstAttribute="top" secondItem="fiA-Do-8Zh" secondAttribute="top" id="R0R-Va-5tS"/>
+                            <constraint firstItem="aJv-U9-wWi" firstAttribute="bottom" secondItem="46U-GM-woM" secondAttribute="bottom" id="Wlw-Db-28x"/>
+                            <constraint firstItem="aJv-U9-wWi" firstAttribute="leading" secondItem="46U-GM-woM" secondAttribute="leading" id="bmk-gZ-vZa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="46U-GM-woM"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="heart-7" id="1Um-M8-3VX" userLabel="Följare">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="feedCollectionView" destination="nYZ-D1-55t" id="VTW-Ye-ma5"/>
+                        <outlet property="feedCollectionView" destination="aJv-U9-wWi" id="eXe-RT-B8K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K0-30-kYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -681,15 +777,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="5.jpg" width="550" height="413"/>
         <image name="Matdags" width="1536" height="2048"/>
         <image name="back" width="50" height="50"/>
         <image name="cameraicon" width="22" height="22"/>
         <image name="circle-user-7" width="30" height="30"/>
+        <image name="comment" width="200" height="200"/>
         <image name="heart-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
         <image name="jagJa" width="540" height="360"/>
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logout" width="22" height="22"/>
+        <image name="nicklas.jpg" width="1440" height="1920"/>
         <image name="upload" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
