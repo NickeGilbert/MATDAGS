@@ -35,6 +35,7 @@
 		A40BAD291FA5E669007E7BE1 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD231FA5E669007E7BE1 /* 5.jpg */; };
 		A40BAD2A1FA5E669007E7BE1 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD241FA5E669007E7BE1 /* 6.jpg */; };
 		A40BAD2C1FA603E0007E7BE1 /* nicklas.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */; };
+		A40BAD2F1FA74602007E7BE1 /* KommentarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BAD2E1FA74602007E7BE1 /* KommentarVC.swift */; };
 		A428CCDF1FA0A72400C8A9CB /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = A428CCDE1FA0A72400C8A9CB /* Images.swift */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
@@ -74,6 +75,8 @@
 		A40BAD231FA5E669007E7BE1 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
 		A40BAD241FA5E669007E7BE1 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
 		A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nicklas.jpg; sourceTree = "<group>"; };
+		A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matdags.entitlements; sourceTree = "<group>"; };
+		A40BAD2E1FA74602007E7BE1 /* KommentarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KommentarVC.swift; sourceTree = "<group>"; };
 		A428CCDE1FA0A72400C8A9CB /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		0A706CBA1F73B70800B0345C /* Matdags */ = {
 			isa = PBXGroup;
 			children = (
+				A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */,
 				0A8B33151FA08742007BAE27 /* ImagePreVC.swift */,
 				0A8B33181FA08742007BAE27 /* CameraVC.swift */,
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
@@ -132,6 +136,7 @@
 				A428CCDE1FA0A72400C8A9CB /* Images.swift */,
 				A4AE137B1F9618AA005013EC /* FollowersVC.swift */,
 				A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */,
+				A40BAD2E1FA74602007E7BE1 /* KommentarVC.swift */,
 				0ACD886E1F894A84005825A6 /* NavC.swift */,
 				0ABFCB321F862C340086DE20 /* ProfileVC.swift */,
 				0A91F4211F73D19800304F32 /* RegisterVC.swift */,
@@ -223,6 +228,11 @@
 					0A706CB71F73B70800B0345C = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -351,6 +361,7 @@
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,
 				A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,
+				A40BAD2F1FA74602007E7BE1 /* KommentarVC.swift in Sources */,
 				0A8B33191FA08742007BAE27 /* ImagePreVC.swift in Sources */,
 				A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */,
 			);
@@ -490,8 +501,9 @@
 			baseConfigurationReference = BA2FBC78928FB9B9A2D38EE1 /* Pods-Matdags.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -520,8 +532,9 @@
 			baseConfigurationReference = 7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

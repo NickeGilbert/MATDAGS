@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Fw-8d-HNI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -361,11 +361,11 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CF-0P-OuL">
-                                                    <rect key="frame" x="193" y="452" width="41" height="41"/>
+                                                    <rect key="frame" x="234" y="452" width="39" height="41"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="comment"/>
                                                     <connections>
-                                                        <segue destination="gae-Y4-Za0" kind="show" id="HO1-yx-Svc"/>
+                                                        <segue destination="Vha-Ys-GbY" kind="show" id="P2A-jY-GJY"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -411,35 +411,50 @@
         <!--Kommentarer-->
         <scene sceneID="xeu-y2-TbJ">
             <objects>
-                <viewController id="Ejr-xe-kxe" sceneMemberID="viewController">
+                <viewController id="Ejr-xe-kxe" customClass="KommentarVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tVL-1g-RNh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="poT-uZ-CjS">
-                                <rect key="frame" x="0.0" y="64" width="375" height="291"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kommentera" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-Ax-Tdv">
-                                <rect key="frame" x="16" y="424" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bh-rQ-N2U">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kommentera" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-Ax-Tdv">
+                                        <rect key="frame" x="0.0" y="573" width="375" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Ejr-xe-kxe" id="fLZ-TC-zJH"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="top" secondItem="7bh-rQ-N2U" secondAttribute="top" constant="573" id="DHp-nW-VHe"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Hm-Ax-Tdv" secondAttribute="trailing" id="GCg-dq-Pdo"/>
+                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="leading" secondItem="7bh-rQ-N2U" secondAttribute="leading" id="SF6-Dx-f0y"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Hm-Ax-Tdv" secondAttribute="bottom" id="te5-7I-a5N"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7bh-rQ-N2U" firstAttribute="bottom" secondItem="oox-h8-Vgb" secondAttribute="bottom" id="90c-HG-7Fg"/>
+                            <constraint firstItem="7bh-rQ-N2U" firstAttribute="leading" secondItem="oox-h8-Vgb" secondAttribute="leading" id="SLf-0c-ZPC"/>
+                            <constraint firstItem="7bh-rQ-N2U" firstAttribute="trailing" secondItem="oox-h8-Vgb" secondAttribute="trailing" id="cdX-qP-te0"/>
+                            <constraint firstItem="7bh-rQ-N2U" firstAttribute="top" secondItem="oox-h8-Vgb" secondAttribute="top" id="pjm-ku-Fld"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oox-h8-Vgb"/>
                     </view>
                     <navigationItem key="navigationItem" title="Kommentarer" id="KUQ-je-oog"/>
+                    <connections>
+                        <outlet property="bottomScrollView" destination="90c-HG-7Fg" id="tsu-Pt-Jhs"/>
+                        <outlet property="commentSection" destination="1Hm-Ax-Tdv" id="1np-xA-6ib"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OO5-Ro-Odx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3485.5999999999999" y="234.33283358320841"/>
+            <point key="canvasLocation" x="3813.5999999999999" y="241.52923538230885"/>
         </scene>
         <!--TabBarC-->
         <scene sceneID="t4O-Bj-2ec">
@@ -812,22 +827,22 @@
             <point key="canvasLocation" x="1677.5999999999999" y="-526.6866566716642"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="wGD-Pc-Mjz">
+        <scene sceneID="Jhw-Qx-TRi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gae-Y4-Za0" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vha-Ys-GbY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cUN-GB-AQR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sga-Em-Ybs">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ejr-xe-kxe" kind="relationship" relationship="rootViewController" id="TtN-Dr-YRc"/>
+                        <segue destination="Ejr-xe-kxe" kind="relationship" relationship="rootViewController" id="9Su-jZ-BaF"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P1o-dB-Kji" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P0h-lS-WiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2633.5999999999999" y="235.68215892053973"/>
+            <point key="canvasLocation" x="2782" y="242"/>
         </scene>
     </scenes>
     <resources>
