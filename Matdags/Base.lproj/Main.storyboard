@@ -416,24 +416,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bh-rQ-N2U">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="7bh-rQ-N2U">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kommentera" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-Ax-Tdv">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kommentera" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-Ax-Tdv">
                                         <rect key="frame" x="0.0" y="573" width="375" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="send"/>
                                         <connections>
-                                            <outlet property="delegate" destination="Ejr-xe-kxe" id="fLZ-TC-zJH"/>
+                                            <outlet property="delegate" destination="Ejr-xe-kxe" id="kyF-Dp-kFc"/>
                                         </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="top" secondItem="7bh-rQ-N2U" secondAttribute="top" constant="573" id="DHp-nW-VHe"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Hm-Ax-Tdv" secondAttribute="trailing" id="GCg-dq-Pdo"/>
-                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="leading" secondItem="7bh-rQ-N2U" secondAttribute="leading" id="SF6-Dx-f0y"/>
-                                    <constraint firstAttribute="bottom" secondItem="1Hm-Ax-Tdv" secondAttribute="bottom" id="te5-7I-a5N"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Hm-Ax-Tdv" secondAttribute="trailing" constant="243" id="RRi-3L-2cc"/>
+                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="leading" secondItem="7bh-rQ-N2U" secondAttribute="leading" id="XyM-Jq-ZXt"/>
+                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="top" secondItem="7bh-rQ-N2U" secondAttribute="top" constant="573" id="glc-gJ-qh2"/>
+                                    <constraint firstItem="1Hm-Ax-Tdv" firstAttribute="width" secondItem="7bh-rQ-N2U" secondAttribute="width" id="mrP-Qh-xUM"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Hm-Ax-Tdv" secondAttribute="bottom" id="pA9-iO-D6n"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

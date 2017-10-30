@@ -19,8 +19,9 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
         print("VISA")
         if let userInfo = notification.userInfo {
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            
+  
             self.bottomScrollView.constant = endFrame?.size.height ?? 0.0
+
         }
     }
     
@@ -31,9 +32,10 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if(textField == commentSection) {
-            print("DU HAR TRYCKT")
+        if(textField == commentSection)
+            {
+                print("SKICKA")
+            }
+            return true
         }
-        return true
-    }
 }

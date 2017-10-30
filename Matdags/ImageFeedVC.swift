@@ -40,7 +40,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         print("Nu sätts bilden i Collection View")
         cell.myImages.image = picArray[indexPath.row] as UIImage
-        cell.backgroundColor = .black
         return cell
     }*/
     
@@ -57,7 +56,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadImages()
     }
     
-    func downloadImages() {
+    func downloadImages() { //FUNKTIONEN SOM ANVÄNDS NÄR KAMERAN ÄR KOPPLAD
         
       /*let storageRef = Storage.storage().reference()
       let imagesRef = storageRef.child("images/"+s_item!.fbKey)
