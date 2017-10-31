@@ -54,10 +54,8 @@ class ViewController: UIViewController {
         
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         
-        
         if(Auth.auth().currentUser != nil){
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-            
         }
     }
     

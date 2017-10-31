@@ -321,7 +321,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆"/>
+                                                            <state key="normal" title="☆">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="4K3-ml-CLg"/>
                                                             </connections>
@@ -329,7 +331,9 @@
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi">
                                                             <rect key="frame" x="30" y="0.0" width="30" height="42"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆"/>
+                                                            <state key="normal" title="☆">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="Kp8-op-EGn"/>
                                                             </connections>
@@ -337,7 +341,9 @@
                                                         <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign">
                                                             <rect key="frame" x="60" y="0.0" width="30" height="42"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆"/>
+                                                            <state key="normal" title="☆">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="bD0-hK-nYQ"/>
                                                             </connections>
@@ -345,7 +351,9 @@
                                                         <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd">
                                                             <rect key="frame" x="90" y="0.0" width="30" height="42"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆"/>
+                                                            <state key="normal" title="☆">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="y3Y-zg-dNe"/>
                                                             </connections>
@@ -353,7 +361,9 @@
                                                         <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e">
                                                             <rect key="frame" x="120" y="0.0" width="30" height="42"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆"/>
+                                                            <state key="normal" title="☆">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="vgW-Wl-Phc"/>
                                                             </connections>
@@ -428,6 +438,22 @@
                                             <outlet property="delegate" destination="Ejr-xe-kxe" id="kyF-Dp-kFc"/>
                                         </connections>
                                     </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qYX-cQ-rDZ">
+                                        <rect key="frame" x="0.0" y="8" width="375" height="133"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. m dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hN9-GV-lmY">
+                                        <rect key="frame" x="0.0" y="175" width="375" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore ollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1Hm-Ax-Tdv" secondAttribute="trailing" constant="243" id="RRi-3L-2cc"/>
