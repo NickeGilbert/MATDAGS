@@ -12,7 +12,6 @@ import FBSDKCoreKit
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var emailText: UITextField!
-    
     @IBOutlet var password: UITextField!
     
     let loginButton: FBSDKLoginButton = {
@@ -22,10 +21,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     }()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-       
         view.addSubview(loginButton)
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         loginButton.delegate = self
@@ -61,14 +58,12 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                     return
                 } else {
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                    self.fetchProfile()
                     print("INLOGGAD MED FACEBOOK")
                 }
             
         }
     }
-        
-        
-        
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("LOGOUT BUTTON FACEBOOK")
