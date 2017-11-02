@@ -20,6 +20,12 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func closeRegisterButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     @IBAction func Register(_ sender: Any) {
         
         if password.text != repassword.text {
