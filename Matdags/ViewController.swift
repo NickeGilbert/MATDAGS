@@ -30,8 +30,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        print("INLOGGAD MED FACEBOOK")
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if let error = error {
+                    // ...
+                    return
+            }
+            self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+            print("INLOGGAD MED FACEBOOK")
+        }
     }
+        
+        
+        
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("LOGOUT BUTTON FACEBOOK")

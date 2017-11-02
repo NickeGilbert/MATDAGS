@@ -8,6 +8,9 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
+import FBSDKLoginKit
+import FBSDKShareKit
+import FBSDKCoreKit
 
 
 class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate {
@@ -86,6 +89,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut() // this is an instance function
             performSegue(withIdentifier: "logout", sender: nil)
             print("U JUST LOGGED OUT BUDDY :D")
         } catch {
