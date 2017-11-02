@@ -7,43 +7,13 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
+import FBSDKCoreKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var emailText: UITextField!
     
     @IBOutlet var password: UITextField!
-    
-    
-    //KANSKE EN FUNGERANDE FACEBOOK SEGUE MEN JAG KAN INTE TESTA FÖR KAN INTE MITT LÖSEN :(
-  /*  var fbLoginSuccess = false
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if (FBSDKAccessToken.current() != nil && fbLoginSuccess == true)
-        {
-            performSegue(withIdentifier: "HomeToFeed", sender: self)
-        }
-    }
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print("Facebook User Logged In")
-        
-        if ((error) != nil) {
-            // Process error
-            print(error)
-        }
-        else if result.isCancelled {
-            // Handle cancellations
-        }
-        else {
-            fbLoginSuccess = true
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if result.grantedPermissions.contains("email") {
-                // Do work
-            }
-        }
-    }*/
     
     override func viewDidLoad() {
         
@@ -51,12 +21,20 @@ class ViewController: UIViewController {
         
         let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
-        
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
+        loginButton.delegate = self
         
         if(Auth.auth().currentUser != nil){
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("INLOGGAD MED FACEBOOK")
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("LOGOUT BUTTON FACEBOOK")
     }
     
     @IBAction func loginButton(_ sender: Any) {

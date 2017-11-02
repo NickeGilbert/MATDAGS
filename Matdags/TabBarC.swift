@@ -13,12 +13,5 @@ class TabBarC : UITabBarController {
         
         super.viewDidLoad()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        if(Auth.auth().currentUser?.uid == nil) {
-            performSegue(withIdentifier: "login", sender: nil)
-    }
-        else{
-            print("INLOGGED 2 BUDDY")
-        }
-    }
+    
 }

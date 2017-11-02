@@ -56,6 +56,15 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadImages()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if(Auth.auth().currentUser?.uid == nil) {
+            performSegue(withIdentifier: "logout", sender: nil)
+        }
+        else{
+            print("INLOGGED 2 BUDDY")
+        }
+    }
+    
     func downloadImages() { //FUNKTIONEN SOM ANVÄNDS NÄR KAMERAN ÄR KOPPLAD
         
       /*let storageRef = Storage.storage().reference()
