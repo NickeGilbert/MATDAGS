@@ -12,20 +12,41 @@ import FBSDKCoreKit
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var emailText: UITextField!
-    
     @IBOutlet var password: UITextField!
     
+    let loginButton: FBSDKLoginButton = {
+        let button = FBSDKLoginButton()
+        button.readPermissions = ["email"]
+        return button
+    }()
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-        let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         loginButton.delegate = self
         
+        if let token = FBSDKAccessToken.current() {
+            fetchProfile()
+        }
+        
         if(Auth.auth().currentUser != nil){
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+        }
+    }
+    
+    func fetchProfile() {
+        
+        let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
+        FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            print(result)
         }
     }
     
@@ -35,14 +56,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 if let error = error {
                     // ...
                     return
-            }
-            self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-            print("INLOGGAD MED FACEBOOK")
+                } else {
+                    self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                    self.fetchProfile()
+                    print("INLOGGAD MED FACEBOOK")
+                }
+            
         }
     }
-        
-        
-        
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("LOGOUT BUTTON FACEBOOK")

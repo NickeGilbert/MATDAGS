@@ -15,6 +15,11 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
 
     }
     
+    @IBAction func kommentarBack(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
     @objc func keyBoardShow(notification: NSNotification) {
         print("VISA")
         if let userInfo = notification.userInfo {

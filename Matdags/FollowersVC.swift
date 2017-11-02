@@ -58,6 +58,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }*/
     }
     
+    @IBAction func kommentarButton(_ sender: Any) {
+        performSegue(withIdentifier: "kommentar", sender: nil)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return 10 //Ska vara feedArray.count
     }
