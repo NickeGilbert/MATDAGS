@@ -6,7 +6,7 @@
 import UIKit
 import AVFoundation
 
-class CameraVC: UIViewController {
+class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
@@ -33,6 +33,28 @@ class CameraVC: UIViewController {
     @IBAction func captureButton(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
         photoOutput?.capturePhoto(with: settings, delegate: self)
+    }
+    
+    @IBAction func openPhotoLibraryButton(sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let libImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            image = libImage.self
+        }
+        else {
+            print("Error, not original image")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "showPhoto", sender: nil)
+        
     }
     
     func setupCaptureSession(){
