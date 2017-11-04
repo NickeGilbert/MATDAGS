@@ -13,6 +13,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var emailText: UITextField!
     @IBOutlet var password: UITextField!
+    var FBdata : Any?
     
     let loginButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
@@ -45,8 +46,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print(error)
                 return
             }
+            self.FBdata = result
+            print(String(describing: result!))
             
-            print(result)
         }
     }
     
