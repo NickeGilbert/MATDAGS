@@ -39,6 +39,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     func fetchProfile() {
         
@@ -59,7 +62,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
                 if let error = error {
-                    // ...
+                    self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
                     return
                 } else {
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
@@ -84,6 +87,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             
             if error != nil{
                 print ("INCORRECT BUDDY")
+                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
             }
             else{
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
@@ -108,5 +112,23 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         }
         
     }
+    
+    func createAlertLogin (title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            action in
+            alert.dismiss(animated: true, completion: nil)
+            // Fler saker här för att köra mer kod
+        }))
+        //        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+        //            action in
+        //            alert.dismiss(animated: true, completion: nil)      SKAPA UPP FLER AV DESSA FÖR FLERA VAL
+        //        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
 }
 

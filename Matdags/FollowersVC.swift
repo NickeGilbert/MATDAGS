@@ -57,6 +57,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             })
         }*/
     }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
     
     @IBAction func kommentarButton(_ sender: Any) {
         performSegue(withIdentifier: "kommentar", sender: nil)

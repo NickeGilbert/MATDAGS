@@ -28,6 +28,9 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         startRunningCaptureSession()
         
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

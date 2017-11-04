@@ -14,6 +14,9 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBAction func kommentarBack(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)

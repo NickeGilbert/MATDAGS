@@ -22,6 +22,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         password.delegate = self
         repassword.delegate = self
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBAction func closeRegisterButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -33,14 +36,19 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         
         if password.text != repassword.text {
             print("Please re-enter correct password")
+            createAlertRegister(title: "Stämmer inte överrens", message: "Lösenorden måste vara identiska")
             return
         }
         
         Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: {
             user, error in
             
+            if self.password.text!.count <= 4 {
+                self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
+            }
+            
             if error != nil {
-                self.login()
+                self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
             }
             else {
                 
@@ -56,6 +64,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             
             if error != nil{
                 print ("Incorrect")
+                self.createAlertRegister(title: "Problem", message: "Ett inloggningsproblem uppstod, vänligen försök igen")
             }
             else{
                 self.performSegue(withIdentifier: "RegToFeed", sender: AnyObject.self)
@@ -94,6 +103,21 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             return true
         }
         
+    }
+    
+    func createAlertRegister (title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            action in
+            alert.dismiss(animated: true, completion: nil)
+            // Fler saker här för att köra mer kod
+        }))
+        //        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+        //            action in
+        //            alert.dismiss(animated: true, completion: nil)      SKAPA UPP FLER AV DESSA FÖR FLERA VAL
+        //        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
 

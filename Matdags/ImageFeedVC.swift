@@ -57,6 +57,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         downloadImages()
     }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         if(Auth.auth().currentUser?.uid == nil) {

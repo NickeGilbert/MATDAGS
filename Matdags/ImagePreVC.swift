@@ -21,6 +21,9 @@ class ImagePreVC: UIViewController {
         
         photo.image = self.image
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: false, completion: nil)

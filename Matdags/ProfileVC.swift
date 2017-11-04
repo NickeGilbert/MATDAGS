@@ -13,6 +13,9 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         resizeImage()
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     func resizeImage(){
         profilePictureOutlet.layer.cornerRadius = profilePictureOutlet.frame.size.height / 2
