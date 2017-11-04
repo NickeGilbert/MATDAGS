@@ -8,7 +8,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mail: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -18,6 +18,9 @@ class RegisterVC: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        mail.delegate = self
+        password.delegate = self
+        repassword.delegate = self
     }
     
     @IBAction func closeRegisterButton(_ sender: UIButton) {
@@ -77,4 +80,21 @@ class RegisterVC: UIViewController {
         }
 
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if mail.isEditing == true {
+            self.password.becomeFirstResponder()
+            return true
+        } else if password.isEditing == true {
+            self.repassword.becomeFirstResponder()
+            return true
+        } else {
+            self.view.endEditing(true)
+            return true
+        }
+        
+    }
+    
+
 }
