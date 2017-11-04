@@ -5,86 +5,45 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
-import FirebaseAuth
-import FirebaseStorage
 import FBSDKLoginKit
 import FBSDKShareKit
 import FBSDKCoreKit
 
-class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate {
+class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
    
     @IBOutlet var collectionFeed: UICollectionView!
     
-    var s_item : Images? 
-    var database: Database!
-    var databaseref: DatabaseReference!
-    var picArray = [UIImage] ()
-    
-    var taBortArray:[String] = ["1", "2", "3", "4", "5", "6", "1", "2", "3", "4", "5", "6", "1", "2", "3", "4", "5", "6", "1", "2", "3", "4", "5", "6"] //TEST ARRAY, SKA TAS BORT SEN
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return taBortArray.count //Ska vara picArray
-    }
-    
-    //TEST FÖR ATT FÅ UT NÅGOT PÅ SKÄRMEN, KAN TAS BORT SEN
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
-        cell.myImages.image = UIImage(named: taBortArray[indexPath.row] + ".jpg")
-        return cell
-    }
-    
-    
-    //DENNA ÄR DEN RIKTIGA SOM SKA ANVÄNDAS
-   /* func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionWindow", for: indexPath) as! ImageFeedCell
-        
-        print("Nu sätts bilden i Collection View")
-        cell.myImages.image = picArray[indexPath.row] as UIImage
-        return cell
-    }*/
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)        
-        return storleken
-    }
+    var posts = [Post]()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         downloadImages()
     }
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
     
     override func viewDidAppear(_ animated: Bool) {
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
         }
-        else{
-            print("\n INLOGGAD OCH PÅ STARTFLÖDET \n")
-        }
     }
     
-    func downloadImages() { //FUNKTIONEN SOM ANVÄNDS NÄR KAMERAN ÄR KOPPLAD
+    func downloadImages() {
+        let dbref = Database.database().reference()
         
-      /*let storageRef = Storage.storage().reference()
-      let imagesRef = storageRef.child("images/"+s_item!.¶)
-        
-        imagesRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if let error = error {
-                print("Något fick fel i bildhämtning")
-            } else {
-                print("Bildhämtningen gick bra!")
-                let tempImage = UIImage(data: data!)!
-                self.picArray.append(tempImage)
-                self.collectionFeed.reloadData()
+        dbref.child("Posts").queryOrdered(byChild: "likes").queryLimited(toLast: 10).observeSingleEvent(of: .value) { (snapshot) in
+            let postsSnaps = snapshot.value as! [String : AnyObject]
+            for (_,post) in postsSnaps {
+                let appendPost = Post()
+                if let pathToImage = post["pathToImage"] as? String {
+                    
+                    appendPost.pathToImage = pathToImage
+                    
+                    self.posts.append(appendPost)
+                }
             }
-        }*/
+            self.collectionFeed.reloadData()
+        }
+        dbref.removeAllObservers()
     }
 
     @IBAction func loggaOut(_ sender: Any) {
@@ -103,4 +62,49 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func cameraButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "cameraSeg", sender: nil)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.posts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
+        cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)
+        return storleken
+    }
+    
 }
+
+extension UIImageView {
+    func downloadImage(from imgURL: String) {
+        let url = URLRequest(url: URL(string: imgURL)!)
+        
+        let task = URLSession.shared.dataTask(with: url) {
+            (data, responds, error) in
+            
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data!)
+            }
+        }
+        task.resume()
+    }
+}
+
+
+
+
+
+
+
+
+

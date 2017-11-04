@@ -900,14 +900,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionWindow" id="LP8-Gh-a4K" customClass="ImageFeedCell" customModule="Matdags" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="LP8-Gh-a4K" customClass="ImageFeedCell" customModule="Matdags" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DkF-U7-aiB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DkF-U7-aiB" userLabel="imageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
@@ -920,13 +920,14 @@
                                             <constraint firstAttribute="bottom" secondItem="DkF-U7-aiB" secondAttribute="bottom" id="t16-84-Yhr"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="myImages" destination="DkF-U7-aiB" id="W2h-zN-pYE"/>
+                                            <outlet property="myImage" destination="DkF-U7-aiB" id="CjE-zg-nmP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="ypM-Uw-J9l" id="6Ew-sd-AFy"/>
                                     <outlet property="delegate" destination="ypM-Uw-J9l" id="u18-0Y-Erd"/>
+                                    <outlet property="prefetchDataSource" destination="ypM-Uw-J9l" id="1vv-ED-D40"/>
                                 </connections>
                             </collectionView>
                         </subviews>

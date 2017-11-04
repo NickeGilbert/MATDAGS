@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A4CD1C41FAE5F880006986A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD1C31FAE5F880006986A /* Post.swift */; };
 		0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A706CBB1F73B70800B0345C /* AppDelegate.swift */; };
 		0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A706CBD1F73B70800B0345C /* ViewController.swift */; };
 		0A706CC11F73B70800B0345C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CBF1F73B70800B0345C /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A4CD1C31FAE5F880006986A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0A706CB81F73B70800B0345C /* Matdags.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matdags.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A706CBB1F73B70800B0345C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A706CBD1F73B70800B0345C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				A428CCDE1FA0A72400C8A9CB /* Images.swift */,
+				0A4CD1C31FAE5F880006986A /* Post.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
 				A428CCDF1FA0A72400C8A9CB /* Images.swift in Sources */,
+				0A4CD1C41FAE5F880006986A /* Post.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,
