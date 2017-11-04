@@ -66,7 +66,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             performSegue(withIdentifier: "logout", sender: nil)
         }
         else{
-            print("INLOGGED 2 BUDDY")
+            print("\n INLOGGAD OCH PÅ STARTFLÖDET \n")
         }
     }
     
@@ -94,9 +94,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let loginManager = FBSDKLoginManager()
             loginManager.logOut() // this is an instance function
             performSegue(withIdentifier: "logout", sender: nil)
-            print("U JUST LOGGED OUT BUDDY :D")
+            print(" \n U JUST LOGGED OUT BUDDY :D \n")
         } catch {
-            print("U GOT AN ERROR BUDDY ;)")
+            print("\n ERROR NÄR DU LOGGADE UT \n")
         }
     }
     
