@@ -19,7 +19,7 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
     }
     
     @IBAction func kommentarBack(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
