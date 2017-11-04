@@ -763,7 +763,7 @@
                                     <constraint firstAttribute="height" constant="40" id="FI1-e7-9hf"/>
                                     <constraint firstAttribute="width" constant="40" id="XeL-HY-H7s"/>
                                 </constraints>
-                                <state key="normal" image="photolib"/>
+                                <state key="normal" image="image"/>
                                 <connections>
                                     <action selector="openPhotoLibraryButtonWithSender:" destination="wvw-nt-nff" eventType="touchUpInside" id="hwl-DZ-33w"/>
                                 </connections>
@@ -899,11 +899,11 @@
         <image name="comment" width="200" height="200"/>
         <image name="heart-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
+        <image name="image" width="100" height="100"/>
         <image name="jagJa" width="540" height="360"/>
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logout" width="22" height="22"/>
         <image name="nicklas.jpg" width="1440" height="1920"/>
-        <image name="photolib" width="100" height="100"/>
         <image name="upload" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
