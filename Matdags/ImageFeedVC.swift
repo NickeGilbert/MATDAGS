@@ -94,7 +94,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let loginManager = FBSDKLoginManager()
             loginManager.logOut() // this is an instance function
             performSegue(withIdentifier: "logout", sender: nil)
-            print(" \n U JUST LOGGED OUT BUDDY :D \n")
+            print(" \n DU HAR PRECIS LOGGAT UT \n")
         } catch {
             print("\n ERROR NÄR DU LOGGADE UT \n")
         }

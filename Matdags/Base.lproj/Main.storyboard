@@ -456,10 +456,10 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKl-BN-EfH">
-                                        <rect key="frame" x="8" y="8" width="46" height="30"/>
+                                        <rect key="frame" x="8" y="27" width="56" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.40413365059464845" blue="0.34723062057577714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
+                                        <color key="backgroundColor" red="1" green="0.99945492711958461" blue="0.96463482698418246" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button" image="BackButton"/>
                                         <connections>
                                             <action selector="kommentarBack:" destination="Ejr-xe-kxe" eventType="touchUpInside" id="u0E-8M-5kt"/>
                                         </connections>
@@ -491,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OO5-Ro-Odx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2601" y="242"/>
+            <point key="canvasLocation" x="2600.8000000000002" y="241.52923538230885"/>
         </scene>
         <!--TabBarC-->
         <scene sceneID="t4O-Bj-2ec">
@@ -868,6 +868,7 @@
     </scenes>
     <resources>
         <image name="5.jpg" width="550" height="413"/>
+        <image name="BackButton" width="128" height="128"/>
         <image name="Matdags" width="1536" height="2048"/>
         <image name="back" width="50" height="50"/>
         <image name="cameraicon" width="22" height="22"/>
