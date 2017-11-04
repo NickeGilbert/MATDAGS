@@ -42,7 +42,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lösenord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xV9-dy-edu">
                                 <rect key="frame" x="60" y="200" width="255" height="35"/>
@@ -141,7 +141,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lösenord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S4a-eJ-mDF">
                                         <rect key="frame" x="62.5" y="70" width="250" height="30"/>
@@ -151,7 +151,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDt-4h-gMm">
                                         <rect key="frame" x="207.5" y="180" width="100" height="50"/>
@@ -174,7 +174,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGu-6i-kzd">
                                         <rect key="frame" x="67.5" y="180" width="100" height="50"/>
@@ -193,10 +193,10 @@
                                             <action selector="showPass:" destination="j2m-38-BdR" eventType="touchUpInside" id="YyL-Px-kx0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1E-0w-DoR">
-                                        <rect key="frame" x="84.5" y="250" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1E-0w-DoR">
+                                        <rect key="frame" x="67.5" y="250" width="100" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="VFr-Z7-3FX"/>
+                                            <constraint firstAttribute="width" constant="100" id="VFr-Z7-3FX"/>
                                             <constraint firstAttribute="height" constant="30" id="xdq-xl-iyg"/>
                                         </constraints>
                                         <state key="normal" title="Info">
@@ -214,10 +214,10 @@
                                     <constraint firstItem="hGu-6i-kzd" firstAttribute="top" secondItem="Vgv-u7-xhh" secondAttribute="bottom" constant="30" id="OU3-I2-Ctx"/>
                                     <constraint firstItem="hGu-6i-kzd" firstAttribute="centerX" secondItem="J97-ai-uFU" secondAttribute="centerX" constant="-70" id="XUb-Bp-uoF"/>
                                     <constraint firstItem="ycj-nc-8Co" firstAttribute="top" secondItem="J97-ai-uFU" secondAttribute="top" constant="20" id="Yc2-gW-Dqp"/>
-                                    <constraint firstItem="D1E-0w-DoR" firstAttribute="centerX" secondItem="J97-ai-uFU" secondAttribute="centerX" constant="-80" id="dGD-BE-MCj"/>
                                     <constraint firstItem="wDt-4h-gMm" firstAttribute="centerX" secondItem="J97-ai-uFU" secondAttribute="centerX" constant="70" id="e35-Yc-T8h"/>
                                     <constraint firstItem="Vgv-u7-xhh" firstAttribute="centerX" secondItem="J97-ai-uFU" secondAttribute="centerX" id="sNR-bQ-sai"/>
                                     <constraint firstItem="Vgv-u7-xhh" firstAttribute="top" secondItem="S4a-eJ-mDF" secondAttribute="bottom" constant="20" id="vPb-Zv-flS"/>
+                                    <constraint firstItem="D1E-0w-DoR" firstAttribute="centerX" secondItem="J97-ai-uFU" secondAttribute="centerX" constant="-70" id="vaw-Bh-1qO"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="5Ss-6H-1Q2">

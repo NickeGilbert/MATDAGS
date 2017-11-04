@@ -9,7 +9,7 @@ import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet var emailText: UITextField!
     @IBOutlet var password: UITextField!
@@ -23,6 +23,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailText.delegate = self
+        password.delegate = self
         
         view.addSubview(loginButton)
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
@@ -91,6 +94,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if emailText.isEditing == true {
+            self.password.becomeFirstResponder()
+            return true
+        } else {
+            self.view.endEditing(true)
+            login()
+            return true
+        }
+        
     }
 }
 
