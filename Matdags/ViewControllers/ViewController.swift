@@ -49,7 +49,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             
             if error != nil {
-                print(error)
+                print("\n",error,"\n")
                 return
             }
             self.FBdata = result
@@ -87,7 +87,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 } else {
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                     self.fetchProfile()
-                    print("INLOGGAD MED FACEBOOK")
+                    print("\n INLOGGAD MED FACEBOOK \n ")
                 }
             
         }
@@ -111,7 +111,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             }
             else{
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                print("CORRECT BUDDY")
+                print("\n DU HAR LOGGAT IN MED MAIL \n")
             }
         })
     }
