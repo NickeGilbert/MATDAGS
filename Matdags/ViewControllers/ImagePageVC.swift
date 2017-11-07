@@ -12,50 +12,40 @@ import Firebase
 class ImagePageVC: UIViewController {
 
     @IBOutlet var myImageView: UIImageView!
+    @IBOutlet var pointsLabel: UILabel!
+   
+    var likes = ""
     var posts = [Post]()
     
     @IBOutlet var collectionFeed: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        downloadImages()
-        // Do any additional setup after loading the view.
+        
+        downloadLikes()
+        pointsLabel.text = likes
     }
     
-    func downloadImages() {
+    func downloadLikes() {
+        
         let dbref = Database.database().reference()
         
-        dbref.child("Posts").queryOrdered(byChild: "likes").queryLimited(toLast: 10).observeSingleEvent(of: .value) { (snapshot) in
-            let postsSnaps = snapshot.value as! [String : AnyObject]
-            for (_,post) in postsSnaps {
-                let appendPost = Post()
-                if let pathToImage = post["pathToImage"] as? String {
-                    
-                    appendPost.pathToImage = pathToImage
-                    print(appendPost)
-                    self.posts.append(appendPost)
-                }
+        dbref.child("Posts").observe(.childAdded, with: { (snapshot) in
+            let dictionary = snapshot.value as? NSDictionary
+            
+            if let item = dictionary?["Likes"] as? String
+            {
+                self.likes.append(item)
+                print(item)
             }
-            self.collectionFeed.reloadData()
-        }
-        dbref.removeAllObservers()
+            else
+            {
+                self.likes.append("")
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

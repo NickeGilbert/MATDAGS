@@ -850,6 +850,7 @@
                     </view>
                     <connections>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
+                        <outlet property="pointsLabel" destination="aHK-zH-6mw" id="W4a-r7-BJT"/>
                         <segue destination="ypM-Uw-J9l" kind="presentation" identifier="ImagePage" id="XY7-GO-Deq"/>
                     </connections>
                 </viewController>
