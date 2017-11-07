@@ -767,20 +767,20 @@
         <!--ImagePageVC-->
         <scene sceneID="NVu-FX-m50">
             <objects>
-                <viewController id="As2-HR-siM" userLabel="ImagePageVC" sceneMemberID="viewController">
+                <viewController id="As2-HR-siM" userLabel="ImagePageVC" customClass="ImagePageVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QCA-3I-UXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-8W-WRJ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-8W-WRJ">
+                                <rect key="frame" x="0.0" y="44" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="375" id="qlQ-st-p8U"/>
                                     <constraint firstAttribute="width" constant="375" id="xf9-Oe-DFb"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSm-xc-zha">
-                                <rect key="frame" x="16" y="447" width="150" height="42"/>
+                                <rect key="frame" x="16" y="427" width="150" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-q6-lfE">
@@ -820,8 +820,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwR-5U-0LH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwR-5U-0LH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="F39-13-11q"/>
                                     <constraint firstAttribute="width" constant="375" id="yuK-HQ-C4v"/>
@@ -831,7 +831,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnC-35-BMZ">
-                                <rect key="frame" x="277" y="458" width="82" height="21"/>
+                                <rect key="frame" x="277" y="438" width="82" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -839,20 +839,16 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BwR-5U-0LH" firstAttribute="leading" secondItem="kbd-fN-5ia" secondAttribute="leading" id="1JC-WH-eqT"/>
-                            <constraint firstItem="Ym5-8W-WRJ" firstAttribute="leading" secondItem="kbd-fN-5ia" secondAttribute="leading" id="VdH-sh-OJE"/>
-                            <constraint firstItem="BwR-5U-0LH" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="W1l-6Y-0Bi"/>
-                            <constraint firstItem="Ym5-8W-WRJ" firstAttribute="top" secondItem="BwR-5U-0LH" secondAttribute="bottom" id="fut-LK-gQD"/>
-                            <constraint firstItem="Ym5-8W-WRJ" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="spi-hB-lDV"/>
-                            <constraint firstItem="BwR-5U-0LH" firstAttribute="top" secondItem="kbd-fN-5ia" secondAttribute="top" id="vu6-qI-bwW"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                     </view>
+                    <connections>
+                        <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
+                        <segue destination="ypM-Uw-J9l" kind="presentation" identifier="ImagePage" id="XY7-GO-Deq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTA-Gx-3XR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677.5999999999999" y="-1291.304347826087"/>
+            <point key="canvasLocation" x="1678" y="-1275"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -977,6 +973,7 @@
         <image name="upload" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qav-lz-AQ2"/>
+        <segue reference="XY7-GO-Deq"/>
+        <segue reference="Pq7-cy-tEF"/>
     </inferredMetricsTieBreakers>
 </document>
