@@ -37,7 +37,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 if let pathToImage = post["pathToImage"] as? String {
                     
                     appendPost.pathToImage = pathToImage
-                    
+                    print(appendPost)
                     self.posts.append(appendPost)
                 }
             }
@@ -97,6 +97,12 @@ extension UIImageView {
             }
         }
         task.resume()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("SELECTED ROW IS \(indexPath.row)")
+        
+       // performSegue(withIdentifier: "imagePage", sender: collectionView.cellForItem(at: indexPath))
     }
 }
 
