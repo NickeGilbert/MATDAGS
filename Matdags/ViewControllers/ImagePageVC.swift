@@ -14,7 +14,7 @@ class ImagePageVC: UIViewController {
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var pointsLabel: UILabel!
    
-    var likes = ""
+    var likes : Int = 0
     var posts = [Post]()
     
     @IBOutlet var collectionFeed: UICollectionView!
@@ -23,7 +23,9 @@ class ImagePageVC: UIViewController {
         super.viewDidLoad()
         
         downloadLikes()
-        pointsLabel.text = likes
+        
+        var poäng = String(describing: likes)
+        pointsLabel.text = "\(poäng) poäng!"
     }
     
     func downloadLikes() {
@@ -31,16 +33,15 @@ class ImagePageVC: UIViewController {
         let dbref = Database.database().reference()
         
         dbref.child("Posts").observe(.childAdded, with: { (snapshot) in
-            let dictionary = snapshot.value as? NSDictionary
-            
-            if let item = dictionary?["Likes"] as? String
-            {
-                self.likes.append(item)
-                print(item)
-            }
-            else
-            {
-                self.likes.append("")
+            let postsSnaps = snapshot.value as! [String : AnyObject]
+            for (_,post) in postsSnaps {
+                let appendPost = Post()
+                if let likes = post["likes"] as? Int {
+                    
+                    appendPost.likes = likes
+                    print("\(appendPost) POÄNG! ")
+                    self.posts.append(appendPost)
+                }
             }
         })
     }
