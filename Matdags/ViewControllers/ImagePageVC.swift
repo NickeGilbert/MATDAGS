@@ -17,6 +17,8 @@ class ImagePageVC: UIViewController {
     var likes : Int = 0
     var posts = [Post]()
     
+   // var images: img!
+    
     @IBOutlet var collectionFeed: UICollectionView!
     
     override func viewDidLoad() {
@@ -26,6 +28,7 @@ class ImagePageVC: UIViewController {
         
         var poäng = String(describing: likes)
         pointsLabel.text = "\(poäng) poäng!"
+        //myImageView.image = images.image
     }
     
     func downloadLikes() {
@@ -45,6 +48,11 @@ class ImagePageVC: UIViewController {
             }
         })
     }
+    
+    @IBAction func imagePageBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
