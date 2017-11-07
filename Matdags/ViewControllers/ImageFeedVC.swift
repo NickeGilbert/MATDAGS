@@ -102,8 +102,17 @@ extension UIImageView {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("SELECTED ROW IS \(indexPath.row)")
         
-       // performSegue(withIdentifier: "imagePage", sender: collectionView.cellForItem(at: indexPath))
+       //self.performSegue(withIdentifier: "ImagePage", sender: nil)
     }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if(segue.identifier == "ImagePage")
+        {
+            let foodResult = segue.destination as! ImagePageVC
+        }
+    }*/
+
 }
 
 
