@@ -17,7 +17,7 @@ class ImagePageVC: UIViewController {
     var likes : Int = 0
     var posts = [Post]()
     
-   // var images: img!
+    var images = UIImage()
     
     @IBOutlet var collectionFeed: UICollectionView!
     
@@ -26,9 +26,9 @@ class ImagePageVC: UIViewController {
         
         downloadLikes()
         
-        var poäng = String(describing: likes)
-        pointsLabel.text = "\(poäng) poäng!"
-        //myImageView.image = images.image
+        let points = String(describing: likes)
+        pointsLabel.text = "\(points) poäng!"
+        myImageView.image = images
     }
     
     func downloadLikes() {
