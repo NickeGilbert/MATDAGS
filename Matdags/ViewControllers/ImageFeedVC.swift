@@ -89,7 +89,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         {
             let imageResult = segue.destination as! ImagePageVC
             
-           // imageResult.images = posts[indexPath.row]
+           // imageResult.images = posts[indexPath.row] as! UIImage
         }
     }
 
