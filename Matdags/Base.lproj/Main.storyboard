@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -877,16 +878,30 @@
                                                 <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="F3C-ho-Xp7"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="aPh-CH-Epm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz">
-                                                <rect key="frame" x="337" y="11" width="22" height="22"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="logout"/>
-                                                <connections>
-                                                    <action selector="loggaOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="Qwe-3r-FN4"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Item" style="plain" id="aPh-CH-Epm">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz" userLabel="LoggOut">
+                                                    <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="logout"/>
+                                                    <connections>
+                                                        <action selector="loggaOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="Qwe-3r-FN4"/>
+                                                    </connections>
+                                                </button>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="61O-Cy-Jd5">
+                                                <inset key="largeContentSizeImageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5I5-G1-GnB">
+                                                    <rect key="frame" x="297" y="11" width="32" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="refresh"/>
+                                                    <connections>
+                                                        <action selector="refreshButtonClicked:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="CDa-iv-kPW"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -974,6 +989,7 @@
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logout" width="22" height="22"/>
         <image name="nicklas.jpg" width="1440" height="1920"/>
+        <image name="refresh" width="22" height="22"/>
         <image name="upload" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>

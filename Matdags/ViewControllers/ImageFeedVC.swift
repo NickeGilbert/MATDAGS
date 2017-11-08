@@ -28,22 +28,15 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadImages() {
-        let dbref = Database.database().reference()
-        
-        dbref.child("Posts").queryOrdered(byChild: "likes").queryLimited(toLast: 10).observeSingleEvent(of: .value) { (snapshot) in
-            let postsSnaps = snapshot.value as! [String : AnyObject]
-            for (_,post) in postsSnaps {
-                let appendPost = Post()
-                if let pathToImage = post["pathToImage"] as? String {
-                    
-                    appendPost.pathToImage = pathToImage
-                    
-                    self.posts.append(appendPost)
-                }
-            }
+        let dbref = Database.database().reference(withPath: "Posts")
+        dbref.queryOrdered(byChild: "date").queryLimited(toFirst: 100).observe(.childAdded, with: { (snapshot) in
+            let dictionary = snapshot.value as! [String : AnyObject]
+            let appendPost = Post()
+            appendPost.pathToImage256 = dictionary["pathToImage256"] as? String
+            appendPost.likes = dictionary["likes"] as? Int
+            self.posts.insert(appendPost, at: 0)
             self.collectionFeed.reloadData()
-        }
-        dbref.removeAllObservers()
+        })
     }
 
     @IBAction func loggaOut(_ sender: Any) {
@@ -58,6 +51,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("\n ERROR NÄR DU LOGGADE UT \n")
         }
     }
+    @IBAction func refreshButtonClicked(_ sender: Any) {
+        self.collectionFeed.reloadData()
+    }
     
     @IBAction func cameraButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "cameraSeg", sender: nil)
@@ -69,7 +65,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
-        cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         return cell
     }
     
