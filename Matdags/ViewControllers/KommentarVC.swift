@@ -17,8 +17,8 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardHide(notification:)), name: .UIKeyboardWillHide, object: nil)
-
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -27,14 +27,11 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     @objc func keyBoardShow(notification: NSNotification) {
         print("VISA")
         if let userInfo = notification.userInfo {
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-  
             self.bottomScrollView.constant = endFrame?.size.height ?? 0.0
-
         }
     }
     
@@ -44,11 +41,9 @@ class KommentarVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UI
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if(textField == commentSection)
-            {
+        if(textField == commentSection) {
                 print("SKICKA")
-            }
-            return true
         }
+        return true
+    }
 }

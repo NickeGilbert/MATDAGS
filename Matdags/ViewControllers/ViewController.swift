@@ -34,20 +34,18 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         if FBSDKAccessToken.current() != nil {
             fetchProfile()
         }
-        
-        if(Auth.auth().currentUser != nil){
+        if(Auth.auth().currentUser != nil) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     func fetchProfile() {
-        
         let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
-            
             if error != nil {
                 print("\n \(error!) \n")
                 return
@@ -55,19 +53,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             self.FBdata = result
             let request = FBSDKGraphRequest(graphPath:"me", parameters:nil)
             
-            // Send request to Facebook
             request!.start { (connection, result, error) in
                 if error != nil {
                     print("\n \(error!) \n")
-                }
-                else if let userData = result as? [String:AnyObject] {
-                    
-                    // Access user data
+                } else if let userData = result as? [String:AnyObject] {
                     let username = userData["name"] as? String
                     print(username!)
                 }
             }
-            
         }
     }
     
@@ -83,7 +76,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                     self.fetchProfile()
                     print("\n INLOGGAD MED FACEBOOK \n ")
                 }
-            
         }
     }
     
@@ -96,9 +88,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     }
     
     func login(){
-        Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: {
-            user, error in
-            
+        Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
             if error != nil{
                 print("\n \(error!) \n")
                 self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
@@ -114,7 +104,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if emailText.isEditing == true {
             self.password.becomeFirstResponder()
             return true
@@ -123,14 +112,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             login()
             return true
         }
-        
     }
     
     func createAlertLogin (title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-            action in
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{ action in
             alert.dismiss(animated: true, completion: nil)
             // Fler saker här för att köra mer kod
         }))
@@ -140,8 +126,5 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         //        }))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
 }
 
