@@ -49,7 +49,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             
             if error != nil {
-                print(error!)
+                print("\n \(error!) \n")
                 return
             }
             self.FBdata = result
@@ -58,7 +58,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             // Send request to Facebook
             request!.start { (connection, result, error) in
                 if error != nil {
-                    print(error!)
+                    print("\n \(error!) \n")
                 }
                 else if let userData = result as? [String:AnyObject] {
                     
@@ -75,6 +75,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
                 if error != nil {
+                    print("\n \(error!) \n")
                     self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
                     return
                 } else {
@@ -99,10 +100,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             user, error in
             
             if error != nil{
-                print ("INCORRECT BUDDY")
+                print("\n \(error!) \n")
                 self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
-            }
-            else{
+            } else {
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                 print("\n DU HAR LOGGAT IN MED MAIL \n")
             }

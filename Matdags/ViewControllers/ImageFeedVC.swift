@@ -29,7 +29,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func downloadImages() {
         let dbref = Database.database().reference(withPath: "Posts")
-        dbref.queryOrdered(byChild: "date").queryLimited(toFirst: 100).observe(.childAdded, with: { (snapshot) in
+        dbref   .queryLimited(toFirst: 100).observe(.childAdded, with: { (snapshot) in
             let dictionary = snapshot.value as! [String : AnyObject]
             let appendPost = Post()
             appendPost.pathToImage256 = dictionary["pathToImage256"] as? String
