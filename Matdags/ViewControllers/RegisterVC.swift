@@ -22,6 +22,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         password.delegate = self
         repassword.delegate = self
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -30,28 +31,20 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    
     @IBAction func Register(_ sender: Any) {
-        
         if password.text != repassword.text {
             print("Please re-enter correct password")
             createAlertRegister(title: "Stämmer inte överrens", message: "Lösenorden måste vara identiska")
             return
         }
-        
-        Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: {
-            user, error in
-            
+        Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: { user, error in
             if self.password.text!.count <= 4 {
                 self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
             }
-            
             if error != nil {
+                print("\n \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
-            }
-            else {
-                
+            } else {
                 print ("User created")
                 self.login()
             }
@@ -59,16 +52,13 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
 
     func login() {
-        Auth.auth().signIn(withEmail: mail.text!, password: password.text!, completion: {
-            user, error in
-            
+        Auth.auth().signIn(withEmail: mail.text!, password: password.text!, completion: { user, error in
             if error != nil{
-                print ("Incorrect")
+                print ("\n Incorrect with error: \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Ett inloggningsproblem uppstod, vänligen försök igen")
-            }
-            else{
+            } else {
                 self.performSegue(withIdentifier: "RegToFeed", sender: AnyObject.self)
-                print("Correct")
+                print("\n Correct \n")
             }
         })
     }
@@ -76,22 +66,19 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
     @IBAction func showPass(_ sender: Any) {
-        
         showPass.isSelected = !showPass.isSelected
         if showPass.isSelected {
             password.isSecureTextEntry = false
             repassword.isSecureTextEntry = false
-        }
-        else {
+        } else {
             password.isSecureTextEntry = true
             repassword.isSecureTextEntry = true
         }
-
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if mail.isEditing == true {
             self.password.becomeFirstResponder()
             return true
@@ -102,14 +89,12 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             self.view.endEditing(true)
             return true
         }
-        
     }
     
     func createAlertRegister (title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-            action in
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{ action in
             alert.dismiss(animated: true, completion: nil)
             // Fler saker här för att köra mer kod
         }))
@@ -119,6 +104,4 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         //        }))
         self.present(alert, animated: true, completion: nil)
     }
-    
-
 }
