@@ -7,12 +7,12 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
-    
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     
     override func viewDidLoad() {
         resizeImage()
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

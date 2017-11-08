@@ -77,19 +77,18 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 frontCamera = device
             }
         }
-        
         currentCamera = backCamera
     }
     
     func setupInputOutput(){
-        do{
+        do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
             photoOutput = AVCapturePhotoOutput()
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
         } catch {
-            print(error)
+            print("\n \(error) \n")
         }
     }
     func setupPreviewLayer(){
@@ -99,9 +98,11 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         cameraPreviewLayer?.frame = self.view.frame
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
+    
     func startRunningCaptureSession(){
         captureSession.startRunning()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPhoto" {
             let previewVC = segue.destination as! ImagePreVC
