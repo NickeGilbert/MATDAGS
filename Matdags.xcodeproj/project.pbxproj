@@ -40,6 +40,7 @@
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
+		A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */; };
 		A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
+		A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVC.swift; sourceTree = "<group>"; };
 		A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matdags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2FBC78928FB9B9A2D38EE1 /* Pods-Matdags.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				0ABFCB321F862C340086DE20 /* ProfileVC.swift */,
 				0A8B33151FA08742007BAE27 /* ImagePreVC.swift */,
 				0A8B33181FA08742007BAE27 /* CameraVC.swift */,
+				A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */,
 				A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */,
 				A4AE137B1F9618AA005013EC /* FollowersVC.swift */,
 				A40BAD2E1FA74602007E7BE1 /* KommentarVC.swift */,
@@ -376,6 +379,7 @@
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
 				A428CCDF1FA0A72400C8A9CB /* Images.swift in Sources */,
 				0A4CD1C41FAE5F880006986A /* Post.swift in Sources */,
+				A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,

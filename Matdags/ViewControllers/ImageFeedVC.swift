@@ -73,7 +73,22 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)
         return storleken
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("SELECTED ROW IS \(indexPath.row)")
+        
+        self.performSegue(withIdentifier: "ImagePage", sender: indexPath)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "ImagePage")
+        {
+            let imageResult = segue.destination as! ImagePageVC
+            
+           // imageResult.images = posts[indexPath.row] as! UIImage
+        }
+    }
+
 }
 
 extension UIImageView {

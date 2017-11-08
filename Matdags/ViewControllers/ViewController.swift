@@ -53,7 +53,27 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 return
             }
             self.FBdata = result
-            print(String(describing: result!))
+//            print(String(describing: result!))
+            // Create request for user's Facebook data
+            let request = FBSDKGraphRequest(graphPath:"me", parameters:nil)
+            
+            // Send request to Facebook
+            request!.start {
+                
+                (connection, result, error) in
+                
+                if error != nil {
+                    // Some error checking here
+                }
+                else if let userData = result as? [String:AnyObject] {
+                    
+                    // Access user data
+                    let username = userData["name"] as? String
+                    print(username!)
+                    
+                    // ....
+                }
+            }
             
         }
     }
