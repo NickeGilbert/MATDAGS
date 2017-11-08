@@ -50,14 +50,18 @@ class ImagePreVC: UIViewController {
                     return
                 }
                 let secondURL = metadata?.downloadURL()?.absoluteString
+                if secondURL != nil {
+                    let feed = ["userID" : uid!,
+                                "date": [".sv": "timestamp"],
+                                "pathToImage256" : secondURL!,
+                                "likes" : 0,
+                                "postID" : key] as [String : Any]
+                    let postFeed = ["\(key)" : feed]
+                    database.child("Posts").updateChildValues(postFeed)
+                } else {
+                    print("\n Could not allocate URL for resized image. \n")
+                }
                 
-                let feed = ["userID" : uid!,
-                            "date": [".sv": "timestamp"],
-                            "pathToImage256" : secondURL!,
-                            "likes" : 0,
-                            "postID" : key] as [String : Any]
-                let postFeed = ["\(key)" : feed]
-                database.child("Posts").updateChildValues(postFeed)
             })
             
             uploadTask.resume()
@@ -71,9 +75,12 @@ class ImagePreVC: UIViewController {
                     return
                 }
                 let firstURL = metadata?.downloadURL()?.absoluteString
-                
-                let feed = ["pathToImage" : firstURL!] as [String : Any]
-                database.child("Posts").child("\(key)").updateChildValues(feed)
+                if firstURL != nil {
+                    let feed = ["pathToImage" : firstURL!] as [String : Any]
+                    database.child("Posts").child("\(key)").updateChildValues(feed)
+                } else {
+                    print("\n Could not allocate URL for full size image. \n")
+                }
             })
             uploadTask.resume()
         }

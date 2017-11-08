@@ -65,8 +65,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
-        cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
-        return cell
+        if self.posts[indexPath.row].pathToImage256 != nil {
+            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
+        } else {
+            print("\n \(indexPath.row) Could not return a value for pathToImage256 from Post. \n")
+        }
+         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

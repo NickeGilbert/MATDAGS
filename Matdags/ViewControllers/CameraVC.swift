@@ -28,6 +28,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         startRunningCaptureSession()
         
     }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
