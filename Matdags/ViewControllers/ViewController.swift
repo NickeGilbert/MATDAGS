@@ -31,7 +31,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         loginButton.delegate = self
         
-        if let token = FBSDKAccessToken.current() {
+        if FBSDKAccessToken.current() != nil {
             fetchProfile()
         }
         
@@ -49,29 +49,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             
             if error != nil {
-                print("\n",error,"\n")
+                print(error!)
                 return
             }
             self.FBdata = result
-//            print(String(describing: result!))
-            // Create request for user's Facebook data
             let request = FBSDKGraphRequest(graphPath:"me", parameters:nil)
             
             // Send request to Facebook
-            request!.start {
-                
-                (connection, result, error) in
-                
+            request!.start { (connection, result, error) in
                 if error != nil {
-                    // Some error checking here
+                    print(error!)
                 }
                 else if let userData = result as? [String:AnyObject] {
                     
                     // Access user data
                     let username = userData["name"] as? String
                     print(username!)
-                    
-                    // ....
                 }
             }
             
@@ -81,7 +74,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
-                if let error = error {
+                if error != nil {
                     self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
                     return
                 } else {
