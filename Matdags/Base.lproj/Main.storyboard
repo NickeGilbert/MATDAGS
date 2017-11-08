@@ -275,6 +275,43 @@
             </objects>
             <point key="canvasLocation" x="-215" y="1064"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="wT8-AH-SsB">
+            <objects>
+                <viewController id="daa-NH-ElQ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0pg-q1-bOj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIB-by-eOC">
+                                <rect key="frame" x="54" y="0.0" width="321" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="03B-wQ-ZeK">
+                                <rect key="frame" x="0.0" y="56" width="375" height="562"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgt-8l-5ar">
+                                <rect key="frame" x="9" y="13" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.99945492709999995" blue="0.96463482700000003" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="BackButton"/>
+                                <connections>
+                                    <action selector="kommentarBack:" destination="Ejr-xe-kxe" eventType="touchUpInside" id="kMh-xQ-ezx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="uN5-7r-vK9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nTh-EV-tsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724" y="1066.4167916041979"/>
+        </scene>
         <!--FollowersVC-->
         <scene sceneID="i1r-WW-hF1">
             <objects>
@@ -513,6 +550,7 @@
                         <segue destination="ypM-Uw-J9l" kind="relationship" relationship="viewControllers" id="KTh-t7-BoY"/>
                         <segue destination="et4-D1-BFC" kind="relationship" relationship="viewControllers" id="86L-sJ-jfZ"/>
                         <segue destination="1IS-aF-BiB" kind="relationship" relationship="viewControllers" id="sRl-u2-y6Z"/>
+                        <segue destination="daa-NH-ElQ" kind="relationship" relationship="viewControllers" id="O3m-rp-ZOY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x4y-OI-8EM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -822,6 +860,9 @@
                                         <state key="normal" title="☆">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="CyL-nn-PKh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIt-wU-cSu">
                                         <rect key="frame" x="30" y="0.0" width="30" height="42"/>
@@ -829,6 +870,9 @@
                                         <state key="normal" title="☆">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="ld5-2n-qrL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-5E-CRC">
                                         <rect key="frame" x="60" y="0.0" width="30" height="42"/>
@@ -836,6 +880,9 @@
                                         <state key="normal" title="☆">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="hNz-UZ-ceY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGS-ou-rry">
                                         <rect key="frame" x="90" y="0.0" width="30" height="42"/>
@@ -843,6 +890,9 @@
                                         <state key="normal" title="☆">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="DrX-52-loT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIF-zG-u9c">
                                         <rect key="frame" x="120" y="0.0" width="30" height="42"/>
@@ -850,6 +900,9 @@
                                         <state key="normal" title="☆">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="Tw9-Ck-8fl"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -868,6 +921,11 @@
                     <connections>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
                         <outlet property="pointsLabel" destination="aHK-zH-6mw" id="W4a-r7-BJT"/>
+                        <outletCollection property="starButtons" destination="JWI-q6-lfE" collectionClass="NSMutableArray" id="4Ef-e7-Ge6"/>
+                        <outletCollection property="starButtons" destination="TIt-wU-cSu" collectionClass="NSMutableArray" id="0LY-re-8m0"/>
+                        <outletCollection property="starButtons" destination="1Z1-5E-CRC" collectionClass="NSMutableArray" id="Z2W-zV-mcW"/>
+                        <outletCollection property="starButtons" destination="SGS-ou-rry" collectionClass="NSMutableArray" id="PBU-it-pzV"/>
+                        <outletCollection property="starButtons" destination="OIF-zG-u9c" collectionClass="NSMutableArray" id="hR6-KT-Gfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTA-Gx-3XR" userLabel="First Responder" sceneMemberID="firstResponder"/>

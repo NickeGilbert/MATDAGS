@@ -53,6 +53,21 @@ class ImagePageVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBOutlet var starButtons: [UIButton]!
+    
+    
+    @IBAction func starButtonsTapped(_ sender: UIButton) {
+        
+        let tag = sender.tag
+        for button in starButtons {
+            if button.tag <= tag {
+                button.setTitle("⭐️", for: .normal)
+            } else {
+                button.setTitle("☆", for: .normal)
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
