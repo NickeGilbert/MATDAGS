@@ -1050,6 +1050,9 @@
                             <constraint firstItem="TAp-li-cdH" firstAttribute="top" secondItem="bsR-Dv-XLS" secondAttribute="bottom" id="rqB-FY-Fyo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-SZ-EuZ"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Vbc-XZ-9NL" appends="YES" id="EPA-Vl-31c"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home-7" id="e9t-XX-NrY">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
@@ -1064,6 +1067,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9B-8m-z1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="Vbc-XZ-9NL">
+                    <connections>
+                        <action selector="swipeLeft:" destination="ypM-Uw-J9l" id="8Rt-R2-kdT"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1677.5999999999999" y="-526.6866566716642"/>
         </scene>

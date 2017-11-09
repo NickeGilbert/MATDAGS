@@ -63,8 +63,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
+    
+    //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
+        cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
@@ -92,7 +95,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
            // imageResult.images = posts[indexPath.row] as! UIImage
         }
     }
-
+    
+    
+    @IBAction func swipeLeft(_ sender: Any) {
+        print("SWIPE SWIPE!!")
+        tabBarController?.selectedIndex = 1
+    }
+    
 }
 
 extension UIImageView {
