@@ -7,10 +7,12 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
+    @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     
     override func viewDidLoad() {
         resizeImage()
+        profileNameLabel.text = ""
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
