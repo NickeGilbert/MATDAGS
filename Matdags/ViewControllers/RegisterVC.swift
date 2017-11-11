@@ -11,14 +11,16 @@ import FirebaseAuth
 class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mail: UITextField!
+    @IBOutlet weak var alias: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repassword: UITextField!
     @IBOutlet weak var showPass: UIButton!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         mail.delegate = self
+        alias.delegate = self
         password.delegate = self
         repassword.delegate = self
     }
@@ -32,9 +34,17 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func Register(_ sender: Any) {
+        if mail.text == "" {
+            self.createAlertRegister(title: "Mailadress", message: "Du måste ange en mailadress")
+            return
+        }
         if password.text != repassword.text {
             print("Please re-enter correct password")
             createAlertRegister(title: "Stämmer inte överrens", message: "Lösenorden måste vara identiska")
+            return
+        }
+        if alias.text == "" {
+            self.createAlertRegister(title: "Användarnamn", message: "Ditt användarnamn får inte vara tomt")
             return
         }
         Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: { user, error in
@@ -45,6 +55,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 print("\n \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
             } else {
+               
                 print ("User created")
                 self.login()
             }
@@ -57,6 +68,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 print ("\n Incorrect with error: \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Ett inloggningsproblem uppstod, vänligen försök igen")
             } else {
+                
                 self.performSegue(withIdentifier: "RegToFeed", sender: AnyObject.self)
                 print("\n Correct \n")
             }
@@ -80,6 +92,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if mail.isEditing == true {
+            self.alias.becomeFirstResponder()
+            return true
+        } else if alias.isEditing == true {
             self.password.becomeFirstResponder()
             return true
         } else if password.isEditing == true {
@@ -96,12 +111,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{ action in
             alert.dismiss(animated: true, completion: nil)
-            // Fler saker här för att köra mer kod
         }))
-        //        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-        //            action in
-        //            alert.dismiss(animated: true, completion: nil)      SKAPA UPP FLER AV DESSA FÖR FLERA VAL
-        //        }))
+       
         self.present(alert, animated: true, completion: nil)
     }
     

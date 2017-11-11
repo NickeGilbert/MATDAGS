@@ -41,6 +41,7 @@ class ProfileVC: UIViewController {
         
         var profile_img_url = "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=square"
         print(profile_img_url)
+
         let parameters = ["fields": "email, name, first_name, last_name, picture.type(large)"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             
@@ -53,9 +54,7 @@ class ProfileVC: UIViewController {
             
             // Send request to Facebook
             request!.start {
-                
                 (connection, result, error) in
-                
                 if error != nil {
                     // Some error checking here
                 }
