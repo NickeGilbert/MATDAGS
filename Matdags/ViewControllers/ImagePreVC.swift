@@ -10,6 +10,8 @@ import Firebase
 class ImagePreVC: UIViewController {
     
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var addTextField: UITextField!
+    
     var image: UIImage!
     
     override func viewDidLoad() {
@@ -23,14 +25,29 @@ class ImagePreVC: UIViewController {
         return .lightContent
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func saveButton(_ sender: Any) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    @IBAction func postButton(_ sender: Any) {
         UploadImageToFirebase()
         dismiss(animated: false, completion: nil)
+    }
+    
+    @IBAction func addTextButton(_ sender: Any) {
+        addTextField.isHidden = false
+    }
+    
+    @IBAction func saveLocalButton(_ sender: Any) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        print("\n Image saved to local library. \n")
+        let alert = UIAlertController(title: "Hurra!", message: "Bilden sparades på din telefon!", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func UploadImageToFirebase() {
@@ -55,20 +72,20 @@ class ImagePreVC: UIViewController {
                                 "date": [".sv": "timestamp"],
                                 "pathToImage256" : secondURL!,
                                 "likes" : 0,
+                                "alias" : Auth.auth().currentUser?.displayName as Any,
+                                "imgdescription" : self.addTextField.text!,
                                 "postID" : key] as [String : Any]
                     let postFeed = ["\(key)" : feed]
                     database.child("Posts").updateChildValues(postFeed)
                 } else {
                     print("\n Could not allocate URL for resized image. \n")
                 }
-                
             })
-            
             uploadTask.resume()
         }
         
         //Bild i full storlek (denna uploadTask läggs sist eftersom denna blir färdig sist)
-        if let imageData = UIImagePNGRepresentation(image!) {
+        if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
             let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)

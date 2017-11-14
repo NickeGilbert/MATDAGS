@@ -35,7 +35,6 @@
 		A40BAD2A1FA5E669007E7BE1 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD241FA5E669007E7BE1 /* 6.jpg */; };
 		A40BAD2C1FA603E0007E7BE1 /* nicklas.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */; };
 		A40BAD2F1FA74602007E7BE1 /* KommentarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BAD2E1FA74602007E7BE1 /* KommentarVC.swift */; };
-		A428CCDF1FA0A72400C8A9CB /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = A428CCDE1FA0A72400C8A9CB /* Images.swift */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
 		A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4650B001FB368FC00BC618E /* SearchVC.swift */; };
@@ -78,7 +77,6 @@
 		A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nicklas.jpg; sourceTree = "<group>"; };
 		A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matdags.entitlements; sourceTree = "<group>"; };
 		A40BAD2E1FA74602007E7BE1 /* KommentarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KommentarVC.swift; sourceTree = "<group>"; };
-		A428CCDE1FA0A72400C8A9CB /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4650B001FB368FC00BC618E /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		0A4CD1C11FAE46680006986A /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				A428CCDE1FA0A72400C8A9CB /* Images.swift */,
 				0A4CD1C31FAE5F880006986A /* Post.swift */,
 			);
 			path = Objects;
@@ -383,7 +380,6 @@
 				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
-				A428CCDF1FA0A72400C8A9CB /* Images.swift in Sources */,
 				0A4CD1C41FAE5F880006986A /* Post.swift in Sources */,
 				A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */,
 				A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */,
@@ -535,7 +531,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -566,7 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

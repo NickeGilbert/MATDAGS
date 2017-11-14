@@ -29,13 +29,16 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func downloadImages() {
         let dbref = Database.database().reference(withPath: "Posts")
-        dbref   .queryLimited(toFirst: 100).observe(.childAdded, with: { (snapshot) in
+        dbref.queryLimited(toFirst: 100).observe(.childAdded, with: { (snapshot) in
             let dictionary = snapshot.value as! [String : AnyObject]
             let appendPost = Post()
             appendPost.pathToImage256 = dictionary["pathToImage256"] as? String
             appendPost.likes = dictionary["likes"] as? Int
+            appendPost.postID = dictionary["postID"] as? String
             self.posts.insert(appendPost, at: 0)
             self.collectionFeed.reloadData()
+//            print("\n \(self.posts) \n")
+//            print("\n \(self.posts.count) \n")
         })
     }
 
@@ -71,7 +74,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
-            print("\n \(indexPath.row) Could not return a value for pathToImage256 from Post. \n")
+            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
          return cell
     }
@@ -80,28 +83,27 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)
         return storleken
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("SELECTED ROW IS \(indexPath.row)")
-        
-        self.performSegue(withIdentifier: "ImagePage", sender: indexPath)
+        self.performSegue(withIdentifier: "imagePageSeg", sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if(segue.identifier == "ImagePage")
+        if(segue.identifier == "imagePageSeg")
         {
-            let imageResult = segue.destination as! ImagePageVC
-            
-           // imageResult.images = posts[indexPath.row] as! UIImage
+            let selectedCell = sender as! NSIndexPath
+            let selectedRow = selectedCell.row
+            let imagePage = segue.destination as! ImagePageVC
+            imagePage.seguePostID = self.posts[selectedRow].postID
+        } else {
+            print("\n Segue with identifier (imagePage) not found. \n")
         }
     }
-    
     
     @IBAction func swipeLeft(_ sender: Any) {
         print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 1
     }
-    
 }
 
 extension UIImageView {
