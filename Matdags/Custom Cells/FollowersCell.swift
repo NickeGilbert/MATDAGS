@@ -26,6 +26,27 @@ class FollowersCell: UICollectionViewCell {
         }
     }
     
+    func resizeImage(){
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.clipsToBounds = true
+        self.profileImage.layer.borderColor = UIColor.white.cgColor
+        self.profileImage.layer.borderWidth = 2
+    }
+    
+   /* extension UIImageView {
+        
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.clipsToBounds = true
+        self.profileImage.layer.borderColor = UIColor.white.cgColor
+        self.profileImage.layer.borderWidth = 2
+        
+    }*/
     
     
+    override func layoutSubviews() {
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.clipsToBounds = true
+        self.profileImage.layer.borderColor = UIColor.white.cgColor
+        self.profileImage.layer.borderWidth = 2
+    }
 }
