@@ -14,6 +14,25 @@ import FBSDKCoreKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var actIdc = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var container : UIView!
+    
+    class func instance() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    func showActivityIndicator() {
+        if let window = window {
+            container = UIView()
+            container.frame = window.frame
+            container.center = window.center
+            container.backgroundColor = UIColor(white: 0, alpha: 0.8)
+            
+//            actIdc.frame = CGRect
+            
+        }
+    }
+    
     
     //Orientation saker för CameraVC
     var orientationLock = UIInterfaceOrientationMask.portrait
