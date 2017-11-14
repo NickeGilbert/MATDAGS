@@ -7,7 +7,7 @@ import Foundation
 
 class Images {
     
-    var fbKey = ""
+  /*  var fbKey = ""
     var postID: String
     var username: String
     var profilePic: String
@@ -25,6 +25,6 @@ class Images {
     func returnPostAsDictionary()->NSDictionary{
         let postDictionary: NSDictionary = ["profile_pic": profilePic, "username": username, "posted_pic": postImage]
         return postDictionary
-    }
+    }*/
     
 }
