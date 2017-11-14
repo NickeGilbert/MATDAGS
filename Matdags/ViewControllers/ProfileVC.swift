@@ -16,11 +16,41 @@ class ProfileVC: UIViewController {
     var FBdata : Any?
     
     override func viewDidLoad() {
-        resizeImage()
+        
         profileNameLabel.text = ""
         if let token = FBSDKAccessToken.current() {
             fetchProfile()
         }
+        
+        let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
+            
+            if error != nil {
+                print("ERROR")
+            } else {
+                print("Checkpoint 1")
+                var documentsDirectory:String?
+                var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
+                
+                if paths.count > 0 {
+                    print("Checkpoint 2")
+                    documentsDirectory = paths[0]
+                    let savePath = documentsDirectory! + "/.jpg"
+                    FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
+                    
+                    DispatchQueue.main.async {
+                        print("Checkpoint 3")
+                        print(savePath)
+                        self.profilePictureOutlet.image = UIImage(named: savePath)
+                    }
+                }
+                
+            }
+            
+        }
+        
+        task.resume()
+        resizeImage()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -35,12 +65,11 @@ class ProfileVC: UIViewController {
     }
     
     func fetchProfile() {
-        // http://graph.facebook.com/67563683055/picture?type=square
         
 //        FBSDKAccessToken.current().userID
         
-        var profile_img_url = "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=square"
-        print(profile_img_url)
+//        var profile_img_url = "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=square"
+//        print(profile_img_url)
 
         let parameters = ["fields": "email, name, first_name, last_name, picture.type(large)"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in

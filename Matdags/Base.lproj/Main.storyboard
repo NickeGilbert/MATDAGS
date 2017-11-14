@@ -699,8 +699,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jagJa" translatesAutoresizingMaskIntoConstraints="NO" id="Zv7-sa-0uO">
                                 <rect key="frame" x="112.5" y="60" width="150" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="bNh-mq-oSv"/>
-                                    <constraint firstAttribute="width" constant="150" id="x72-cs-xfE"/>
+                                    <constraint firstAttribute="height" constant="140" id="MA4-0U-9H0"/>
+                                    <constraint firstAttribute="width" constant="150" id="UPn-so-uCZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWr-3y-d8T">
@@ -716,15 +716,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IWr-3y-d8T" secondAttribute="trailing" id="0fr-uI-71O"/>
-                            <constraint firstItem="Zv7-sa-0uO" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="2mi-gT-tW6"/>
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="5jV-5q-iBW"/>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="eVr-3d-fSh" secondAttribute="trailing" id="BFn-hz-XnN"/>
                             <constraint firstItem="eVr-3d-fSh" firstAttribute="top" secondItem="YeT-Gu-iAA" secondAttribute="top" id="CUD-9K-SjA"/>
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="trailing" secondItem="zwZ-zg-AZ4" secondAttribute="trailing" id="DCn-Ct-lQq"/>
-                            <constraint firstItem="Zv7-sa-0uO" firstAttribute="centerX" secondItem="YeT-Gu-iAA" secondAttribute="centerX" id="GAv-Ph-hyr"/>
                             <constraint firstAttribute="bottomMargin" secondItem="eVr-3d-fSh" secondAttribute="bottom" id="J4q-ew-KiZ"/>
+                            <constraint firstItem="Zv7-sa-0uO" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="Vil-6O-7Bu"/>
                             <constraint firstItem="eVr-3d-fSh" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="hmA-9M-QE2"/>
                             <constraint firstAttribute="bottom" secondItem="6qx-4q-1Tl" secondAttribute="bottom" id="j6g-9G-rq4"/>
+                            <constraint firstItem="Zv7-sa-0uO" firstAttribute="centerX" secondItem="YeT-Gu-iAA" secondAttribute="centerX" id="kcq-vn-j03"/>
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="liH-j5-0D8"/>
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="110" id="n92-pX-CeP"/>
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="5" id="pTm-ab-CqX"/>
@@ -14156,6 +14156,6 @@ AAvoGA
         <image name="upload" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qav-lz-AQ2"/>
+        <segue reference="Pq7-cy-tEF"/>
     </inferredMetricsTieBreakers>
 </document>
