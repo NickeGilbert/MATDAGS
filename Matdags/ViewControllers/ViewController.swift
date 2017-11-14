@@ -14,9 +14,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     @IBOutlet var emailText: UITextField!
     @IBOutlet var password: UITextField!
     var FBdata : Any?
-//    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-//    var loadingView : UIImageView!
-    
     
     let loginButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
@@ -37,19 +34,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         if FBSDKAccessToken.current() != nil {
             fetchProfile()
         }
+        
         if(Auth.auth().currentUser != nil) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
-        
-//        activityIndicator.center = self.view.center
-//        activityIndicator.hidesWhenStopped = true
-//        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-//        activityIndicator.backgroundColor = UIColor.gray
-//        activityIndicator.alpha = 0.4
-//        loadingView.
-//        view.addSubview(activityIndicator)
-//        activityIndicator.startAnimating()
-//        UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -80,6 +69,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
+                AppDelegate.instance().showActivityIndicator()
+                print("logga in fb med instans")
                 if error != nil {
                     print("\n \(error!) \n")
                     self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
@@ -87,6 +78,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 } else {
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                     self.fetchProfile()
+                    AppDelegate.instance().dismissActivityIndicator()
                     print("\n INLOGGAD MED FACEBOOK \n ")
                 }
         }
@@ -98,24 +90,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     
     @IBAction func loginButton(_ sender: Any) {
         login()
+        password.resignFirstResponder()
     }
     
     func login(){
-//        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        AppDelegate.instance().showActivityIndicator()
         
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
             if error != nil{
                 print("\n \(error!) \n")
                 self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
-//                self.activityIndicator.stopAnimating()
-                UIApplication.shared.endIgnoringInteractionEvents()
+                AppDelegate.instance().dismissActivityIndicator()
                 
             } else {
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                 print("\n DU HAR LOGGAT IN MED MAIL \n")
-//                self.activityIndicator.stopAnimating()
-//                UIApplication.shared.endIgnoringInteractionEvents()
+                AppDelegate.instance().dismissActivityIndicator()
             }
         })
     }

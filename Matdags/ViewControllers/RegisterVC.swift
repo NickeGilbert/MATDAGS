@@ -60,6 +60,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 print("\n \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
             } else {
+                
                 print ("User created!")
                 self.login()
             }
@@ -67,6 +68,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
 
     func login() {
+        AppDelegate.instance().showActivityIndicator()
+        
         Auth.auth().signIn(withEmail: mail.text!, password: password.text!, completion: { user, error in
             if error != nil{
                 print ("\n Incorrect with error: \(error!) \n")
@@ -74,6 +77,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             } else {
                 self.performSegue(withIdentifier: "RegToFeed", sender: AnyObject.self)
                 print("\n Correct \n")
+                AppDelegate.instance().dismissActivityIndicator()
             }
         })
     }
