@@ -51,12 +51,16 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             if self.password.text!.count <= 4 {
                 self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
             }
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = self.alias.text!
+            }
             if error != nil {
                 print("\n \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
             } else {
-               
-                print ("User created")
+                print ("User created!")
                 self.login()
             }
         })
@@ -68,7 +72,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 print ("\n Incorrect with error: \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Ett inloggningsproblem uppstod, vänligen försök igen")
             } else {
-                
                 self.performSegue(withIdentifier: "RegToFeed", sender: AnyObject.self)
                 print("\n Correct \n")
             }

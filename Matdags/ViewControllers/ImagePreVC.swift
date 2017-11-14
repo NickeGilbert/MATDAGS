@@ -72,7 +72,7 @@ class ImagePreVC: UIViewController {
                                 "date": [".sv": "timestamp"],
                                 "pathToImage256" : secondURL!,
                                 "likes" : 0,
-                                "username" : Auth.auth().currentUser?.displayName,
+                                "alias" : Auth.auth().currentUser?.displayName as Any,
                                 "imgdescription" : self.addTextField.text!,
                                 "postID" : key] as [String : Any]
                     let postFeed = ["\(key)" : feed]
@@ -80,14 +80,12 @@ class ImagePreVC: UIViewController {
                 } else {
                     print("\n Could not allocate URL for resized image. \n")
                 }
-                
             })
-            
             uploadTask.resume()
         }
         
         //Bild i full storlek (denna uploadTask läggs sist eftersom denna blir färdig sist)
-        if let imageData = UIImagePNGRepresentation(image!) {
+        if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
             let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)

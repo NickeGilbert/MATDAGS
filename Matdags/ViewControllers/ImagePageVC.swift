@@ -62,11 +62,16 @@ class ImagePageVC: UIViewController {
         } else {
             print("\n No Image URL found in array. \n")
         }
-        pointsLabel.text = "\(self.posts[0].likes) Likes"
+        pointsLabel.text = "\(self.posts[0].likes!) Likes"
         if self.posts[0].username != nil {
             usernameLabel.text = self.posts[0].username
         } else {
             usernameLabel.text = self.posts[0].userID
+        }
+        if self.posts[0].imgdescription != nil {
+            descriptionLabel.text = self.posts[0].imgdescription
+        } else {
+            descriptionLabel.text = "Ingen beskrivning."
         }
     }
     
