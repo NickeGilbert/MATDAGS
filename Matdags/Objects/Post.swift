@@ -11,4 +11,6 @@ class Post: NSObject {
     var pathToImage256 : String!
     var likes : Int!
     var userID : String!
+    var imgdescription : String!
+    var username : String!
 }
