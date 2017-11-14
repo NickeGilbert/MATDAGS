@@ -34,7 +34,6 @@ class ImagePageVC: UIViewController {
         let database = Database.database().reference().child("Posts").child(seguePostID)
         database.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.childrenCount > 0 {
-                print("\n \(snapshot.childrenCount) \n")
                 guard let dictionary = snapshot.value as? [String : AnyObject] else {
                     print("\n Firebase Dictionary error at ImagePageVC. \n")
                     return
@@ -46,7 +45,6 @@ class ImagePageVC: UIViewController {
                 getInfo.username = dictionary["username"] as? String
                 getInfo.imgdescription = dictionary["imgdescription"] as? String
                 self.posts.append(getInfo)
-                
                 completionHandler(true)
                 } else {
                 print("\n No snapshot children found \n")
