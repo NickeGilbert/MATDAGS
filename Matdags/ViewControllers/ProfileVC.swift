@@ -9,11 +9,15 @@ import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout   {
     
+    @IBOutlet var profileCollectionFeed: UICollectionView!
+    @IBOutlet var profileImageCell: UICollectionViewCell!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     var FBdata : Any?
+    
+    let TaBortArray:[String] = ["1","2","3","4","5","6","1","2","3","4","5","6","1","2","3","4","5","6"]
     
     override func viewDidLoad() {
         
@@ -101,5 +105,38 @@ class ProfileVC: UIViewController {
             }
             
         }
+        
     }
+    
+   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return TaBortArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
+        cell.myProfileImageCollection.image = UIImage(named: TaBortArray[indexPath.row] + ".jpg")
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+        return storleken
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

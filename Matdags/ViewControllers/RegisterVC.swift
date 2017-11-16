@@ -23,6 +23,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         alias.delegate = self
         password.delegate = self
         repassword.delegate = self
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -61,11 +62,14 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
             } else {
                 print ("User created!")
-                self.login()
+                Auth.auth().currentUser?.sendEmailVerification { (error) in
+                    print("\n BEKRÄFTELSEMAIL  \n")
+                }
+                self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
             }
         })
     }
-
+    
     func login() {
         Auth.auth().signIn(withEmail: mail.text!, password: password.text!, completion: { user, error in
             if error != nil{
@@ -127,3 +131,36 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

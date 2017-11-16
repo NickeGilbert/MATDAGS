@@ -65,7 +65,7 @@
                                     <color key="titleColor" red="0.98696042610000001" green="1" blue="0.98816815999999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <segue destination="j2m-38-BdR" kind="show" id="ABk-Rw-W6d"/>
+                                    <segue destination="j2m-38-BdR" kind="show" identifier="" id="ABk-Rw-W6d"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="oM7-BG-J95">
@@ -285,11 +285,12 @@
                         <outlet property="repassword" destination="Vgv-u7-xhh" id="CpR-JG-8UB"/>
                         <outlet property="showPass" destination="hGu-6i-kzd" id="VqV-es-Bib"/>
                         <segue destination="LgI-ON-4hY" kind="presentation" identifier="RegToFeed" id="qav-lz-AQ2"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="loggaIn" id="l1h-Lg-NhA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14C-76-Kei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-215.19999999999999" y="1063.7181409295354"/>
+            <point key="canvasLocation" x="-982" y="1013"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="wT8-AH-SsB">
@@ -308,7 +309,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="201"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6mp-ae-b9P" id="Tto-Qa-YHJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Användarnamn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6o-ir-c87">
@@ -358,7 +359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTh-EV-tsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="1063.7181409295354"/>
+            <point key="canvasLocation" x="732" y="1015"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="i1r-WW-hF1">
@@ -565,21 +566,39 @@
                                         <rect key="frame" x="0.0" y="180" width="375" height="308"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iEA-86-vgJ">
-                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="itemSize" width="104" height="104"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="R62-iF-icl">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="profileCell" id="R62-iF-icl" customClass="ProfileCell" customModule="Matdags" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Zo-dB-kKU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
+                                                        </imageView>
+                                                    </subviews>
                                                 </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="0Zo-dB-kKU" secondAttribute="trailing" id="1g2-1Q-fPa"/>
+                                                    <constraint firstItem="0Zo-dB-kKU" firstAttribute="leading" secondItem="R62-iF-icl" secondAttribute="leading" id="Ngs-yn-bUg"/>
+                                                    <constraint firstItem="0Zo-dB-kKU" firstAttribute="top" secondItem="R62-iF-icl" secondAttribute="top" id="gek-aM-hRM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0Zo-dB-kKU" secondAttribute="bottom" id="yY3-TA-CFp"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="myProfileImageCollection" destination="0Zo-dB-kKU" id="AGF-QN-tXm"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1IS-aF-BiB" id="Ir3-jv-t9r"/>
+                                            <outlet property="delegate" destination="1IS-aF-BiB" id="FRI-nw-5AE"/>
+                                        </connections>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxxx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2M-1M-qIm">
                                         <rect key="frame" x="197.5" y="135" width="100" height="25"/>
@@ -647,13 +666,14 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="profileCollectionFeed" destination="ACP-Vh-ap7" id="Oqt-Ld-bWg"/>
                         <outlet property="profileNameLabel" destination="IWr-3y-d8T" id="toA-cT-qS1"/>
                         <outlet property="profilePictureOutlet" destination="Zv7-sa-0uO" id="G9z-ds-Cn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677.5999999999999" y="1015.1424287856073"/>
+            <point key="canvasLocation" x="1677.5999999999999" y="1013.3433283358322"/>
         </scene>
         <!--ImagePreviewVC-->
         <scene sceneID="ard-oB-FFI">
@@ -14094,5 +14114,6 @@ AAvn+QAL5/4AAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAAAAvoAA
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qav-lz-AQ2"/>
+        <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
 </document>

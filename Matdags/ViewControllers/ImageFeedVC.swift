@@ -9,7 +9,7 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import FBSDKCoreKit
 
-class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet var collectionFeed: UICollectionView!
     

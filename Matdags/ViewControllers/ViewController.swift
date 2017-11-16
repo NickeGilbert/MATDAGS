@@ -89,12 +89,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     
     func login(){
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
+            
             if error != nil{
+                // ERROR INLOGGNING
+                self.createAlertLogin(title: "Error", message: "Något blev fel. Försök igen!")
                 print("\n \(error!) \n")
-                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
+                
             } else {
-                self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                print("\n DU HAR LOGGAT IN MED MAIL \n")
+                if(Auth.auth().currentUser?.isEmailVerified == true)
+                {
+                    self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                    print("\n DU HAR LOGGAT IN MED MAIL \n")
+                } else {
+                    self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
+                }
+                
+
             }
         })
     }
