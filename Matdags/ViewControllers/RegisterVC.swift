@@ -57,31 +57,17 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
                 return
             } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-              //  self.createFirebaseUser()
-=======
-=======
->>>>>>> origin/dev
                 if let userC = user {
                     let changeRequest = userC.createProfileChangeRequest()
                     changeRequest.displayName = self.alias.text!
                     changeRequest.commitChanges(completion: nil)
                 }
-<<<<<<< HEAD
->>>>>>> origin/dev
-=======
->>>>>>> origin/dev
                 print ("User created!")
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     print("\n BEKRÄFTELSEMAIL  \n")
                     
                 self.createAlertRegister(title: "Okay", message: "Du måste gå och Validera ditt konto på din mail!")
                 }
-<<<<<<< HEAD
-=======
-                self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
->>>>>>> origin/dev
             }
         })
     }
