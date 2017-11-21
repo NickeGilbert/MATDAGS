@@ -1,10 +1,7 @@
-//
 //  ImagePageVC.swift
 //  Matdags
-//
 //  Created by Nicklas Gilbertson on 2017-11-05.
 //  Copyright © 2017 Matdags. All rights reserved.
-//
 
 import UIKit
 import Firebase
@@ -20,6 +17,7 @@ class ImagePageVC: UIViewController {
     var seguePostID : String!
     var likes = ""
     var posts = [Post]()
+    var starHighlited = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +76,14 @@ class ImagePageVC: UIViewController {
     }
     
     @IBAction func starButtonsTapped(_ sender: UIButton) {
-        let tag = sender.tag
+        starHighlited = sender.tag + 1
+        print(starHighlited)
+  
         for button in starButtons {
-            if button.tag <= tag {
+            button.setTitle("☆", for: .normal)
+    
+            if button.tag <= starHighlited-1 {
                 button.setTitle("⭐️", for: .normal)
-            } else {
-                button.setTitle("☆", for: .normal)
             }
         }
     }

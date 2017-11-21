@@ -34,9 +34,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         if FBSDKAccessToken.current() != nil {
             fetchProfile()
         }
-        if(Auth.auth().currentUser != nil) {
+        
+        if(Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -85,15 +87,20 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     
     @IBAction func loginButton(_ sender: Any) {
         login()
+        password.resignFirstResponder()
     }
     
     func login(){
+        AppDelegate.instance().showActivityIndicator()
+        
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
             
             if error != nil{
                 // ERROR INLOGGNING
                 self.createAlertLogin(title: "Error", message: "Något blev fel. Försök igen!")
                 print("\n \(error!) \n")
+                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
+                AppDelegate.instance().dismissActivityIndicator()
                 
             } else {
                 if(Auth.auth().currentUser?.isEmailVerified == true)
@@ -102,9 +109,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                     print("\n DU HAR LOGGAT IN MED MAIL \n")
                 } else {
                     self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
+                    AppDelegate.instance().dismissActivityIndicator()
                 }
-                
-
             }
         })
     }
