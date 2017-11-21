@@ -12,5 +12,5 @@ class Post: NSObject {
     var likes : Int!
     var userID : String!
     var imgdescription : String!
-    var username : String!
+    var alias : String!
 }

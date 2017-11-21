@@ -40,7 +40,7 @@ class ImagePageVC: UIViewController {
                 getInfo.pathToImage = dictionary["pathToImage"] as? String
                 getInfo.likes = dictionary["likes"] as? Int
                 getInfo.userID = dictionary["userID"] as? String
-                getInfo.username = dictionary["username"] as? String
+                getInfo.alias = dictionary["alias"] as? String
                 getInfo.imgdescription = dictionary["imgdescription"] as? String
                 self.posts.append(getInfo)
                 completionHandler(true)
@@ -59,8 +59,8 @@ class ImagePageVC: UIViewController {
             print("\n No Image URL found in array. \n")
         }
         pointsLabel.text = "\(self.posts[0].likes!) Likes"
-        if self.posts[0].username != nil {
-            usernameLabel.text = self.posts[0].username
+        if posts[0].alias != nil{
+            usernameLabel.text = self.posts[0].alias
         } else {
             usernameLabel.text = self.posts[0].userID
         }
