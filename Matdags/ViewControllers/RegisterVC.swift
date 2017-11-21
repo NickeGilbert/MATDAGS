@@ -23,6 +23,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         alias.delegate = self
         password.delegate = self
         repassword.delegate = self
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -62,11 +63,14 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             } else {
                 
                 print ("User created!")
-                self.login()
+                Auth.auth().currentUser?.sendEmailVerification { (error) in
+                    print("\n BEKRÄFTELSEMAIL  \n")
+                }
+                self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
             }
         })
     }
-
+    
     func login() {
         AppDelegate.instance().showActivityIndicator()
         
@@ -131,3 +135,36 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

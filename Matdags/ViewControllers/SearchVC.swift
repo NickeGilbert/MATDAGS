@@ -29,7 +29,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchUsersTableView.tableHeaderView = searchController.searchBar
 
         let dbref = Database.database().reference(withPath: "Posts")
-        dbref.queryOrdered(byChild: "postID").observe(.childAdded, with: { (snapshot) in
+        dbref.queryOrdered(byChild: "username").observe(.childAdded, with: { (snapshot) in
             
             self.usersArray.append(snapshot.value as? NSDictionary) //Måste fixas så inte användarna syns från början!
             
@@ -64,15 +64,15 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             user = self.usersArray[indexPath.row]
         }
-        cell.usernameLabel?.text = self.usersArray[indexPath.row]?["userID"] as? String
-        cell.pictureOutlet.image = self.usersArray[indexPath.item]?["postID"] as? UIImage //För att hämta bild
+        cell.usernameLabel?.text = self.usersArray[indexPath.row]?["username"] as? String
+        //cell.pictureOutlet.image = self.usersArray[indexPath.item]?["postID"] as? UIImage //För att hämta bild
         return cell
     }
     
     func filterContent(searchText:String)
     {
         self.filteredUsers = self.usersArray.filter{ user in
-            let username = user!["userID"] as? String
+            let username = user!["username"] as? String
             return(username?.lowercased().contains(searchText.lowercased()))!
         }
         searchUsersTableView.reloadData()

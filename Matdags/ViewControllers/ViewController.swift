@@ -94,7 +94,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         AppDelegate.instance().showActivityIndicator()
         
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
+            
             if error != nil{
+                // ERROR INLOGGNING
+                self.createAlertLogin(title: "Error", message: "Något blev fel. Försök igen!")
                 print("\n \(error!) \n")
                 self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
                 AppDelegate.instance().dismissActivityIndicator()

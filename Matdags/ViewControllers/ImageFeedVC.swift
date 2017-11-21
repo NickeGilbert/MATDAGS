@@ -9,7 +9,7 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import FBSDKCoreKit
 
-class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet var collectionFeed: UICollectionView!
     
@@ -37,8 +37,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             appendPost.postID = dictionary["postID"] as? String
             self.posts.insert(appendPost, at: 0)
             self.collectionFeed.reloadData()
-//            print("\n \(self.posts) \n")
-//            print("\n \(self.posts.count) \n")
         })
     }
 
