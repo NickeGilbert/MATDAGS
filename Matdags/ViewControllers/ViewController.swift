@@ -69,8 +69,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
-                AppDelegate.instance().showActivityIndicator()
-                print("logga in fb med instans")
                 if error != nil {
                     print("\n \(error!) \n")
                     self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
@@ -78,7 +76,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 } else {
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                     self.fetchProfile()
-                    AppDelegate.instance().dismissActivityIndicator()
                     print("\n INLOGGAD MED FACEBOOK \n ")
                 }
         }
