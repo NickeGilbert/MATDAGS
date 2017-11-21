@@ -26,6 +26,7 @@
 		0AA3731D1F86450400E6FE92 /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AA373141F86450400E6FE92 /* AccountKitStrings.bundle */; };
 		0AA3731E1F86450400E6FE92 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA373151F86450400E6FE92 /* Bolts.framework */; };
 		0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB321F862C340086DE20 /* ProfileVC.swift */; };
+		0AF001D11FC44F47005E6CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF001D01FC44F47005E6CBE /* User.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
 		A40BAD251FA5E669007E7BE1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD1F1FA5E669007E7BE1 /* 1.jpg */; };
 		A40BAD261FA5E669007E7BE1 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD201FA5E669007E7BE1 /* 2.jpg */; };
@@ -67,6 +68,7 @@
 		0AA373141F86450400E6FE92 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AccountKitStrings.bundle; path = FacebookSDK/AccountKitStrings.bundle; sourceTree = "<group>"; };
 		0AA373151F86450400E6FE92 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		0ABFCB321F862C340086DE20 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		0AF001D01FC44F47005E6CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
 		A40BAD1F1FA5E669007E7BE1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		A40BAD201FA5E669007E7BE1 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				0A4CD1C31FAE5F880006986A /* Post.swift */,
+				0AF001D01FC44F47005E6CBE /* User.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
 				0A4CD1C41FAE5F880006986A /* Post.swift in Sources */,
+				0AF001D11FC44F47005E6CBE /* User.swift in Sources */,
 				A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */,
 				A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
@@ -531,7 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87587NY5AL;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -562,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87587NY5AL;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

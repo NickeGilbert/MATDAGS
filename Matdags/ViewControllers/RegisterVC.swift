@@ -23,7 +23,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         alias.delegate = self
         password.delegate = self
         repassword.delegate = self
-
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -61,6 +60,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 print("\n \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
             } else {
+                self.createFirebaseUser()
                 print ("User created!")
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     print("\n BEKRÄFTELSEMAIL  \n")
@@ -115,52 +115,25 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     func createAlertRegister (title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{ action in
             alert.dismiss(animated: true, completion: nil)
         }))
-       
         self.present(alert, animated: true, completion: nil)
     }
     
     
     @IBAction func infoClick(_ sender: Any) {
-        
         createAlertRegister(title: "Användardata", message: "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. ")
-        
     }
     
+    func createFirebaseUser() {
+        let uid = Auth.auth().currentUser!.uid
+        let username = Auth.auth().currentUser!.displayName
+        let useremail = Auth.auth().currentUser!.email
+        let database = Database.database().reference(withPath: "Users/\(uid)")
+        let feed = ["alias" : username!,
+                    "date": [".sv": "timestamp"],
+                    "email" : useremail!] as [String : Any]
+        database.updateChildValues(feed)
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
