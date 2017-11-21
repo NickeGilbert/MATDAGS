@@ -20,6 +20,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     let TaBortArray:[String] = ["1","2","3","4","5","6","1","2","3","4","5","6","1","2","3","4","5","6"]
     
     override func viewDidLoad() {
+        
+        resizeImage()
        
         if(FBSDKAccessToken.current() != nil) {
             

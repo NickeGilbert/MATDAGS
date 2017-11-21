@@ -22,6 +22,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppDelegate.instance().showActivityIndicator()
         //Testa att göra en clear
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -31,9 +32,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let dbref = Database.database().reference(withPath: "Posts")
         dbref.queryOrdered(byChild: "username").observe(.childAdded, with: { (snapshot) in
             
-            self.usersArray.append(snapshot.value as? NSDictionary) //Måste fixas så inte användarna syns från början!
+            self.usersArray.append(snapshot.value as? NSDictionary) //Måste fixas så inte användarna syns från början! Eller är det, det vi vill ha?
             
             self.searchUsersTableView.insertRows(at: [IndexPath(row:self.usersArray.count-1,section:0)], with: UITableViewRowAnimation.automatic)
+            AppDelegate.instance().dismissActivityIndicator()
         }) { (error) in
             print(error.localizedDescription)
         }
