@@ -35,7 +35,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             fetchProfile()
         }
         
-        if(Auth.auth().currentUser != nil) {
+        if(Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
 
@@ -103,9 +103,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 AppDelegate.instance().dismissActivityIndicator()
                 
             } else {
-                self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                print("\n DU HAR LOGGAT IN MED MAIL \n")
-                AppDelegate.instance().dismissActivityIndicator()
+                if(Auth.auth().currentUser?.isEmailVerified == true)
+                {
+                    self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                    print("\n DU HAR LOGGAT IN MED MAIL \n")
+                } else {
+                    self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
+                    AppDelegate.instance().dismissActivityIndicator()
+                }
             }
         })
     }
