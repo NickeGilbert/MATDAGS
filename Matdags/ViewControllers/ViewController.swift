@@ -67,6 +67,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+         AppDelegate.instance().showActivityIndicator()
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
                 if error != nil {
@@ -77,6 +78,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                     self.fetchProfile()
                     print("\n INLOGGAD MED FACEBOOK \n ")
+                    AppDelegate.instance().dismissActivityIndicator()
                 }
         }
     }

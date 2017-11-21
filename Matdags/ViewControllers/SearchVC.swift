@@ -29,8 +29,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
 
-        let dbref = Database.database().reference(withPath: "Posts")
-        dbref.queryOrdered(byChild: "username").observe(.childAdded, with: { (snapshot) in
+        let dbref = Database.database().reference(withPath: "Users")
+        dbref.queryOrdered(byChild: "alias").observe(.childAdded, with: { (snapshot) in
             
             self.usersArray.append(snapshot.value as? NSDictionary) //Måste fixas så inte användarna syns från början! Eller är det, det vi vill ha?
             
@@ -66,7 +66,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             user = self.usersArray[indexPath.row]
         }
-        cell.usernameLabel?.text = self.usersArray[indexPath.row]?["username"] as? String
+        cell.usernameLabel?.text = self.usersArray[indexPath.row]?["alias"] as? String
         //cell.pictureOutlet.image = self.usersArray[indexPath.item]?["postID"] as? UIImage //För att hämta bild
         return cell
     }
@@ -74,7 +74,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func filterContent(searchText:String)
     {
         self.filteredUsers = self.usersArray.filter{ user in
-            let username = user!["username"] as? String
+            let username = user!["alias"] as? String
             return(username?.lowercased().contains(searchText.lowercased()))!
         }
         searchUsersTableView.reloadData()
