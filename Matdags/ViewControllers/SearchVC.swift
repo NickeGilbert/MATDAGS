@@ -1,10 +1,7 @@
-//
 //  SearchVC.swift
 //  Matdags
-//
 //  Created by Nicklas Gilbertson on 2017-11-08.
 //  Copyright © 2017 Matdags. All rights reserved.
-//
 
 import UIKit
 import Firebase
@@ -53,7 +50,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if searchController.isActive && searchController.searchBar.text != "" {
         return  filteredUsers.count
         }
-        return self.usersArray.count
+        return self.usersArray.count //Ska visas max 10-20 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,7 +63,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             user = self.usersArray[indexPath.row]
         }
-        cell.usernameLabel?.text = self.usersArray[indexPath.row]?["alias"] as? String
+        cell.usernameLabel?.text = user?["alias"] as? String
         //cell.pictureOutlet.image = self.usersArray[indexPath.item]?["postID"] as? UIImage //För att hämta bild
         return cell
     }
