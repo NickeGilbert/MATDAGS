@@ -58,13 +58,19 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 return
             } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
               //  self.createFirebaseUser()
 =======
+=======
+>>>>>>> origin/dev
                 if let userC = user {
                     let changeRequest = userC.createProfileChangeRequest()
                     changeRequest.displayName = self.alias.text!
                     changeRequest.commitChanges(completion: nil)
                 }
+<<<<<<< HEAD
+>>>>>>> origin/dev
+=======
 >>>>>>> origin/dev
                 print ("User created!")
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
@@ -72,6 +78,10 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     
                 self.createAlertRegister(title: "Okay", message: "Du måste gå och Validera ditt konto på din mail!")
                 }
+<<<<<<< HEAD
+=======
+                self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
+>>>>>>> origin/dev
             }
         })
     }
@@ -113,10 +123,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
         }))
         self.present(alert, animated: true, completion: nil)
-    }
-        
-    @IBAction func infoClick(_ sender: Any) {
-        createAlertRegister(title: "Användardata", message: "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. ")
     }
     
     func createFirebaseUser() {
