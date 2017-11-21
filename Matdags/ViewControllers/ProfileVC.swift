@@ -20,41 +20,43 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     let TaBortArray:[String] = ["1","2","3","4","5","6","1","2","3","4","5","6","1","2","3","4","5","6"]
     
     override func viewDidLoad() {
-        
-        profileNameLabel.text = ""
-        if let token = FBSDKAccessToken.current() {
-            fetchProfile()
-        }
-        
-        let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
+       
+        if(FBSDKAccessToken.current() != nil) {
             
-            if error != nil {
-                print("ERROR")
-            } else {
-                print("Checkpoint 1")
-                var documentsDirectory:String?
-                var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
-                
-                if paths.count > 0 {
-                    print("Checkpoint 2")
-                    documentsDirectory = paths[0]
-                    let savePath = documentsDirectory! + "/.jpg"
-                    FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
-                    
-                    DispatchQueue.main.async {
-                        print("Checkpoint 3")
-                        print(savePath)
-                        self.profilePictureOutlet.image = UIImage(named: savePath)
-                    }
-                }
-                
+            profileNameLabel.text = ""
+            if let token = FBSDKAccessToken.current() {
+                fetchProfile()
             }
             
+            let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+            let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
+                
+                if error != nil {
+                    print("ERROR")
+                } else {
+                    print("Checkpoint 1")
+                    var documentsDirectory:String?
+                    var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
+                    
+                    if paths.count > 0 {
+                        print("Checkpoint 2")
+                        documentsDirectory = paths[0]
+                        let savePath = documentsDirectory! + "/.jpg"
+                        FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
+                        
+                        DispatchQueue.main.async {
+                            print("Checkpoint 3")
+                            print(savePath)
+                            self.profilePictureOutlet.image = UIImage(named: savePath)
+                        }
+                    }
+                }
+            }
+            task.resume()
+            resizeImage()
+        }else {
+            
         }
-        
-        task.resume()
-        resizeImage()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -98,14 +100,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     print(fbRes)
                     self.profileNameLabel.text = fbRes.value(forKey: "name") as! String
 //                    self.profilePictureOutlet.image = (URL: profile_img_url)
-                    
                 }
-                
-                
             }
-            
         }
-        
     }
     
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -119,24 +116,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-        return storleken
+        let size = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+        return size
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

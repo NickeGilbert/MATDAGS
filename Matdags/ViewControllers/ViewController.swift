@@ -103,8 +103,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 } else {
                     self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
                 }
-                
-
             }
         })
     }
