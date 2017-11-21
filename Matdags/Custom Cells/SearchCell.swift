@@ -1,10 +1,7 @@
-//
 //  SearchCell.swift
 //  Matdags
-//
 //  Created by Nicklas Gilbertson on 2017-11-09.
 //  Copyright © 2017 Matdags. All rights reserved.
-//
 
 import UIKit
 
@@ -19,7 +16,6 @@ class SearchCell: UITableViewCell {
         resizeImage()
     }
     
-    
     func resizeImage(){
         pictureOutlet.layer.cornerRadius = pictureOutlet.frame.size.height / 2
         pictureOutlet.clipsToBounds = true
@@ -32,5 +28,4 @@ class SearchCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
