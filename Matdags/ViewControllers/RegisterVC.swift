@@ -48,40 +48,30 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             return
         }
         Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: { user, error in
-            if self.password.text!.count <= 4 {
-                self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
-            }
-            let user = Auth.auth().currentUser
-            if let user = user {
-                let changeRequest = user.createProfileChangeRequest()
-                changeRequest.displayName = self.alias.text!
-            }
             if error != nil {
                 print("\n \(error!) \n")
                 self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
+                return
+            }
+            if self.password.text!.count <= 4 {
+                self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
+                return
             } else {
+<<<<<<< HEAD
               //  self.createFirebaseUser()
+=======
+                if let userC = user {
+                    let changeRequest = userC.createProfileChangeRequest()
+                    changeRequest.displayName = self.alias.text!
+                    changeRequest.commitChanges(completion: nil)
+                }
+>>>>>>> origin/dev
                 print ("User created!")
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     print("\n BEKRÄFTELSEMAIL  \n")
                     
                 self.createAlertRegister(title: "Okay", message: "Du måste gå och Validera ditt konto på din mail!")
                 }
-            }
-        })
-    }
-    
-    func login() {
-        AppDelegate.instance().showActivityIndicator()
-        
-        Auth.auth().signIn(withEmail: mail.text!, password: password.text!, completion: { user, error in
-            if error != nil{
-                print ("\n Incorrect with error: \(error!) \n")
-                self.createAlertRegister(title: "Problem", message: "Ett inloggningsproblem uppstod, vänligen försök igen")
-            } else {
-                self.performSegue(withIdentifier: "RegToFeed", sender: AnyObject.self)
-                print("\n Correct \n")
-                AppDelegate.instance().dismissActivityIndicator()
             }
         })
     }
@@ -129,7 +119,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         createAlertRegister(title: "Användardata", message: "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. ")
     }
     
-  /*  func createFirebaseUser() {
+    func createFirebaseUser() {
         let uid = Auth.auth().currentUser!.uid
         let username = Auth.auth().currentUser!.displayName
         let useremail = Auth.auth().currentUser!.email
@@ -138,5 +128,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     "date": [".sv": "timestamp"],
                     "email" : useremail!] as [String : Any]
         database.updateChildValues(feed)
-    }*/
+    }
+    
+    @IBAction func infoClick(_ sender: Any) {
+        createAlertRegister(title: "Användardata", message: "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. ")
+    }
 }

@@ -103,18 +103,40 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 print("\n \(error!) \n")
                 self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
                 AppDelegate.instance().dismissActivityIndicator()
-                
             } else {
                 if(Auth.auth().currentUser?.isEmailVerified == true)
                 {
+                    //Där finns en print i createFireBaseUser som händer om användaren loggar in med mail första gången.
+                    self.createFirebaseUser()
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                    print("\n DU HAR LOGGAT IN MED MAIL \n")
                 } else {
                     self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
                     AppDelegate.instance().dismissActivityIndicator()
                 }
             }
         })
+    }
+    
+    func createFirebaseUser() {
+        let uid = Auth.auth().currentUser!.uid
+        let username = Auth.auth().currentUser!.displayName
+        let useremail = Auth.auth().currentUser!.email
+        let database = Database.database().reference(withPath: "Users/\(uid)")
+        print("\n \(uid) \n")
+        print("\n \(String(describing: username)) \n")
+        print("\n \(String(describing: useremail)) \n")
+        if useremail == nil || username == nil {
+            return
+        }
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let result = formatter.string(from: date)
+        let feed = ["alias" : username!,
+                    "date" : result,
+                    "email" : useremail!] as [String : Any]
+        database.updateChildValues(feed)
+        print("\n Firebase User Created! \n")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

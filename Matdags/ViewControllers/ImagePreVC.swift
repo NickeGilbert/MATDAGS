@@ -72,7 +72,7 @@ class ImagePreVC: UIViewController {
                                 "date": [".sv": "timestamp"],
                                 "pathToImage256" : secondURL!,
                                 "likes" : 0,
-                                "alias" : Auth.auth().currentUser?.displayName as Any,
+                                "alias" : Auth.auth().currentUser!.displayName!,
                                 "imgdescription" : self.addTextField.text!,
                                 "postID" : key] as [String : Any]
                     let postFeed = ["\(key)" : feed]
