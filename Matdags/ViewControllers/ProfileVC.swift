@@ -26,7 +26,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         if(FBSDKAccessToken.current() != nil) {
             
             profileNameLabel.text = ""
-            if let token = FBSDKAccessToken.current() {
+            if FBSDKAccessToken.current() != nil {
                 fetchProfile()
             }
             
@@ -83,7 +83,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             
             if error != nil {
-                print("\n",error,"\n")
+                print("\n",error!,"\n")
                 return
             }
             
@@ -100,7 +100,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     let fbRes = result as! NSDictionary
                     
                     print(fbRes)
-                    self.profileNameLabel.text = fbRes.value(forKey: "name") as! String
+                    self.profileNameLabel.text = fbRes.value(forKey: "name") as? String
 //                    self.profilePictureOutlet.image = (URL: profile_img_url)
                 }
             }
