@@ -31,11 +31,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         if(fromSearch == true) {
             // Du kommer från sökskärmen
             profileNameLabel.text = user.alias
-            
-            profileNameLabel.text = ""
-            if FBSDKAccessToken.current() != nil {
-                fetchProfile()
-            }
 
         } else {
             // Du ska se din egen profil
