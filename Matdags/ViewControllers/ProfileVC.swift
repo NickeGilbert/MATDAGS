@@ -17,50 +17,64 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     var FBdata : Any?
     
+    var titleName = ""
+    
+    var user = User()
+    var fromSearch = false
+    
     let TaBortArray:[String] = ["1","2","3","4","5","6","1","2","3","4","5","6","1","2","3","4","5","6"]
     
     override func viewDidLoad() {
         
         resizeImage()
        
-        if(FBSDKAccessToken.current() != nil) {
+        if(fromSearch == true) {
+            // Du kommer från sökskärmen
+            profileNameLabel.text = user.alias
             
-            profileNameLabel.text = ""
-            if let token = FBSDKAccessToken.current() {
-                fetchProfile()
-            }
             
-            let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-            let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
+
+        } else {
+            // Du ska se din egen profil
+            
+            if(FBSDKAccessToken.current() != nil) {
                 
-                if error != nil {
-                    print("ERROR")
-                } else {
-                    print("Checkpoint 1")
-                    var documentsDirectory:String?
-                    var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
+                profileNameLabel.text = ""
+                if let token = FBSDKAccessToken.current() {
+                    fetchProfile()
+                }
+                
+                let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+                let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
                     
-                    if paths.count > 0 {
-                        print("Checkpoint 2")
-                        documentsDirectory = paths[0]
-                        let savePath = documentsDirectory! + "/.jpg"
-                        FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
+                    if error != nil {
+                        print("ERROR")
+                    } else {
+                        print("Checkpoint 1")
+                        var documentsDirectory:String?
+                        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
                         
-                        DispatchQueue.main.async {
-                            print("Checkpoint 3")
-                            print(savePath)
-                            self.profilePictureOutlet.image = UIImage(named: savePath)
+                        if paths.count > 0 {
+                            print("Checkpoint 2")
+                            documentsDirectory = paths[0]
+                            let savePath = documentsDirectory! + "/.jpg"
+                            FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
+                            
+                            DispatchQueue.main.async {
+                                print("Checkpoint 3")
+                                print(savePath)
+                                self.profilePictureOutlet.image = UIImage(named: savePath)
+                            }
                         }
                     }
                 }
+                task.resume()
+                resizeImage()
             }
-            task.resume()
-            resizeImage()
-        }else {
-            
         }
+        
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -74,7 +88,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     func fetchProfile() {
         
-//        FBSDKAccessToken.current().userID
+   // FBSDKAccessToken.current().userID
         
 //        var profile_img_url = "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=square"
 //        print(profile_img_url)
