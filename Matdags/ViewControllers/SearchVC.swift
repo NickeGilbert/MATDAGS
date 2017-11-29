@@ -13,9 +13,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     let searchController = UISearchController(searchResultsController: nil)
     
     var posts = [Post]()
+    var users = [User]()
     var search = [SearchCell]()
-    var usersArray = [NSDictionary?]()
-    var filteredUsers = [NSDictionary?]()
+    var filteredUsers = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +27,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchUsersTableView.tableHeaderView = searchController.searchBar
 
         let dbref = Database.database().reference(withPath: "Users")
-        dbref.queryOrdered(byChild: "alias").observe(.childAdded, with: { (snapshot) in
+        dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
+            let tempUser = User()
+            guard let tempSnapshot = snapshot.value as? NSDictionary else { return }
             
-            self.usersArray.append(snapshot.value as? NSDictionary) //Måste fixas så inte användarna syns från början! Eller är det, det vi vill ha?
-            
-            self.searchUsersTableView.insertRows(at: [IndexPath(row:self.usersArray.count-1,section:0)], with: UITableViewRowAnimation.automatic)
+            tempUser.alias = tempSnapshot["alias"] as? String
+            self.users.append(tempUser)
+            self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
             AppDelegate.instance().dismissActivityIndicator()
         }) { (error) in
             print(error.localizedDescription)
@@ -50,30 +52,50 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if searchController.isActive && searchController.searchBar.text != "" {
         return  filteredUsers.count
         }
-        return self.usersArray.count //Ska visas max 10-20 
+        return self.users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
         
-        let user : NSDictionary?
+        var tempUser = User()
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            user = filteredUsers[indexPath.row]
+            tempUser = filteredUsers[indexPath.row]
         } else {
-            user = self.usersArray[indexPath.row]
+            tempUser = self.users[indexPath.row]
         }
-        cell.usernameLabel?.text = user?["alias"] as? String
-        //cell.pictureOutlet.image = self.usersArray[indexPath.item]?["postID"] as? UIImage //För att hämta bild
+         cell.usernameLabel?.text = tempUser.alias
+        // cell.pictureOutlet?.image = //För att hämta bild
         return cell
     }
     
     func filterContent(searchText:String)
     {
-        self.filteredUsers = self.usersArray.filter{ user in
-            let username = user!["alias"] as? String
-            return(username?.lowercased().contains(searchText.lowercased()))!
-        }
+        filteredUsers = users.filter { $0.alias.lowercased() == searchText.lowercased() }
         searchUsersTableView.reloadData()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "searchResult", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if(segue.identifier == "searchResult")
+        {
+            if let rowNumber = sender as? Int {
+                print("\n \(rowNumber) \n")
+                let searchResult = segue.destination as! ProfileVC
+                
+                if searchController.isActive && searchController.searchBar.text != "" {
+                    searchResult.user = filteredUsers[rowNumber]
+                } else {
+                    searchResult.user = users[rowNumber]
+                }
+                searchResult.fromSearch = true
+            }
+        }
     }
 }
