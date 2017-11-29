@@ -9,7 +9,7 @@ class Post: NSObject {
     var postID : String!
     var pathToImage : String!
     var pathToImage256 : String!
-    var likes : Int!
+    var rating : Int!
     var userID : String!
     var imgdescription : String!
     var alias : String!

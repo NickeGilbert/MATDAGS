@@ -15,12 +15,15 @@ class ImagePageVC: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var seguePostID : String!
-    var likes = ""
     var posts = [Post]()
     var starHighlited = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         downloadInfo { (true) in
             self.sortFirebaseInfo()
         }
@@ -33,7 +36,7 @@ class ImagePageVC: UIViewController {
             let getInfo = Post()
             //getInfo.setValuesForKeys(dictionary)
             getInfo.pathToImage = dictionary["pathToImage"] as! String
-            getInfo.likes = dictionary["likes"] as! Int
+            getInfo.rating = dictionary["rating"] as! Int
             getInfo.userID = dictionary["userID"] as! String
             getInfo.alias = dictionary["alias"] as! String
             getInfo.imgdescription = dictionary["imgdescription"] as! String
@@ -48,7 +51,7 @@ class ImagePageVC: UIViewController {
         } else {
             print("\n No Image URL found in array. \n")
         }
-        pointsLabel.text = "\(self.posts[0].likes!) Likes"
+        pointsLabel.text = "\(self.posts[0].rating!) Rating"
         if posts[0].alias != nil{
             usernameLabel.text = self.posts[0].alias
         } else {

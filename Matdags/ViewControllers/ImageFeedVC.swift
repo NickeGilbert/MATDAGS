@@ -34,12 +34,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func downloadImages() {
         let dbref = Database.database().reference(withPath: "Posts")
         dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
-            let dictionary = snapshot.value as! [String : AnyObject]
-            for (_, post) in dictionary {
-                let appendPost = Post()
-                appendPost.pathToImage256 = post["pathToImage256"] as? String
-                appendPost.postID = post["postID"] as? String
-                self.posts.insert(appendPost, at: 0)
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPost = Post()
+                    appendPost.pathToImage256 = post["pathToImage256"] as? String
+                    appendPost.postID = post["postID"] as? String
+                    self.posts.insert(appendPost, at: 0)
+                }
             }
             self.collectionFeed.reloadData()
         })
@@ -85,7 +86,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3)
+        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3.1)
         return storleken
     }
     
