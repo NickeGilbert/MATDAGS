@@ -689,7 +689,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677.5999999999999" y="1013.3433283358322"/>
+            <point key="canvasLocation" x="1801" y="1012"/>
         </scene>
         <!--ImagePreviewVC-->
         <scene sceneID="ard-oB-FFI">
@@ -950,7 +950,13 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYW-pk-e4K">
                                 <rect key="frame" x="290" y="433" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Följ"/>
+                                <color key="backgroundColor" red="0.35521121379396958" green="0.40708021951358409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Följ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="followUser:" destination="As2-HR-siM" eventType="touchUpInside" id="yap-9C-OyP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -958,6 +964,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>
+                        <outlet property="followUser" destination="SYW-pk-e4K" id="GCh-bA-kQA"/>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
                         <outlet property="pointsLabel" destination="aHK-zH-6mw" id="W4a-r7-BJT"/>
                         <outlet property="usernameLabel" destination="fnC-35-BMZ" id="ECB-ff-OWa"/>
