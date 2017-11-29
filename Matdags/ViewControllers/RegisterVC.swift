@@ -111,17 +111,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func createFirebaseUser() {
-        let uid = Auth.auth().currentUser!.uid
-        let username = Auth.auth().currentUser!.displayName
-        let useremail = Auth.auth().currentUser!.email
-        let database = Database.database().reference(withPath: "Users/\(uid)")
-        let feed = ["alias" : username!,
-                    "date": [".sv": "timestamp"],
-                    "email" : useremail!] as [String : Any]
-        database.updateChildValues(feed)
-    }
-    
     @IBAction func infoClick(_ sender: Any) {
         createAlertRegister(title: "Användardata", message: "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. ")
     }

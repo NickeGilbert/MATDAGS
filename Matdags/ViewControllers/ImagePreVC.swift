@@ -14,6 +14,8 @@ class ImagePreVC: UIViewController {
     
     var image: UIImage!
     
+    let dispatchGroup = DispatchGroup()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,8 +36,11 @@ class ImagePreVC: UIViewController {
     }
     
     @IBAction func postButton(_ sender: Any) {
-        UploadImageToFirebase()
-        dismiss(animated: false, completion: nil)
+        AppDelegate.instance().showActivityIndicator()
+        UploadImageToFirebase { (true) in
+            AppDelegate.instance().dismissActivityIndicator()
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     @IBAction func addTextButton(_ sender: Any) {
@@ -50,56 +55,74 @@ class ImagePreVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func UploadImageToFirebase() {
+    func UploadImageToFirebase(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let uid = Auth.auth().currentUser?.uid
-        let database = Database.database().reference()
+        let database = Database.database().reference(withPath: "Posts")
         let storage = Storage.storage().reference().child("images").child(uid!)
-        let key = database.child("Posts").childByAutoId().key
+        let key = database.childByAutoId().key
         let imageRef = storage.child("\(key)")
         let imageRef256 = storage.child("\(key)256")
-        let resizedImage = self.resizeImage(image: image!, targetSize: CGSize.init(width: 256, height: 256))
+        let resizedImage = self.resizeImage(image: self.image!, targetSize: CGSize.init(width: 256, height: 256))
         
-        //Bild i liten storlek
-        if let imageData256 = UIImagePNGRepresentation(resizedImage) {
-            let uploadTask = imageRef256.putData(imageData256, metadata: nil, completion: { (metadata, error) in
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let result = formatter.string(from: date)
+        
+        let feed = ["userID" : uid!,
+                    "date": result,
+                    "likes" : 0,
+                    "alias" : Auth.auth().currentUser!.displayName!,
+                    "imgdescription" : self.addTextField.text!,
+                    "postID" : key] as [String : Any]
+        database.child("\(key)").updateChildValues(feed)
+        
+        //Bild i full storlek
+        if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
+            self.dispatchGroup.enter()
+            let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)
+                    self.dispatchGroup.leave()
                     return
                 }
-                let secondURL = metadata?.downloadURL()?.absoluteString
-                if secondURL != nil {
-                    let feed = ["userID" : uid!,
-                                "date": [".sv": "timestamp"],
-                                "pathToImage256" : secondURL!,
-                                "likes" : 0,
-                                "alias" : Auth.auth().currentUser!.displayName!,
-                                "imgdescription" : self.addTextField.text!,
-                                "postID" : key] as [String : Any]
-                    let postFeed = ["\(key)" : feed]
-                    database.child("Posts").updateChildValues(postFeed)
+                let firstURL = metadata?.downloadURL()?.absoluteString
+                if firstURL != nil {
+                    let postURL = ["pathToImage" : firstURL!]
+                    database.child("\(key)").updateChildValues(postURL)
+                    print("\n Image uploaded! \n")
+                    self.dispatchGroup.leave()
                 } else {
-                    print("\n Could not allocate URL for resized image. \n")
+                    print("\n Could not allocate URL for full size image. \n")
+                    self.dispatchGroup.leave()
                 }
             })
             uploadTask.resume()
         }
         
-        //Bild i full storlek (denna uploadTask läggs sist eftersom denna blir färdig sist)
-        if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
-            let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+        if let imageData256 = UIImagePNGRepresentation(resizedImage) {
+            self.dispatchGroup.enter()
+            let uploadTask256 = imageRef256.putData(imageData256, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error!)
+                    self.dispatchGroup.leave()
                     return
                 }
-                let firstURL = metadata?.downloadURL()?.absoluteString
-                if firstURL != nil {
-                    let feed = ["pathToImage" : firstURL!] as [String : Any]
-                    database.child("Posts").child("\(key)").updateChildValues(feed)
+                let secondURL = metadata?.downloadURL()?.absoluteString
+                if secondURL != nil {
+                    let postURL = ["pathToImage256" : secondURL!] as [String : Any]
+                    database.child("\(key)").updateChildValues(postURL)
+                    print("\n Thumbnail uploaded! \n")
+                    self.dispatchGroup.leave()
                 } else {
-                    print("\n Could not allocate URL for full size image. \n")
+                    print("\n Could not allocate URL for resized image. \n")
+                    self.dispatchGroup.leave()
                 }
             })
-            uploadTask.resume()
+            uploadTask256.resume()
+        }
+        self.dispatchGroup.notify(queue: .main) {
+            completionHandler(true)
         }
     }
     

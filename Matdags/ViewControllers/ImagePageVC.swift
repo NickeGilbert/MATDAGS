@@ -21,35 +21,25 @@ class ImagePageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         downloadInfo { (true) in
             self.sortFirebaseInfo()
         }
     }
     
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        print("\n seguePostID: \(seguePostID!) \n")
-        let database = Database.database().reference().child("Posts").child(seguePostID)
-        database.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.childrenCount > 0 {
-                guard let dictionary = snapshot.value as? [String : AnyObject] else {
-                    print("\n Firebase Dictionary error at ImagePageVC. \n")
-                    return
-                }
-                let getInfo = Post()
-                getInfo.pathToImage = dictionary["pathToImage"] as? String
-                getInfo.likes = dictionary["likes"] as? Int
-                getInfo.userID = dictionary["userID"] as? String
-                getInfo.alias = dictionary["alias"] as? String
-                getInfo.imgdescription = dictionary["imgdescription"] as? String
-                self.posts.append(getInfo)
-                completionHandler(true)
-                } else {
-                print("\n No snapshot children found \n")
-                completionHandler(false)
-            }
+        let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let dictionary = snapshot.value as! [String : AnyObject]
+            let getInfo = Post()
+            //getInfo.setValuesForKeys(dictionary)
+            getInfo.pathToImage = dictionary["pathToImage"] as! String
+            getInfo.likes = dictionary["likes"] as! Int
+            getInfo.userID = dictionary["userID"] as! String
+            getInfo.alias = dictionary["alias"] as! String
+            getInfo.imgdescription = dictionary["imgdescription"] as! String
+            self.posts.append(getInfo)
+            completionHandler(true)
         })
-        database.removeAllObservers()
     }
     
     func sortFirebaseInfo() {
