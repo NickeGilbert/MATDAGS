@@ -51,8 +51,10 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let libImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.image = libImage.self
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.image = editedImage.self
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.image = originalImage.self
         }
         else {
             print("Error, not original image")

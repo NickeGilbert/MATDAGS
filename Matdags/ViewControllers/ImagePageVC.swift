@@ -29,6 +29,10 @@ class ImagePageVC: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in

@@ -7,10 +7,10 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class ImagePreVC: UIViewController {
+class ImagePreVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var addTextField: UITextField!
+    @IBOutlet weak var descriptionField: UITextField!
     
     var image: UIImage!
     
@@ -35,12 +35,21 @@ class ImagePreVC: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func postButton(_ sender: Any) {
-        UploadImageToFirebase(in: dispatchGroup)
+    /*
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 10
+    }*/
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = textField.text!
+        let maxLength = text.count + string.count - range.length
+        return maxLength <= 10
     }
     
-    @IBAction func addTextButton(_ sender: Any) {
-        addTextField.isHidden = false
+    @IBAction func postButton(_ sender: Any) {
+        UploadImageToFirebase(in: dispatchGroup)
     }
     
     @IBAction func saveLocalButton(_ sender: Any) {
@@ -73,7 +82,7 @@ class ImagePreVC: UIViewController {
                     "date": result,
                     "rating" : 0,
                     "alias" : Auth.auth().currentUser!.displayName!,
-                    "imgdescription" : self.addTextField.text!,
+                    "imgdescription" : self.descriptionField.text!,
                     "postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
