@@ -67,7 +67,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     }
                 }
                 task.resume()
-                resizeImage()
+            } else {
+                if(FBSDKAccessToken.current() == nil) {
+                    profileNameLabel.text = user.alias //FUNGERAR INTE :(
+                }
             }
         }
         

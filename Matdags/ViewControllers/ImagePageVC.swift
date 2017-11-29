@@ -17,6 +17,7 @@ class ImagePageVC: UIViewController {
     var seguePostID : String!
     var posts = [Post]()
     var starHighlited = 0
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,28 @@ class ImagePageVC: UIViewController {
             completionHandler(true)
         })
     }
+    
+    @IBAction func followUser(_ sender: Any) {
+        addfollower()
+    }
+    
+    func addfollower() {
+        //Du följer en användare
+        
+        let database = Database.database().reference().child("Users").childByAutoId()
+        let follower = database.key
+        
+        let newFollower = ["follower_id": follower]
+        database.setValue(newFollower)
+        //Andra exempel stackoverflow.com/questions/38742782/adding-data-to-a-specific-uid-in-firebase
+        
+    }
+    
+    func getfollower() {
+        //Användaren får att du följer honom
+    }
+    
+    
     
     func sortFirebaseInfo() {
         if self.posts[0].pathToImage != nil {
