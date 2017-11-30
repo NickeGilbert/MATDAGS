@@ -54,6 +54,7 @@ class ImagePageVC: UIViewController {
         addfollower()
     }
     
+    
     func addfollower() {
         //Du följer en användare
         
@@ -66,9 +67,10 @@ class ImagePageVC: UIViewController {
         
     }
     
+    /*
     func getfollower() {
         //Användaren får att du följer honom
-    }
+    }*/
     
     
     
