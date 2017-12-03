@@ -20,7 +20,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         button.readPermissions = ["email"]
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

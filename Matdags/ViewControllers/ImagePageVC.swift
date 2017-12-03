@@ -57,12 +57,19 @@ class ImagePageVC: UIViewController {
     
     func addfollower() {
         //Du följer en användare
+        let uid = Auth.auth().currentUser?.uid
+        let dbref = Database.database().reference().child("Users").child("\(uid)").child("Following")
+        let getInfo = Post()
         
-        let database = Database.database().reference().child("Users").childByAutoId()
-        let follower = database.key
+        if Post().userID != nil {
+            let following = ["\(Post().alias)" : Post().userID] as [String : Any]
+            dbref.updateChildValues(following)
+        } else {
+            print("HÄMTAR INGENTING")
+        }
         
-        let newFollower = ["follower_id": follower]
-        database.setValue(newFollower)
+        // Hur hämtar vi information från en tom array tills dess att firebase har fyllt den med information?
+        
         //Andra exempel stackoverflow.com/questions/38742782/adding-data-to-a-specific-uid-in-firebase
         
     }
