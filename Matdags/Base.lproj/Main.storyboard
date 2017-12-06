@@ -954,6 +954,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>
+                        <outlet property="followerButton" destination="SYW-pk-e4K" id="yej-xk-dgd"/>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
                         <outlet property="pointsLabel" destination="aHK-zH-6mw" id="W4a-r7-BJT"/>
                         <outlet property="usernameLabel" destination="fnC-35-BMZ" id="ECB-ff-OWa"/>
