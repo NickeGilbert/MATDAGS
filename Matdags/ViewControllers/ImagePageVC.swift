@@ -10,14 +10,14 @@ class ImagePageVC: UIViewController {
 
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var pointsLabel: UILabel!
-    @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet var starButtons: [UIButton]!
     
     var seguePostID : String!
     var posts = [Post]()
-    var starHighlited = 0
     var users = [User]()
+    var starHighlited = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,9 @@ class ImagePageVC: UIViewController {
         downloadInfo { (true) in
             self.sortFirebaseInfo()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -64,7 +67,6 @@ class ImagePageVC: UIViewController {
         let newFollower = ["follower_id": follower]
         database.setValue(newFollower)
         //Andra exempel stackoverflow.com/questions/38742782/adding-data-to-a-specific-uid-in-firebase
-        
     }
     
     /*
@@ -100,13 +102,21 @@ class ImagePageVC: UIViewController {
     @IBAction func starButtonsTapped(_ sender: UIButton) {
         starHighlited = sender.tag + 1
         print(starHighlited)
-  
+        
         for button in starButtons {
-            button.setTitle("☆", for: .normal)
-    
+            button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+            
             if button.tag <= starHighlited-1 {
-                button.setTitle("⭐️", for: .normal)
+                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
             }
+        }
+    }
+    
+    func appendToFirebase() {
+        let dbRef = Database.database().reference(withPath: "Posts/\(seguePostID)/stars")
+        if starHighlited > 0 {
+            let feed = ["\(starHighlited)" : +1] as [String : Any]
+            dbRef.updateChildValues(feed)
         }
     }
 }
