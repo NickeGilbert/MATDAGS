@@ -25,11 +25,11 @@ class ImagePageVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if posts[0].userID == Auth.auth().currentUser!.uid {
-         followerButton.isHidden = true
-        }
         super.viewWillAppear(animated)
         downloadInfo { (true) in
+            if self.posts[0].userID == Auth.auth().currentUser!.uid {
+                self.followerButton.isHidden = true
+            }
             self.sortFirebaseInfo()
         }
     }
