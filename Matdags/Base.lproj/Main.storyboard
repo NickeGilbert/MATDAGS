@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -405,53 +405,48 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EEi-u7-Xpj">
-                                                    <rect key="frame" x="16" y="383" width="150" height="42"/>
+                                                    <rect key="frame" x="16" y="383" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="42"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                            <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="4K3-ml-CLg"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi">
-                                                            <rect key="frame" x="30" y="0.0" width="30" height="42"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi">
+                                                            <rect key="frame" x="30" y="0.0" width="30" height="30"/>
+                                                            <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="Kp8-op-EGn"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign">
-                                                            <rect key="frame" x="60" y="0.0" width="30" height="42"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆">
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign">
+                                                            <rect key="frame" x="60" y="0.0" width="30" height="30"/>
+                                                            <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="bD0-hK-nYQ"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd">
-                                                            <rect key="frame" x="90" y="0.0" width="30" height="42"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆">
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd">
+                                                            <rect key="frame" x="90" y="0.0" width="30" height="30"/>
+                                                            <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="y3Y-zg-dNe"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e">
-                                                            <rect key="frame" x="120" y="0.0" width="30" height="42"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <state key="normal" title="☆">
+                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e">
+                                                            <rect key="frame" x="120" y="0.0" width="30" height="30"/>
+                                                            <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
@@ -460,11 +455,11 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="a0b-Qj-CIY">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0b-Qj-CIY">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nicklas.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="TAF-ZM-Vl1">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAF-ZM-Vl1">
                                                     <rect key="frame" x="12" y="9" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1099,7 +1094,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="5.jpg" width="550" height="413"/>
         <image name="Matdags" width="1536" height="2048"/>
         <image name="back" width="50" height="50"/>
         <image name="emptystar30" width="30" height="30"/>
@@ -1110,7 +1104,6 @@
         <image name="kameraButton" width="45" height="45"/>
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logoutButton" width="45" height="45"/>
-        <image name="nicklas.jpg" width="1440" height="1920"/>
         <image name="profileButton" width="45" height="45"/>
         <image name="refreshButton" width="45" height="45"/>
         <image name="save" width="100" height="100"/>

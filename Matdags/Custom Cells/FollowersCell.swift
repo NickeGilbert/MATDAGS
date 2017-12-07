@@ -4,6 +4,7 @@
 //  Copyright © 2017 Matdags. All rights reserved.
 
 import UIKit
+import Firebase
 
 class FollowersCell: UICollectionViewCell {
     
@@ -13,20 +14,22 @@ class FollowersCell: UICollectionViewCell {
     @IBOutlet var starButtons: [UIButton]!
     
     var starHighlited = 0
+    var posts = [Post]()
+    var users = [User]()
     
     @IBAction func starButtonsTapped(_ sender: UIButton) {
         starHighlited = sender.tag + 1
         print(starHighlited)
         
         for button in starButtons {
-            button.setTitle("☆", for: .normal)
+            button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
             
             if button.tag <= starHighlited-1 {
-                button.setTitle("⭐️", for: .normal)
+                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
             }
         }
     }
-    
+
     func resizeImage(){
         profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
         profileImage.clipsToBounds = true

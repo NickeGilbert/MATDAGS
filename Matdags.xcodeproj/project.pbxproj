@@ -28,13 +28,6 @@
 		0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB321F862C340086DE20 /* ProfileVC.swift */; };
 		0AF001D11FC44F47005E6CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF001D01FC44F47005E6CBE /* User.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
-		A40BAD251FA5E669007E7BE1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD1F1FA5E669007E7BE1 /* 1.jpg */; };
-		A40BAD261FA5E669007E7BE1 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD201FA5E669007E7BE1 /* 2.jpg */; };
-		A40BAD271FA5E669007E7BE1 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD211FA5E669007E7BE1 /* 3.jpg */; };
-		A40BAD281FA5E669007E7BE1 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD221FA5E669007E7BE1 /* 4.jpg */; };
-		A40BAD291FA5E669007E7BE1 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD231FA5E669007E7BE1 /* 5.jpg */; };
-		A40BAD2A1FA5E669007E7BE1 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD241FA5E669007E7BE1 /* 6.jpg */; };
-		A40BAD2C1FA603E0007E7BE1 /* nicklas.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */; };
 		A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41F16861FBDF86900500EF8 /* ProfileCell.swift */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
@@ -70,13 +63,6 @@
 		0ABFCB321F862C340086DE20 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0AF001D01FC44F47005E6CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
-		A40BAD1F1FA5E669007E7BE1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		A40BAD201FA5E669007E7BE1 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		A40BAD211FA5E669007E7BE1 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		A40BAD221FA5E669007E7BE1 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		A40BAD231FA5E669007E7BE1 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		A40BAD241FA5E669007E7BE1 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nicklas.jpg; sourceTree = "<group>"; };
 		A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matdags.entitlements; sourceTree = "<group>"; };
 		A41F16861FBDF86900500EF8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
@@ -177,23 +163,8 @@
 				0A706CC21F73B70800B0345C /* Assets.xcassets */,
 				A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */,
 				0A706CC71F73B70800B0345C /* Info.plist */,
-				A40BAD1E1FA5E669007E7BE1 /* pictures */,
 			);
 			path = Matdags;
-			sourceTree = "<group>";
-		};
-		A40BAD1E1FA5E669007E7BE1 /* pictures */ = {
-			isa = PBXGroup;
-			children = (
-				A40BAD2B1FA603DE007E7BE1 /* nicklas.jpg */,
-				A40BAD1F1FA5E669007E7BE1 /* 1.jpg */,
-				A40BAD201FA5E669007E7BE1 /* 2.jpg */,
-				A40BAD211FA5E669007E7BE1 /* 3.jpg */,
-				A40BAD221FA5E669007E7BE1 /* 4.jpg */,
-				A40BAD231FA5E669007E7BE1 /* 5.jpg */,
-				A40BAD241FA5E669007E7BE1 /* 6.jpg */,
-			);
-			path = pictures;
 			sourceTree = "<group>";
 		};
 		AD32D5C139C2F403ADFA85FB /* Pods */ = {
@@ -289,17 +260,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A40BAD281FA5E669007E7BE1 /* 4.jpg in Resources */,
 				0A706CC61F73B70800B0345C /* LaunchScreen.storyboard in Resources */,
-				A40BAD2A1FA5E669007E7BE1 /* 6.jpg in Resources */,
 				0AA373191F86450400E6FE92 /* FacebookSDKStrings.bundle in Resources */,
-				A40BAD2C1FA603E0007E7BE1 /* nicklas.jpg in Resources */,
-				A40BAD261FA5E669007E7BE1 /* 2.jpg in Resources */,
 				0A706CC31F73B70800B0345C /* Assets.xcassets in Resources */,
-				A40BAD271FA5E669007E7BE1 /* 3.jpg in Resources */,
 				0AA3731D1F86450400E6FE92 /* AccountKitStrings.bundle in Resources */,
-				A40BAD251FA5E669007E7BE1 /* 1.jpg in Resources */,
-				A40BAD291FA5E669007E7BE1 /* 5.jpg in Resources */,
 				0A706CC11F73B70800B0345C /* Main.storyboard in Resources */,
 				A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */,
 			);
