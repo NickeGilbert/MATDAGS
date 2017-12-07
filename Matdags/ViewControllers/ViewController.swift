@@ -134,6 +134,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let result = formatter.string(from: date)
         let feed = ["alias" : username!,
                     "date" : result,
+                    "uid" : uid,
                     "email" : useremail!] as [String : Any]
         database.updateChildValues(feed)
         print("\n Firebase User Created! \n")
