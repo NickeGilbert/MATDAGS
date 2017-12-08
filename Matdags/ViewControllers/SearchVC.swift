@@ -90,9 +90,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 let searchResult = segue.destination as! ProfileVC
                 
                 if searchController.isActive && searchController.searchBar.text != "" {
-                    searchResult.user = filteredUsers[rowNumber]
+                    searchResult.users = filteredUsers[rowNumber]
                 } else {
-                    searchResult.user = users[rowNumber]
+                    searchResult.users = users[rowNumber]
                 }
                 searchResult.fromSearch = true
             }

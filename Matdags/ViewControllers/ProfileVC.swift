@@ -11,31 +11,38 @@ import FBSDKCoreKit
 
 class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout   {
     
+    var ref: DatabaseReference!
+    
     @IBOutlet var profileCollectionFeed: UICollectionView!
     @IBOutlet var profileImageCell: UICollectionViewCell!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
+    @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
+    
     var FBdata : Any?
     
     var titleName = ""
     
-    var user = User()
+    var users = User()
     var fromSearch = false
     
     let TaBortArray:[String] = ["1","2","3","4","5","6","1","2","3","4","5","6","1","2","3","4","5","6"]
-    
+
     override func viewDidLoad() {
         
         resizeImage()
+        
        
         if(fromSearch == true) {
             // Du kommer från sökskärmen
-            profileNameLabel.text = user.alias
+            profileNameLabel.text = users.alias
 
         } else {
             // Du ska se din egen profil
             
             if(FBSDKAccessToken.current() != nil) {
+                
+                profileSettingsButtonOutlet.isHidden = true;
                 
                 profileNameLabel.text = ""
                 if let token = FBSDKAccessToken.current() {
@@ -68,8 +75,27 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
                 task.resume()
             } else {
+                
+                profileSettingsButtonOutlet.isHidden = false
+                ref = Database.database().reference()
+                
+                let userID = Auth.auth().currentUser?.uid
+                ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    let value = snapshot.value as! NSDictionary
+                    print(value)
+                    
+                    let username = value["alias"] as? String ?? ""
+
+                    self.profileNameLabel.text = username
+                    
+                    // ...
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+                
                 if(FBSDKAccessToken.current() == nil) {
-                    profileNameLabel.text = user.alias //FUNGERAR INTE :(
+                    profileNameLabel.text = users.alias //FUNGERAR INTE :(
                 }
             }
         }
@@ -94,7 +120,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
 //        var profile_img_url = "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=square"
 //        print(profile_img_url)
 
-        let parameters = ["fields": "email, name, first_name, last_name, picture.type(large)"]
+        let parameters = ["fields": "email, name, first_name, last_name, picture.type(large) "]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             
             if error != nil {
@@ -136,4 +162,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         let size = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
         return size
     }
+    
+    /*************************** nedan är kopia av kamera! ****************************/
+    
+    @IBAction func profileSettingsAction(_ sender: UIButton) {
+        print("Clicked")
+    }
+    
 }

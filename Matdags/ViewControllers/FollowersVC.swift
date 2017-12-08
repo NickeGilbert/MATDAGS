@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var feedCollectionView: UICollectionView!
     
@@ -19,9 +19,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         AppDelegate.instance().showActivityIndicator()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchPosts()
         AppDelegate.instance().dismissActivityIndicator()
     }
+    
     
     func fetchPosts() {
         let ref = Database.database().reference()
@@ -77,13 +81,20 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.posts.count
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
         
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
-        
+
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let storleken = CGSize(width: self.view.frame.width, height: self.view.frame.width + 100)
+        return storleken
+    }
+    
 }
