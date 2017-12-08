@@ -5,28 +5,85 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 
 class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var feedCollectionView: UICollectionView!
     
     var ref: DatabaseReference!
-    var feedArray = [FollowersCell]()    
     var posts = [Post]()
-    var count:Int! = 0
-    var lastCount:Int! = 0
+    var users = [User]()
+    var seguePostID : String!
+    var following = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppDelegate.instance().showActivityIndicator()
+        fetchPosts()
+        AppDelegate.instance().dismissActivityIndicator()
+    }
+    
+    func fetchPosts() {
+        let ref = Database.database().reference()
+        
+        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            let Users = snapshot.value as! [String: AnyObject]
+            print("SKRIV UT")
+            
+            for (_,value) in Users {
+                if let ID = value["uid"] as? String { //Här ska egentligen vara användarens egna uid
+                    if ID == Auth.auth().currentUser?.uid { //Här söker den efter ditt egna uid
+                        if let followingUsers = value["Following"] as? [String: String] {
+                            for (_,user) in followingUsers {
+                                self.following.append(user)
+                                print("KOLLA HIT")
+                            }
+                            print("GÅR DEN NER HIT?")
+                        }
+                        self.following.append(Auth.auth().currentUser!.uid)
+                        
+                        ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
+                            
+                            let postsSnap = snap.value as! [String: AnyObject]
+                            
+                            for (_,post) in postsSnap {
+                                if let userID = post["userID"] as? String {
+                                    for each in self.following {
+                                        if each == userID {
+                                            let posst = Post()
+                                            if let alias = post["alias"] as? String, let rating = post["rating"] as? Int, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
+                                                
+                                                posst.alias = alias
+                                                posst.rating = rating
+                                                posst.pathToImage = pathToImage
+                                                posst.postID = postID
+                                                posst.userID = userID
+                                                
+                                                self.posts.append(posst)
+                                            }
+                                        }
+                                    }
+                                    self.feedCollectionView.reloadData()
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        })
+        ref.removeAllObservers()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return 10 //Ska vara feedArray.count
+        return self.posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+        
+        cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        cell.usernameLabel.text = self.posts[indexPath.row].alias
+        
         return cell
     }
 }

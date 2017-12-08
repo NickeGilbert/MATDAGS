@@ -10,14 +10,15 @@ class ImagePageVC: UIViewController {
 
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var pointsLabel: UILabel!
-    @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var followerButton: UIButton!
     
     var seguePostID : String!
     var posts = [Post]()
-    var starHighlited = 0
     var users = [User]()
+    var starHighlited = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,14 @@ class ImagePageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         downloadInfo { (true) in
+            if self.posts[0].userID == Auth.auth().currentUser!.uid {
+                self.followerButton.isHidden = true
+            }
             self.sortFirebaseInfo()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -52,32 +59,33 @@ class ImagePageVC: UIViewController {
     
     @IBAction func followUser(_ sender: Any) {
         addfollower()
+        getfollower()
     }
     
     
     func addfollower() {
         //Du följer en användare
-        let uid = Auth.auth().currentUser?.uid
+        let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference().child("Users").child("\(uid)").child("Following")
-        let getInfo = Post()
         
-        if Post().userID != nil {
-            let following = ["\(Post().alias)" : Post().userID] as [String : Any]
+        if self.posts[0] != nil {
+            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
             dbref.updateChildValues(following)
         } else {
             print("HÄMTAR INGENTING")
         }
-        
-        // Hur hämtar vi information från en tom array tills dess att firebase har fyllt den med information?
-        
-        //Andra exempel stackoverflow.com/questions/38742782/adding-data-to-a-specific-uid-in-firebase
-        
     }
     
-    /*
     func getfollower() {
         //Användaren får att du följer honom
-    }*/
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        let dbref = Database.database().reference().child("Users").child("\(posts[0].userID!)").child("Follower")
+        
+        let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
+        dbref.updateChildValues(follower)
+        
+    }
     
     
     
@@ -107,13 +115,21 @@ class ImagePageVC: UIViewController {
     @IBAction func starButtonsTapped(_ sender: UIButton) {
         starHighlited = sender.tag + 1
         print(starHighlited)
-  
+        
         for button in starButtons {
-            button.setTitle("☆", for: .normal)
-    
+            button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+            
             if button.tag <= starHighlited-1 {
-                button.setTitle("⭐️", for: .normal)
+                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
             }
+        }
+    }
+    
+    func appendToFirebase() {
+        let dbRef = Database.database().reference(withPath: "Posts/\(seguePostID)/stars")
+        if starHighlited > 0 {
+            let feed = ["\(starHighlited)" : +1] as [String : Any]
+            dbRef.updateChildValues(feed)
         }
     }
 }
