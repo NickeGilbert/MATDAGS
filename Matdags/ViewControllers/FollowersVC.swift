@@ -40,9 +40,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         if let followingUsers = value["Following"] as? [String: String] {
                             for (_,user) in followingUsers {
                                 self.following.append(user)
-                                print("KOLLA HIT")
                             }
-                            print("GÅR DEN NER HIT?")
                         }
                         self.following.append(Auth.auth().currentUser!.uid)
                         
@@ -86,6 +84,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
         
+        cell.imageFeedView.image = nil
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
 
