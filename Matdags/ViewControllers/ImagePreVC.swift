@@ -64,6 +64,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
         let imageRef256 = storage.child("\(key)256")
         let resizedImage = resizeImage(image: self.image!, targetSize: CGSize.init(width: 256, height: 256))
         let fullImage = resizeImage(image: self.image!, targetSize: CGSize.init(width: 1024, height: 1024))
+//        var UserPostKey = Database.database().reference(withPath: "Posts") // NY TEST DANIEL
         
         //Datum
         let date = Date()
@@ -77,7 +78,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                     "alias" : Auth.auth().currentUser!.displayName!,
                     "imgdescription" : self.descriptionField.text!,
                     "postID" : key] as [String : Any]
+        
         database.child("\(key)").updateChildValues(postfeed)
+//        UserPostKey = usrdatabase.child("\(uid!)").child("Posts").child("\(key)")
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
         
         //Bild i full storlek
@@ -94,6 +97,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if firstURL != nil {
                     let postURL = ["pathToImage" : firstURL!]
                     database.child("\(key)").updateChildValues(postURL)
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
                     print("\n Image uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for full size image. \n")
@@ -118,6 +122,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if secondURL != nil {
                     let postURL = ["pathToImage256" : secondURL!] as [String : Any]
                     database.child("\(key)").updateChildValues(postURL)
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
                     print("\n Thumbnail uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")

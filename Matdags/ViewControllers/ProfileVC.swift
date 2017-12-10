@@ -25,6 +25,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var titleName = ""
     let imagePicker = UIImagePickerController()
     var newPic = UIImage()
+    var posts = [Post]()
     
     var users = User()
     var fromSearch = false
@@ -35,7 +36,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         
         resizeImage()
         imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-       
+        
+        
         if(fromSearch == true) {
             // Du kommer från sökskärmen
             profileNameLabel.text = users.alias
@@ -98,7 +100,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
                 
                 if(FBSDKAccessToken.current() == nil) {
-                    profileNameLabel.text = users.alias //FUNGERAR INTE :(
+                    profileNameLabel.text = users.alias
                 }
             }
         }
@@ -109,6 +111,38 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         return .lightContent
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        posts.removeAll()
+        downloadImages()
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
+        cell.myProfileImageCollection.image = nil
+        if self.posts[indexPath.row].pathToImage256 != nil {
+            cell.myProfileImageCollection.downloadImage(from: self.posts[indexPath.row].pathToImage256)
+        } else {
+            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+        }
+        return cell
+    }
+    
+    func downloadImages() {
+        let dbref = Database.database().reference(withPath: "Users").child((Auth.auth().currentUser?.uid)!).child("Posts")
+        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPost = Post()
+                    appendPost.pathToImage256 = post["pathToImage256"] as? String
+                    appendPost.postID = post["postID"] as? String
+                    self.posts.insert(appendPost, at: 0)
+                }
+            }
+            self.profileCollectionFeed.reloadData()
+        })
+    }
+    
     func resizeImage(){
         profilePictureOutlet.layer.cornerRadius = profilePictureOutlet.frame.size.height / 2
         profilePictureOutlet.clipsToBounds = true
@@ -117,49 +151,33 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func fetchProfile() {
-        
-   // FBSDKAccessToken.current().userID
-        
-//        var profile_img_url = "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=square"
-//        print(profile_img_url)
 
         let parameters = ["fields": "email, name, first_name, last_name, picture.type(large) "]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
-            
             if error != nil {
                 print("\n",error!,"\n")
                 return
             }
-            
             let request = FBSDKGraphRequest(graphPath:"me", parameters:parameters)
             
-            // Send request to Facebook
             request!.start {
                 (connection, result, error) in
                 if error != nil {
-                    // Some error checking here
-                }
                     
-                else {
+                }else {
                     let fbRes = result as! NSDictionary
                     
                     print(fbRes)
                     self.profileNameLabel.text = fbRes.value(forKey: "name") as? String
-//                    self.profilePictureOutlet.image = (URL: profile_img_url)
                 }
             }
         }
     }
     
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TaBortArray.count
+        return self.posts.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
-        cell.myProfileImageCollection.image = UIImage(named: TaBortArray[indexPath.row] + ".jpg")
-        return cell
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
@@ -200,3 +218,4 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     
 }
+
