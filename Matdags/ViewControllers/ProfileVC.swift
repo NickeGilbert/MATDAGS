@@ -8,13 +8,14 @@ import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
+import AVFoundation
 
-class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout   {
+class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     var ref: DatabaseReference!
     
     @IBOutlet var profileCollectionFeed: UICollectionView!
-    @IBOutlet var profileImageCell: UICollectionViewCell!
+//    @IBOutlet var profileImageCell: UICollectionViewCell!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
@@ -22,6 +23,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var FBdata : Any?
     
     var titleName = ""
+    let imagePicker = UIImagePickerController()
+    var newPic = UIImage()
     
     var users = User()
     var fromSearch = false
@@ -31,7 +34,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         
         resizeImage()
-        
+        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
        
         if(fromSearch == true) {
             // Du kommer från sökskärmen
@@ -166,7 +169,34 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     /*************************** nedan är kopia av kamera! ****************************/
     
     @IBAction func profileSettingsAction(_ sender: UIButton) {
-        print("Clicked")
+        print(newPic)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.delegate = self
+            imagePicker.modalPresentationStyle = .overCurrentContext
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("Running")
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profilePictureOutlet.contentMode = .scaleAspectFill
+            profilePictureOutlet.image = pickedImage
+            profilePictureOutlet.layoutIfNeeded()
+            newPic = pickedImage
+            print("YESS")
+        }else{
+            print("No fucking image")
+        }
+        print("NOOO")
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+   
+    
     
 }
