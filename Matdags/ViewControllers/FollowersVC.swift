@@ -35,8 +35,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("SKRIV UT")
             
             for (_,value) in Users {
-                if let ID = value["uid"] as? String { //Här ska egentligen vara användarens egna uid
-                    if ID == Auth.auth().currentUser?.uid { //Här söker den efter ditt egna uid
+                if let ID = value["uid"] as? String {
+                    if ID == Auth.auth().currentUser?.uid {
                         if let followingUsers = value["Following"] as? [String: String] {
                             for (_,user) in followingUsers {
                                 self.following.append(user)
