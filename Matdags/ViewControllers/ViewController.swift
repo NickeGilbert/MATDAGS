@@ -77,6 +77,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 } else {
                     self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                     self.fetchProfile()
+                    self.createFirebaseUser()
                     print("\n INLOGGAD MED FACEBOOK \n ")
                     AppDelegate.instance().dismissActivityIndicator()
                 }
