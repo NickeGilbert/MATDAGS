@@ -19,6 +19,7 @@ class ImagePageVC: UIViewController {
     var posts = [Post]()
     var users = [User]()
     var starHighlited = 0
+    var countFollowing = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,19 @@ class ImagePageVC: UIViewController {
     @IBAction func followUser(_ sender: Any) {
         addfollower()
         getfollower()
+        countPeopleYouFollow()
+        
+    }
+    
+    func countPeopleYouFollow() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference().child("Users").child("\(uid)").child("YouAreFollowing")
+        
+        if countFollowing > 0 {
+            let counter = ["\(countFollowing)" : +1 ] as [String : Any]
+            dbref.updateChildValues(counter)
+            print(counter)
+        }
     }
     
     

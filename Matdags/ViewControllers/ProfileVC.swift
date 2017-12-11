@@ -30,8 +30,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     var users = User()
     var fromSearch = false
-    
-    let TaBortArray:[String] = ["1","2","3","4","5","6","1","2","3","4","5","6","1","2","3","4","5","6"]
 
     override func viewDidLoad() {
         
