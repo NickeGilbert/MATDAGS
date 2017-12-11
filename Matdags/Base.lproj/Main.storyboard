@@ -357,6 +357,9 @@
                             <constraint firstItem="03B-wQ-ZeK" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" id="ryZ-67-TKp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xUr-OM-bxF" appends="YES" id="fMt-Si-8iy"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="searchButton" id="uN5-7r-vK9">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
@@ -367,6 +370,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTh-EV-tsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="xUr-OM-bxF" userLabel="Swipe right">
+                    <connections>
+                        <action selector="swipeRight:" destination="daa-NH-ElQ" id="Oq2-8R-DED"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="732" y="1013"/>
         </scene>
@@ -495,6 +503,10 @@
                             <constraint firstItem="aJv-U9-wWi" firstAttribute="leading" secondItem="fiA-Do-8Zh" secondAttribute="leading" id="zbj-Cn-2OI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="46U-GM-woM"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ygX-nC-hGd" appends="YES" id="tMH-fN-M2a"/>
+                            <outletCollection property="gestureRecognizers" destination="ENx-1a-WRN" appends="YES" id="9hY-Ak-Ou8"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="favoriterButton" id="1Um-M8-3VX" userLabel="Följare">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
@@ -504,6 +516,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K0-30-kYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="ENx-1a-WRN" userLabel="Swipe left">
+                    <connections>
+                        <action selector="swipeLeft:" destination="et4-D1-BFC" id="Rlx-OB-vge"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="ygX-nC-hGd" userLabel="Swipe right">
+                    <connections>
+                        <action selector="swipeRight:" destination="et4-D1-BFC" id="p2q-Rv-MlE"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1677.5999999999999" y="241.52923538230885"/>
         </scene>
@@ -692,6 +714,10 @@
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="5" id="pTm-ab-CqX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
+                            <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="profileButton" id="lP8-fs-3y6" userLabel="Item 3">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
@@ -704,6 +730,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I41-k0-tGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="bgv-3n-cJK" userLabel="Swipe left">
+                    <connections>
+                        <action selector="swipeLeft:" destination="1IS-aF-BiB" id="Kxd-Tn-8zM"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="jW5-kI-01d" userLabel="Swipe right">
+                    <connections>
+                        <action selector="swipeRight:" destination="1IS-aF-BiB" id="ccE-CQ-wS3"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1801" y="1012"/>
         </scene>

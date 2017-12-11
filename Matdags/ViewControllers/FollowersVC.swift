@@ -96,4 +96,14 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return storleken
     }
     
+    @IBAction func swipeRight(_ sender: Any) {
+        print("SWIPE SWIPE!!")
+        tabBarController?.selectedIndex = 0
+    }
+    @IBAction func swipeLeft(_ sender: Any) {
+        print("SWIPE SWIPE!!")
+        tabBarController?.selectedIndex = 2
+    }
+    
+    
 }

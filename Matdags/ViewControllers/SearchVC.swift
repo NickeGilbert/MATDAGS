@@ -98,4 +98,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             }
         }
     }
+    
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        print("SWIPE SWIPE!!")
+        tabBarController?.selectedIndex = 2
+    }
+    
 }

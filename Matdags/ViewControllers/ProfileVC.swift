@@ -324,5 +324,16 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         return newImage!
     }
     
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        print("SWIPE SWIPE!!")
+        tabBarController?.selectedIndex = 1
+    }
+    
+    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        print("SWIPE SWIPE!!")
+        tabBarController?.selectedIndex = 3
+    }
+    
+    
 }
 
