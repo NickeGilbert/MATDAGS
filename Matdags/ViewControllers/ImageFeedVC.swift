@@ -14,11 +14,30 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet var collectionFeed: UICollectionView!
     
     var posts = [Post]()
+    var refresher:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         posts.removeAll()
         downloadImages()
+        
+        self.refresher = UIRefreshControl()
+        self.collectionFeed!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.clear
+        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.collectionFeed!.addSubview(refresher)
+        
+    }
+    
+    @objc func loadData() {
+        posts.removeAll()
+        downloadImages()
+        self.collectionFeed.reloadData()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        self.refresher.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +51,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadImages() {
+        AppDelegate.instance().showActivityIndicator()
+        posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
         dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
@@ -43,6 +64,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 }
             }
             self.collectionFeed.reloadData()
+            AppDelegate.instance().dismissActivityIndicator()
         })
     }
 
@@ -110,6 +132,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 1
     }
+
+    
+    
 }
 
 extension UIImageView {
