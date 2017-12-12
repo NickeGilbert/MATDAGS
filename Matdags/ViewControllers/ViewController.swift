@@ -122,6 +122,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let uid = Auth.auth().currentUser!.uid
         let username = Auth.auth().currentUser!.displayName
         let useremail = Auth.auth().currentUser!.email
+        let profilePictureURL = NSString(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
         let database = Database.database().reference(withPath: "Users/\(uid)")
         print("\n \(uid) \n")
         print("\n \(String(describing: username)) \n")
@@ -136,6 +137,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let feed = ["alias" : username!,
                     "date" : result,
                     "uid" : uid,
+                    "profilePictureURL" : profilePictureURL,
                     "email" : useremail!] as [String : Any]
         database.updateChildValues(feed)
         print("\n Firebase User Created! \n")
