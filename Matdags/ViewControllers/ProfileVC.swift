@@ -103,7 +103,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
             }
         }
-        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -333,7 +332,5 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 3
     }
-    
-    
 }
 

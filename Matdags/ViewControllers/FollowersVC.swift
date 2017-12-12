@@ -26,13 +26,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         AppDelegate.instance().dismissActivityIndicator()
     }
     
-    
     func fetchPosts() {
         let ref = Database.database().reference()
         
         ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             let Users = snapshot.value as! [String: AnyObject]
-            print("SKRIV UT")
             
             for (_,value) in Users {
                 if let ID = value["uid"] as? String {
@@ -45,7 +43,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.following.append(Auth.auth().currentUser!.uid)
                         
                         ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
-                            
                             let postsSnap = snap.value as! [String: AnyObject]
                             
                             for (_,post) in postsSnap {
@@ -79,7 +76,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.posts.count
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.posts.removeAll() //Bilderna ska cachas istället!!! Fungerar inte
+        self.following.removeAll() // Är detta rätt sätt att göra? 
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
@@ -87,7 +88,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.imageFeedView.image = nil
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
-
         return cell
     }
     
@@ -104,6 +104,4 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 2
     }
-    
-    
 }
