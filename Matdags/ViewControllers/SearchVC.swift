@@ -56,7 +56,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     override func viewDidAppear(_ animated: Bool) {
         posts.removeAll()
         downloadImages()
-        
+        resizeImage()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,8 +70,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
         return filteredUsers.count
-        }
+        } else {
         return self.users.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,27 +85,53 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             tempUser = self.users[indexPath.row]
         }
-         cell.usernameLabel?.text = tempUser.alias
-         cell.pictureOutlet?.image = tempUser.profilePictureURL as? UIImage//Varför fungerar den inte? Testa att göra en Dispatch
+        
+        //DENNA FUNGERAR INTE???
+        /*print("KOKA KOD")
+        let user = users[indexPath.row]
+        if let profilePictureURL = user.profilePictureURL {
+            let url = URL(string: profilePictureURL)
+            URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
+                print("HEJSAN SVEJSAN")
+                if error != nil {
+                    print(error)
+                    print("SKRIV UT NÅGOT!")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    cell.pictureOutlet?.image = UIImage(data: data!)
+                }
+            }).resume()
+        }*/
+        
+        cell.usernameLabel?.text = tempUser.alias
+        self.subviewUsername?.text = tempUser.alias
+        // cell.pictureOutlet?.image = tempUser.profilePictureURL as? UIImage//Varför fungerar den inte? Testa att göra en Dispatch
         return cell
+        
     }
     
-    func filterContent(searchText:String)
-    {
-        filteredUsers = users.filter { $0.alias.lowercased() == searchText.lowercased() }
-        searchUsersTableView.reloadData()
+    func filterContent(searchText:String) {
+        self.filteredUsers = self.users.filter{ user in
+        
+        return(user.alias.lowercased() == searchText.lowercased())
+        }
+        self.searchUsersTableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.subview.isHidden = false
-         self.subviewBackground.isHidden = false
-
-        var tempUser = User()
-        tempUser = self.users[indexPath.row]
+        self.subviewBackground.isHidden = false
         
-        self.subviewUsername?.text = tempUser.alias
-        
+        if searchController.isActive && searchController.searchBar.text != "" {
+        } else {
+            
+            var tempUser = User()
+            tempUser = self.users[indexPath.row]
+            self.subviewUsername?.text = tempUser.alias
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
