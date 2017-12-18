@@ -225,24 +225,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         let imageRef256 = storage.child("\(key)256")
         let resizedImage = resizeImage(image: self.newPic, targetSize: CGSize.init(width: 256, height: 256))
         let fullImage = resizeImage(image: self.newPic, targetSize: CGSize.init(width: 1024, height: 1024))
-        //        var UserPostKey = Database.database().reference(withPath: "Posts") // NY TEST DANIEL
         
-        //Datum
-//        let date = Date()
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "ddMMyyyy"
-//        let result = formatter.string(from: date)
-        
-//        let postfeed = ["userID" : uid!,
-//                        "date": result,
-//                        "rating" : 0,
-//                        "alias" : Auth.auth().currentUser!.displayName!,
-//                        "imgdescription" : self.descriptionField.text!,
-//                        "postID" : key] as [String : Any]
-//
-//        database.child("\(key)").updateChildValues(postfeed)
-//        //        UserPostKey = usrdatabase.child("\(uid!)").child("Posts").child("\(key)")
-//        usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
         
         //Bild i full storlek
         if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
@@ -257,8 +240,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 let firstURL = metadata?.downloadURL()?.absoluteString
                 if firstURL != nil {
                     let postURL = ["pathToImage" : firstURL!]
-//                    database.child("\(key)").updateChildValues(postURL)
-//                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
                     print("\n Image uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for full size image. \n")
@@ -282,8 +263,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 let secondURL = metadata?.downloadURL()?.absoluteString
                 if secondURL != nil {
                     let postURL = ["pathToImage256" : secondURL!] as [String : Any]
-//                    database.child("\(key)").updateChildValues(postURL)
-//                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
                     print("\n Thumbnail uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")
@@ -321,6 +300,22 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         UIGraphicsEndImageContext()
         
         return newImage!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "imagePageSegProfile", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "imagePageSegProfile")
+        {
+            let selectedCell = sender as! NSIndexPath
+            let selectedRow = selectedCell.row
+            let imagePage = segue.destination as! ImagePageVC
+            imagePage.seguePostID = self.posts[selectedRow].postID
+        } else {
+            print("\n Segue with identifier (imagePage) not found. \n")
+        }
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
