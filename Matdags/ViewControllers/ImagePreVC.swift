@@ -62,8 +62,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
         let key = database.childByAutoId().key
         let imageRef = storage.child("\(key)")
         let imageRef256 = storage.child("\(key)256")
-        let resizedImage = resizeImage(image: self.image!, targetSize: CGSize.init(width: 256, height: 256))
-        let fullImage = resizeImage(image: self.image!, targetSize: CGSize.init(width: 1024, height: 1024))
+        let resizedImage = AppDelegate.instance().resizeImage(image: self.image!, targetSize: CGSize.init(width: 256, height: 256))
+        let fullImage = AppDelegate.instance().resizeImage(image: self.image!, targetSize: CGSize.init(width: 1024, height: 1024))
         
         //Datum
         let date = Date()
@@ -77,8 +77,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                     "alias" : Auth.auth().currentUser!.displayName!,
                     "imgdescription" : self.descriptionField.text!,
                     "postID" : key] as [String : Any]
-        
-        let postIdExtra = ["postID" : key] as [String : Any]
         
         database.child("\(key)").updateChildValues(postfeed)
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
@@ -97,8 +95,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if firstURL != nil {
                     let postURL = ["pathToImage" : firstURL!]
                     database.child("\(key)").updateChildValues(postURL)
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postIdExtra) // NY TEST DANIEL
                     print("\n Image uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for full size image. \n")
@@ -123,7 +119,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if secondURL != nil {
                     let postURL = ["pathToImage256" : secondURL!] as [String : Any]
                     database.child("\(key)").updateChildValues(postURL)
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
                     print("\n Thumbnail uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")
@@ -139,27 +134,5 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
             })
             uploadTask256.resume()
         }
-    }
-    
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
-        
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
-        }
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
     }
 }

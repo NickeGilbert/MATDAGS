@@ -12,30 +12,26 @@ import AVFoundation
 
 class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
-    var ref: DatabaseReference!
-    
     @IBOutlet var profileCollectionFeed: UICollectionView!
-//    @IBOutlet var profileImageCell: UICollectionViewCell!
+//  @IBOutlet var profileImageCell: UICollectionViewCell!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
     
+    var ref: DatabaseReference!
     var FBdata : Any?
-    
     var titleName = ""
     let imagePicker = UIImagePickerController()
     var newPic = UIImage()
     var posts = [Post]()
     var image: UIImage!
-    
+    let dispatchGroup = DispatchGroup()
     var users = User()
     var fromSearch = false
 
     override func viewDidLoad() {
-        
         resizeImage()
-        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        
+        imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
         if(fromSearch == true) {
             // Du kommer från sökskärmen
@@ -49,7 +45,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 profileSettingsButtonOutlet.isHidden = true;
                 
                 profileNameLabel.text = ""
-                if let token = FBSDKAccessToken.current() {
+                if FBSDKAccessToken.current() != nil {
                     fetchProfile()
                 }
                 
@@ -202,6 +198,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             profilePictureOutlet.image = pickedImage
             profilePictureOutlet.layoutIfNeeded()
             newPic = pickedImage
+            UploadImageToFirebase(in: dispatchGroup)
             print("YESS")
         }else{
             print("No fucking image")
@@ -209,26 +206,22 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         print("NOOO")
         dismiss(animated: true, completion: nil)
     }
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
 
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {
-        
         AppDelegate.instance().showActivityIndicator()
         let uid = Auth.auth().currentUser?.uid
-        let database = Database.database().reference(withPath: "Posts")
-        let usrdatabase = Database.database().reference(withPath: "Users")
-        let storage = Storage.storage().reference().child("images").child(uid!)
+        let database = Database.database().reference(withPath: "Users/\(uid!)")
+        let storage = Storage.storage().reference().child("profileimages").child(uid!)
         let key = database.childByAutoId().key
         let imageRef = storage.child("\(key)")
-        let imageRef256 = storage.child("\(key)256")
-        let resizedImage = resizeImage(image: self.newPic, targetSize: CGSize.init(width: 256, height: 256))
-        let fullImage = resizeImage(image: self.newPic, targetSize: CGSize.init(width: 1024, height: 1024))
+        let resizedImage = AppDelegate.instance().resizeImage(image: self.newPic, targetSize: CGSize.init(width: 256, height: 256))
         
-        
-        //Bild i full storlek
-        if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
+        //Ladda upp profilbild
+        if let imageData = UIImageJPEGRepresentation(resizedImage, 0.8) {
             dispatchGroup.enter()
             let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
@@ -237,33 +230,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     print(error!)
                     return
                 }
-                let firstURL = metadata?.downloadURL()?.absoluteString
-                if firstURL != nil {
-                    let postURL = ["pathToImage" : firstURL!]
-                    print("\n Image uploaded! \n")
-                } else {
-                    print("\n Could not allocate URL for full size image. \n")
-                    dispatchGroup.leave()
-                    AppDelegate.instance().dismissActivityIndicator()
-                }
-                dispatchGroup.leave()
-            })
-            uploadTask.resume()
-        }
-        
-        if let imageData256 = UIImageJPEGRepresentation(resizedImage, 0.8) {
-            dispatchGroup.enter()
-            let uploadTask256 = imageRef256.putData(imageData256, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    dispatchGroup.leave()
-                    AppDelegate.instance().dismissActivityIndicator()
-                    print(error!)
-                    return
-                }
-                let secondURL = metadata?.downloadURL()?.absoluteString
-                if secondURL != nil {
-                    let postURL = ["pathToImage256" : secondURL!] as [String : Any]
-                    print("\n Thumbnail uploaded! \n")
+                let imageURL = metadata?.downloadURL()?.absoluteString
+                if imageURL != nil {
+                    let postURL = ["profileImageURL" : imageURL!] as [String : Any]
+                    database.updateChildValues(postURL)
+                    print("\n Profile picture uploaded successfully! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")
                     dispatchGroup.leave()
@@ -276,30 +247,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     self.dismiss(animated: false, completion: nil)
                 })
             })
-            uploadTask256.resume()
+            uploadTask.resume()
         }
-    }
-    
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
-        
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
-        }
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
