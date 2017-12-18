@@ -38,35 +38,28 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             profileNameLabel.text = users.alias
 
         } else {
-            // Du ska se din egen profil
-            
             if(FBSDKAccessToken.current() != nil) {
-                
                 profileSettingsButtonOutlet.isHidden = true;
-                
                 profileNameLabel.text = ""
+                
                 if FBSDKAccessToken.current() != nil {
                     fetchProfile()
                 }
                 
                 let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
                 let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
-                    
                     if error != nil {
-                        print("ERROR")
+                        print(error!)
+                        return
                     } else {
-                        print("Checkpoint 1")
                         var documentsDirectory:String?
                         var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
                         
                         if paths.count > 0 {
-                            print("Checkpoint 2")
                             documentsDirectory = paths[0]
                             let savePath = documentsDirectory! + "/.jpg"
                             FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
-                            
                             DispatchQueue.main.async {
-                                print("Checkpoint 3")
                                 print(savePath)
                                 self.profilePictureOutlet.image = UIImage(named: savePath)
                             }
@@ -75,21 +68,14 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
                 task.resume()
             } else {
-                
                 profileSettingsButtonOutlet.isHidden = false
                 ref = Database.database().reference()
-                
                 let userID = Auth.auth().currentUser?.uid
+                
                 ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                    // Get user value
                     let value = snapshot.value as! NSDictionary
-                    print(value)
-                    
                     let username = value["alias"] as? String ?? ""
-
                     self.profileNameLabel.text = username
-                    
-                    // ...
                 }) { (error) in
                     print(error.localizedDescription)
                 }
@@ -108,7 +94,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     override func viewDidAppear(_ animated: Bool) {
         posts.removeAll()
         downloadImages()
-
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,8 +108,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func downloadImages() {
-        let dbref = Database.database().reference(withPath: "Users").child((Auth.auth().currentUser?.uid)!).child("Posts")
-        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
@@ -145,7 +131,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func fetchProfile() {
-
         let parameters = ["fields": "email, name, first_name, last_name, picture.type(large) "]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             if error != nil {
@@ -171,14 +156,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.posts.count
     }
-
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
         return size
     }
-    
-    /*************************** nedan är kopia av kamera! ****************************/
     
     @IBAction func profileSettingsAction(_ sender: UIButton) {
         print(newPic)
