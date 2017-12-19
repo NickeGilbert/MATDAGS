@@ -163,6 +163,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     self.posts.insert(appendPost, at: 0)
                 }
             }
+            
             self.subviewCollectionFeed.reloadData()
         })
     }
