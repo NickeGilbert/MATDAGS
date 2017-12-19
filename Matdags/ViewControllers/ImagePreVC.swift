@@ -13,14 +13,10 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var descriptionField: UITextField!
     
     var image: UIImage!
-    
     let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("\(String(describing: Auth.auth().currentUser?.uid))")
-        
         photo.image = self.image
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -77,12 +73,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                     "alias" : Auth.auth().currentUser!.displayName!,
                     "imgdescription" : self.descriptionField.text!,
                     "postID" : key] as [String : Any]
-        
+        let postIdExtra = ["postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
-        
-        let nextref = usrdatabase.child("\(uid!)").child("Posts").child("\(key)")
-        nextref.updateChildValues(["postID" : key])
         
         //Bild i full storlek
         if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
@@ -98,6 +91,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if firstURL != nil {
                     let postURL = ["pathToImage" : firstURL!]
                     database.child("\(key)").updateChildValues(postURL)
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postIdExtra) // NY TEST DANIEL
                     print("\n Image uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for full size image. \n")
@@ -122,7 +117,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if secondURL != nil {
                     let postURL = ["pathToImage256" : secondURL!] as [String : Any]
                     database.child("\(key)").updateChildValues(postURL)
-                    nextref.updateChildValues(postURL)
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
                     print("\n Thumbnail uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")

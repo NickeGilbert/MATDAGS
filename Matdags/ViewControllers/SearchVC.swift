@@ -46,9 +46,19 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         downloadImages()
         resizeImage()
     }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        tabBarController?.selectedIndex = 2
+    }
+    
+    @IBAction func closeSubview(_ sender: Any) {
+        subview.isHidden = true
+        self.subviewBackground.isHidden = true
+    }
+    
+    @IBAction func subviewFollowUser(_ sender: Any) {
+        AppDelegate.instance().addfollower()
+        AppDelegate.instance().getfollower()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -61,6 +71,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
         return self.users.count
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +96,16 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.subview.isHidden = false
+        self.subviewBackground.isHidden = false
+        if searchController.isActive && searchController.searchBar.text != "" {
+        } else {
+            tempUser = self.users[indexPath.row]
+            self.subviewUsername!.text = tempUser.alias
+        }
+    }
+    
     func getUserInfo() {
         //Här hämtar vi info från varje user
         let dbref = Database.database().reference(withPath: "Users")
@@ -99,21 +123,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func filterContent(searchText:String) {
         self.filteredUsers = self.users.filter{ user in
-        
         return(user.alias.lowercased() == searchText.lowercased())
         }
         self.searchUsersTableView.reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.subview.isHidden = false
-        self.subviewBackground.isHidden = false
-        
-        if searchController.isActive && searchController.searchBar.text != "" {
-        } else {
-            tempUser = self.users[indexPath.row]
-            self.subviewUsername!.text = tempUser.alias
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -158,20 +170,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         subviewProfileImage.clipsToBounds = true
         self.subviewProfileImage.layer.borderColor = UIColor.white.cgColor
         self.subviewProfileImage.layer.borderWidth = 4
-    }
-    
-    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        print("SWIPE SWIPE!!")
-        tabBarController?.selectedIndex = 2
-    }
-    
-    @IBAction func closeSubview(_ sender: Any) {
-        subview.isHidden = true
-         self.subviewBackground.isHidden = true
-    }
-    @IBAction func subviewFollowUser(_ sender: Any) {
-        AppDelegate.instance().addfollower()
-        AppDelegate.instance().getfollower()
     }
     
     /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

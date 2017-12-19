@@ -41,20 +41,16 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         //Tror dock det behövs jobbas på finns i AppDelegate
         //AppDelegate.instance().countFollow()
         
-        
-        if(fromSearch == true) {
-            // Du kommer från sökskärmen
+        if (fromSearch == true) {
             profileNameLabel.text = user.alias
-
         } else {
-            if(FBSDKAccessToken.current() != nil) {
+            if (FBSDKAccessToken.current() != nil) {
                 profileSettingsButtonOutlet.isHidden = true;
                 profileNameLabel.text = ""
                 
                 if FBSDKAccessToken.current() != nil {
                     fetchProfile()
                 }
-                
                 let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
                 let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
                     if error != nil {
@@ -63,13 +59,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     } else {
                         var documentsDirectory:String?
                         var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
-                        
                         if paths.count > 0 {
                             documentsDirectory = paths[0]
                             let savePath = documentsDirectory! + "/.jpg"
                             FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
                             DispatchQueue.main.async {
-                                print(savePath)
                                 self.profilePictureOutlet.image = UIImage(named: savePath)
                             }
                         }
@@ -80,7 +74,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 profileSettingsButtonOutlet.isHidden = false
                 ref = Database.database().reference()
                 let userID = Auth.auth().currentUser?.uid
-                
                 ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                     let value = snapshot.value as! NSDictionary
                     let username = value["alias"] as? String ?? ""
@@ -88,7 +81,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }) { (error) in
                     print(error.localizedDescription)
                 }
-                
                 if(FBSDKAccessToken.current() == nil) {
                     profileNameLabel.text = user.alias
                 }
@@ -142,15 +134,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 return
             }
             let request = FBSDKGraphRequest(graphPath:"me", parameters:parameters)
-            
-            request!.start {
-                (connection, result, error) in
+            request!.start { (connection, result, error) in
                 if error != nil {
-                    
-                }else {
+                    print("\n",error!,"\n")
+                } else {
                     let fbRes = result as! NSDictionary
-                    
-                    print(fbRes)
                     self.profileNameLabel.text = fbRes.value(forKey: "name") as? String
                 }
             }
@@ -185,11 +173,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             profilePictureOutlet.layoutIfNeeded()
             newPic = pickedImage
             UploadImageToFirebase(in: dispatchGroup)
-            print("YESS")
         }else{
-            print("No fucking image")
+            print("\n Image not uploaded \n")
         }
-        print("NOOO")
         dismiss(animated: true, completion: nil)
     }
     
@@ -266,12 +252,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 1
     }
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
-        print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 3
     }
 }

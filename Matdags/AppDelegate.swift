@@ -27,14 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             container.frame = window.frame
             container.center = window.center
             container.backgroundColor = UIColor(white: 0, alpha: 0.8)
-            
             actIdc.frame = CGRect(x: 0, y:0, width: 40, height: 40)
             actIdc.hidesWhenStopped = true
             actIdc.center = CGPoint(x : container.frame.size.width / 2, y : container.frame.size.height / 2 )
-            
             container.addSubview(actIdc)
             window.addSubview(container)
-            
             actIdc.startAnimating()
         }
     }
@@ -122,13 +119,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         // Override point for customization after application launch.
         FBSDKApplicationDelegate.sharedInstance().application(application,
             didFinishLaunchingWithOptions: launchOptions)
-        
         FirebaseApp.configure()
-        
         return true
     }
     
