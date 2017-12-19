@@ -37,6 +37,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         getPostInfo { (true) in
             self.profileCollectionFeed.reloadData()
         }
+        //Nedan är för att hämta antal följare och antal man följer
+        //Tror dock det behövs jobbas på finns i AppDelegate
+        //AppDelegate.instance().countFollow()
+        
         
         if(fromSearch == true) {
             // Du kommer från sökskärmen

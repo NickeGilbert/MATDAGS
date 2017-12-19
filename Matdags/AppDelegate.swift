@@ -5,8 +5,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FirebaseDatabase
 import FBSDKLoginKit
 import FBSDKCoreKit
 
@@ -16,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var actIdc = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     var container : UIView!
+    var posts = [Post]()
+    var follows = [Follow]()
     
     class func instance() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -67,8 +67,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return newImage!
     }
     
+    func addfollower() {
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database()
+        let dbref = db.reference(withPath: "Users/\(uid)/Following")
+        let uref = db.reference(withPath: "Users/\(uid)/followingCounter")
+        if self.posts[0].userID != nil {
+            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
+            let counter = ["Followers" : +1 ] as [String : Any]
+            uref.updateChildValues(counter)
+            dbref.updateChildValues(following)
+        } else {
+            print("\n userID not found when adding follower \n")
+        }
+    }
     
-    //Orientation saker för CameraVC
+    func getfollower() {
+        let db = Database.database()
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        let followerid = posts[0].userID
+        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
+        let uref = db.reference(withPath: "Users/\(uid)/followerCounter")
+        if self.posts[0].userID != nil {
+            let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
+            let counter = ["Followers" : +1 ] as [String : Any]
+            uref.updateChildValues(counter)
+            dbref.updateChildValues(follower)
+        } else {
+            print("\n userID not found when getting follower \n")
+        }
+    }
+    
+    func countFollow() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        dbref.observeSingleEvent(of: .value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, count) in dictionary {
+                    let appendFollow = Follow()
+                    appendFollow.followerCount = count["followerCount"] as? Int
+                    appendFollow.followingCount = count["followingCount"] as? Int
+                    self.follows.append(appendFollow)
+                }
+            }
+        }
+    }
+    
+    //Orientation
     var orientationLock = UIInterfaceOrientationMask.portrait
     var myOrientation: UIInterfaceOrientationMask = .portrait
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {

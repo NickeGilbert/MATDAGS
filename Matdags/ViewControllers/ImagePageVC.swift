@@ -19,7 +19,7 @@ class ImagePageVC: UIViewController {
     var posts = [Post]()
     var users = [User]()
     var starHighlited = 0
-    var countFollowing = 1
+    var countFollowing = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,63 +45,25 @@ class ImagePageVC: UIViewController {
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let dictionary = snapshot.value as! [String : AnyObject]
-            let getInfo = Post()
-            //getInfo.setValuesForKeys(dictionary)
-            getInfo.pathToImage = dictionary["pathToImage"] as! String
-            getInfo.rating = dictionary["rating"] as! Int
-            getInfo.userID = dictionary["userID"] as! String
-            getInfo.alias = dictionary["alias"] as! String
-            getInfo.imgdescription = dictionary["imgdescription"] as! String
-            self.posts.append(getInfo)
-            completionHandler(true)
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                let getInfo = Post()
+                getInfo.pathToImage = dictionary["pathToImage"] as! String
+                getInfo.rating = dictionary["rating"] as! Int
+                getInfo.userID = dictionary["userID"] as! String
+                getInfo.alias = dictionary["alias"] as! String
+                getInfo.imgdescription = dictionary["imgdescription"] as! String
+                self.posts.append(getInfo)
+                completionHandler(true)
+            } else {
+                print("\n No info in dictionary \n")
+            }
         })
     }
     
     @IBAction func followUser(_ sender: Any) {
-        addfollower()
-        getfollower()
-        countPeopleYouFollow()
-        
+        AppDelegate.instance().addfollower()
+        AppDelegate.instance().getfollower()
     }
-    
-    func countPeopleYouFollow() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference().child("Users").child("\(uid)").child("YouAreFollowing")
-        
-        if countFollowing > 0 {
-            let counter = ["\(countFollowing)" : +1 ] as [String : Any]
-            dbref.updateChildValues(counter)
-            print(counter)
-        }
-    }
-    
-    
-    func addfollower() {
-        //Du följer en användare
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference().child("Users").child("\(uid)").child("Following")
-        
-        if self.posts[0] != nil {
-            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
-            dbref.updateChildValues(following)
-        } else {
-            print("HÄMTAR INGENTING")
-        }
-    }
-    
-    func getfollower() {
-        //Användaren får att du följer honom
-        let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
-        let dbref = Database.database().reference().child("Users").child("\(posts[0].userID!)").child("Follower")
-        
-        let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-        dbref.updateChildValues(follower)
-        
-    }
-    
-    
     
     func sortFirebaseInfo() {
         if self.posts[0].pathToImage != nil {

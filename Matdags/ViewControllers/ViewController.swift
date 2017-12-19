@@ -135,7 +135,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let result = formatter.string(from: date)
-        let feed = ["alias" : username!,
+        let feed = ["followingCounter" : 0,
+                    "followerCounter" : 0,
+                    "alias" : username!,
                     "date" : result,
                     "uid" : uid,
                     "profilePictureURL" : profilePictureURL,

@@ -170,40 +170,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
          self.subviewBackground.isHidden = true
     }
     @IBAction func subviewFollowUser(_ sender: Any) {
-        addfollower()
-        getfollower()
+        AppDelegate.instance().addfollower()
+        AppDelegate.instance().getfollower()
     }
-    
-    func addfollower() { //MÅSTE SKRIVAS OM FÖR ATT ANPASSAS!!!
-        //Du följer en användare
-       /* let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference().child("Users").child("\(uid)").child("Following")
-        
-        if self.posts[0] != nil {
-            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
-            dbref.updateChildValues(following)
-        } else {
-            print("HÄMTAR INGENTING")
-        }*/
-    }
-    
-    func getfollower() { //MÅSTE SKRIVAS OM FÖR ATT ANPASSAS!!!
-        //Användaren får att du följer honom
-       /* let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
-        let dbref = Database.database().reference().child("Users").child("\(posts[0].userID!)").child("Follower")
-        
-        let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-        dbref.updateChildValues(follower)*/
-        
-    }
-    
-    
-    
-    
-    
-    
-    
     
     /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      
