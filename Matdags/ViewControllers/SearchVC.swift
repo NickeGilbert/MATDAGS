@@ -111,11 +111,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let dbref = Database.database().reference(withPath: "Users")
         dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
             let tempUser = User()
-            if let tempSnapshot = snapshot.value as? [String : Any] {
-                tempUser.alias = tempSnapshot["alias"] as? String
-                tempUser.uid = tempSnapshot["uid"] as? String
-                tempUser.profileImageURL = tempSnapshot["profileImageURL"] as? String
-                self.users.append(tempUser)
+            let tempUserImg = User()
+            if let dictionary = snapshot.value as? [String : Any] {
+                tempUser.alias = dictionary["alias"] as? String
+                tempUser.uid = dictionary["uid"] as? String
+                tempUserImg.profileImageURL = dictionary["profileImageURL"] as? String
+                if tempUserImg.profileImageURL != "" {
+                    self.users.append(tempUser)
+                    self.users.append(tempUserImg)
+                } else {
+                    self.users.append(tempUser)
+                }
                 self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: .automatic)
             }
         })

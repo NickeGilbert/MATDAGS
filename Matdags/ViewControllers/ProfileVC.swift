@@ -145,7 +145,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
-   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.posts.count
     }
     
@@ -230,7 +230,12 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             if let tempSnapshot = snapshot.value as? [String : Any] {
                 let appendInfo = User()
                 appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
-                self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
+                if appendInfo.profileImageURL != ""  {
+                    self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
+                } else {
+                    print("\n profileImageURL not found \n")
+                    return
+                }
             }
         })
     }

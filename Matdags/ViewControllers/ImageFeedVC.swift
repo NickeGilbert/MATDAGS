@@ -26,7 +26,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
-        
     }
     
     @objc func loadData() {
@@ -54,7 +53,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         AppDelegate.instance().showActivityIndicator()
         posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
-        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+        dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
@@ -80,6 +79,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("\n ERROR NÄR DU LOGGADE UT \n")
         }
     }
+    
     @IBAction func refreshButtonClicked(_ sender: Any) {
         posts.removeAll()
         downloadImages()
@@ -93,7 +93,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.posts.count
     }
-    
     
     //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -132,9 +131,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 1
     }
-
-    
-    
 }
 
 extension UIImageView {

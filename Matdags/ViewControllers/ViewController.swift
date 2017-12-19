@@ -67,20 +67,20 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-         AppDelegate.instance().showActivityIndicator()
-            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            Auth.auth().signIn(with: credential) { (user, error) in
-                if error != nil {
-                    print("\n \(error!) \n")
-                    self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
-                    return
-                } else {
-                    self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                    self.fetchProfile()
-                    self.createFirebaseUser()
-                    print("\n INLOGGAD MED FACEBOOK \n ")
-                    AppDelegate.instance().dismissActivityIndicator()
-                }
+        AppDelegate.instance().showActivityIndicator()
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if error != nil {
+                print("\n \(error!) \n")
+                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
+                return
+            } else {
+                self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                self.fetchProfile()
+                self.createFirebaseUser()
+                print("\n INLOGGAD MED FACEBOOK \n ")
+                AppDelegate.instance().dismissActivityIndicator()
+            }
         }
     }
     
@@ -122,8 +122,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let uid = Auth.auth().currentUser!.uid
         let username = Auth.auth().currentUser!.displayName
         let useremail = Auth.auth().currentUser!.email
-       // let profilePictureURL = NSString(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-        let profilePictureURL = ""
+       //let profilePictureURL = NSString(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
         let database = Database.database().reference(withPath: "Users/\(uid)")
         print("\n \(uid) \n")
         print("\n \(String(describing: username)) \n")
@@ -140,7 +139,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                     "alias" : username!,
                     "date" : result,
                     "uid" : uid,
-                    "profilePictureURL" : profilePictureURL,
+                    "profileImageURL" : "",
                     "email" : useremail!] as [String : Any]
         database.updateChildValues(feed)
         print("\n Firebase User Created! \n")
