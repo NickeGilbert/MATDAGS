@@ -7,11 +7,10 @@ import UIKit
 
 class User: NSObject {
     var alias : String!
-    var profileImageURL: String!
+    var profilePictureURL: String!
     var following: String!
     var followers: String!
     var postID: String!
     var date: String!
     var email: String!
-    var uid: String!
 }

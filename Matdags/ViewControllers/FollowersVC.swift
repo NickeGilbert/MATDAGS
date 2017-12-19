@@ -18,7 +18,12 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppDelegate.instance().showActivityIndicator()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchPosts()
+        AppDelegate.instance().dismissActivityIndicator()
     }
     
     func fetchPosts() {
@@ -72,8 +77,14 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.posts.removeAll() //Bilderna ska cachas istället!!! Fungerar inte
+        self.following.removeAll() // Är detta rätt sätt att göra? 
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+        
         cell.imageFeedView.image = nil
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
