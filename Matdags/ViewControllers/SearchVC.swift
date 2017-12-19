@@ -85,7 +85,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             tempUser = self.users[indexPath.row]
         }
-        if self.users[indexPath.row].profileImageURL != nil {
+        if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         } else {
             //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
@@ -111,17 +111,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let dbref = Database.database().reference(withPath: "Users")
         dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
             let tempUser = User()
-            let tempUserImg = User()
             if let dictionary = snapshot.value as? [String : Any] {
                 tempUser.alias = dictionary["alias"] as? String
                 tempUser.uid = dictionary["uid"] as? String
-                tempUserImg.profileImageURL = dictionary["profileImageURL"] as? String
-                if tempUserImg.profileImageURL != "" {
-                    self.users.append(tempUser)
-                    self.users.append(tempUserImg)
-                } else {
-                    self.users.append(tempUser)
-                }
+                tempUser.profileImageURL = dictionary["profileImageURL"] as? String
+                self.users.append(tempUser)
                 self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: .automatic)
             }
         })
