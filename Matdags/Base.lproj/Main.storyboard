@@ -480,7 +480,7 @@
                         <outlet property="subviewCollectionFeed" destination="9GM-4R-t9x" id="AAT-JT-QK9"/>
                         <outlet property="subviewProfileImage" destination="jtj-HS-waf" id="lDF-6l-LLw"/>
                         <outlet property="subviewUsername" destination="LVP-FS-hsQ" id="YAf-bt-DPM"/>
-                        <segue destination="1IS-aF-BiB" kind="show" identifier="searchResult" id="mMo-KD-Ypm"/>
+                        <segue destination="As2-HR-siM" kind="show" identifier="imagePageSegSearch" id="nf1-k1-DaM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTh-EV-tsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -491,7 +491,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="730.43478260869574" y="994.56521739130437"/>
+            <point key="canvasLocation" x="732" y="1013"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="i1r-WW-hF1">
@@ -675,14 +675,14 @@
             <objects>
                 <viewController id="1IS-aF-BiB" userLabel="ProfileVC" customClass="ProfileVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YeT-Gu-iAA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Matdags" translatesAutoresizingMaskIntoConstraints="NO" id="eVr-3d-fSh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qx-4q-1Tl">
-                                <rect key="frame" x="0.0" y="130" width="414" height="606"/>
+                                <rect key="frame" x="0.0" y="130" width="414" height="557"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Följer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgR-jC-Tpn">
                                         <rect key="frame" x="97.333333333333314" y="75" width="100" height="25"/>
@@ -715,7 +715,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ACP-Vh-ap7">
-                                        <rect key="frame" x="0.0" y="150" width="414" height="456"/>
+                                        <rect key="frame" x="0.0" y="150" width="414" height="407"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iEA-86-vgJ">
                                             <size key="itemSize" width="104" height="104"/>
@@ -1136,7 +1136,7 @@
                 <swipeGestureRecognizer direction="right" id="fNl-2b-zWO"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2ex-fQ-t2R"/>
             </objects>
-            <point key="canvasLocation" x="2468" y="-1383.0584707646178"/>
+            <point key="canvasLocation" x="3486" y="-1450"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -1285,8 +1285,7 @@
         <image name="upload" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
-        <segue reference="mMo-KD-Ypm"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

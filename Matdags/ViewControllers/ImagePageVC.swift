@@ -62,7 +62,6 @@ class ImagePageVC: UIViewController {
         addfollower()
         getfollower()
         countPeopleYouFollow()
-        
     }
     
     func countPeopleYouFollow() {
@@ -75,7 +74,6 @@ class ImagePageVC: UIViewController {
             print(counter)
         }
     }
-    
     
     func addfollower() {
         //Du följer en användare
@@ -100,9 +98,7 @@ class ImagePageVC: UIViewController {
         dbref.updateChildValues(follower)
         
     }
-    
-    
-    
+
     func sortFirebaseInfo() {
         if self.posts[0].pathToImage != nil {
             myImageView.downloadImage(from: self.posts[0].pathToImage)

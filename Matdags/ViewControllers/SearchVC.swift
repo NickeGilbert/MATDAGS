@@ -10,7 +10,6 @@ import FBSDKCoreKit
 
 class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
@@ -109,7 +108,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         self.subviewUsername?.text = tempUser.alias
         // cell.pictureOutlet?.image = tempUser.profilePictureURL as? UIImage//Varför fungerar den inte? Testa att göra en Dispatch
         return cell
-        
     }
     
     func filterContent(searchText:String) {
@@ -138,11 +136,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
          return self.posts.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
         cell.mySubviewCollectionFeed.image = nil
-        cell.backgroundColor = .red
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
@@ -169,6 +165,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             }
             self.subviewCollectionFeed.reloadData()
         })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "imagePageSegSearch", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "imagePageSegSearch")
+        {
+            let selectedCell = sender as! NSIndexPath
+            let selectedRow = selectedCell.row
+            let imagePage = segue.destination as! ImagePageVC
+            imagePage.seguePostID = self.posts[selectedRow].postID
+        } else {
+            print("\n Segue with identifier (imagePage) not found. \n")
+        }
     }
     
     func resizeImage(){
@@ -215,30 +227,4 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         dbref.updateChildValues(follower)*/
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     if(tabBarController?.selectedIndex == "searchResult")
-     {
-     if let rowNumber = sender as? Int {
-     print("\n \(rowNumber) \n")
-     let searchResult = tabBarController?.selectedIndex as! ProfileVC
-     
-     if searchController.isActive && searchController.searchBar.text != "" {
-     searchResult.users = filteredUsers[rowNumber]
-     } else {
-     searchResult.users = users[rowNumber]
-     }
-     searchResult.fromSearch = true
-     }
-     }
-     }*/
-    
 }
