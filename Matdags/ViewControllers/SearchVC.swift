@@ -25,11 +25,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var users = [User]()
     var search = [SearchCell]()
     var filteredUsers = [User]()
+    var tempUser = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         AppDelegate.instance().showActivityIndicator()
-        //Testa att göra en clear
         resizeImage()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
@@ -37,20 +37,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
-
-        let dbref = Database.database().reference(withPath: "Users")
-        dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
-            let tempUser = User()
-            guard let tempSnapshot = snapshot.value as? NSDictionary else { return }
-            
-            tempUser.alias = tempSnapshot["alias"] as? String
-            self.users.append(tempUser)
-            self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
-            
-            AppDelegate.instance().dismissActivityIndicator()
-        }) { (error) in
-            print(error.localizedDescription)
-        }
+        AppDelegate.instance().dismissActivityIndicator()
+        getUserInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,39 +65,36 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
-        
-        var tempUser = User()
-        
+        cell.pictureOutlet.image = nil
         if searchController.isActive && searchController.searchBar.text != "" {
             tempUser = filteredUsers[indexPath.row]
         } else {
             tempUser = self.users[indexPath.row]
         }
-        
-        //DENNA FUNGERAR INTE???
-        /*print("KOKA KOD")
-        let user = users[indexPath.row]
-        if let profilePictureURL = user.profilePictureURL {
-            let url = URL(string: profilePictureURL)
-            URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
-                print("HEJSAN SVEJSAN")
-                if error != nil {
-                    print(error)
-                    print("SKRIV UT NÅGOT!")
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    cell.pictureOutlet?.image = UIImage(data: data!)
-                }
-            }).resume()
-        }*/
-        
+        if self.users[indexPath.row].profileImageURL != nil {
+            cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
+        } else {
+            //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
+            print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
+        }
         cell.usernameLabel?.text = tempUser.alias
         self.subviewUsername?.text = tempUser.alias
-        // cell.pictureOutlet?.image = tempUser.profilePictureURL as? UIImage//Varför fungerar den inte? Testa att göra en Dispatch
         return cell
-        
+    }
+    
+    func getUserInfo() {
+        //Här hämtar vi info från varje user
+        let dbref = Database.database().reference(withPath: "Users")
+        dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
+            let tempUser = User()
+            if let tempSnapshot = snapshot.value as? [String : Any] {
+                tempUser.alias = tempSnapshot["alias"] as? String
+                tempUser.uid = tempSnapshot["uid"] as? String
+                tempUser.profileImageURL = tempSnapshot["profileImageURL"] as? String
+                self.users.append(tempUser)
+                self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: .automatic)
+            }
+        })
     }
     
     func filterContent(searchText:String) {
@@ -121,23 +106,19 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         
         if searchController.isActive && searchController.searchBar.text != "" {
         } else {
-            
-            var tempUser = User()
             tempUser = self.users[indexPath.row]
-            self.subviewUsername?.text = tempUser.alias
+            self.subviewUsername!.text = tempUser.alias
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return self.posts.count
+         return self.users.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
@@ -157,7 +138,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
 
     func downloadImages() {
-        let dbref = Database.database().reference(withPath: "Users").child((Auth.auth().currentUser?.uid)!).child("Posts")
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users").child("\(uid)")
         dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {

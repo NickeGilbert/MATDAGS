@@ -81,6 +81,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
         database.child("\(key)").updateChildValues(postfeed)
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
         
+        let nextref = usrdatabase.child("\(uid!)").child("Posts").child("\(key)")
+        nextref.updateChildValues(["postID" : key])
+        
         //Bild i full storlek
         if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
             dispatchGroup.enter()
@@ -119,6 +122,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                 if secondURL != nil {
                     let postURL = ["pathToImage256" : secondURL!] as [String : Any]
                     database.child("\(key)").updateChildValues(postURL)
+                    nextref.updateChildValues(postURL)
                     print("\n Thumbnail uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")

@@ -13,7 +13,6 @@ import AVFoundation
 class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     @IBOutlet var profileCollectionFeed: UICollectionView!
-//  @IBOutlet var profileImageCell: UICollectionViewCell!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
@@ -26,16 +25,22 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var posts = [Post]()
     var image: UIImage!
     let dispatchGroup = DispatchGroup()
-    var users = User()
+    var user = User()
+    var users = [User]()
     var fromSearch = false
 
     override func viewDidLoad() {
         resizeImage()
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        getUserInfo()
+        posts.removeAll()
+        getPostInfo { (true) in
+            self.profileCollectionFeed.reloadData()
+        }
         
         if(fromSearch == true) {
             // Du kommer från sökskärmen
-            profileNameLabel.text = users.alias
+            profileNameLabel.text = user.alias
 
         } else {
             if(FBSDKAccessToken.current() != nil) {
@@ -81,7 +86,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
                 
                 if(FBSDKAccessToken.current() == nil) {
-                    profileNameLabel.text = users.alias
+                    profileNameLabel.text = user.alias
                 }
             }
         }
@@ -89,11 +94,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        posts.removeAll()
-        downloadImages()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -107,19 +107,19 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
-    func downloadImages() {
+    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
-                    let appendPost = Post()
-                    appendPost.pathToImage256 = post["pathToImage256"] as? String
-                    appendPost.postID = post["postID"] as? String
-                    self.posts.insert(appendPost, at: 0)
+                    let appendPosts = Post()
+                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
+                    appendPosts.postID = post["postID"] as? String
+                    self.posts.insert(appendPosts, at: 0)
+                    completionHandler(true)
                 }
             }
-            self.profileCollectionFeed.reloadData()
         })
     }
     
@@ -231,6 +231,18 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             })
             uploadTask.resume()
         }
+    }
+    
+    func getUserInfo() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let tempSnapshot = snapshot.value as? [String : Any] {
+                let appendInfo = User()
+                appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
+                self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
+            }
+        })
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

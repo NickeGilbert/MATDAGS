@@ -14,12 +14,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet var collectionFeed: UICollectionView!
     
     var posts = [Post]()
-    var refresher:UIRefreshControl!
+    var refresher : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         posts.removeAll()
-        downloadImages()
+        downloadImages { (true) in
+            self.collectionFeed.reloadData()
+        }
         
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
@@ -31,8 +33,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @objc func loadData() {
         posts.removeAll()
-        downloadImages()
-        self.collectionFeed.reloadData()
+        downloadImages { (true) in
+            self.collectionFeed.reloadData()
+        }
         stopRefresher()
     }
     
@@ -50,8 +53,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func downloadImages() {
-        AppDelegate.instance().showActivityIndicator()
+    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
         dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -61,10 +63,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     appendPost.pathToImage256 = post["pathToImage256"] as? String
                     appendPost.postID = post["postID"] as? String
                     self.posts.insert(appendPost, at: 0)
+                    completionHandler(true)
                 }
             }
-            self.collectionFeed.reloadData()
-            AppDelegate.instance().dismissActivityIndicator()
         })
     }
 
@@ -79,11 +80,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         } catch {
             print("\n ERROR NÄR DU LOGGADE UT \n")
         }
-    }
-    @IBAction func refreshButtonClicked(_ sender: Any) {
-        posts.removeAll()
-        downloadImages()
-        self.collectionFeed.reloadData()
     }
     
     @IBAction func cameraButtonClicked(_ sender: Any) {
@@ -129,12 +125,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func swipeLeft(_ sender: Any) {
-        print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 1
     }
-
-    
-    
 }
 
 extension UIImageView {

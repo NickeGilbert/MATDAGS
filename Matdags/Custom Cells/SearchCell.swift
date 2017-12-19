@@ -10,8 +10,6 @@ class SearchCell: UITableViewCell {
     @IBOutlet var pictureOutlet: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
