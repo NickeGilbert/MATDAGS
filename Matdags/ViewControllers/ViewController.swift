@@ -76,10 +76,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 self.fetchProfile()
                 self.checkFirebaseInfo(arg: true, completion: { (success) -> Void in
                     if success {
-                            self.createFirebaseUser()
-                        } else {
-                            print("\n Användaren finns redan så inget skickades till databasen! \n")
-                        }
+                        self.createFirebaseUser()
+                    } else {
+                        print("\n Användaren finns redan så inget skickades till databasen! \n")
+                    }
                 })
                 print("\n INLOGGAD MED FACEBOOK \n ")
                 AppDelegate.instance().dismissActivityIndicator()
