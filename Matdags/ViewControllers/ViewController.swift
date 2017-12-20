@@ -33,7 +33,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             fetchProfile()
         }
         
-        if(Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true) {
+        if (Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
     }
@@ -74,7 +74,13 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             } else {
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                 self.fetchProfile()
-                self.createFirebaseUser()
+                self.checkFirebaseInfo(arg: true, completion: { (success) -> Void in
+                    if success {
+                            self.createFirebaseUser()
+                        } else {
+                            print("\n Användaren finns redan så inget skickades till databasen! \n")
+                        }
+                })
                 print("\n INLOGGAD MED FACEBOOK \n ")
                 AppDelegate.instance().dismissActivityIndicator()
             }
@@ -90,27 +96,29 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         password.resignFirstResponder()
     }
     
-    func login(){
+    func login() {
         AppDelegate.instance().showActivityIndicator()
-        
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
-            
             if error != nil{
-                // ERROR INLOGGNING
                 self.createAlertLogin(title: "Error", message: "Något blev fel. Försök igen!")
                 print("\n \(error!) \n")
                 self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
                 AppDelegate.instance().dismissActivityIndicator()
             } else {
-                if(Auth.auth().currentUser?.isEmailVerified == true)
-                {
-                    //Där finns en print i createFireBaseUser som händer om användaren loggar in med mail första gången.
-                    self.createFirebaseUser()
-                    self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                } else {
-                    self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
-                    AppDelegate.instance().dismissActivityIndicator()
-                }
+                self.checkFirebaseInfo(arg: true, completion: { (success) -> Void in
+                    if success {
+                        if (Auth.auth().currentUser?.isEmailVerified == true) {
+                            self.createFirebaseUser()
+                            self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                        } else {
+                            self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
+                            AppDelegate.instance().dismissActivityIndicator()
+                        }
+                    } else {
+                        print("\n Användaren finns redan så inget skickades till databasen! \n")
+                        self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                    }
+                })
             }
         })
     }
@@ -120,11 +128,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let username = Auth.auth().currentUser!.displayName
         let useremail = Auth.auth().currentUser!.email
         //let profilePictureURL = NSString(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-        let profilePictureURL = ""
         let database = Database.database().reference(withPath: "Users/\(uid)")
         print("\n \(uid) \n")
-        print("\n \(String(describing: username)) \n")
-        print("\n \(String(describing: useremail)) \n")
+        print("\n \(username!) \n")
+        print("\n \(useremail!) \n")
         if useremail == nil || username == nil {
             return
         }
@@ -141,6 +148,18 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                     "email" : useremail!] as [String : Any]
         database.updateChildValues(feed)
         print("\n Firebase User Created! \n")
+    }
+    
+    func checkFirebaseInfo(arg: Bool, completion: @escaping (Bool) -> ()) {
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database().reference(withPath: "Users/\(uid)")
+        db.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                completion(false)
+            } else {
+                completion(true)
+            }
+        })
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
