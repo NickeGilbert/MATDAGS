@@ -9,8 +9,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    
+
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!

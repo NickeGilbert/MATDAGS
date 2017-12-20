@@ -23,10 +23,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         emailText.delegate = self
         password.delegate = self
-        
         view.addSubview(loginButton)
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         loginButton.delegate = self
@@ -38,7 +36,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         if(Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
-
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
