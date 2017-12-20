@@ -127,7 +127,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         let uid = Auth.auth().currentUser!.uid
         let username = Auth.auth().currentUser!.displayName
         let useremail = Auth.auth().currentUser!.email
-        //let profilePictureURL = NSString(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
         let database = Database.database().reference(withPath: "Users/\(uid)")
         print("\n \(uid) \n")
         print("\n \(username!) \n")

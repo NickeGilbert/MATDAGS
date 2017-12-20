@@ -86,7 +86,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
-        } else {
+            
+        } else if (FBSDKAccessToken.current() != nil) {
+            cell.pictureOutlet.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+        }else {
+            print("Do nothing")
             //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
             print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
         }
@@ -101,14 +105,27 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if searchController.isActive && searchController.searchBar.text != "" {
         } else {
             tempUser = self.users[indexPath.row]
-            self.subviewUsername!.text = tempUser.alias
+            
+            if self.users[indexPath.row].profileImageURL != "" {
+                self.subviewUsername!.text = tempUser.alias
+                self.subviewProfileImage.downloadImage(from: self.users[indexPath.row].profileImageURL)
+                
+            } else if (FBSDKAccessToken.current() != nil) {
+                self.subviewUsername!.text = tempUser.alias
+                self.subviewProfileImage.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+            }else {
+                print("Do nothing")
+                //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
+                print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
+            }
         }
     }
     
     func getUserInfo() {
         //Här hämtar vi info från varje user
         let dbref = Database.database().reference(withPath: "Users")
-        dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
+        //NÅGOT ÄR ALVARLIGT FEL HÄR! OM ANVÄNDARTALET BLIR MER ÄN 30 SÅ HÄMTAR DEN INTE ANVÄNDARNA!!!
+        dbref.queryLimited(toFirst: 30).observe(.childAdded, with: { (snapshot) in
             let tempUser = User()
             if let dictionary = snapshot.value as? [String : Any] {
                 tempUser.alias = dictionary["alias"] as? String
