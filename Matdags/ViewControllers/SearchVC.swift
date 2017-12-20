@@ -134,7 +134,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
         cell.mySubviewCollectionFeed.image = nil
-        cell.backgroundColor = .red
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
@@ -146,6 +145,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: self.view.frame.width/4.0, height: self.view.frame.width/4.0)
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "imagePageSegSubSearch", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "imagePageSegSubSearch")
+        {
+            let selectedCell = sender as! NSIndexPath
+            let selectedRow = selectedCell.row
+            let imagePage = segue.destination as! ImagePageVC
+            imagePage.seguePostID = self.posts[selectedRow].postID
+        } else {
+            print("\n Segue with identifier (imagePage) not found. \n")
+        }
     }
 
     func downloadImages() {
@@ -170,23 +185,4 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         self.subviewProfileImage.layer.borderColor = UIColor.white.cgColor
         self.subviewProfileImage.layer.borderWidth = 4
     }
-    
-    /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     if(tabBarController?.selectedIndex == "searchResult")
-     {
-     if let rowNumber = sender as? Int {
-     print("\n \(rowNumber) \n")
-     let searchResult = tabBarController?.selectedIndex as! ProfileVC
-     
-     if searchController.isActive && searchController.searchBar.text != "" {
-     searchResult.users = filteredUsers[rowNumber]
-     } else {
-     searchResult.users = users[rowNumber]
-     }
-     searchResult.fromSearch = true
-     }
-     }
-     }*/
-    
 }

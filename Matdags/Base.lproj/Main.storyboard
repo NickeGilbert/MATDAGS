@@ -480,7 +480,7 @@
                         <outlet property="subviewCollectionFeed" destination="9GM-4R-t9x" id="AAT-JT-QK9"/>
                         <outlet property="subviewProfileImage" destination="jtj-HS-waf" id="lDF-6l-LLw"/>
                         <outlet property="subviewUsername" destination="LVP-FS-hsQ" id="YAf-bt-DPM"/>
-                        <segue destination="As2-HR-siM" kind="show" identifier="imagePageSegSearch" id="nf1-k1-DaM"/>
+                        <segue destination="As2-HR-siM" kind="show" identifier="imagePageSegSubSearch" id="nf1-k1-DaM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTh-EV-tsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
