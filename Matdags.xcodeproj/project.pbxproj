@@ -28,7 +28,6 @@
 		0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB321F862C340086DE20 /* ProfileVC.swift */; };
 		0AF001D11FC44F47005E6CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF001D01FC44F47005E6CBE /* User.swift */; };
 		0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF08DB51FE9096A00BCBD43 /* Follow.swift */; };
-		0AF08DBE1FEC47BF00BCBD43 /* Filtereduser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF08DBD1FEC47BF00BCBD43 /* Filtereduser.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
 		A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41F16861FBDF86900500EF8 /* ProfileCell.swift */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
@@ -66,7 +65,6 @@
 		0ABFCB321F862C340086DE20 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0AF001D01FC44F47005E6CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0AF08DB51FE9096A00BCBD43 /* Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
-		0AF08DBD1FEC47BF00BCBD43 /* Filtereduser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filtereduser.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
 		A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matdags.entitlements; sourceTree = "<group>"; };
 		A41F16861FBDF86900500EF8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				0A4CD1C31FAE5F880006986A /* Post.swift */,
 				0AF001D01FC44F47005E6CBE /* User.swift */,
 				0AF08DB51FE9096A00BCBD43 /* Follow.swift */,
-				0AF08DBD1FEC47BF00BCBD43 /* Filtereduser.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,
 				A45ABBA61FE01F780052E6A7 /* SearchSubViewCell.swift in Sources */,
-				0AF08DBE1FEC47BF00BCBD43 /* Filtereduser.swift in Sources */,
 				A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */,
 				0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */,
 				A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */,

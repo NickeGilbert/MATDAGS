@@ -373,13 +373,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il3-Eq-ogL">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il3-Eq-ogL">
                                         <rect key="frame" x="91" y="133" width="255" height="30"/>
                                         <color key="backgroundColor" red="0.20354891235591499" green="0.40697200601501515" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Följ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
+                                            <action selector="followButton:" destination="hJz-AY-mR2" eventType="touchUpInside" id="Omu-6U-QUe"/>
                                             <action selector="subviewFollowUser:" destination="daa-NH-ElQ" eventType="touchUpInside" id="B13-jX-Ygd"/>
                                             <action selector="subviewFollowUser:" destination="hJz-AY-mR2" eventType="touchUpInside" id="Pi9-qS-Ceb"/>
                                         </connections>
@@ -478,6 +479,7 @@
                         <outlet property="subview" destination="Ov9-gQ-xAZ" id="JMu-mc-RIm"/>
                         <outlet property="subviewBackground" destination="8i7-bI-vCf" id="9Pg-DZ-bcd"/>
                         <outlet property="subviewCollectionFeed" destination="9GM-4R-t9x" id="AAT-JT-QK9"/>
+                        <outlet property="subviewFollowButton" destination="Il3-Eq-ogL" id="SDS-Ub-WXh"/>
                         <outlet property="subviewProfileImage" destination="jtj-HS-waf" id="lDF-6l-LLw"/>
                         <outlet property="subviewUsername" destination="LVP-FS-hsQ" id="YAf-bt-DPM"/>
                         <segue destination="As2-HR-siM" kind="show" identifier="imagePageSegSubSearch" id="nf1-k1-DaM"/>
@@ -1049,7 +1051,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYW-pk-e4K">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYW-pk-e4K">
                                 <rect key="frame" x="290" y="433" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.35521121379396958" green="0.40708021951358409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

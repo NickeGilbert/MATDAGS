@@ -16,7 +16,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     @IBOutlet weak var subviewProfileImage: UIImageView!
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet var searchUsersTableView: UITableView!
-   
+    @IBOutlet weak var subviewFollowButton: UIButton!
+    
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
     
@@ -160,6 +161,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
             }
             */
+        }
+        if self.tempUser.uid != Auth.auth().currentUser!.uid {
+            self.subviewFollowButton.isHidden = false
+        } else {
+            self.subviewFollowButton.isHidden = true
         }
         subviewCell.userID = tempUser.uid
         subviewCell.alias = tempUser.alias
