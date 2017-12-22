@@ -123,7 +123,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         cell.usernameLabel.text = userInfo.alias
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
-        } else {
+            
+        } else if (FBSDKAccessToken.current() != nil) {
+            cell.pictureOutlet.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+        }else {
+            print("Do nothing")
             //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
             //print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
         }
@@ -145,7 +149,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             //Här kan vi bestämma default bild för subviewn
             self.subviewProfileImage.image = nil
-            print("\n No profileImageURL found for \(tempUser.alias!) \n")
+            //print("\n No profileImageURL found for \(tempUser.alias!) \n")
+            
+            /*
+            if (FBSDKAccessToken.current() != nil) {
+                self.subviewProfileImage.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
+            }else {
+                print("Do nothing")
+                //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
+                print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
+            }
+            */
         }
         subviewCell.userID = tempUser.uid
         subviewCell.alias = tempUser.alias
