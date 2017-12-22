@@ -14,7 +14,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet var collectionFeed: UICollectionView!
     
     var posts = [Post]()
-    var refresher:UIRefreshControl!
+    var refresher : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()

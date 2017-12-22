@@ -8,14 +8,18 @@ import Firebase
 import FBSDKLoginKit
 import FBSDKCoreKit
 
+struct GlobalVariables {
+    static var posts = [Post]()
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var actIdc = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     var container : UIView!
-    var posts = [Post]()
     var follows = [Follow]()
+    var posts = GlobalVariables.posts
     
     class func instance() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -62,38 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIGraphicsEndImageContext()
         
         return newImage!
-    }
-    
-    func addfollower() {
-        let uid = Auth.auth().currentUser!.uid
-        let db = Database.database()
-        let dbref = db.reference(withPath: "Users/\(uid)/Following")
-        let uref = db.reference(withPath: "Users/\(uid)/followingCounter")
-        if self.posts[0].userID != nil {
-            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
-            let counter = ["Followers" : +1 ] as [String : Any]
-            uref.updateChildValues(counter)
-            dbref.updateChildValues(following)
-        } else {
-            print("\n userID not found when adding follower \n")
-        }
-    }
-    
-    func getfollower() {
-        let db = Database.database()
-        let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
-        let followerid = posts[0].userID
-        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
-        let uref = db.reference(withPath: "Users/\(uid)/followerCounter")
-        if self.posts[0].userID != nil {
-            let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-            let counter = ["Followers" : +1 ] as [String : Any]
-            uref.updateChildValues(counter)
-            dbref.updateChildValues(follower)
-        } else {
-            print("\n userID not found when getting follower \n")
-        }
     }
     
     func countFollow() {

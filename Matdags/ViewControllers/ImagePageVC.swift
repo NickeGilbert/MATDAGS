@@ -16,10 +16,10 @@ class ImagePageVC: UIViewController {
     @IBOutlet weak var followerButton: UIButton!
     
     var seguePostID : String!
-    var posts = [Post]()
     var users = [User]()
     var starHighlited = 0
     var countFollowing = 0
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,7 @@ class ImagePageVC: UIViewController {
                 getInfo.alias = dictionary["alias"] as! String
                 getInfo.imgdescription = dictionary["imgdescription"] as! String
                 self.posts.append(getInfo)
+                print("\n \(self.posts[0].userID) \n")
                 completionHandler(true)
             } else {
                 print("\n No info in dictionary \n")
@@ -61,8 +62,40 @@ class ImagePageVC: UIViewController {
     }
     
     @IBAction func followUser(_ sender: Any) {
-        AppDelegate.instance().addfollower()
-        AppDelegate.instance().getfollower()
+        getFollower()
+        addFollower()
+    }
+    
+    func addFollower() {
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database()
+        let dbref = db.reference(withPath: "Users/\(uid)/Following")
+    let uref = db.reference(withPath: "Users/\(uid)")
+        if self.posts[0].userID != nil {
+            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
+            //let counter = ["followingCounter" : "\(+1)" ] as [String : Any]
+            //uref.updateChildValues(counter)
+            dbref.updateChildValues(following)
+        } else {
+            print("\n userID not found when adding follower \n")
+        }
+    }
+    
+    func getFollower() {
+        let db = Database.database()
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        let followerid = posts[0].userID
+        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
+        //let uref = db.reference(withPath: "Users/\(uid)")
+        if self.posts[0].userID != nil {
+            let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
+            //let counter = ["followerCounter" : "\(+1)" ] as [String : Any]
+            //uref.updateChildValues(counter)
+            dbref.updateChildValues(follower)
+        } else {
+            print("\n userID not found when getting follower \n")
+        }
     }
     
     func sortFirebaseInfo() {

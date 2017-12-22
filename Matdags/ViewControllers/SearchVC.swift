@@ -18,8 +18,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     @IBOutlet var searchUsersTableView: UITableView!
    
     let searchController = UISearchController(searchResultsController: nil)
+    let dispatchGroup = DispatchGroup()
     
-    var subviewCell = [SearchSubViewCell]()
+    var subviewCell = SearchSubViewCell()
     var posts = [Post]()
     var users = [User]()
     var search = [SearchCell]()
@@ -28,22 +29,25 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppDelegate.instance().showActivityIndicator()
-        resizeImage()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        searchUsersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         searchUsersTableView.tableHeaderView = searchController.searchBar
-        AppDelegate.instance().dismissActivityIndicator()
-        getUserInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        //subviewCell.removeAll()
         posts.removeAll()
-        downloadImages()
-        resizeImage()
+        users.removeAll()
+        search.removeAll()
+        filteredUsers.removeAll()
+        getUserInfo(in: dispatchGroup) { (true) in
+            self.searchUsersTableView.reloadData()
+        }
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -53,11 +57,48 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     @IBAction func closeSubview(_ sender: Any) {
         subview.isHidden = true
         self.subviewBackground.isHidden = true
+        self.subviewProfileImage.image = nil
+        self.subviewUsername.text = nil
     }
     
     @IBAction func subviewFollowUser(_ sender: Any) {
-        AppDelegate.instance().addfollower()
-        AppDelegate.instance().getfollower()
+        addFollower()
+        getFollower()
+    }
+    
+    func addFollower() {
+        //ToDo: Fungerande counter
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database()
+        let dbref = db.reference(withPath: "Users/\(uid)/Following")
+        //let uref = db.reference(withPath: "Users/\(uid)")
+        let followingUID = subviewCell.userID
+        let followingAlias = subviewCell.alias
+        if subviewCell.userID != nil {
+            let following = ["\(followingAlias!)" : followingUID!] as [String : Any]
+            //let counter = ["followingCounter" : +1] as [String : Any]
+            //uref.updateChildValues(counter)
+            dbref.updateChildValues(following)
+        } else {
+            print("\n userID not found when adding follower \n")
+        }
+    }
+    
+    func getFollower() {
+        let db = Database.database()
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        let followerUID = subviewCell.userID
+        let dbref = db.reference(withPath: "Users/\(followerUID!)/Follower")
+        //let uref = db.reference(withPath: "Users/\(uid)")
+        if subviewCell.userID != nil {
+            let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
+            //let counter = ["followerCounter" : +1 ] as [String : Any]
+            //uref.updateChildValues(counter)
+            dbref.updateChildValues(follower)
+        } else {
+            print("\n userID not found when getting follower \n")
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -77,54 +118,69 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
-        cell.pictureOutlet.image = nil
-        if searchController.isActive && searchController.searchBar.text != "" {
-            tempUser = filteredUsers[indexPath.row]
-        } else {
-            tempUser = self.users[indexPath.row]
-        }
+        let userInfo = users[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        cell.usernameLabel.text = userInfo.alias
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         } else {
             //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
-            print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
+            //print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
         }
-        cell.usernameLabel?.text = tempUser.alias
-        self.subviewUsername?.text = tempUser.alias
+        if searchController.isActive && searchController.searchBar.text != "" {
+            tempUser = filteredUsers[indexPath.row]
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        downloadImages()
+        tempUser = self.users[indexPath.row]
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
-        if searchController.isActive && searchController.searchBar.text != "" {
+        self.subviewUsername.text = tempUser.alias
+        let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
+        if tempUser.profileImageURL != "" {
+            self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
-            tempUser = self.users[indexPath.row]
-            self.subviewUsername!.text = tempUser.alias
+            //Här kan vi bestämma default bild för subviewn
+            self.subviewProfileImage.image = nil
+            print("\n No profileImageURL found for \(tempUser.alias!) \n")
         }
+        subviewCell.userID = tempUser.uid
+        subviewCell.alias = tempUser.alias
     }
     
-    func getUserInfo() {
-        //Här hämtar vi info från varje user
+    func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        AppDelegate.instance().showActivityIndicator()
+        users.removeAll()
         let dbref = Database.database().reference(withPath: "Users")
-        dbref.queryLimited(toFirst: 20).observe(.childAdded, with: { (snapshot) in
-            let tempUser = User()
-            if let dictionary = snapshot.value as? [String : Any] {
-                tempUser.alias = dictionary["alias"] as? String
-                tempUser.uid = dictionary["uid"] as? String
-                tempUser.profileImageURL = dictionary["profileImageURL"] as? String
-                self.users.append(tempUser)
-                self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: .automatic)
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                dispatchGroup.enter()
+                for (_, each) in dictionary {
+                    let appendUser = User()
+                    appendUser.alias = each["alias"] as? String
+                    appendUser.uid = each["uid"] as? String
+                    appendUser.profileImageURL = each["profileImageURL"] as? String
+                    print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
+                    self.users.append(appendUser)
+                }
+                dispatchGroup.leave()
+                dispatchGroup.notify(queue: .main, execute: {
+                    print("\n dispatchGroup completed \n")
+                    completionHandler(true)
+                    AppDelegate.instance().dismissActivityIndicator()
+                })
             }
         })
     }
     
     func filterContent(searchText:String) {
-        self.filteredUsers = self.users.filter{ user in
+        filteredUsers = self.users.filter { user in
         return(user.alias.lowercased() == searchText.lowercased())
         }
-        self.searchUsersTableView.reloadData()
+        //self.searchUsersTableView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -137,7 +193,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
-            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            //print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         return cell
     }
@@ -177,12 +233,5 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             }
             self.subviewCollectionFeed.reloadData()
         })
-    }
-    
-    func resizeImage(){
-        subviewProfileImage.layer.cornerRadius = subviewProfileImage.frame.size.height / 2
-        subviewProfileImage.clipsToBounds = true
-        self.subviewProfileImage.layer.borderColor = UIColor.white.cgColor
-        self.subviewProfileImage.layer.borderWidth = 4
     }
 }

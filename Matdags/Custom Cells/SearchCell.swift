@@ -10,14 +10,14 @@ class SearchCell: UITableViewCell {
     @IBOutlet var pictureOutlet: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         resizeImage()
     }
-    
+    override func prepareForReuse() {
+        pictureOutlet.image = nil
+        usernameLabel.text = nil
+    }
     func resizeImage(){
         pictureOutlet.layer.cornerRadius = pictureOutlet.frame.size.height / 2
         pictureOutlet.clipsToBounds = true
