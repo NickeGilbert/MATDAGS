@@ -47,7 +47,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         search.removeAll()
         filteredUsers.removeAll()
         getUserInfo(in: dispatchGroup) { (true) in
-            self.searchUsersTableView.reloadData()
+        self.searchUsersTableView.reloadData()
         }
     }
     

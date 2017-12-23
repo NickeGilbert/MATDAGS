@@ -18,6 +18,7 @@ class ImagePageVC: UIViewController {
     var seguePostID : String!
     var users = [User]()
     var starHighlited = 0
+    var count = 0
     var countFollowing = 0
     var posts = [Post]()
     
@@ -75,9 +76,14 @@ class ImagePageVC: UIViewController {
     let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
             let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
-            //let counter = ["followingCounter" : "\(+1)" ] as [String : Any]
-            //uref.updateChildValues(counter)
-            dbref.updateChildValues(following)
+           /* count = +1
+            if (count > countFollowing) {
+                countFollowing = count
+            }
+            
+            let counter = ["followingCounter" : "\(count)" ] as [String : Any]
+            uref.updateChildValues(counter)
+            dbref.updateChildValues(following)*/
         } else {
             print("\n userID not found when adding follower \n")
         }
