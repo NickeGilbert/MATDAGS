@@ -716,7 +716,7 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxxx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pZ-IM-U5X">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pZ-IM-U5X">
                                         <rect key="frame" x="78" y="105" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="XEP-Ig-aen"/>
@@ -765,7 +765,7 @@
                                             <outlet property="delegate" destination="1IS-aF-BiB" id="FRI-nw-5AE"/>
                                         </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxxx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2M-1M-qIm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2M-1M-qIm">
                                         <rect key="frame" x="198" y="105" width="100" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="wOP-TQ-fvs"/>
@@ -792,7 +792,7 @@
                                     <constraint firstItem="0pZ-IM-U5X" firstAttribute="top" secondItem="LgR-jC-Tpn" secondAttribute="bottom" constant="5" id="yZN-7D-RMw"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jagJa" translatesAutoresizingMaskIntoConstraints="NO" id="Zv7-sa-0uO">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Zv7-sa-0uO">
                                 <rect key="frame" x="112.5" y="60" width="150" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="MA4-0U-9H0"/>
@@ -850,6 +850,8 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="followers" destination="R2M-1M-qIm" id="F3w-Lb-RD7"/>
+                        <outlet property="following" destination="0pZ-IM-U5X" id="mv9-23-4Vl"/>
                         <outlet property="profileCollectionFeed" destination="ACP-Vh-ap7" id="Oqt-Ld-bWg"/>
                         <outlet property="profileNameLabel" destination="IWr-3y-d8T" id="toA-cT-qS1"/>
                         <outlet property="profilePictureOutlet" destination="Zv7-sa-0uO" id="G9z-ds-Cn4"/>
@@ -1311,18 +1313,18 @@
         <image name="favoriterButton" width="45" height="45"/>
         <image name="homeButton" width="45" height="45"/>
         <image name="image" width="100" height="100"/>
-        <image name="jagJa" width="540" height="360"/>
         <image name="kameraButton" width="45" height="45"/>
         <image name="logoMatdags" width="150" height="45"/>
         <image name="logoutButton" width="45" height="45"/>
         <image name="profileButton" width="45" height="45"/>
+        <image name="profileImagePlaceholder" width="720" height="720"/>
         <image name="refreshButton" width="45" height="45"/>
         <image name="save" width="100" height="100"/>
         <image name="searchButton" width="45" height="45"/>
         <image name="upload" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

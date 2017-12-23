@@ -17,6 +17,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
     
+    @IBOutlet weak var followers: UILabel!
+    @IBOutlet weak var following: UILabel!
+    
+    
     var ref: DatabaseReference!
     var FBdata : Any?
     var titleName = ""
@@ -236,6 +240,30 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     print("\n profileImageURL not found \n")
                     return
                 }
+            }
+        })
+    }
+    
+    func followingCount() {
+        let dbref = Database.database().reference().child("Users").child("followingCounter")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                let getInfo = User()
+                getInfo.followerCounter = dictionary["followersCounter"] as! String
+                
+                print(self.followersCount())
+            }
+        })
+    }
+    
+    func followersCount() {
+        let dbref = Database.database().reference().child("Users").child("followersCounter")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                let getInfo = User()
+                getInfo.followingCounter = dictionary["followingCounter"] as! String
+                
+                print(self.followingCount())
             }
         })
     }
