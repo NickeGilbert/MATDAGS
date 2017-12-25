@@ -243,27 +243,41 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             }
         })
     }
-    
+    //Fungerar inte än!
     func followingCount() {
-        let dbref = Database.database().reference().child("Users").child("followingCounter")
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                let getInfo = User()
-                getInfo.followerCounter = dictionary["followersCounter"] as! String
-                
-                print(self.followersCount())
-            }
-        })
+            if let tempSnapshot = snapshot.value as? [String : Any] {
+                let appendInfo = User()
+                appendInfo.followingCounter = tempSnapshot["followingCounter"] as? String
+                if appendInfo.followingCounter != "" {
+                    print("HEJSAN SVEJSAN 1")
+                    } else {
+                        print("TOMTEGLAS")
+                        return
+                    }
+                }
+            })
     }
-    
+    //Fungerar inte än!
     func followersCount() {
-        let dbref = Database.database().reference().child("Users").child("followersCounter")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                let getInfo = User()
-                getInfo.followingCounter = dictionary["followingCounter"] as! String
-                
-                print(self.followingCount())
+        let ref = Database.database().reference()
+        
+        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            let Users = snapshot.value as! [String: AnyObject]
+            
+            for (_,value) in Users {
+                if let ID = value["uid"] as? String {
+                    if ID == Auth.auth().currentUser?.uid {
+                        if let followingUsers = value["followingCounter"] as? [String: String] {
+                            for (_,user) in followingUsers {
+                                print(followingUsers)
+                                print(Users)
+                            }
+                        }
+                    }
+                }
             }
         })
     }
