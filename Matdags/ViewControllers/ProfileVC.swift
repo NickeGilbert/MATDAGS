@@ -238,7 +238,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 dispatchGroup.notify(queue: .main, execute: {
                     print("\n Async completed \n")
                     AppDelegate.instance().dismissActivityIndicator()
-                    self.dismiss(animated: false, completion: nil)
+//                    self.dismiss(animated: false, completion: nil)
                 })
             })
             uploadTask.resume()
