@@ -71,6 +71,18 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                                 self.profilePictureOutlet.image = UIImage(named: savePath)
                             }
                         }
+                        self.ref = Database.database().reference()
+                        let userID = Auth.auth().currentUser?.uid
+                        self.ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                            let value = snapshot.value as! NSDictionary
+                            let followingCounter = value["followingCounter"] as? Int ?? 0
+                            let followerCounter = value["followerCounter"] as? Int ?? 0
+                            
+                            self.following.text = String(followingCounter)
+                            self.followers.text = String(followerCounter)
+                        }) { (error) in
+                            print(error.localizedDescription)
+                        }
                     }
                 }
                 task.resume()
@@ -81,6 +93,12 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                     let value = snapshot.value as! NSDictionary
                     let username = value["alias"] as? String ?? ""
+
+                    let followingCounter = value["followingCounter"] as? Int ?? 0
+                    let followerCounter = value["followerCounter"] as? Int ?? 0
+                    
+                    self.following.text = String(followingCounter)
+                    self.followers.text = String(followerCounter)
                     self.profileNameLabel.text = username
                 }) { (error) in
                     print(error.localizedDescription)
