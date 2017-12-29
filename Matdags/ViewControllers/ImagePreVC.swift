@@ -11,6 +11,10 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var descriptionField: UITextField!
+    @IBOutlet weak var vegFood: UIButton!
+    
+    var vegFoodBool : Bool = false
+    var hiddenTextfield = true
     
     var image: UIImage!
     let dispatchGroup = DispatchGroup()
@@ -18,6 +22,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         photo.image = self.image
+        descriptionField.delegate = self
+        descriptionField.setLeftPaddingPoints(20)
+        descriptionField.setRightPaddingPoints(20)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -25,6 +32,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        descriptionField.isHidden = true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -47,6 +55,21 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Hurra!", message: "Bilden sparades på din telefon!", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func vegFoodAction(_ sender: UIButton) {
+        if vegFoodBool  == false {
+            vegFood.setImage(UIImage(named: "vegButton100.png"), for: .normal)
+            vegFoodBool = true
+        }else{
+            vegFood.setImage(UIImage(named: "vegButton100off.png"), for: .normal)
+            vegFoodBool = false
+        }
+    }
+    
+    @IBAction func commentClick(_ sender: UIButton) {
+        descriptionField.isHidden = false
+        descriptionField.becomeFirstResponder()
     }
     
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {
@@ -133,5 +156,18 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
             })
             uploadTask256.resume()
         }
+    }
+}
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
     }
 }
