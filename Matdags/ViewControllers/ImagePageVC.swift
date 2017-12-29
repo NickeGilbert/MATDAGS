@@ -70,10 +70,12 @@ class ImagePageVC: UIViewController {
     }
     
     func addFollower() {
-        let uid = Auth.auth().currentUser!.uid
         let db = Database.database()
-        let dbref = db.reference(withPath: "Users/\(uid)/Following")
-    let uref = db.reference(withPath: "Users/\(uid)")
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        
+         let dbref = db.reference(withPath: "Users/\(uid)/Following")
+   // let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
             let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
            /* count = +1
@@ -82,8 +84,8 @@ class ImagePageVC: UIViewController {
             }
             
             let counter = ["followingCounter" : "\(count)" ] as [String : Any]
-            uref.updateChildValues(counter)
-            dbref.updateChildValues(following)*/
+            uref.updateChildValues(counter)*/
+            dbref.updateChildValues(following)
         } else {
             print("\n userID not found when adding follower \n")
         }
