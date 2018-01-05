@@ -241,7 +241,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
 
     func downloadImages() {
         let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users").child("\(uid)")
+        let dbref = Database.database().reference(withPath: "Users").child("\(uid)/Posts")
         dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {

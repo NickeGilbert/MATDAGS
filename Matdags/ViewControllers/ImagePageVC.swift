@@ -75,16 +75,20 @@ class ImagePageVC: UIViewController {
         let alias = Auth.auth().currentUser!.displayName
         
          let dbref = db.reference(withPath: "Users/\(uid)/Following")
-   // let uref = db.reference(withPath: "Users/\(uid)")
+        let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
             let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
-           /* count = +1
+            
+            //GÖR NÄSTAN RÄTT
+            count = +1
             if (count > countFollowing) {
                 countFollowing = count
             }
             
-            let counter = ["followingCounter" : "\(count)" ] as [String : Any]
-            uref.updateChildValues(counter)*/
+            let counter = ["followingCounter" : count ] as [String : Int]
+            uref.updateChildValues(counter)
+            /////////////////////
+            
             dbref.updateChildValues(following)
         } else {
             print("\n userID not found when adding follower \n")
