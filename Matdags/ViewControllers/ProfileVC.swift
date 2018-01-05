@@ -41,6 +41,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         getPostInfo { (true) in
             self.profileCollectionFeed.reloadData()
         }
+        
         //Nedan är för att hämta antal följare och antal man följer
         //Tror dock det behövs jobbas på finns i AppDelegate
         //AppDelegate.instance().countFollow()
@@ -117,6 +118,16 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
         cell.myProfileImageCollection.image = nil
+        cell.vegiIcon.isHidden = true
+        
+        if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+            cell.vegiIcon.isHidden = true
+            print("AAJAAJAJJAJAJA")
+        }else{
+            cell.vegiIcon.isHidden = false
+            print("WHOHOHOOH")
+        }
+        
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myProfileImageCollection.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
@@ -134,6 +145,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     let appendPosts = Post()
                     appendPosts.pathToImage256 = post["pathToImage256"] as? String
                     appendPosts.postID = post["postID"] as? String
+                    appendPosts.vegi = post["vegetarian"] as? Bool
+                    print(post["vegetarian"])
                     self.posts.insert(appendPosts, at: 0)
                     completionHandler(true)
                 }
@@ -252,6 +265,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             if let tempSnapshot = snapshot.value as? [String : Any] {
                 let appendInfo = User()
                 appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
+                
                 if appendInfo.profileImageURL != ""  {
                     self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
                 } else {
@@ -278,7 +292,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
             })
     }
-    //Fungerar inte än!
+    
     func followersCount() {
         let ref = Database.database().reference()
         

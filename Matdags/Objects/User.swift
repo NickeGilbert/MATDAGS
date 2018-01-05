@@ -16,4 +16,5 @@ class User: NSObject {
     var date: String!
     var email: String!
     var uid: String!
+    var vegi : Bool?
 }

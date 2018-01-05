@@ -8,5 +8,7 @@ import UIKit
 class ProfileCell: UICollectionViewCell {
   
     @IBOutlet weak var myProfileImageCollection: UIImageView!
+    @IBOutlet weak var vegiIcon: UIImageView!
+    
  
 }
