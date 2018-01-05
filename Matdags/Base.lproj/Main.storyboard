@@ -1079,7 +1079,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beskrivning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFQ-ed-rU3">
-                                <rect key="frame" x="16" y="471" width="343" height="92"/>
+                                <rect key="frame" x="16" y="471" width="343" height="141"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1181,6 +1181,13 @@
                                     <outletCollection property="gestureRecognizers" destination="2ex-fQ-t2R" appends="YES" id="rWx-4u-hGE"/>
                                 </connections>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-hk-Pe4">
+                                <rect key="frame" x="324" y="46" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Nbc-NH-YpC"/>
+                                    <constraint firstAttribute="height" constant="35" id="xCH-9J-YSt"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1204,6 +1211,8 @@
                             <constraint firstItem="fnC-35-BMZ" firstAttribute="top" secondItem="Ym5-8W-WRJ" secondAttribute="bottom" constant="8" symbolic="YES" id="ovl-7g-gOo"/>
                             <constraint firstItem="yFD-xP-oGg" firstAttribute="leading" secondItem="K6Q-8d-FO2" secondAttribute="leading" id="pBv-1k-eq8"/>
                             <constraint firstItem="YFQ-ed-rU3" firstAttribute="top" secondItem="aHK-zH-6mw" secondAttribute="bottom" constant="8" symbolic="YES" id="su3-Z9-dKW"/>
+                            <constraint firstItem="kbd-fN-5ia" firstAttribute="trailing" secondItem="dVT-hk-Pe4" secondAttribute="trailing" constant="16" id="vwQ-qW-Wvn"/>
+                            <constraint firstItem="dVT-hk-Pe4" firstAttribute="top" secondItem="kbd-fN-5ia" secondAttribute="top" constant="2" id="zR3-dV-PqQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                     </view>
@@ -1213,6 +1222,7 @@
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
                         <outlet property="pointsLabel" destination="aHK-zH-6mw" id="W4a-r7-BJT"/>
                         <outlet property="usernameLabel" destination="fnC-35-BMZ" id="ECB-ff-OWa"/>
+                        <outlet property="vegiIcon" destination="dVT-hk-Pe4" id="pCz-dn-wo3"/>
                         <outletCollection property="starButtons" destination="5k9-at-ZR9" collectionClass="NSMutableArray" id="bqP-Pr-7oC"/>
                         <outletCollection property="starButtons" destination="noh-zZ-PvY" collectionClass="NSMutableArray" id="FhX-Qs-ija"/>
                         <outletCollection property="starButtons" destination="khE-OO-ToV" collectionClass="NSMutableArray" id="m2O-s4-t5M"/>
@@ -1224,7 +1234,7 @@
                 <swipeGestureRecognizer direction="right" id="fNl-2b-zWO"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2ex-fQ-t2R"/>
             </objects>
-            <point key="canvasLocation" x="3486" y="-1450"/>
+            <point key="canvasLocation" x="3485.5999999999999" y="-1450.4926108374384"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -1297,7 +1307,7 @@
                                                     <gestureRecognizers/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="mne-nP-YlF">
-                                                    <rect key="frame" x="2" y="2" width="15" height="15"/>
+                                                    <rect key="frame" x="103" y="2" width="15" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="3tY-EG-psE"/>
                                                         <constraint firstAttribute="width" constant="15" id="QXe-m4-U8X"/>
@@ -1309,7 +1319,7 @@
                                             <constraint firstAttribute="trailing" secondItem="DkF-U7-aiB" secondAttribute="trailing" id="1Fx-46-qdt"/>
                                             <constraint firstItem="DkF-U7-aiB" firstAttribute="leading" secondItem="LP8-Gh-a4K" secondAttribute="leading" id="8yf-hT-2AB"/>
                                             <constraint firstItem="DkF-U7-aiB" firstAttribute="top" secondItem="LP8-Gh-a4K" secondAttribute="top" id="T7R-zf-PtP"/>
-                                            <constraint firstItem="mne-nP-YlF" firstAttribute="leading" secondItem="LP8-Gh-a4K" secondAttribute="leading" constant="2" id="dma-IH-PJg"/>
+                                            <constraint firstAttribute="trailing" secondItem="mne-nP-YlF" secondAttribute="trailing" constant="2" id="Wti-Uf-tLd"/>
                                             <constraint firstItem="mne-nP-YlF" firstAttribute="top" secondItem="LP8-Gh-a4K" secondAttribute="top" constant="2" id="imc-Rq-zQ3"/>
                                             <constraint firstAttribute="bottom" secondItem="DkF-U7-aiB" secondAttribute="bottom" id="t16-84-Yhr"/>
                                         </constraints>
@@ -1386,7 +1396,7 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

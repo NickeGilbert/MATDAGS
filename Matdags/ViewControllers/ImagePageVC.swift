@@ -8,6 +8,7 @@ import Firebase
 
 class ImagePageVC: UIViewController {
 
+    @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var pointsLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -24,6 +25,7 @@ class ImagePageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        vegiIcon.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +57,7 @@ class ImagePageVC: UIViewController {
                 getInfo.userID = dictionary["userID"] as! String
                 getInfo.alias = dictionary["alias"] as! String
                 getInfo.imgdescription = dictionary["imgdescription"] as! String
+                getInfo.vegi = dictionary["vegetarian"] as? Bool
                 self.posts.append(getInfo)
                 print("\n \(self.posts[0].userID) \n")
                 completionHandler(true)
@@ -128,6 +131,12 @@ class ImagePageVC: UIViewController {
             descriptionLabel.text = self.posts[0].imgdescription
         } else {
             descriptionLabel.text = "Ingen beskrivning."
+        }
+        
+        if self.posts[0].vegi == nil || self.posts[0].vegi == false {
+            vegiIcon.isHidden = true
+        }else{
+            vegiIcon.isHidden = false
         }
     }
     

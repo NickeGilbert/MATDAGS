@@ -13,4 +13,5 @@ class Post: NSObject {
     var userID : String!
     var imgdescription : String!
     var alias : String!
+    var vegi : Bool?
 }
