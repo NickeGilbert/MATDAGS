@@ -1296,16 +1296,26 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="mne-nP-YlF">
+                                                    <rect key="frame" x="2" y="2" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="3tY-EG-psE"/>
+                                                        <constraint firstAttribute="width" constant="15" id="QXe-m4-U8X"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="DkF-U7-aiB" secondAttribute="trailing" id="1Fx-46-qdt"/>
                                             <constraint firstItem="DkF-U7-aiB" firstAttribute="leading" secondItem="LP8-Gh-a4K" secondAttribute="leading" id="8yf-hT-2AB"/>
                                             <constraint firstItem="DkF-U7-aiB" firstAttribute="top" secondItem="LP8-Gh-a4K" secondAttribute="top" id="T7R-zf-PtP"/>
+                                            <constraint firstItem="mne-nP-YlF" firstAttribute="leading" secondItem="LP8-Gh-a4K" secondAttribute="leading" constant="2" id="dma-IH-PJg"/>
+                                            <constraint firstItem="mne-nP-YlF" firstAttribute="top" secondItem="LP8-Gh-a4K" secondAttribute="top" constant="2" id="imc-Rq-zQ3"/>
                                             <constraint firstAttribute="bottom" secondItem="DkF-U7-aiB" secondAttribute="bottom" id="t16-84-Yhr"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="myImage" destination="DkF-U7-aiB" id="CjE-zg-nmP"/>
+                                            <outlet property="vegiIcon" destination="mne-nP-YlF" id="fzb-xP-lGi"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1351,7 +1361,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1677.5999999999999" y="-526.6866566716642"/>
+            <point key="canvasLocation" x="1677.5999999999999" y="-526.84729064039414"/>
         </scene>
     </scenes>
     <resources>
@@ -1373,6 +1383,7 @@
         <image name="searchButton" width="45" height="45"/>
         <image name="shareButton" width="150" height="150"/>
         <image name="vegButton100off" width="99" height="99"/>
+        <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lIt-D9-Es6"/>

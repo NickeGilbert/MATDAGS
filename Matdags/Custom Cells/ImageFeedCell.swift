@@ -8,5 +8,7 @@ import UIKit
 class ImageFeedCell: UICollectionViewCell {
     
     @IBOutlet weak var myImage: UIImageView!
+    @IBOutlet weak var vegiIcon: UIImageView!
+    
     
 }

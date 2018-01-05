@@ -26,6 +26,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
+        
     }
     
     @objc func loadData() {
@@ -97,6 +98,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
+        cell.vegiIcon.isHidden = true
         cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
