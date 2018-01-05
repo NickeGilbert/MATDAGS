@@ -15,18 +15,42 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var users = [User]()
     var seguePostID : String!
     var following = [String]()
+    var refresher : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppDelegate.instance().showActivityIndicator()
+//        AppDelegate.instance().showActivityIndicator()
+        
+        self.refresher = UIRefreshControl()
+        self.feedCollectionView!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.clear
+        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.feedCollectionView!.addSubview(refresher)
+    }
+    
+    @objc func loadData() {
+        posts.removeAll()
+        fetchPosts()
+        self.feedCollectionView.reloadData()
+        stopRefresher()
+    }
+    
+    func stopRefresher() {
+        self.refresher.endRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+//        posts.removeAll()
+//        self.following.removeAll()
         fetchPosts()
-        AppDelegate.instance().dismissActivityIndicator()
+//        loadData()
+//        AppDelegate.instance().dismissActivityIndicator()
     }
     
     func fetchPosts() {
+        self.posts.removeAll()
+        self.following.removeAll()
+        AppDelegate.instance().showActivityIndicator()
         let ref = Database.database().reference()
         
         ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
@@ -63,6 +87,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                         }
                                     }
                                     self.feedCollectionView.reloadData()
+                                    AppDelegate.instance().dismissActivityIndicator()
                                 }
                             }
                         })
@@ -70,6 +95,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 }
             }
         })
+        
         ref.removeAllObservers()
     }
     
@@ -103,33 +129,3 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         tabBarController?.selectedIndex = 2
     }
 }
-
-extension CALayer {
-    
-    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
-        
-        let border = CALayer()
-        
-        switch edge {
-        case UIRectEdge.top:
-            border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: thickness)
-            break
-        case UIRectEdge.bottom:
-            border.frame = CGRect.init(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
-            break
-        case UIRectEdge.left:
-            border.frame = CGRect.init(x: 0, y: 0, width: thickness, height: frame.height)
-            break
-        case UIRectEdge.right:
-            border.frame = CGRect.init(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
-            break
-        default:
-            break
-        }
-        
-        border.backgroundColor = color.cgColor;
-        
-        self.addSublayer(border)
-    }
-}
-
