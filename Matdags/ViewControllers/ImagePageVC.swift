@@ -18,8 +18,8 @@ class ImagePageVC: UIViewController {
     var seguePostID : String!
     var users = [User]()
     var starHighlited = 0
-    var count = 0
-    var countFollowing = 0
+    var count : Int = 0
+    var countFollower : Int = 0
     var posts = [Post]()
     
     override func viewDidLoad() {
@@ -29,6 +29,8 @@ class ImagePageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         downloadInfo { (true) in
+            let uid = Auth.auth().currentUser!.uid
+            let dbRef = Database.database().reference(withPath: "Users/\(uid)")
             if self.posts[0].userID != Auth.auth().currentUser!.uid {
                 self.followerButton.isHidden = false
             } else {
@@ -74,21 +76,14 @@ class ImagePageVC: UIViewController {
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
         
-         let dbref = db.reference(withPath: "Users/\(uid)/Following")
+        let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
             let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
             
-            //GÖR NÄSTAN RÄTT
-            count = +1
-            if (count > countFollowing) {
-                countFollowing = count
-            }
-            
+            count+=1
             let counter = ["followingCounter" : count ] as [String : Int]
             uref.updateChildValues(counter)
-            /////////////////////
-            
             dbref.updateChildValues(following)
         } else {
             print("\n userID not found when adding follower \n")
@@ -101,11 +96,14 @@ class ImagePageVC: UIViewController {
         let alias = Auth.auth().currentUser!.displayName
         let followerid = posts[0].userID
         let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
-        //let uref = db.reference(withPath: "Users/\(uid)")
+        let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-            //let counter = ["followerCounter" : "\(+1)" ] as [String : Any]
-            //uref.updateChildValues(counter)
+            
+            //DETTA GÖR RÄTT MEN LÄGGER SIG FEL! LÄGGER SIG UNDER MITT NAMN PÅ ANVÄNDARENS DATABAS
+            countFollower+=1
+            let counter = ["followerCounter" : countFollower ] as [String : Int]
+            dbref.updateChildValues(counter)
             dbref.updateChildValues(follower)
         } else {
             print("\n userID not found when getting follower \n")
