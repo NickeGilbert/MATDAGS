@@ -752,16 +752,26 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                                             <color key="backgroundColor" red="1" green="0.82842117370000001" blue="0.56450263810000001" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="5tz-uP-ggq">
+                                                            <rect key="frame" x="87" y="2" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="BH3-TT-cd6"/>
+                                                                <constraint firstAttribute="height" constant="15" id="P58-bF-J3P"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="0Zo-dB-kKU" secondAttribute="trailing" id="1g2-1Q-fPa"/>
+                                                    <constraint firstItem="5tz-uP-ggq" firstAttribute="top" secondItem="R62-iF-icl" secondAttribute="top" constant="2" id="25p-ZS-9er"/>
+                                                    <constraint firstAttribute="trailing" secondItem="5tz-uP-ggq" secondAttribute="trailing" constant="2" id="6ur-Wa-sRU"/>
                                                     <constraint firstItem="0Zo-dB-kKU" firstAttribute="leading" secondItem="R62-iF-icl" secondAttribute="leading" id="Ngs-yn-bUg"/>
                                                     <constraint firstItem="0Zo-dB-kKU" firstAttribute="top" secondItem="R62-iF-icl" secondAttribute="top" id="gek-aM-hRM"/>
                                                     <constraint firstAttribute="bottom" secondItem="0Zo-dB-kKU" secondAttribute="bottom" id="yY3-TA-CFp"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="myProfileImageCollection" destination="0Zo-dB-kKU" id="zdC-GM-xrO"/>
+                                                    <outlet property="vegiIcon" destination="5tz-uP-ggq" id="Tbd-zA-v9X"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -876,7 +886,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1677" y="995"/>
+            <point key="canvasLocation" x="1676" y="994.58128078817742"/>
         </scene>
         <!--ImagePreviewVC-->
         <scene sceneID="ard-oB-FFI">
@@ -1396,7 +1406,7 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

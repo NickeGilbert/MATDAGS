@@ -99,7 +99,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
         let postIdExtra = ["postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
         database.child("\(key)").updateChildValues(["vegetarian" : vegFoodBool])
+        
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
+        usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(["vegetarian" : vegFoodBool])
         
         //Bild i full storlek
         if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
