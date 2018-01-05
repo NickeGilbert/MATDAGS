@@ -15,6 +15,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var posts = [Post]()
     var refresher : UIRefreshControl!
+    var isVegi : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
+        
     }
     
     @objc func loadData() {
@@ -59,6 +61,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     let appendPost = Post()
                     appendPost.pathToImage256 = post["pathToImage256"] as? String
                     appendPost.postID = post["postID"] as? String
+                    appendPost.vegi = post["vegetarian"] as? Bool
                     self.posts.insert(appendPost, at: 0)
                 }
             }
@@ -97,6 +100,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
+        cell.vegiIcon.isHidden = true
+        
+        if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
+            cell.vegiIcon.isHidden = true
+        }else{
+            cell.vegiIcon.isHidden = false
+        }
+        
         cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
