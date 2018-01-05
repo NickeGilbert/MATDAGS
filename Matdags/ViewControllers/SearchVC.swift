@@ -35,7 +35,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        searchUsersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+      //  searchUsersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         searchUsersTableView.tableHeaderView = searchController.searchBar
     }
     
@@ -150,9 +150,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             //Här kan vi bestämma default bild för subviewn
             self.subviewProfileImage.image = nil
-            //print("\n No profileImageURL found for \(tempUser.alias!) \n")
             
-            /*
             if (FBSDKAccessToken.current() != nil) {
                 self.subviewProfileImage.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
             }else {
@@ -160,7 +158,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
                 print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
             }
-            */
         }
         if self.tempUser.uid != Auth.auth().currentUser!.uid {
             self.subviewFollowButton.isHidden = false
@@ -185,6 +182,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     appendUser.profileImageURL = each["profileImageURL"] as? String
                     print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
                     self.users.append(appendUser)
+                    self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -200,8 +198,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         filteredUsers = self.users.filter { user in
         return(user.alias.lowercased() == searchText.lowercased())
         }
-        //self.searchUsersTableView.reloadData()
     }
+    
+    ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          return self.users.count
