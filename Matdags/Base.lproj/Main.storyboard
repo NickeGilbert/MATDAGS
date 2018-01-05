@@ -1365,8 +1365,7 @@
         <image name="vegButton100off" width="99" height="99"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABk-Rw-W6d"/>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="l1h-Lg-NhA"/>
     </inferredMetricsTieBreakers>
