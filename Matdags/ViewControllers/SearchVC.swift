@@ -26,7 +26,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var users = [User]()
     var search = [SearchCell]()
     var filteredUsers = [User]()
-    var tempUser = User()
+    var username = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +115,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let userInfo = users[indexPath.row]
+       // let userInfo = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         
@@ -123,25 +123,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         
-        } else if (FBSDKAccessToken.current() != nil) {
-            cell.pictureOutlet.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-        }else {
+        } else {
             print("Do nothing")
             //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
-            //print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         downloadImages()
-        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
-        tempUser = self.users[indexPath.row]
+        var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        username = self.users[indexPath.row]
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
         let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
-        if tempUser.profileImageURL != "" {
+        if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
             //Här kan vi bestämma default bild för subviewn
@@ -155,13 +152,14 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
             }
         }
-        if self.tempUser.uid != Auth.auth().currentUser!.uid {
+        //Verkar inte göra något än!
+        if self.username.uid != Auth.auth().currentUser!.uid {
             self.subviewFollowButton.isHidden = false
         } else {
             self.subviewFollowButton.isHidden = true
         }
-        subviewCell.userID = tempUser.uid
-        subviewCell.alias = tempUser.alias
+        subviewCell.userID = username.uid
+        subviewCell.alias = username.alias
     }
     
     func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -220,7 +218,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width/4.0, height: self.view.frame.width/4.0)
+        let size = CGSize(width: self.view.frame.width/3.7, height: self.view.frame.width/4.0)
         return size
     }
     
