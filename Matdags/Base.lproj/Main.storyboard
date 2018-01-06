@@ -534,7 +534,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0R-Jk-APq">
-                                                    <rect key="frame" x="210" y="325" width="150" height="30"/>
+                                                    <rect key="frame" x="210" y="315" width="150" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="Bxu-cL-e8I"/>
                                                         <constraint firstAttribute="height" constant="30" id="piv-La-naC"/>
@@ -544,7 +544,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEi-u7-Xpj">
-                                                    <rect key="frame" x="10" y="325" width="150" height="30"/>
+                                                    <rect key="frame" x="10" y="315" width="150" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -598,7 +598,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a0b-Qj-CIY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="315"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="305"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -609,7 +609,7 @@
                                             <constraint firstItem="a0b-Qj-CIY" firstAttribute="leading" secondItem="FLe-CQ-fiB" secondAttribute="leading" id="PRZ-Dg-phi"/>
                                             <constraint firstAttribute="trailing" secondItem="S0k-8a-byF" secondAttribute="trailing" id="Y3D-Ze-qyD"/>
                                             <constraint firstItem="S0k-8a-byF" firstAttribute="leading" secondItem="FLe-CQ-fiB" secondAttribute="leading" id="ZI1-Dn-WQG"/>
-                                            <constraint firstItem="S0k-8a-byF" firstAttribute="bottom" secondItem="h0R-Jk-APq" secondAttribute="bottom" constant="15" id="akb-la-qwT"/>
+                                            <constraint firstItem="S0k-8a-byF" firstAttribute="bottom" secondItem="h0R-Jk-APq" secondAttribute="bottom" constant="25" id="akb-la-qwT"/>
                                             <constraint firstItem="EEi-u7-Xpj" firstAttribute="leading" secondItem="FLe-CQ-fiB" secondAttribute="leading" constant="10" id="cgY-hm-aed"/>
                                             <constraint firstAttribute="trailing" secondItem="a0b-Qj-CIY" secondAttribute="trailing" id="eIY-gT-QNF"/>
                                             <constraint firstAttribute="trailing" secondItem="h0R-Jk-APq" secondAttribute="trailing" constant="10" id="gXQ-9z-uhq"/>
@@ -1107,13 +1107,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFD-xP-oGg">
-                                <rect key="frame" x="16" y="20" width="35" height="35"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40495708626760563" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="16" y="20" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="IZx-Dy-Zgb"/>
-                                    <constraint firstAttribute="width" constant="35" id="fVs-Fe-jSx"/>
+                                    <constraint firstAttribute="height" constant="40" id="IZx-Dy-Zgb"/>
+                                    <constraint firstAttribute="width" constant="40" id="fVs-Fe-jSx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="X">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>

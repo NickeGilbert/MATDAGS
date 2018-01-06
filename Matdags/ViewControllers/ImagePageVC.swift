@@ -106,7 +106,7 @@ class ImagePageVC: UIViewController {
             //DETTA GÖR RÄTT MEN LÄGGER SIG FEL! LÄGGER SIG UNDER MITT NAMN PÅ ANVÄNDARENS DATABAS
             countFollower+=1
             let counter = ["followerCounter" : countFollower ] as [String : Int]
-            dbref.updateChildValues(counter)
+            uref.updateChildValues(counter)
             dbref.updateChildValues(follower)
         } else {
             print("\n userID not found when getting follower \n")
