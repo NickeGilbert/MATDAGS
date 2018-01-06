@@ -125,7 +125,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         
         } else {
             print("Do nothing")
-            //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
         }
         return cell
     }
@@ -141,16 +140,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
-            //Här kan vi bestämma default bild för subviewn
             self.subviewProfileImage.image = nil
-            
-            if (FBSDKAccessToken.current() != nil) {
-                self.subviewProfileImage.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-            }else {
-                print("Do nothing")
-                //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
-                print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
-            }
         }
         //Verkar inte göra något än!
         if self.username.uid != Auth.auth().currentUser!.uid {
