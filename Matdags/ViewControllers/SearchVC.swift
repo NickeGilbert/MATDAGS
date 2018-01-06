@@ -103,15 +103,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterContent(searchText: self.searchController.searchBar.text!)
+        filterContent(searchText: searchController.searchBar.text!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-        return filteredUsers.count
-        } else {
-        return self.users.count
-        }
+        return searchController.isActive ? filteredUsers.count : users.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,10 +117,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userInfo = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        cell.usernameLabel.text = userInfo.alias
+        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        
+        cell.usernameLabel.text = username.alias //FÖR FUNGERANDE SÖK TA BORT userInfo.alias och skriv username.alias
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
-            
+        
         } else if (FBSDKAccessToken.current() != nil) {
             cell.pictureOutlet.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
         }else {
@@ -132,18 +130,16 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
             //print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
         }
-        if searchController.isActive && searchController.searchBar.text != "" {
-            tempUser = filteredUsers[indexPath.row]
-        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         downloadImages()
+        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         tempUser = self.users[indexPath.row]
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
-        self.subviewUsername.text = tempUser.alias
+        self.subviewUsername.text = username.alias
         let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
         if tempUser.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
@@ -197,9 +193,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func filterContent(searchText:String) {
-        filteredUsers = self.users.filter { user in
-        return(user.alias.lowercased() == searchText.lowercased())
+        let searchText = self.searchController.searchBar.text ?? ""
+        filteredUsers = self.users.filter{ user in
+            
+            let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().characters.count == 0
+            return username
         }
+        searchUsersTableView.reloadData()
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
