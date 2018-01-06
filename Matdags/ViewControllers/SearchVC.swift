@@ -115,7 +115,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let userInfo = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
@@ -136,10 +135,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         downloadImages()
+        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         tempUser = self.users[indexPath.row]
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
-        self.subviewUsername.text = tempUser.alias
+        self.subviewUsername.text = username.alias
         let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
         if tempUser.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
