@@ -85,6 +85,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 })
                 print("\n INLOGGAD MED FACEBOOK \n ")
                 AppDelegate.instance().dismissActivityIndicator()
+                
             }
         }
     }
