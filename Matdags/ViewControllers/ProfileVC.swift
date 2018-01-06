@@ -41,74 +41,26 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         getPostInfo { (true) in
             self.profileCollectionFeed.reloadData()
         }
+        profileSettingsButtonOutlet.isHidden = true;
+        profileNameLabel.text = ""
         
-        //Nedan är för att hämta antal följare och antal man följer
-        //Tror dock det behövs jobbas på finns i AppDelegate
-        //AppDelegate.instance().countFollow()
-        
-        if (fromSearch == true) {
-            profileNameLabel.text = user.alias
-        } else {
-            if (FBSDKAccessToken.current() != nil) {
-                profileSettingsButtonOutlet.isHidden = true;
-                profileNameLabel.text = ""
-                
-                if FBSDKAccessToken.current() != nil {
-                    fetchProfile()
-                }
-                let url = URL(string: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-                let task = URLSession.shared.dataTask(with: url!) { (data, response, error ) in
-                    if error != nil {
-                        print(error!)
-                        return
-                    } else {
-                        var documentsDirectory:String?
-                        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory , .userDomainMask, true)
-                        if paths.count > 0 {
-                            documentsDirectory = paths[0]
-                            let savePath = documentsDirectory! + "/.jpg"
-                            FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
-                            DispatchQueue.main.async {
-                                self.profilePictureOutlet.image = UIImage(named: savePath)
-                            }
-                        }
-                        self.ref = Database.database().reference()
-                        let userID = Auth.auth().currentUser?.uid
-                        self.ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                            let value = snapshot.value as! NSDictionary
-                            let followingCounter = value["followingCounter"] as? Int ?? 0
-                            let followerCounter = value["followerCounter"] as? Int ?? 0
-                            
-                            self.following.text = String(followingCounter)
-                            self.followers.text = String(followerCounter)
-                        }) { (error) in
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
-                task.resume()
-            } else {
-                profileSettingsButtonOutlet.isHidden = false
-                ref = Database.database().reference()
-                let userID = Auth.auth().currentUser?.uid
-                ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                    let value = snapshot.value as! NSDictionary
-                    let username = value["alias"] as? String ?? ""
-
-                    let followingCounter = value["followingCounter"] as? Int ?? 0
-                    let followerCounter = value["followerCounter"] as? Int ?? 0
-                    
-                    self.following.text = String(followingCounter)
-                    self.followers.text = String(followerCounter)
-                    self.profileNameLabel.text = username
-                }) { (error) in
-                    print(error.localizedDescription)
-                }
-                if(FBSDKAccessToken.current() == nil) {
-                    profileNameLabel.text = user.alias
-                }
-            }
+        profileSettingsButtonOutlet.isHidden = false
+        ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! NSDictionary
+            let username = value["alias"] as? String ?? ""
+            
+            let followingCounter = value["followingCounter"] as? Int ?? 0
+            let followerCounter = value["followerCounter"] as? Int ?? 0
+            
+            self.following.text = String(followingCounter)
+            self.followers.text = String(followerCounter)
+            self.profileNameLabel.text = username
+        }) { (error) in
+            print(error.localizedDescription)
         }
+        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
