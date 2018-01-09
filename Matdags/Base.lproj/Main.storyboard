@@ -1290,18 +1290,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-Us-nTd">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-Us-nTd">
                                                             <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="1" green="0.56010565167104565" blue="0.42005459519514621" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="oUJ-Us-nTd" secondAttribute="trailing" id="0kr-FZ-cDc"/>
-                                                    <constraint firstItem="oUJ-Us-nTd" firstAttribute="top" secondItem="iPj-xv-p3H" secondAttribute="top" id="We3-4X-ViC"/>
-                                                    <constraint firstItem="oUJ-Us-nTd" firstAttribute="leading" secondItem="iPj-xv-p3H" secondAttribute="leading" id="qCx-28-Xra"/>
-                                                    <constraint firstAttribute="bottom" secondItem="oUJ-Us-nTd" secondAttribute="bottom" id="y3R-uq-HTq"/>
-                                                </constraints>
                                                 <connections>
                                                     <outlet property="mySubviewCollectionFeed" destination="oUJ-Us-nTd" id="0cw-VA-YZp"/>
                                                 </connections>

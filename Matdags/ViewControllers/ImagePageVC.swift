@@ -42,7 +42,7 @@ class ImagePageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       getUserInfo()
+        getUserInfo()
         downloadInfo { (true) in
             let uid = Auth.auth().currentUser!.uid
             let dbRef = Database.database().reference(withPath: "Users/\(uid)")
@@ -199,28 +199,14 @@ class ImagePageVC: UIViewController {
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
         self.subviewUsername.text = self.posts[0].alias
+        downloadImages()
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
-    
-    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        let uid = Auth.auth().currentUser!.uid
-        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
-        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPosts = Post()
-                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
-                    appendPosts.postID = post["postID"] as? String
-                    self.posts.insert(appendPosts, at: 0)
-                    completionHandler(true)
-                }
-            }
-        })
-    }
-    //Osäker på om jag ska ha functionen ovan eller denna!
+
     func downloadImages() {
         posts.removeAll()
-        let dbref = Database.database().reference(withPath: "Posts")
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
         dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {

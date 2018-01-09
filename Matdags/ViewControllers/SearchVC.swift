@@ -30,6 +30,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        downloadImages()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
         searchController.searchResultsUpdater = self
@@ -207,6 +208,24 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     completionHandler(true)
                 }
             }
+        })
+    }
+    
+    func downloadImages() {
+        posts.removeAll()
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPost = Post()
+                    appendPost.pathToImage256 = post["pathToImage256"] as? String
+                    appendPost.postID = post["postID"] as? String
+                    appendPost.vegi = post["vegetarian"] as? Bool
+                    self.posts.insert(appendPost, at: 0)
+                }
+            }
+            self.subviewCollectionFeed.reloadData()
         })
     }
     
