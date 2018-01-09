@@ -22,6 +22,8 @@ class ImagePageVC: UIViewController {
     @IBOutlet weak var subviewProfileImage: UIImageView!
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
+    
+    let dispatchGroup = DispatchGroup()
    
     var seguePostID : String!
     var users = [User]()
@@ -40,6 +42,7 @@ class ImagePageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       getUserInfo()
         downloadInfo { (true) in
             let uid = Auth.auth().currentUser!.uid
             let dbRef = Database.database().reference(withPath: "Users/\(uid)")
@@ -58,6 +61,25 @@ class ImagePageVC: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    func getUserInfo() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let tempSnapshot = snapshot.value as? [String : Any] {
+                let appendInfo = User()
+                appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
+                
+                if appendInfo.profileImageURL != ""  {
+                    self.subviewProfileImage.downloadImage(from: appendInfo.profileImageURL )
+                } else {
+                    print("\n profileImageURL not found \n")
+                    return
+                }
+            }
+        })
+    }
+    
     
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
@@ -176,12 +198,29 @@ class ImagePageVC: UIViewController {
     @IBAction func clickedOnUsername(_ sender: Any) {
         subviewBackground.isHidden = false
         subview.isHidden = false
-        self.subviewUsername.text = usernameLabel.text
+        self.subviewFollowButton.isHidden = false
+        self.subviewUsername.text = self.posts[0].alias
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
     
+    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPosts = Post()
+                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
+                    appendPosts.postID = post["postID"] as? String
+                    self.posts.insert(appendPosts, at: 0)
+                    completionHandler(true)
+                }
+            }
+        })
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.users.count
+        return self.posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -200,6 +239,7 @@ class ImagePageVC: UIViewController {
         return size
     }
     
+    //INTE GJORT SEGUE ÄN! SKA DETTA VERKLIGEN GÖRAS? :Oss
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSegSubSearch", sender: indexPath)
     }
@@ -214,22 +254,6 @@ class ImagePageVC: UIViewController {
         } else {
             print("\n Segue with identifier (imagePage) not found. \n")
         }
-    }
-    
-    func downloadImages() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users").child("\(uid)/Posts")
-        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPost = Post()
-                    appendPost.pathToImage256 = post["pathToImage256"] as? String
-                    appendPost.postID = post["postID"] as? String
-                    self.posts.insert(appendPost, at: 0)
-                }
-            }
-            self.subviewCollectionFeed.reloadData()
-        })
     }
     
     @IBAction func closeSubview(_ sender: Any) {

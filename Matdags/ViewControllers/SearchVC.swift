@@ -211,7 +211,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return self.users.count
+         return self.posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -246,6 +246,4 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             print("\n Segue with identifier (imagePage) not found. \n")
         }
     }
-
-   
 }
