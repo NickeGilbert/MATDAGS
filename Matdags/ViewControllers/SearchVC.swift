@@ -130,7 +130,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        downloadImages()
+        getPostInfo { (true) in
+            self.searchUsersTableView.reloadData()
+        }
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         username = self.users[indexPath.row]
         self.subview.isHidden = false
@@ -192,6 +194,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
+    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPosts = Post()
+                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
+                    appendPosts.postID = post["postID"] as? String
+                    self.posts.insert(appendPosts, at: 0)
+                    completionHandler(true)
+                }
+            }
+        })
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          return self.users.count
     }
@@ -199,6 +217,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
         cell.mySubviewCollectionFeed.image = nil
+        //FÖR ATT VISA BILDERNA MÅSTE DETTA FIXAS, DEN DÖR BARA JUST NU!
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
@@ -228,19 +247,5 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
     }
 
-    func downloadImages() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users").child("\(uid)/Posts")
-        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPost = Post()
-                    appendPost.pathToImage256 = post["pathToImage256"] as? String
-                    appendPost.postID = post["postID"] as? String
-                    self.posts.insert(appendPost, at: 0)
-                }
-            }
-            self.subviewCollectionFeed.reloadData()
-        })
-    }
+   
 }
