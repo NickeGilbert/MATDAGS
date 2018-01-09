@@ -430,12 +430,15 @@
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJ2-bH-b6i">
-                                        <rect key="frame" x="14" y="18" width="83" height="30"/>
+                                        <rect key="frame" x="5" y="18" width="83" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="boB-NH-Fa8"/>
                                             <constraint firstAttribute="width" constant="83" id="wso-bL-01u"/>
                                         </constraints>
-                                        <state key="normal" title="Stäng"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="closeSubview:" destination="daa-NH-ElQ" eventType="touchUpInside" id="jHq-tU-vfc"/>
                                             <action selector="closeSubview:" destination="hJz-AY-mR2" eventType="touchUpInside" id="t7N-oL-i4i"/>
@@ -449,7 +452,7 @@
                                     <constraint firstItem="jtj-HS-waf" firstAttribute="leading" secondItem="70I-FE-HkF" secondAttribute="leading" constant="14" id="Ies-Mh-fJs"/>
                                     <constraint firstItem="LVP-FS-hsQ" firstAttribute="leading" secondItem="jtj-HS-waf" secondAttribute="trailing" constant="17" id="Kc5-Od-2Po"/>
                                     <constraint firstItem="LVP-FS-hsQ" firstAttribute="top" secondItem="70I-FE-HkF" secondAttribute="top" constant="56" id="PVT-wh-tEO"/>
-                                    <constraint firstItem="MJ2-bH-b6i" firstAttribute="leading" secondItem="70I-FE-HkF" secondAttribute="leading" constant="14" id="Pgd-bs-8rU"/>
+                                    <constraint firstItem="MJ2-bH-b6i" firstAttribute="leading" secondItem="70I-FE-HkF" secondAttribute="leading" constant="5" id="Pgd-bs-8rU"/>
                                     <constraint firstItem="70I-FE-HkF" firstAttribute="trailing" secondItem="Il3-Eq-ogL" secondAttribute="trailing" constant="8" id="WcN-Sq-0oT"/>
                                     <constraint firstItem="9GM-4R-t9x" firstAttribute="bottom" secondItem="70I-FE-HkF" secondAttribute="bottom" id="bOd-F0-DQ4"/>
                                     <constraint firstItem="Il3-Eq-ogL" firstAttribute="top" secondItem="LVP-FS-hsQ" secondAttribute="bottom" constant="7" id="gu1-5S-Kx5"/>
@@ -1259,7 +1262,10 @@
                                             <constraint firstAttribute="height" constant="30" id="A7T-h7-i6r"/>
                                             <constraint firstAttribute="width" constant="83" id="Gpt-YO-JGJ"/>
                                         </constraints>
-                                        <state key="normal" title="Stäng"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <connections>
                                             <action selector="closeSubview:" destination="hJz-AY-mR2" eventType="touchUpInside" id="OwW-2E-cuL"/>
                                             <action selector="closeSubview:" destination="As2-HR-siM" eventType="touchUpInside" id="zJj-xO-beB"/>

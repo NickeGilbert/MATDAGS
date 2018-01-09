@@ -135,7 +135,6 @@ class ImagePageVC: UIViewController {
         if self.posts[0].userID != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
             
-            //DETTA GÖR RÄTT MEN LÄGGER SIG FEL! LÄGGER SIG UNDER MITT NAMN PÅ ANVÄNDARENS DATABAS
             countFollower+=1
             let counter = ["followerCounter" : countFollower ] as [String : Int]
             uref.updateChildValues(counter)
@@ -218,7 +217,24 @@ class ImagePageVC: UIViewController {
             }
         })
     }
-    
+    //Osäker på om jag ska ha functionen ovan eller denna!
+    func downloadImages() {
+        posts.removeAll()
+        let dbref = Database.database().reference(withPath: "Posts")
+        dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPost = Post()
+                    appendPost.pathToImage256 = post["pathToImage256"] as? String
+                    appendPost.postID = post["postID"] as? String
+                    appendPost.vegi = post["vegetarian"] as? Bool
+                    self.posts.insert(appendPost, at: 0)
+                }
+            }
+            self.subviewCollectionFeed.reloadData()
+        })
+    }
+  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.posts.count
     }
@@ -255,6 +271,8 @@ class ImagePageVC: UIViewController {
             print("\n Segue with identifier (imagePage) not found. \n")
         }
     }
+    ///////////
+    
     
     @IBAction func closeSubview(_ sender: Any) {
         subviewBackground.isHidden = true
