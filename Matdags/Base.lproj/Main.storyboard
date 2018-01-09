@@ -22,6 +22,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakgrund1" translatesAutoresizingMaskIntoConstraints="NO" id="IHA-Hh-mX0" userLabel="loginBackgroundImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="709"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylk-cS-VPh">
                                 <rect key="frame" x="215" y="245" width="100" height="40"/>
@@ -1540,8 +1541,9 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ABk-Rw-W6d"/>
         <segue reference="nf1-k1-DaM"/>
-        <segue reference="qav-lz-AQ2"/>
+        <segue reference="Pq7-cy-tEF"/>
         <segue reference="l1h-Lg-NhA"/>
     </inferredMetricsTieBreakers>
 </document>

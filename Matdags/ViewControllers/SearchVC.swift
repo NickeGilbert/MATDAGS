@@ -36,7 +36,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-      //  searchUsersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         searchUsersTableView.tableHeaderView = searchController.searchBar
     }
     
@@ -120,7 +119,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         
-        cell.usernameLabel.text = username.alias //FÖR FUNGERANDE SÖK TA BORT userInfo.alias och skriv username.alias
+        cell.usernameLabel.text = username.alias
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         
@@ -131,9 +130,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        getPostInfo { (true) in
-            self.searchUsersTableView.reloadData()
-        }
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         username = self.users[indexPath.row]
         self.subview.isHidden = false
@@ -194,22 +190,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
-    
-    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        let uid = Auth.auth().currentUser!.uid
-        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
-        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPosts = Post()
-                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
-                    appendPosts.postID = post["postID"] as? String
-                    self.posts.insert(appendPosts, at: 0)
-                    completionHandler(true)
-                }
-            }
-        })
-    }
     
     func downloadImages() {
         posts.removeAll()
