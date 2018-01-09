@@ -16,6 +16,13 @@ class ImagePageVC: UIViewController {
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
     
+    @IBOutlet weak var subviewBackground: UIView!
+    @IBOutlet weak var subview: UIView!
+    @IBOutlet weak var subviewUsername: UILabel!
+    @IBOutlet weak var subviewProfileImage: UIImageView!
+    @IBOutlet weak var subviewCollectionFeed: UICollectionView!
+    @IBOutlet weak var subviewFollowButton: UIButton!
+   
     var seguePostID : String!
     var users = [User]()
     var starHighlited = 0
@@ -26,6 +33,9 @@ class ImagePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         vegiIcon.isHidden = true
+        
+        subviewBackground.isHidden = true
+        subview.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,4 +172,69 @@ class ImagePageVC: UIViewController {
             dbRef.updateChildValues(feed)
         }
     }
+    
+    @IBAction func clickedOnUsername(_ sender: Any) {
+        subviewBackground.isHidden = false
+        subview.isHidden = false
+        self.subviewUsername.text = usernameLabel.text
+    }
+    ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.users.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
+        cell.mySubviewCollectionFeed.image = nil
+        if self.posts[indexPath.row].pathToImage256 != nil {
+            cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
+        } else {
+            //print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: self.view.frame.width/3.7, height: self.view.frame.width/4.0)
+        return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "imagePageSegSubSearch", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "imagePageSegSubSearch")
+        {
+            let selectedCell = sender as! NSIndexPath
+            let selectedRow = selectedCell.row
+            let imagePage = segue.destination as! ImagePageVC
+            imagePage.seguePostID = self.posts[selectedRow].postID
+        } else {
+            print("\n Segue with identifier (imagePage) not found. \n")
+        }
+    }
+    
+    func downloadImages() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users").child("\(uid)/Posts")
+        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPost = Post()
+                    appendPost.pathToImage256 = post["pathToImage256"] as? String
+                    appendPost.postID = post["postID"] as? String
+                    self.posts.insert(appendPost, at: 0)
+                }
+            }
+            self.subviewCollectionFeed.reloadData()
+        })
+    }
+    
+    @IBAction func closeSubview(_ sender: Any) {
+        subviewBackground.isHidden = true
+        subview.isHidden = true
+    }
+    
 }
