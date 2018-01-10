@@ -98,7 +98,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     appendPosts.pathToImage256 = post["pathToImage256"] as? String
                     appendPosts.postID = post["postID"] as? String
                     appendPosts.vegi = post["vegetarian"] as? Bool
-                    print(post["vegetarian"])
+                    
                     self.posts.insert(appendPosts, at: 0)
                     completionHandler(true)
                 }

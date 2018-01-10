@@ -26,6 +26,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let width = UIScreen.main.bounds.width
+        
+
     }
     
     @objc func loadData() {
@@ -74,6 +79,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                     for each in self.following {
                                         if each == userID {
                                             let posst = Post()
+                                            posst.vegi = post["vegetarian"] as? Bool
                                             if let alias = post["alias"] as? String, let rating = post["rating"] as? Int, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
                                                 
                                                 posst.alias = alias
@@ -114,11 +120,24 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.imageFeedView.image = nil
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
+//        cell.layer.borderColor = UIColor.lightGray.cgColor
+//        cell.layer.borderWidth = 1
+        cell.backgroundColor = UIColor.white
+        cell.dropShadow()
+        
+        cell.vegiIcon.isHidden = true
+        
+        if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+            cell.vegiIcon.isHidden = true
+        }else{
+            cell.vegiIcon.isHidden = false
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let storleken = CGSize(width: self.view.frame.width, height: self.view.frame.width + 100)
+        let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 100)
         return storleken
     }
     
@@ -127,5 +146,34 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     @IBAction func swipeLeft(_ sender: Any) {
         tabBarController?.selectedIndex = 2
+    }
+}
+
+extension UIView {
+    
+    // OUTPUT 1
+    func dropShadow(scale: Bool = true) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.layer.shadowRadius = 1
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    // OUTPUT 2
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offSet
+        self.layer.shadowRadius = radius
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }

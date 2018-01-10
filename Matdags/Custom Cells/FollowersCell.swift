@@ -12,6 +12,8 @@ class FollowersCell: UICollectionViewCell {
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var imageFeedView: UIImageView!    
     @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var vegiIcon: UIImageView!
+    
     
     var starHighlited = 0
     var posts = [Post]()
