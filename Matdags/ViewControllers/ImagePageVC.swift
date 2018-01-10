@@ -35,7 +35,6 @@ class ImagePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         vegiIcon.isHidden = true
-        
         subviewBackground.isHidden = true
         subview.isHidden = true
     }
@@ -71,7 +70,7 @@ class ImagePageVC: UIViewController {
                 appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
                 
                 if appendInfo.profileImageURL != ""  {
-                    self.subviewProfileImage.downloadImage(from: appendInfo.profileImageURL )
+                    self.subviewProfileImage.downloadImage(from: appendInfo.profileImageURL)
                 } else {
                     print("\n profileImageURL not found \n")
                     return
@@ -236,7 +235,7 @@ class ImagePageVC: UIViewController {
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
-            //print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         return cell
     }
@@ -246,7 +245,7 @@ class ImagePageVC: UIViewController {
         return size
     }
     
-    //INTE GJORT SEGUE ÄN! SKA DETTA VERKLIGEN GÖRAS? :Oss
+    //INTE GJORT SEGUE ÄN!
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSegSubSearch", sender: indexPath)
     }
