@@ -216,11 +216,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
         cell.mySubviewCollectionFeed.image = nil
-        //FÖR ATT VISA BILDERNA MÅSTE DETTA FIXAS, DEN DÖR BARA JUST NU!
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
-            //print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         return cell
     }

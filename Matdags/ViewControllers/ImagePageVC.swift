@@ -110,7 +110,6 @@ class ImagePageVC: UIViewController {
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
-        
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
