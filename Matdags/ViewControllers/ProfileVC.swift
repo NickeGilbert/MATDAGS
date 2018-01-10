@@ -74,10 +74,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
             cell.vegiIcon.isHidden = true
-            print("AAJAAJAJJAJAJA")
         }else{
             cell.vegiIcon.isHidden = false
-            print("WHOHOHOOH")
         }
         
         if self.posts[indexPath.row].pathToImage256 != nil {

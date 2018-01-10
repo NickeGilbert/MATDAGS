@@ -12,8 +12,10 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var vegFood: UIButton!
+    @IBOutlet weak var commentBtn: UIButton!
     
     var vegFoodBool : Bool = false
+    var commentBool : Bool = false
     var hiddenTextfield = true
     
     var image: UIImage!
@@ -33,6 +35,24 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         descriptionField.isHidden = true
+        if descriptionField.text == "" {
+            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
+        }else{
+            
+        }
+        
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        descriptionField.isHidden = true
+        if descriptionField.text == "" {
+            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
+        }else{
+            
+        }
+            return true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -68,6 +88,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func commentClick(_ sender: UIButton) {
+        commentBtn.setImage(UIImage(named: "commentButton50orange"), for: .normal)
         descriptionField.isHidden = false
         descriptionField.becomeFirstResponder()
     }
@@ -162,6 +183,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     }
 }
 
+
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
@@ -174,3 +196,4 @@ extension UITextField {
         self.rightViewMode = .always
     }
 }
+
