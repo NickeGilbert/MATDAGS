@@ -201,6 +201,12 @@ class ImagePageVC: UIViewController {
         downloadImages()
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
+    
+    
+    @IBAction func subviewFollowBtn(_ sender: Any) {
+        getFollower()
+        addFollower()
+    }
 
     func downloadImages() {
         posts.removeAll()
