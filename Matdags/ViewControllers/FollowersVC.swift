@@ -104,8 +104,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.posts.removeAll() //Bilderna ska cachas istället!!! Fungerar inte
-        self.following.removeAll() // Är detta rätt sätt att göra? 
+        self.posts.removeAll()
+        self.following.removeAll()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

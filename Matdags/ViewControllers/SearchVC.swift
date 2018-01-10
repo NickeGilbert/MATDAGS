@@ -27,15 +27,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var search = [SearchCell]()
     var filteredUsers = [User]()
     var username = User()
+    var count : Int = 0
+    var countFollower : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        downloadImages()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-      //  searchUsersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         searchUsersTableView.tableHeaderView = searchController.searchBar
     }
     
@@ -69,16 +71,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func addFollower() {
         //ToDo: Fungerande counter
-        let uid = Auth.auth().currentUser!.uid
         let db = Database.database()
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
-        //let uref = db.reference(withPath: "Users/\(uid)")
-        let followingUID = subviewCell.userID
-        let followingAlias = subviewCell.alias
-        if subviewCell.userID != nil {
-            let following = ["\(followingAlias!)" : followingUID!] as [String : Any]
-            //let counter = ["followingCounter" : +1] as [String : Any]
-            //uref.updateChildValues(counter)
+        let uref = db.reference(withPath: "Users/\(uid)")
+        if self.posts[0].userID != nil {
+            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
+            
+            count+=1
+            let counter = ["followingCounter" : count ] as [String : Int]
+            uref.updateChildValues(counter)
             dbref.updateChildValues(following)
         } else {
             print("\n userID not found when adding follower \n")
@@ -89,13 +92,15 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
-        let followerUID = subviewCell.userID
-        let dbref = db.reference(withPath: "Users/\(followerUID!)/Follower")
-        //let uref = db.reference(withPath: "Users/\(uid)")
-        if subviewCell.userID != nil {
+        let followerid = posts[0].userID
+        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
+        let uref = db.reference(withPath: "Users/\(uid)")
+        if self.posts[0].userID != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-            //let counter = ["followerCounter" : +1 ] as [String : Any]
-            //uref.updateChildValues(counter)
+            
+            countFollower+=1
+            let counter = ["followerCounter" : countFollower ] as [String : Int]
+            uref.updateChildValues(counter)
             dbref.updateChildValues(follower)
         } else {
             print("\n userID not found when getting follower \n")
@@ -119,19 +124,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         
-        cell.usernameLabel.text = username.alias //FÖR FUNGERANDE SÖK TA BORT userInfo.alias och skriv username.alias
+        cell.usernameLabel.text = username.alias
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         
         } else {
             print("Do nothing")
-            //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        downloadImages()
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         username = self.users[indexPath.row]
         self.subview.isHidden = false
@@ -141,16 +144,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
-            //Här kan vi bestämma default bild för subviewn
             self.subviewProfileImage.image = nil
-            
-            if (FBSDKAccessToken.current() != nil) {
-                self.subviewProfileImage.downloadImage(from: "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large")
-            }else {
-                print("Do nothing")
-                //Här kan vi sätta en default bild om användaren inte har laddat upp profilbild
-                print("\n \(indexPath.row) could not return a value for profileImageURL from User. \n")
-            }
         }
         //Verkar inte göra något än!
         if self.username.uid != Auth.auth().currentUser!.uid {
@@ -202,8 +196,26 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
+    func downloadImages() {
+        posts.removeAll()
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPost = Post()
+                    appendPost.pathToImage256 = post["pathToImage256"] as? String
+                    appendPost.postID = post["postID"] as? String
+                    appendPost.vegi = post["vegetarian"] as? Bool
+                    self.posts.insert(appendPost, at: 0)
+                }
+            }
+            self.subviewCollectionFeed.reloadData()
+        })
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return self.users.count
+         return self.posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -212,7 +224,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
-            //print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         return cell
     }
@@ -236,21 +248,5 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             print("\n Segue with identifier (imagePage) not found. \n")
         }
-    }
-
-    func downloadImages() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users").child("\(uid)/Posts")
-        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPost = Post()
-                    appendPost.pathToImage256 = post["pathToImage256"] as? String
-                    appendPost.postID = post["postID"] as? String
-                    self.posts.insert(appendPost, at: 0)
-                }
-            }
-            self.subviewCollectionFeed.reloadData()
-        })
     }
 }
