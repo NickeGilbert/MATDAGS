@@ -11,10 +11,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var pointsLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
+    @IBOutlet weak var toSubViewButton: UIButton!
     
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
@@ -150,9 +150,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         pointsLabel.text = "\(self.posts[0].rating!) Rating"
         if posts[0].alias != nil{
-            usernameLabel.text = self.posts[0].alias
+            toSubViewButton.setTitle(self.posts[0].alias, for: .normal)
         } else {
-            usernameLabel.text = self.posts[0].userID
+            toSubViewButton.setTitle(self.posts[0].userID, for: .normal)
         }
         if self.posts[0].imgdescription != nil {
             descriptionLabel.text = self.posts[0].imgdescription
