@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
@@ -229,7 +229,8 @@ class ImagePageVC: UIViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePageSubviewCell", for: indexPath) as! ImagePageSubViewCell
+        
         cell.mySubviewCollectionFeed.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
@@ -245,12 +246,12 @@ class ImagePageVC: UIViewController {
     }
     
     //INTE GJORT SEGUE ÄN!
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "imagePageSegSubSearch", sender: indexPath)
+   /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "imagePageSegSub", sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "imagePageSegSubSearch")
+        if(segue.identifier == "imagePageSegSub")
         {
             let selectedCell = sender as! NSIndexPath
             let selectedRow = selectedCell.row
@@ -259,7 +260,7 @@ class ImagePageVC: UIViewController {
         } else {
             print("\n Segue with identifier (imagePage) not found. \n")
         }
-    }
+    }*/
     ///////////
     
     
