@@ -201,7 +201,6 @@ class ImagePageVC: UIViewController {
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
     
-    
     @IBAction func subviewFollowBtn(_ sender: Any) {
         getFollower()
         addFollower()

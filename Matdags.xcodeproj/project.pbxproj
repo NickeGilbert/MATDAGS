@@ -35,6 +35,7 @@
 		A45ABBA61FE01F780052E6A7 /* SearchSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */; };
 		A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4650B001FB368FC00BC618E /* SearchVC.swift */; };
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
+		A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */; };
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
 		A4BF80481FB447A2000D7DF5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF80471FB447A2000D7DF5 /* SearchCell.swift */; };
 		A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */; };
@@ -73,6 +74,7 @@
 		A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewCell.swift; sourceTree = "<group>"; };
 		A4650B001FB368FC00BC618E /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
+		A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSubViewCell.swift; sourceTree = "<group>"; };
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
 		A4BF80471FB447A2000D7DF5 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVC.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				A4BF80471FB447A2000D7DF5 /* SearchCell.swift */,
 				A41F16861FBDF86900500EF8 /* ProfileCell.swift */,
 				A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */,
+				A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				0AF001D11FC44F47005E6CBE /* User.swift in Sources */,
 				A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */,
 				A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */,
+				A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,

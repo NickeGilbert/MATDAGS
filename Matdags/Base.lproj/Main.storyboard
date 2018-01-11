@@ -1100,13 +1100,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beskrivning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFQ-ed-rU3">
-                                <rect key="frame" x="16" y="435" width="343" height="17"/>
+                                <rect key="frame" x="16" y="471" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHK-zH-6mw">
-                                <rect key="frame" x="16" y="409" width="266" height="18"/>
+                                <rect key="frame" x="16" y="433" width="266" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1126,7 +1126,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnC-35-BMZ">
-                                <rect key="frame" x="209" y="383" width="150" height="18"/>
+                                <rect key="frame" x="209" y="383" width="150" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="yHd-kx-vgP"/>
                                 </constraints>
@@ -1142,7 +1142,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYW-pk-e4K">
-                                <rect key="frame" x="290" y="409" width="69" height="18"/>
+                                <rect key="frame" x="290" y="433" width="69" height="30"/>
                                 <color key="backgroundColor" red="0.35521121379396958" green="0.40708021951358409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69" id="8A2-Zd-fvy"/>
@@ -1155,10 +1155,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="K6Q-8d-FO2" userLabel="StarStack">
-                                <rect key="frame" x="16" y="389" width="154" height="6"/>
+                                <rect key="frame" x="16" y="389" width="154" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5k9-at-ZR9" userLabel="star1">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="6"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="emptystar30">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1167,7 +1167,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noh-zZ-PvY" userLabel="star2">
-                                        <rect key="frame" x="31" y="0.0" width="30" height="6"/>
+                                        <rect key="frame" x="31" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="emptystar30">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1176,7 +1176,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khE-OO-ToV" userLabel="star3">
-                                        <rect key="frame" x="62" y="0.0" width="30" height="6"/>
+                                        <rect key="frame" x="62" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="emptystar30">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1185,7 +1185,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUx-kd-fnZ" userLabel="star4">
-                                        <rect key="frame" x="93" y="0.0" width="30" height="6"/>
+                                        <rect key="frame" x="93" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="emptystar30">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1194,7 +1194,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-Em-2k4" userLabel="star5">
-                                        <rect key="frame" x="124" y="0.0" width="30" height="6"/>
+                                        <rect key="frame" x="124" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="emptystar30">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1220,7 +1220,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVj-Tu-c8h" userLabel="Subview">
-                                <rect key="frame" x="30" y="64" width="315" height="489"/>
+                                <rect key="frame" x="30" y="64" width="315" height="538"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qv3-Uo-O5q" userLabel="Subview Profile Image">
                                         <rect key="frame" x="14" y="56" width="70" height="70"/>
@@ -1275,7 +1275,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TFE-QA-88T">
-                                        <rect key="frame" x="0.0" y="188" width="315" height="301"/>
+                                        <rect key="frame" x="0.0" y="188" width="315" height="350"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="aJM-Xh-DER">
                                             <size key="itemSize" width="102" height="95"/>
@@ -1284,14 +1284,14 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="subviewCell" id="iPj-xv-p3H" customClass="SearchSubViewCell" customModule="Matdags" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="subviewCell" id="iPj-xv-p3H" customClass="ImagePageSubViewCell" customModule="Matdags" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-Us-nTd">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Matdags" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-Us-nTd">
                                                             <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
                                                             <color key="backgroundColor" red="1" green="0.56010565167104565" blue="0.42005459519514621" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </imageView>
@@ -1304,7 +1304,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="oUJ-Us-nTd" secondAttribute="bottom" id="wn7-96-Pmw"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="mySubviewCollectionFeed" destination="oUJ-Us-nTd" id="0cw-VA-YZp"/>
+                                                    <outlet property="subviewCollectionFeed" destination="TFE-QA-88T" id="Ib1-py-IMT"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -1533,6 +1533,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Matdags" width="1536" height="2048"/>
         <image name="SaveButtonGray" width="45" height="45"/>
         <image name="back" width="50" height="50"/>
         <image name="bakgrund1" width="916" height="1629"/>
@@ -1554,7 +1555,7 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
