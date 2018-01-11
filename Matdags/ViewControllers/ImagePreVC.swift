@@ -7,12 +7,13 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class ImagePreVC: UIViewController, UITextFieldDelegate {
+class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var vegFood: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var descriptionFieldLines: UITextView!
     
     var vegFoodBool : Bool = false
     var commentBool : Bool = false
@@ -24,9 +25,13 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         photo.image = self.image
-        descriptionField.delegate = self
-        descriptionField.setLeftPaddingPoints(20)
-        descriptionField.setRightPaddingPoints(20)
+        
+//        descriptionField.delegate = self
+//        descriptionField.setLeftPaddingPoints(20)
+//        descriptionField.setRightPaddingPoints(20)
+
+        descriptionFieldLines.delegate = self
+
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -34,8 +39,16 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        descriptionField.isHidden = true
-        if descriptionField.text == "" {
+        
+//        descriptionField.isHidden = true
+//        if descriptionField.text == "" {
+//            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
+//        }else{
+//
+//        }
+        
+        descriptionFieldLines.isHidden = true
+        if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
         }else{
             
@@ -46,8 +59,15 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        descriptionField.isHidden = true
-        if descriptionField.text == "" {
+//        descriptionField.isHidden = true
+//        if descriptionField.text == "" {
+//            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
+//        }else{
+//
+//        }
+        
+        descriptionFieldLines.isHidden = true
+        if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
         }else{
             
@@ -59,11 +79,11 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
         dismiss(animated: false, completion: nil)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = textField.text!
-        let maxLength = text.count + string.count - range.length
-        return maxLength <= 10
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let text = textField.text!
+//        let maxLength = text.count + string.count - range.length
+//        return maxLength <= 10
+//    }
     
     @IBAction func postButton(_ sender: Any) {
         UploadImageToFirebase(in: dispatchGroup)
@@ -89,8 +109,11 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func commentClick(_ sender: UIButton) {
         commentBtn.setImage(UIImage(named: "commentButton50orange"), for: .normal)
-        descriptionField.isHidden = false
-        descriptionField.becomeFirstResponder()
+//        descriptionField.isHidden = false
+//        descriptionField.becomeFirstResponder()
+        
+        descriptionFieldLines.isHidden = false
+        descriptionFieldLines.becomeFirstResponder()
     }
     
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {
@@ -115,7 +138,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate {
                     "date": result,
                     "rating" : 0,
                     "alias" : Auth.auth().currentUser!.displayName!,
-                    "imgdescription" : self.descriptionField.text!,
+//                    "imgdescription" : self.descriptionField.text!,
+                    "imgdescription" : self.descriptionFieldLines.text!,
                     "postID" : key] as [String : Any]
         let postIdExtra = ["postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
