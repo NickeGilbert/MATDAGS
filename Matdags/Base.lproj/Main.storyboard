@@ -1249,7 +1249,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVj-Tu-c8h" userLabel="Subview">
-                                <rect key="frame" x="30" y="64" width="315" height="538"/>
+                                <rect key="frame" x="30" y="50" width="315" height="587"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qv3-Uo-O5q" userLabel="Subview Profile Image">
                                         <rect key="frame" x="14" y="56" width="70" height="70"/>
@@ -1303,24 +1303,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                        <rect key="frame" x="0.0" y="188" width="315" height="350"/>
+                                        <rect key="frame" x="0.0" y="188" width="315" height="399"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
-                                            <size key="itemSize" width="84" height="87"/>
+                                            <size key="itemSize" width="101" height="101"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImagePageSubviewCell" id="leg-z7-SU6" customClass="ImagePageSubViewCell" customModule="Matdags" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="84" height="87"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="87"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jYL-M7-9hO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="87"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jYL-M7-9hO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
@@ -1372,9 +1372,9 @@
                             <constraint firstItem="aHK-zH-6mw" firstAttribute="top" secondItem="SYW-pk-e4K" secondAttribute="top" id="BzA-E4-NpL"/>
                             <constraint firstItem="SYW-pk-e4K" firstAttribute="trailing" secondItem="YFQ-ed-rU3" secondAttribute="trailing" id="Cda-1y-BpV"/>
                             <constraint firstAttribute="trailing" secondItem="x3e-Q3-Wkh" secondAttribute="trailing" id="DfU-Vm-l9B"/>
-                            <constraint firstItem="kbd-fN-5ia" firstAttribute="bottom" secondItem="XVj-Tu-c8h" secondAttribute="bottom" constant="65" id="ETy-pf-192"/>
-                            <constraint firstItem="XVj-Tu-c8h" firstAttribute="top" secondItem="yFD-xP-oGg" secondAttribute="bottom" constant="4" id="Gsa-WA-4YB"/>
+                            <constraint firstItem="kbd-fN-5ia" firstAttribute="bottom" secondItem="XVj-Tu-c8h" secondAttribute="bottom" constant="30" id="ETy-pf-192"/>
                             <constraint firstItem="K6Q-8d-FO2" firstAttribute="centerY" secondItem="fnC-35-BMZ" secondAttribute="centerY" id="HAO-gf-Ds4"/>
+                            <constraint firstItem="XVj-Tu-c8h" firstAttribute="top" secondItem="QCA-3I-UXr" secondAttribute="topMargin" constant="30" id="IeU-dh-E4S"/>
                             <constraint firstItem="aHK-zH-6mw" firstAttribute="leading" secondItem="YFQ-ed-rU3" secondAttribute="leading" id="Jif-5M-nWQ"/>
                             <constraint firstItem="Ym5-8W-WRJ" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="Ni8-zE-QCO"/>
                             <constraint firstItem="aHK-zH-6mw" firstAttribute="top" secondItem="fnC-35-BMZ" secondAttribute="bottom" constant="8" symbolic="YES" id="PRJ-UN-tZD"/>
