@@ -33,7 +33,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             fetchProfile()
         }
         
-        if (Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true) {
+        if (Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true && FBSDKAccessToken.current() == nil) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
         
@@ -68,6 +68,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         AppDelegate.instance().showActivityIndicator()
         let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil {
                 print("\n \(error!) \n")

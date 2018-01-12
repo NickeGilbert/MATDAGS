@@ -15,6 +15,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
