@@ -32,7 +32,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        downloadImages()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
         searchController.searchResultsUpdater = self
@@ -136,7 +135,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
-        username = self.users[indexPath.row]
+        downloadImages(uid: username.uid)
+        // username = self.users[indexPath.row]
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
@@ -196,9 +196,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
-    func downloadImages() {
+    func downloadImages(uid: String) {
         posts.removeAll()
-        let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
         dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
