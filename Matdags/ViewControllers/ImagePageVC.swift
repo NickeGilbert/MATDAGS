@@ -234,7 +234,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
         self.subviewUsername.text = self.posts[0].alias
-        downloadImages()
+        print("\(self.posts[0].alias) Hejsan")
+        var selectedUser = self.posts[0].userID
+        print("\(selectedUser) HEJSAN ")
+        downloadImages(uid: selectedUser!)
+        
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
     
@@ -243,9 +247,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         addFollower()
     }
 
-    func downloadImages() {
+    func downloadImages(uid: String) {
         posts.removeAll()
-        let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
         dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
