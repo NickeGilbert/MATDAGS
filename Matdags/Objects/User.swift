@@ -17,4 +17,5 @@ class User: NSObject {
     var email: String!
     var uid: String!
     var vegi : Bool?
+    var stars : Int!
 }
