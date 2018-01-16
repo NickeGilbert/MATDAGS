@@ -16,6 +16,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+
     
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
@@ -25,10 +26,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewFollowButton: UIButton!
     
     let dispatchGroup = DispatchGroup()
+    let uid = Auth.auth().currentUser!.uid
+    let db = Database.database()
+    let alias = Auth.auth().currentUser!.displayName
    
     var seguePostID : String!
     var users = [User]()
-    var starHighlited = 0
+    var starsHighlighted = 0
     var count : Int = 0
     var countFollower : Int = 0
     var posts = [Post]()
@@ -44,34 +48,70 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewWillAppear(animated)
         getUserInfo()
         downloadInfo { (true) in
-            let uid = Auth.auth().currentUser!.uid
-            let dbRef = Database.database().reference(withPath: "Users/\(uid)")
-            if self.posts[0].userID != Auth.auth().currentUser!.uid {
+            if self.posts[0].userID != self.uid {
                 self.followerButton.isHidden = false
             } else {
                 self.followerButton.isHidden = true
             }
             self.sortFirebaseInfo()
+            self.getStars()
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        postStars { (true) in
+            completionHandler(true)
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    func postStars(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        let dbref = db.reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
+        if self.posts[0].postID != nil && starsHighlighted != 0 {
+            let ratedPosts = ["Stars" : starsHighlighted] as [String : Any]
+            dbref.updateChildValues(ratedPosts)
+            completionHandler(true)
+        } else {
+            print("\n No postID found or starHighlighted is 0 \n")
+            completionHandler(false)
+        }
+    }
+    
+    func getStars() {
+        let getInfo = User()
+        let dbref = Database.database().reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let firstSnapshot = snapshot.value as? [String : Any] {
+                getInfo.stars = firstSnapshot["Stars"] as? Int
+                self.starsHighlighted = getInfo.stars
+                
+                print("\n Stars: \(self.starsHighlighted) \n")
+                
+                for button in self.starButtons {
+                    for i in 1...self.starsHighlighted-1 {
+                        if button.tag <= i {
+                            button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                        }
+                    }
+                }
+            } else {
+                print("\n Cant find rating for post. \n")
+            }
+        })
+    }
+    
     func getUserInfo() {
-        let uid = Auth.auth().currentUser!.uid
+        let getInfo = User()
         let dbref = Database.database().reference(withPath: "Users/\(uid)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : Any] {
-                let appendInfo = User()
-                appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
+            if let firstSnapshot = snapshot.value as? [String : Any] {
+                getInfo.profileImageURL = firstSnapshot["profileImageURL"] as? String
                 
-                if appendInfo.profileImageURL != ""  {
-                    self.subviewProfileImage.downloadImage(from: appendInfo.profileImageURL)
+                if getInfo.profileImageURL != ""  {
+                    self.subviewProfileImage.downloadImage(from: getInfo.profileImageURL)
                 } else {
                     print("\n profileImageURL not found \n")
                     return
@@ -79,7 +119,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         })
     }
-    
     
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
@@ -89,6 +128,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 getInfo.pathToImage = dictionary["pathToImage"] as! String
                 getInfo.rating = dictionary["rating"] as! Int
                 getInfo.userID = dictionary["userID"] as! String
+                getInfo.postID = dictionary["postID"] as! String
                 getInfo.alias = dictionary["alias"] as! String
                 getInfo.imgdescription = dictionary["imgdescription"] as! String
                 getInfo.vegi = dictionary["vegetarian"] as? Bool
@@ -107,9 +147,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func addFollower() {
-        let db = Database.database()
-        let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
@@ -125,9 +162,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func getFollower() {
-        let db = Database.database()
-        let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
         let followerid = posts[0].userID
         let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
@@ -163,23 +197,25 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         if self.posts[0].vegi == nil || self.posts[0].vegi == false {
             vegiIcon.isHidden = true
-        }else{
+        } else {
             vegiIcon.isHidden = false
         }
     }
     
     @IBAction func imagePageBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        customWillDisappear { (true) in
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func starButtonsTapped(_ sender: UIButton) {
-        starHighlited = sender.tag + 1
-        print(starHighlited)
+        starsHighlighted = sender.tag + 1
+        print(starsHighlighted)
         
         for button in starButtons {
             button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
             
-            if button.tag <= starHighlited-1 {
+            if button.tag <= starsHighlighted-1 {
                 button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
             }
         }
@@ -187,8 +223,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func appendToFirebase() {
         let dbRef = Database.database().reference(withPath: "Posts/\(seguePostID)/stars")
-        if starHighlited > 0 {
-            let feed = ["\(starHighlited)" : +1] as [String : Any]
+        if starsHighlighted > 0 {
+            let feed = ["\(starsHighlighted)" : +1] as [String : Any]
             dbRef.updateChildValues(feed)
         }
     }
