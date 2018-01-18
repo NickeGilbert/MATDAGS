@@ -73,13 +73,14 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func addFollower() {
         //ToDo: Fungerande counter
+        print(self.subviewUsername.text!)
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
-        if self.posts[0].userID != nil {
-            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
+        if self.subviewUsername.text != nil {
+            let following = ["\(self.subviewUsername.text!)" : ""] as [String : Any]
             
             count+=1
             let counter = ["followingCounter" : count ] as [String : Int]
@@ -94,10 +95,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
-        let followerid = posts[0].userID
+        let followerid = self.subviewUsername.text
         let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
-        if self.posts[0].userID != nil {
+        if self.subviewUsername.text != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
             
             countFollower+=1
@@ -174,7 +175,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
                     self.users.append(appendUser)
                     
-                    //VERKAR SOM ATT VI GÖR DUBBELT! KOLLA MED KEVIN! SAMTIDIGT SÅ BLIR RESULTATET RÄTT MED DENNA KODEN
                     self.insertRow()
                 }
                 dispatchGroup.leave()
