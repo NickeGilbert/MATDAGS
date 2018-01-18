@@ -110,7 +110,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
-            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
+            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256) 
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
@@ -141,26 +141,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func swipeLeft(_ sender: Any) {
         print("SWIPE SWIPE!!")
         tabBarController?.selectedIndex = 1
-    }
-}
-
-extension UIImageView {
-    func downloadImage(from imgURL: String) {
-        let url = URLRequest(url: URL(string: imgURL)!)
-        
-        let task = URLSession.shared.dataTask(with: url) {
-            (data, responds, error) in
-            
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.image = UIImage(data: data!)
-            }
-        }
-        task.resume()
     }
 }
 
