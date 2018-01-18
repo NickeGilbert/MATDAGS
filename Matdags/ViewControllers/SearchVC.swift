@@ -38,19 +38,21 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
+        getUserInfo(in: dispatchGroup) { (true) in
+            self.searchUsersTableView.reloadData()
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //subviewCell.removeAll()
-        posts.removeAll()
-        users.removeAll()
-        search.removeAll()
-        filteredUsers.removeAll()
-        getUserInfo(in: dispatchGroup) { (true) in
-        self.searchUsersTableView.reloadData()
-            
-        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        print("BAJS")
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -173,7 +175,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     self.users.append(appendUser)
                     
                     //VERKAR SOM ATT VI GÖR DUBBELT! KOLLA MED KEVIN! SAMTIDIGT SÅ BLIR RESULTATET RÄTT MED DENNA KODEN
-                    self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
+                    self.insertRow()
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -183,6 +185,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 })
             }
         })
+    }
+    
+    func insertRow() {
+        self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
     }
     
     func filterContent(searchText:String) {
