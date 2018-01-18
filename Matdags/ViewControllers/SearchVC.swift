@@ -150,13 +150,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             self.subviewProfileImage.image = nil
         }
         //Verkar inte göra något än!
-        if self.username.uid != Auth.auth().currentUser!.uid {
+       /* if self.username.uid != Auth.auth().currentUser!.uid {
             self.subviewFollowButton.isHidden = false
         } else {
             self.subviewFollowButton.isHidden = true
         }
         subviewCell.userID = username.uid
-        subviewCell.alias = username.alias
+        subviewCell.alias = username.alias*/
     }
     
     func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {

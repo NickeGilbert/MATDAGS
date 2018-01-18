@@ -46,7 +46,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getUserInfo()
         downloadInfo { (true) in
             if self.posts[0].userID != self.uid {
                 self.followerButton.isHidden = false
@@ -103,7 +102,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
-    func getUserInfo() {
+    func getUserProfileImage(uid: String) {
         let getInfo = User()
         let dbref = Database.database().reference(withPath: "Users/\(uid)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -233,11 +232,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subviewBackground.isHidden = false
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
-        self.subviewUsername.text = self.posts[0].alias
-        print("\(self.posts[0].alias) Hejsan")
-        var selectedUser = self.posts[0].userID
-        print("\(selectedUser) HEJSAN ")
+        self.subviewUsername.text = self.posts[0].alias        
+        let selectedUser = self.posts[0].userID
         downloadImages(uid: selectedUser!)
+        getUserProfileImage(uid: selectedUser!)
         
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
