@@ -28,6 +28,7 @@
 		0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB321F862C340086DE20 /* ProfileVC.swift */; };
 		0AF001D11FC44F47005E6CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF001D01FC44F47005E6CBE /* User.swift */; };
 		0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF08DB51FE9096A00BCBD43 /* Follow.swift */; };
+		26CAF535201219C900011A6E /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF534201219C900011A6E /* CommentsCell.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
 		A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41F16861FBDF86900500EF8 /* ProfileCell.swift */; };
 		A423EA2F201151D500F32C46 /* FollowerVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423EA2E201151D500F32C46 /* FollowerVCExt.swift */; };
@@ -68,6 +69,7 @@
 		0ABFCB321F862C340086DE20 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0AF001D01FC44F47005E6CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0AF08DB51FE9096A00BCBD43 /* Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
+		26CAF534201219C900011A6E /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
 		A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matdags.entitlements; sourceTree = "<group>"; };
 		A41F16861FBDF86900500EF8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				A41F16861FBDF86900500EF8 /* ProfileCell.swift */,
 				A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */,
 				A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */,
+				26CAF534201219C900011A6E /* CommentsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */,
 				0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */,
 				A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */,
+				26CAF535201219C900011A6E /* CommentsCell.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,
 				0A8B33191FA08742007BAE27 /* ImagePreVC.swift in Sources */,
 				A4BF80481FB447A2000D7DF5 /* SearchCell.swift in Sources */,

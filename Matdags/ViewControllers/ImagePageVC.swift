@@ -6,7 +6,8 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+    
 
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
@@ -17,7 +18,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
 
+    //test daniel
     @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
+    
     
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
@@ -37,6 +41,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var count : Int = 0
     var countFollower : Int = 0
     var posts = [Post]()
+    
+    var commentConter: Int = 0
+    
+    //test daniel
+    var comments = [CommentsCell]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +77,29 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             completionHandler(true)
         }
     }
+    
+    var bajs = 5
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return bajs
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
+        cell.commentsNameLabel.text = "Bka kad awdad"
+        if commentConter < 2 {
+            cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad a"
+        }else{
+             cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad"
+        }
+        
+        let cellHight = cell.frame.height
+        var tableHight = tableView.frame.height
+
+        tableViewConstraintH.constant = tableHight + cellHight
+        return cell
+    }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
