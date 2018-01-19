@@ -17,6 +17,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
 
+    @IBOutlet weak var commentsTableView: UITableView!
     
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
@@ -55,6 +56,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortFirebaseInfo()
             self.getStars()
         }
+        
+//        commentsTableView.isScrollEnabled = (commentsTableView.contentSize.height <=
+//            commentsTableView.frame.height)
+        commentsTableView.isScrollEnabled = false
     }
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {

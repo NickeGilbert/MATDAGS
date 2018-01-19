@@ -1437,6 +1437,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="commentsTableView" destination="f17-TZ-hP6" id="KZW-q5-41C"/>
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>
                         <outlet property="followerButton" destination="SYW-pk-e4K" id="yej-xk-dgd"/>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
