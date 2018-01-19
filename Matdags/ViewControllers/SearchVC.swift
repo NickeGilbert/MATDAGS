@@ -38,19 +38,21 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
+        getUserInfo(in: dispatchGroup) { (true) in
+            self.searchUsersTableView.reloadData()
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //subviewCell.removeAll()
-        posts.removeAll()
-        users.removeAll()
-        search.removeAll()
-        filteredUsers.removeAll()
-        getUserInfo(in: dispatchGroup) { (true) in
-        self.searchUsersTableView.reloadData()
-            
-        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        print("BAJS")
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -69,44 +71,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         getFollower()
     }
     
-    func addFollower() {
-        //ToDo: Fungerande counter
-        let db = Database.database()
-        let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
-        let dbref = db.reference(withPath: "Users/\(uid)/Following")
-        let uref = db.reference(withPath: "Users/\(uid)")
-        if self.posts[0].userID != nil {
-            let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
-            
-            count+=1
-            let counter = ["followingCounter" : count ] as [String : Int]
-            uref.updateChildValues(counter)
-            dbref.updateChildValues(following)
-        } else {
-            print("\n userID not found when adding follower \n")
-        }
-    }
-    
-    func getFollower() {
-        let db = Database.database()
-        let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
-        let followerid = posts[0].userID
-        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
-        let uref = db.reference(withPath: "Users/\(uid)")
-        if self.posts[0].userID != nil {
-            let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-            
-            countFollower+=1
-            let counter = ["followerCounter" : countFollower ] as [String : Int]
-            uref.updateChildValues(counter)
-            dbref.updateChildValues(follower)
-        } else {
-            print("\n userID not found when getting follower \n")
-        }
-    }
-    
     func updateSearchResults(for searchController: UISearchController) {
         filterContent(searchText: searchController.searchBar.text!)
     }
@@ -120,7 +84,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // let userInfo = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         
@@ -137,7 +100,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         downloadImages(uid: username.uid)
-        // username = self.users[indexPath.row]
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
@@ -172,8 +134,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
                     self.users.append(appendUser)
                     
-                    //VERKAR SOM ATT VI GÖR DUBBELT! KOLLA MED KEVIN! SAMTIDIGT SÅ BLIR RESULTATET RÄTT MED DENNA KODEN
-                    self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
+                    self.insertRow()
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -185,6 +146,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         })
     }
     
+    func insertRow() {
+        self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
+    }
+    
     func filterContent(searchText:String) {
         let searchText = self.searchController.searchBar.text ?? ""
         filteredUsers = self.users.filter{ user in
@@ -193,6 +158,45 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             return username
         }
         searchUsersTableView.reloadData()
+    }
+    
+    func addFollower() {
+        //ToDo: Fungerande counter
+        print(self.subviewUsername.text!)
+        let db = Database.database()
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        let dbref = db.reference(withPath: "Users/\(uid)/Following")
+        let uref = db.reference(withPath: "Users/\(uid)")
+        if self.subviewUsername.text != nil {
+            let following = ["\(self.subviewUsername.text!)" : ""] as [String : Any]
+            
+            count+=1
+            let counter = ["followingCounter" : count ] as [String : Int]
+            uref.updateChildValues(counter)
+            dbref.updateChildValues(following)
+        } else {
+            print("\n userID not found when adding follower \n")
+        }
+    }
+    
+    func getFollower() {
+        let db = Database.database()
+        let uid = Auth.auth().currentUser!.uid
+        let alias = Auth.auth().currentUser!.displayName
+        let followerid = self.subviewUsername.text
+        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
+        let uref = db.reference(withPath: "Users/\(uid)")
+        if self.subviewUsername.text != nil {
+            let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
+            
+            countFollower+=1
+            let counter = ["followerCounter" : countFollower ] as [String : Int]
+            uref.updateChildValues(counter)
+            dbref.updateChildValues(follower)
+        } else {
+            print("\n userID not found when getting follower \n")
+        }
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
