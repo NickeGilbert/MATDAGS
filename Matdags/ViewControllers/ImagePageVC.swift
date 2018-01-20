@@ -74,7 +74,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         commentsTableView.isScrollEnabled = false
-
+        commentsTableView.separatorStyle = .none
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {
