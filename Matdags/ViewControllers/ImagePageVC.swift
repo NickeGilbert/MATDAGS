@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
 
     @IBOutlet weak var vegiIcon: UIImageView!
@@ -21,6 +21,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     //test daniel
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var commentsView: UIView!
+    @IBOutlet weak var commentsTextField: UITextField!
     
     
     @IBOutlet weak var subviewBackground: UIView!
@@ -53,11 +56,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         vegiIcon.isHidden = true
         subviewBackground.isHidden = true
         subview.isHidden = true
+        commentsTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         downloadInfo { (true) in
+            print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
                 self.followerButton.isHidden = false
             } else {
@@ -67,9 +73,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.getStars()
         }
         
-//        commentsTableView.isScrollEnabled = (commentsTableView.contentSize.height <=
-//            commentsTableView.frame.height)
         commentsTableView.isScrollEnabled = false
+
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        
     }
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -181,6 +192,37 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func followUser(_ sender: Any) {
         getFollower()
         addFollower()
+    }
+    
+    @IBAction func commentButtonClick(_ sender: UIButton) {
+        print("comment click")
+        commentsView.isHidden = false
+        commentsTextField.becomeFirstResponder()
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if commentsTextField.text != "" {
+            // Skicka data
+            
+            self.commentsTextField.resignFirstResponder()
+            self.view.endEditing(true)
+            self.commentsView.isHidden = true
+            AppDelegate.instance().dismissActivityIndicator()
+            return true
+            
+        }else{
+            commentsTextField.resignFirstResponder()
+            self.view.endEditing(true)
+            commentsView.isHidden = true
+            return true
+        }
+
     }
     
     func addFollower() {
@@ -339,6 +381,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }*/
     ///////////
     
+    @IBAction func closeCommentButton(_ sender: UIButton) {
+        commentsView.isHidden = true
+        self.view.endEditing(true)
+    }
     
     @IBAction func closeSubview(_ sender: Any) {
         subviewBackground.isHidden = true
