@@ -75,6 +75,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         commentsTableView.isScrollEnabled = false
         commentsTableView.separatorStyle = .none
+        followerButton.layer.cornerRadius = 3
+        followerButton.clipsToBounds = true
+        
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {
