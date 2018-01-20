@@ -42,6 +42,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             self.searchUsersTableView.reloadData()
             
         }
+        
+        subview.layer.cornerRadius = 3
+        subview.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -235,7 +238,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width/3.7, height: self.view.frame.width/4.0)
+        let size = CGSize(width: self.view.frame.width/3.5, height: self.view.frame.width/3.5)
         return size
     }
     
