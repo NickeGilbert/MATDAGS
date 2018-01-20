@@ -40,6 +40,8 @@
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
 		A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */; };
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
+		A4AE6C152012BC8000F05B44 /* CreatedAlertsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */; };
+		A4AE6C192012C76200F05B44 /* ViewControllerVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE6C182012C76200F05B44 /* ViewControllerVCExt.swift */; };
 		A4BF80481FB447A2000D7DF5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF80471FB447A2000D7DF5 /* SearchCell.swift */; };
 		A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */; };
 		A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */; };
@@ -82,6 +84,8 @@
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
 		A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSubViewCell.swift; sourceTree = "<group>"; };
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
+		A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedAlertsExt.swift; sourceTree = "<group>"; };
+		A4AE6C182012C76200F05B44 /* ViewControllerVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerVCExt.swift; sourceTree = "<group>"; };
 		A4BF80471FB447A2000D7DF5 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVC.swift; sourceTree = "<group>"; };
 		A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 			children = (
 				A423EA2E201151D500F32C46 /* FollowerVCExt.swift */,
 				A423EA312011538400F32C46 /* ImageFeedVCExt.swift */,
+				A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */,
+				A4AE6C182012C76200F05B44 /* ViewControllerVCExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				0A706CBE1F73B70800B0345C /* ViewController.swift in Sources */,
+				A4AE6C152012BC8000F05B44 /* CreatedAlertsExt.swift in Sources */,
 				0A4CD1C41FAE5F880006986A /* Post.swift in Sources */,
 				0AF001D11FC44F47005E6CBE /* User.swift in Sources */,
 				A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */,
@@ -390,6 +397,7 @@
 				26CAF535201219C900011A6E /* CommentsCell.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,
 				0A8B33191FA08742007BAE27 /* ImagePreVC.swift in Sources */,
+				A4AE6C192012C76200F05B44 /* ViewControllerVCExt.swift in Sources */,
 				A4BF80481FB447A2000D7DF5 /* SearchCell.swift in Sources */,
 				A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */,
 			);
@@ -531,7 +539,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -562,7 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
