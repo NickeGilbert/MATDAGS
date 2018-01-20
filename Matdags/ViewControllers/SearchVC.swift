@@ -52,7 +52,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        print("BAJS")
+        print("Quit")
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -163,13 +163,14 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func addFollower() {
         //ToDo: Fungerande counter
         print(self.subviewUsername.text!)
+        print()
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.subviewUsername.text != nil {
-            let following = ["\(self.subviewUsername.text!)" : ""] as [String : Any]
+            let following = ["\(self.subviewUsername.text!)" : "\(self.posts[0].userID)"] as [String : Any]
             
             count+=1
             let counter = ["followingCounter" : count ] as [String : Int]
@@ -181,13 +182,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func getFollower() {
-        let db = Database.database()
+     /*   let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
-        let followerid = self.subviewUsername.text
+        let followerid = self.posts[0].userID
         let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
-        if self.subviewUsername.text != nil {
+        if self.posts[0].userID != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
             
             countFollower+=1
@@ -196,7 +197,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             dbref.updateChildValues(follower)
         } else {
             print("\n userID not found when getting follower \n")
-        }
+        }*/
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////

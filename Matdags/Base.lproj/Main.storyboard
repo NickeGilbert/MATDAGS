@@ -349,7 +349,7 @@
                                     <outlet property="delegate" destination="daa-NH-ElQ" id="352-1p-agR"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8i7-bI-vCf">
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8i7-bI-vCf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -477,12 +477,6 @@
                             <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" constant="30" id="zET-bB-esg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="8i7-bI-vCf"/>
-                                <exclude reference="Ov9-gQ-xAZ"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="xUr-OM-bxF" appends="YES" id="fMt-Si-8iy"/>
                         </connections>
