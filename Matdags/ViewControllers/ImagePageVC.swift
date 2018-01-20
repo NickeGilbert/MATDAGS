@@ -74,7 +74,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         commentsTableView.isScrollEnabled = false
-
+        commentsTableView.separatorStyle = .none
+        subview.layer.cornerRadius = 3
+        subview.clipsToBounds = true
+        followerButton.layer.cornerRadius = 3
+        followerButton.clipsToBounds = true
+        subviewFollowButton.layer.cornerRadius = 3
+        subviewFollowButton.clipsToBounds = true
+        
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -360,6 +367,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: self.view.frame.width/3.7, height: self.view.frame.width/4.0)
+//        let size = CGSize(width: self.view.frame.width/2, height: self.view.frame.width/3.1)
         return size
     }
     
