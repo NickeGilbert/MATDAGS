@@ -225,44 +225,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             }
         })
     }
-    //Fungerar inte än!
-    func followingCount() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users/\(uid)")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : Any] {
-                let appendInfo = User()
-                appendInfo.followingCounter = tempSnapshot["followingCounter"] as? String
-                if appendInfo.followingCounter != "" {
-                    print("HEJSAN SVEJSAN 1")
-                    } else {
-                        print("TOMTEGLAS")
-                        return
-                    }
-                }
-            })
-    }
-    
-    func followersCount() {
-        let ref = Database.database().reference()
-        
-        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            let Users = snapshot.value as! [String: AnyObject]
-            
-            for (_,value) in Users {
-                if let ID = value["uid"] as? String {
-                    if ID == Auth.auth().currentUser?.uid {
-                        if let followingUsers = value["followingCounter"] as? [String: String] {
-                            for (_,user) in followingUsers {
-                                print(followingUsers)
-                                print(Users)
-                            }
-                        }
-                    }
-                }
-            }
-        })
-    }
+   
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSegProfile", sender: indexPath)
@@ -287,5 +250,44 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 3
     }
+    
+    //Vad ska vi med dessa två funktioner om de inte gör något? 
+   /* func followingCount() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let tempSnapshot = snapshot.value as? [String : Any] {
+                let appendInfo = User()
+                appendInfo.followingCounter = tempSnapshot["followingCounter"] as? String
+                if appendInfo.followingCounter != "" {
+                    print("HEJSAN SVEJSAN 1")
+                } else {
+                    print("TOMTEGLAS")
+                    return
+                }
+            }
+        })
+    }
+    
+    func followersCount() {
+        let ref = Database.database().reference()
+        
+        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            let Users = snapshot.value as! [String: AnyObject]
+            
+            for (_,value) in Users {
+                if let ID = value["uid"] as? String {
+                    if ID == Auth.auth().currentUser?.uid {
+                        if let followingUsers = value["followingCounter"] as? [String: String] {
+                            for (_,user) in followingUsers {
+                                print(followingUsers)
+                                print(Users)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }*/
 }
 
