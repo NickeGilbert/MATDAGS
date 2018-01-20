@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 extension UIViewController {
     
     func createAlertLogin (title:String, message:String) {

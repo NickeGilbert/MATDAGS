@@ -193,17 +193,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
        
     }
     
-    func checkFirebaseInfo(arg: Bool, completion: @escaping (Bool) -> ()) {
-        let uid = Auth.auth().currentUser!.uid
-        let db = Database.database().reference(withPath: "Users/\(uid)")
-        db.observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.exists() {
-                completion(false)
-            } else {
-                completion(true)
-            }
-        })
-    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
