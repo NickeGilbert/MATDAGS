@@ -314,13 +314,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Användarnamn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6o-ir-c87">
-                                                    <rect key="frame" x="123.99999999999999" y="11" width="154.66666666666663" height="20"/>
+                                                    <rect key="frame" x="117" y="11" width="282" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzt-6H-zU9">
-                                                    <rect key="frame" x="15" y="30" width="82" height="82"/>
+                                                    <rect key="frame" x="15" y="15" width="82" height="82"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="82" id="Okc-Hx-J1R"/>
                                                         <constraint firstAttribute="height" constant="82" id="qIW-TH-IdS"/>
@@ -330,12 +330,12 @@
                                             <color key="backgroundColor" red="0.97753364403988319" green="0.99845745337832947" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="kzt-6H-zU9" firstAttribute="leading" secondItem="Tto-Qa-YHJ" secondAttribute="leading" constant="15" id="9of-9s-8QP"/>
-                                                <constraint firstItem="kzt-6H-zU9" firstAttribute="top" secondItem="Tto-Qa-YHJ" secondAttribute="top" constant="30" id="CCD-lg-39R"/>
+                                                <constraint firstItem="kzt-6H-zU9" firstAttribute="top" secondItem="Tto-Qa-YHJ" secondAttribute="top" constant="15" id="CCD-lg-39R"/>
                                                 <constraint firstItem="s6o-ir-c87" firstAttribute="top" secondItem="Tto-Qa-YHJ" secondAttribute="topMargin" id="V9u-Wz-Qlj"/>
                                                 <constraint firstItem="s6o-ir-c87" firstAttribute="bottom" secondItem="Tto-Qa-YHJ" secondAttribute="bottomMargin" id="fBR-4y-blk"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="s6o-ir-c87" secondAttribute="trailing" constant="120.5" id="jCB-Ph-C2d"/>
-                                                <constraint firstAttribute="bottom" secondItem="kzt-6H-zU9" secondAttribute="bottom" constant="30" id="ltm-Fs-jeD"/>
-                                                <constraint firstItem="s6o-ir-c87" firstAttribute="leading" secondItem="kzt-6H-zU9" secondAttribute="trailing" constant="27" id="z6p-Ic-r0e"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="s6o-ir-c87" secondAttribute="trailing" id="jCB-Ph-C2d"/>
+                                                <constraint firstAttribute="bottom" secondItem="kzt-6H-zU9" secondAttribute="bottom" constant="15" id="ltm-Fs-jeD"/>
+                                                <constraint firstItem="s6o-ir-c87" firstAttribute="leading" secondItem="kzt-6H-zU9" secondAttribute="trailing" constant="20" id="z6p-Ic-r0e"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -349,7 +349,7 @@
                                     <outlet property="delegate" destination="daa-NH-ElQ" id="352-1p-agR"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8i7-bI-vCf">
+                            <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8i7-bI-vCf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -489,6 +489,12 @@
                             <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" constant="10" id="zET-bB-esg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8i7-bI-vCf"/>
+                                <exclude reference="Ov9-gQ-xAZ"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="xUr-OM-bxF" appends="YES" id="fMt-Si-8iy"/>
                         </connections>
@@ -1759,7 +1765,7 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

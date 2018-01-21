@@ -50,6 +50,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //subviewCell.removeAll()
+        searchUsersTableView.separatorStyle = .none
     }
 
     override func viewWillDisappear(_ animated: Bool) {

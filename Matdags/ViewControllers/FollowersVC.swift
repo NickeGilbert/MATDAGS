@@ -30,7 +30,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
         
-
+        
     }
     
     @objc func loadData() {
@@ -117,6 +117,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
         
+        cell.layer.cornerRadius = 2
+        cell.clipsToBounds = true
+        
         cell.imageFeedView.image = nil
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
@@ -124,6 +127,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        cell.layer.borderWidth = 1
         cell.backgroundColor = UIColor.white
         cell.dropShadow()
+        
+        
         
         cell.vegiIcon.isHidden = true
         
