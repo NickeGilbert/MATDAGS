@@ -135,7 +135,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3.2)
+        let size = CGSize(width: self.view.frame.width/3.3, height: self.view.frame.width/3.3)
         return size
     }
     

@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
     
 
     @IBOutlet weak var vegiIcon: UIImageView!
@@ -365,9 +365,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width/3.7, height: self.view.frame.width/4.0)
-//        let size = CGSize(width: self.view.frame.width/2, height: self.view.frame.width/3.1)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let size = CGSize(width: view.frame.width/3.5, height: view.frame.width/3.5)
         return size
     }
     
