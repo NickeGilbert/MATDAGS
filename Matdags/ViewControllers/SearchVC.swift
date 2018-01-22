@@ -96,7 +96,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         downloadImages(uid: username.uid)
@@ -163,7 +163,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func addFollower() {
         //ToDo: Fungerande counter
         print(self.subviewUsername.text!)
-        print()
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName

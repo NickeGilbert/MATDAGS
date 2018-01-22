@@ -11,6 +11,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
@@ -1093,6 +1098,18 @@
                                     <action selector="openPhotoLibraryButtonWithSender:" destination="wvw-nt-nff" eventType="touchUpInside" id="hwl-DZ-33w"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSd-Hz-bjG">
+                                <rect key="frame" x="102" y="30" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="FLASH OFF">
+                                    <color key="titleColor" red="1" green="0.76450090270000004" blue="0.24473445699999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashBtnPressed:" destination="wvw-nt-nff" eventType="touchUpInside" id="hXV-rR-0M2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1106,12 +1123,13 @@
                         <viewLayoutGuide key="safeArea" id="mD4-1X-hTS"/>
                     </view>
                     <connections>
+                        <outlet property="flashBtn" destination="iSd-Hz-bjG" id="e6I-KF-U8O"/>
                         <segue destination="2ez-7q-i8j" kind="presentation" identifier="showPhoto" animates="NO" id="FN4-zJ-XHp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVl-jS-qfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2602" y="-527"/>
+            <point key="canvasLocation" x="2601.449275362319" y="-527.44565217391312"/>
         </scene>
         <!--ImagePageVC-->
         <scene sceneID="NVu-FX-m50">
