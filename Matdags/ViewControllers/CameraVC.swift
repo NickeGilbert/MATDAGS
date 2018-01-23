@@ -6,11 +6,6 @@
 import UIKit
 import AVFoundation
 
-enum FlashState {
-    case off
-    case on
-}
-
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var captureSession = AVCaptureSession()
