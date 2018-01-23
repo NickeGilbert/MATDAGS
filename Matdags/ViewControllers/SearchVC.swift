@@ -31,8 +31,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var countFollower : Int = 0
     var userId = ""
     
-    var userUID = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subview.isHidden = true
@@ -194,11 +192,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func getFollower() {
-        /*let db = Database.database()
+        let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
-        let followerid = self.posts[0].userID
-        let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
+        let followerid = userId
+        let dbref = db.reference(withPath: "Users/\(followerid)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
         if userId != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
@@ -209,7 +207,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             dbref.updateChildValues(follower)
         } else {
             print("\n userID not found when getting follower \n")
-        }*/
+        }
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
