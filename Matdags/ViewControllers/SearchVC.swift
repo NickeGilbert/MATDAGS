@@ -29,6 +29,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var username = User()
     var count : Int = 0
     var countFollower : Int = 0
+    var userId = ""
+    
+    var userUID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +107,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         downloadImages(uid: username.uid)
+        
+        if userId == "" {
+            self.userId = users[indexPath.row].uid
+        } else {
+            return
+        }
+        
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
@@ -165,7 +175,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func addFollower() {
-        //ToDo: Fungerande counter
         print(self.subviewUsername.text!)
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
@@ -173,7 +182,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.subviewUsername.text != nil {
-            let following = ["\(self.subviewUsername.text!)" : "\(self.posts[0].userID)"] as [String : Any]
+            let following = ["\(self.subviewUsername.text!)" : "\(userId)"] as [String : Any]
             
             count+=1
             let counter = ["followingCounter" : count ] as [String : Int]
@@ -185,13 +194,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func getFollower() {
-     /*   let db = Database.database()
+        /*let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
         let followerid = self.posts[0].userID
         let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
-        if self.posts[0].userID != nil {
+        if userId != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
             
             countFollower+=1
@@ -204,6 +213,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
+    
+    func getuserUID() {
+        
+    }
     
     func downloadImages(uid: String) {
         posts.removeAll()
