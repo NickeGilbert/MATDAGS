@@ -117,14 +117,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         } else {
             self.subviewProfileImage.image = nil
         }
-        //Verkar inte göra något än!
-       /* if self.username.uid != Auth.auth().currentUser!.uid {
+        if userId != Auth.auth().currentUser!.uid {
             self.subviewFollowButton.isHidden = false
         } else {
             self.subviewFollowButton.isHidden = true
         }
-        subviewCell.userID = username.uid
-        subviewCell.alias = username.alias*/
     }
     
     func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -169,7 +166,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func addFollower() {
-        print(self.subviewUsername.text!)
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
