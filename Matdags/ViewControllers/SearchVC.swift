@@ -105,13 +105,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         downloadImages(uid: username.uid)
-        
-        if userId == "" {
+
             self.userId = users[indexPath.row].uid
-        } else {
-            return
-        }
-        
+
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
