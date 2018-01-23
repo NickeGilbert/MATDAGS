@@ -208,10 +208,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
-    func getuserUID() {
-        
-    }
-    
     func downloadImages(uid: String) {
         posts.removeAll()
         let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
