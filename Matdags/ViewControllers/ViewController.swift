@@ -36,8 +36,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         if (Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true && FBSDKAccessToken.current() == nil) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
-        
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -65,8 +63,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         }
     }
     
-    
-    
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         AppDelegate.instance().showActivityIndicator()
         
@@ -78,7 +74,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         }
         
         let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        
         
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil {
@@ -97,7 +92,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 })
                 print("\n INLOGGAD MED FACEBOOK \n ")
                 AppDelegate.instance().dismissActivityIndicator()
-                
             }
         }
     }
@@ -110,8 +104,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         login()
         password.resignFirstResponder()
     }
-    
-    
     
     func login() {
         AppDelegate.instance().showActivityIndicator()
@@ -190,10 +182,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             database.updateChildValues(feed)
             print("\n Firebase User Created! \n")
         }
-       
     }
-    
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -209,8 +198,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             return true
         }
     }
-    
-    
 }
 
 
