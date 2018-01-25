@@ -16,7 +16,11 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     var image: UIImage?
     
+    @IBOutlet weak var flashBtn: UIButton!
+    
     let imagePicker = UIImagePickerController()
+    
+    var flashControlState: FlashState = .off
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +42,16 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func captureButton(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
+        
+        if flashControlState == .off {
+            settings.flashMode = .off
+        } else {
+            settings.flashMode = .on
+        }
+        
         photoOutput?.capturePhoto(with: settings, delegate: self)
+        
+        
     }
     
     @IBAction func openPhotoLibraryButton(sender: AnyObject) {
@@ -110,6 +123,17 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         if segue.identifier == "showPhoto" {
             let previewVC = segue.destination as! ImagePreVC
             previewVC.image = self.image
+        }
+    }
+    
+    @IBAction func flashBtnPressed(_ sender: Any) {
+        switch flashControlState {
+        case .off:
+            flashBtn.setTitle("FLASH ON", for: .normal)
+            flashControlState = .on
+        case .on:
+            flashBtn.setTitle("FLASH OFF", for: .normal)
+            flashControlState = .off
         }
     }
 }
