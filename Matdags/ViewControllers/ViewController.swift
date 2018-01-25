@@ -65,8 +65,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         }
     }
     
-    
-    
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         AppDelegate.instance().showActivityIndicator()
         
@@ -78,7 +76,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         }
         
         let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        
         
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil {
@@ -111,8 +108,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         password.resignFirstResponder()
     }
     
-    
-    
     func login() {
         AppDelegate.instance().showActivityIndicator()
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
@@ -139,61 +134,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             }
         })
     }
-    
-    func createFirebaseUser() {
-        if(FBSDKAccessToken.current() != nil) {
-            let uid = Auth.auth().currentUser!.uid
-            let username = Auth.auth().currentUser!.displayName
-            let useremail = Auth.auth().currentUser!.email
-            let database = Database.database().reference(withPath: "Users/\(uid)")
-            print("\n \(uid) \n")
-            print("\n \(username!) \n")
-            print("\n \(useremail!) \n")
-            if useremail == nil || username == nil {
-                return
-            }
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.yyyy"
-            let result = formatter.string(from: date)
-            let feed = ["followingCounter" : 0,
-                        "followerCounter" : 0,
-                        "alias" : username!,
-                        "date" : result,
-                        "uid" : uid,
-                        "profileImageURL" : "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large",
-                        "email" : useremail!] as [String : Any]
-            database.updateChildValues(feed)
-            print("\n Firebase User Created! \n")
-        } else {
-            let uid = Auth.auth().currentUser!.uid
-            let username = Auth.auth().currentUser!.displayName
-            let useremail = Auth.auth().currentUser!.email
-            let database = Database.database().reference(withPath: "Users/\(uid)")
-            print("\n \(uid) \n")
-            print("\n \(username!) \n")
-            print("\n \(useremail!) \n")
-            if useremail == nil || username == nil {
-                return
-            }
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.yyyy"
-            let result = formatter.string(from: date)
-            let feed = ["followingCounter" : 0,
-                        "followerCounter" : 0,
-                        "alias" : username!,
-                        "date" : result,
-                        "uid" : uid,
-                        "profileImageURL" : "",
-                        "email" : useremail!] as [String : Any]
-            database.updateChildValues(feed)
-            print("\n Firebase User Created! \n")
-        }
-       
-    }
-    
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
