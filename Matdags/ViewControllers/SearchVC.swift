@@ -31,7 +31,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
-    var test = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             self.searchUsersTableView.reloadData()
             
         }
-        
         subview.layer.cornerRadius = 3
         subview.clipsToBounds = true
     }
@@ -75,8 +74,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     @IBAction func subviewFollowUser(_ sender: Any) {
-        addFollower()
-        getFollower()
+            addFollower()
+            getFollower()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -111,7 +110,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference().child("Users/\(uid)/Following")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : AnyObject] {
+            if let tempSnapshot = snapshot.value as? [String: AnyObject] {
                 let appendInfo = User()
                 appendInfo.uid = tempSnapshot["uid"] as? String
                // self.test = tempSnapshot FÅR DET INTE TILL ATT FUNGERA HÄR
@@ -119,6 +118,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 }
             })
     }
+
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
@@ -159,7 +159,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     appendUser.profileImageURL = each["profileImageURL"] as? String
                     print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
                     self.users.append(appendUser)
-                    
                     self.insertRow()
                 }
                 dispatchGroup.leave()
