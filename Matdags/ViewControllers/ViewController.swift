@@ -36,8 +36,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         if (Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == true && FBSDKAccessToken.current() == nil) {
             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
         }
-        
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -94,7 +92,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                 })
                 print("\n INLOGGAD MED FACEBOOK \n ")
                 AppDelegate.instance().dismissActivityIndicator()
-                
             }
         }
     }
@@ -149,8 +146,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
             return true
         }
     }
-    
-    
 }
 
 

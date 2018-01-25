@@ -21,6 +21,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
     
+    var ref: DatabaseReference!
     var subviewCell = SearchSubViewCell()
     var posts = [Post]()
     var users = [User]()
@@ -30,9 +31,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
+    var test = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserUID()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
         searchController.searchResultsUpdater = self
@@ -51,7 +54,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //subviewCell.removeAll()
-        searchUsersTableView.separatorStyle = .none
+       // searchUsersTableView.separatorStyle = .none
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -93,6 +96,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         
         cell.usernameLabel.text = username.alias
+        
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         
@@ -101,30 +105,44 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
         return cell
     }
+    
+    //VILL FÅ DENNA ATT FUNGERA
+    func getUserUID() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference().child("Users/\(uid)/Following")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let tempSnapshot = snapshot.value as? [String : AnyObject] {
+                let appendInfo = User()
+                appendInfo.uid = tempSnapshot["uid"] as? String
+               // self.test = tempSnapshot FÅR DET INTE TILL ATT FUNGERA HÄR
+                print("\(tempSnapshot) hejsan")     
+                }
+            })
+    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        
         downloadImages(uid: username.uid)
 
-            self.userId = users[indexPath.row].uid
+        self.userId = users[indexPath.row].uid
 
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
         let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
+        
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
             self.subviewProfileImage.image = nil
         }
-        //Verkar inte göra något än!
-       /* if self.username.uid != Auth.auth().currentUser!.uid {
+        
+        if userId != Auth.auth().currentUser!.uid {
             self.subviewFollowButton.isHidden = false
         } else {
             self.subviewFollowButton.isHidden = true
         }
-        subviewCell.userID = username.uid
-        subviewCell.alias = username.alias*/
     }
     
     func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -169,7 +187,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     func addFollower() {
-        print(self.subviewUsername.text!)
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
@@ -207,10 +224,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     }
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
-    
-    func getuserUID() {
-        
-    }
     
     func downloadImages(uid: String) {
         posts.removeAll()
