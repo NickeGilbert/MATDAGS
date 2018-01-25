@@ -105,7 +105,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         return cell
     }
     
-    //VILL FÅ DENNA ATT FUNGERA
     func getUserUID() {
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference().child("Users/\(uid)/Following")
@@ -116,7 +115,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                // self.test = tempSnapshot FÅR DET INTE TILL ATT FUNGERA HÄR
                 print("\(tempSnapshot) hejsan")     
                 }
-            })
+            }
+        })
     }
 
 
@@ -126,22 +126,26 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         downloadImages(uid: username.uid)
 
         self.userId = users[indexPath.row].uid
+        
+        
 
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
         let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
+        self.subviewFollowButton.isHidden = false
+        
+        for user in test {
+            if userId == user || userId == Auth.auth().currentUser?.uid {
+                self.subviewFollowButton.isHidden = true
+            }
+        }
+        
         
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
             self.subviewProfileImage.image = nil
-        }
-        
-        if userId != Auth.auth().currentUser!.uid {
-            self.subviewFollowButton.isHidden = false
-        } else {
-            self.subviewFollowButton.isHidden = true
         }
     }
     

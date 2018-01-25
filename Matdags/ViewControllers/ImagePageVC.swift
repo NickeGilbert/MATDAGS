@@ -319,7 +319,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subviewBackground.isHidden = false
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
-        self.subviewUsername.text = self.posts[0].alias        
+        self.subviewUsername.text = self.posts[0].alias
         let selectedUser = self.posts[0].userID
         downloadImages(uid: selectedUser!)
         getUserProfileImage(uid: selectedUser!)

@@ -38,6 +38,7 @@
 		A45ABBA61FE01F780052E6A7 /* SearchSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */; };
 		A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4650B001FB368FC00BC618E /* SearchVC.swift */; };
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
+		A47197DB2019E63D00C01C39 /* ImagePreVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47197DA2019E63D00C01C39 /* ImagePreVCExt.swift */; };
 		A485559320176246008F8C1F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485559220176246008F8C1F /* Enums.swift */; };
 		A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */; };
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
@@ -83,6 +84,7 @@
 		A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewCell.swift; sourceTree = "<group>"; };
 		A4650B001FB368FC00BC618E /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
+		A47197DA2019E63D00C01C39 /* ImagePreVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreVCExt.swift; sourceTree = "<group>"; };
 		A485559220176246008F8C1F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSubViewCell.swift; sourceTree = "<group>"; };
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				A423EA312011538400F32C46 /* ImageFeedVCExt.swift */,
 				A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */,
 				A4AE6C182012C76200F05B44 /* ViewControllerVCExt.swift */,
+				A47197DA2019E63D00C01C39 /* ImagePreVCExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */,
 				A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
+				A47197DB2019E63D00C01C39 /* ImagePreVCExt.swift in Sources */,
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				A423EA322011538400F32C46 /* ImageFeedVCExt.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,
