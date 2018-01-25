@@ -75,7 +75,5 @@ extension UIViewController {
             database.updateChildValues(feed)
             print("\n Firebase User Created! \n")
         }
-        
     }
-    
 }
