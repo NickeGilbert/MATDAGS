@@ -31,8 +31,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
-    var test = [String]()
-    var cool = ""
+    var yourFollowers = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,12 +114,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     let appendUser = User()
                     appendUser.uid = each["uid"] as? String
                     print("\(each) TJOBBA ")
-                    self.test.append(each as! String)
+                    self.yourFollowers.append(each as! String)
                 }
             }
         })
     }
-
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
@@ -128,8 +126,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         downloadImages(uid: username.uid)
 
         self.userId = users[indexPath.row].uid
-        
-        
 
         self.subview.isHidden = false
         self.subviewBackground.isHidden = false
@@ -137,12 +133,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
         self.subviewFollowButton.isHidden = false
         
-        for user in test {
+        for user in yourFollowers {
             if userId == user || userId == Auth.auth().currentUser?.uid {
                 self.subviewFollowButton.isHidden = true
             }
         }
-        
         
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
