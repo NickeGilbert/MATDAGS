@@ -9,7 +9,7 @@ import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
+class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet var emailText: UITextField!
     @IBOutlet var password: UITextField!

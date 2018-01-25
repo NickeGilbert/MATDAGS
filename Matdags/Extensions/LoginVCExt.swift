@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
+
 extension UIViewController {
    
     func checkFirebaseInfo(arg: Bool, completion: @escaping (Bool) -> ()) {

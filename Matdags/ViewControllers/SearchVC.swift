@@ -31,7 +31,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
-
+    var test = [String]()
+    var cool = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,11 +110,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference().child("Users/\(uid)/Following")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String: AnyObject] {
-                let appendInfo = User()
-                appendInfo.uid = tempSnapshot["uid"] as? String
-               // self.test = tempSnapshot FÅR DET INTE TILL ATT FUNGERA HÄR
-                print("\(tempSnapshot) hejsan")     
+            if let tempSnapshot = snapshot.value as? [String : AnyObject] {
+                for (_, each) in tempSnapshot {
+                    let appendUser = User()
+                    appendUser.uid = each["uid"] as? String
+                    print("\(each) TJOBBA ")
+                    self.test.append(each as! String)
                 }
             }
         })
