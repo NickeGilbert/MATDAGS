@@ -61,16 +61,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         downloadInfo { (true) in
             print(self.posts[0].userID)
-            if self.posts[0].userID != self.uid{
+            if self.posts[0].userID != self.uid {
                 self.followerButton.isHidden = false
             } else {
                 self.followerButton.isHidden = true
             }
             self.sortFirebaseInfo()
             self.getStars()
+           
         }
         
         commentsTableView.isScrollEnabled = false

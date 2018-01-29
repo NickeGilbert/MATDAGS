@@ -10,6 +10,9 @@ import FBSDKCoreKit
 
 class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    
+    
+    @IBOutlet weak var subviewUnfollowBtn: UIButton!
     @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
@@ -35,6 +38,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.subviewUnfollowBtn.isHidden = true
         getUserUID()
         self.subview.isHidden = true
         self.subviewBackground.isHidden = true
@@ -50,59 +54,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         subview.clipsToBounds = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        //subviewCell.removeAll()
-       // searchUsersTableView.separatorStyle = .none
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        print("Quit")
-    }
-    
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
-    }
-    
-    @IBAction func closeSubview(_ sender: Any) {
-        subview.isHidden = true
-        self.subviewBackground.isHidden = true
-        self.subviewProfileImage.image = nil
-        self.subviewUsername.text = nil
-    }
-    
-    @IBAction func subviewFollowUser(_ sender: Any) {
-            addFollower()
-            getFollower()
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContent(searchText: searchController.searchBar.text!)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? filteredUsers.count : users.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
-        
-        cell.usernameLabel.text = username.alias
-        
-        if self.users[indexPath.row].profileImageURL != "" {
-            cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
-        
-        } else {
-            print("Do nothing")
-        }
-        return cell
     }
     
     func getUserUID() {
@@ -113,37 +66,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 for (_, each) in tempSnapshot {
                     let appendUser = User()
                     appendUser.uid = each["uid"] as? String
-                    print("\(each) TJOBBA ")
+                    print("\(each) ANVÄNDARNAS UID ")
                     self.yourFollowers.append(each as! String)
                 }
             }
         })
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
-        
-        downloadImages(uid: username.uid)
-
-        self.userId = users[indexPath.row].uid
-
-        self.subview.isHidden = false
-        self.subviewBackground.isHidden = false
-        self.subviewUsername.text = username.alias
-        let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
-        self.subviewFollowButton.isHidden = false
-        
-        for user in yourFollowers {
-            if userId == user || userId == Auth.auth().currentUser?.uid {
-                self.subviewFollowButton.isHidden = true
-            }
-        }
-        
-        if username.profileImageURL != "" {
-            self.subviewProfileImage.image = cell.pictureOutlet.image
-        } else {
-            self.subviewProfileImage.image = nil
-        }
     }
     
     func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -172,6 +99,57 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         })
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchController.isActive ? filteredUsers.count : users.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        
+        cell.usernameLabel.text = username.alias
+        
+        if self.users[indexPath.row].profileImageURL != "" {
+            cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
+        
+        } else {
+            print("Do nothing")
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        
+        downloadImages(uid: username.uid)
+
+        self.userId = users[indexPath.row].uid
+
+        self.subview.isHidden = false
+        self.subviewBackground.isHidden = false
+        self.subviewUsername.text = username.alias
+        let cell = searchUsersTableView.cellForRow(at: indexPath) as! SearchCell
+        self.subviewFollowButton.isHidden = false
+        self.subviewUnfollowBtn.isHidden = true
+        
+        for user in yourFollowers {
+            if userId == user || userId == Auth.auth().currentUser?.uid {
+                self.subviewFollowButton.isHidden = true
+                self.subviewUnfollowBtn.isHidden = false
+            }
+        }
+        
+        if username.profileImageURL != "" {
+            self.subviewProfileImage.image = cell.pictureOutlet.image
+        } else {
+            self.subviewProfileImage.image = nil
+        }
+    }
+    
     func insertRow() {
         self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
     }
@@ -186,10 +164,30 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         searchUsersTableView.reloadData()
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContent(searchText: searchController.searchBar.text!)
+        print(userId)
+    }
+  
+    
+    ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
+    
+    
+    @IBAction func closeSubview(_ sender: Any) {
+        subview.isHidden = true
+        self.subviewBackground.isHidden = true
+        self.subviewProfileImage.image = nil
+        self.subviewUsername.text = nil
+    }
+    
+    @IBAction func subviewFollowUser(_ sender: Any) {
+        addFollower()
+        getFollower()
+    }
+    
     func addFollower() {
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
-        let alias = Auth.auth().currentUser!.displayName
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.subviewUsername.text != nil {
@@ -222,8 +220,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
             print("\n userID not found when getting follower \n")
         }
     }
-    
-    ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
     func downloadImages(uid: String) {
         posts.removeAll()
