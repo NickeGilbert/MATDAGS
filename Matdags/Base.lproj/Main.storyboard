@@ -884,7 +884,7 @@
                                     <constraint firstAttribute="width" constant="30" id="5Kc-3t-uz3"/>
                                     <constraint firstAttribute="height" constant="30" id="MEH-VM-i7t"/>
                                 </constraints>
-                                <state key="normal" image="cog">
+                                <state key="normal" image="cog1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -1626,7 +1626,7 @@
                 <swipeGestureRecognizer direction="right" id="fNl-2b-zWO"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2ex-fQ-t2R"/>
             </objects>
-            <point key="canvasLocation" x="3479.7101449275365" y="-1374.4565217391305"/>
+            <point key="canvasLocation" x="3481" y="-1325"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -1770,7 +1770,7 @@
         <image name="SaveButtonGray" width="45" height="45"/>
         <image name="back" width="50" height="50"/>
         <image name="bakgrund1" width="611" height="1086"/>
-        <image name="cog" width="51" height="51"/>
+        <image name="cog1" width="112" height="110"/>
         <image name="commentButton100" width="100" height="100"/>
         <image name="commentButton50" width="50" height="50"/>
         <image name="emptystar30" width="30" height="30"/>
@@ -1790,7 +1790,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="l83-R4-lZS"/>
-        <segue reference="qav-lz-AQ2"/>
+        <segue reference="Pq7-cy-tEF"/>
         <segue reference="l1h-Lg-NhA"/>
     </inferredMetricsTieBreakers>
 </document>

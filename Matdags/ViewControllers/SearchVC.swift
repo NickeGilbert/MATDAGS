@@ -36,6 +36,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var userId = ""
     var yourFollowers = [String]()
     
+    //extra
+    var images = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subviewUnfollowBtn.isHidden = true
@@ -57,7 +60,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
-    
+
     func getUserUID() {
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference().child("Users/\(uid)/Following")
@@ -75,7 +78,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         AppDelegate.instance().showActivityIndicator()
-        users.removeAll()
         let dbref = Database.database().reference(withPath: "Users")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
@@ -113,12 +115,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         
         cell.usernameLabel.text = username.alias
         
+        
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
-        
+
         } else {
             print("Do nothing")
         }
+        
+        //extra
+       cell.pictureOutlet = images
+        
         return cell
     }
 
@@ -156,11 +163,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func filterContent(searchText:String) {
         let searchText = self.searchController.searchBar.text ?? ""
-        filteredUsers = self.users.filter{ user in
-            
+        filteredUsers = self.users.filter { user in
+
             let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().characters.count == 0
+
             return username
         }
+       
         searchUsersTableView.reloadData()
     }
     
@@ -168,7 +177,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         filterContent(searchText: searchController.searchBar.text!)
         print(userId)
     }
-  
     
     ///////////////////////////////////SUBVIEW///////////////////////////////////////////////////////
     
