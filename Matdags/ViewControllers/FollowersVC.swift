@@ -109,6 +109,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
         
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+        
         cell.layer.cornerRadius = 2
         cell.clipsToBounds = true
         
@@ -124,6 +126,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }else{
             cell.vegiIcon.isHidden = false
         }
+        
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         return cell
     }
     
