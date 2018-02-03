@@ -19,8 +19,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        AppDelegate.instance().showActivityIndicator()
-        
+
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.clear
@@ -29,8 +28,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
-        
-        
     }
     
     @objc func loadData() {
@@ -45,11 +42,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        posts.removeAll()
-//        self.following.removeAll()
         fetchPosts()
-//        loadData()
-//        AppDelegate.instance().dismissActivityIndicator()
     }
     
     func fetchPosts() {
@@ -101,7 +94,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 }
             }
         })
-        
         ref.removeAllObservers()
     }
     
@@ -123,13 +115,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.imageFeedView.image = nil
         cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
         cell.usernameLabel.text = self.posts[indexPath.row].alias
-//        cell.layer.borderColor = UIColor.lightGray.cgColor
-//        cell.layer.borderWidth = 1
         cell.backgroundColor = UIColor.white
         cell.dropShadow()
-        
-        
-        
         cell.vegiIcon.isHidden = true
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
@@ -137,7 +124,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }else{
             cell.vegiIcon.isHidden = false
         }
-        
         return cell
     }
     
@@ -149,6 +135,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func swipeRight(_ sender: Any) {
         tabBarController?.selectedIndex = 0
     }
+    
     @IBAction func swipeLeft(_ sender: Any) {
         tabBarController?.selectedIndex = 2
     }
