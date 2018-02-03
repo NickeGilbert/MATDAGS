@@ -100,6 +100,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
+       
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+       
+        
         cell.vegiIcon.isHidden = true
         
         if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
@@ -110,11 +114,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
-            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256) 
+            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
-         return cell
+
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
