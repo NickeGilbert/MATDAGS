@@ -11,7 +11,6 @@ import FBSDKCoreKit
 class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var subviewUnfollowBtn: UIButton!
-    @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
@@ -39,7 +38,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         self.subviewUnfollowBtn.isHidden = true
         getUserUID()
         self.subview.isHidden = true
-        self.subviewBackground.isHidden = true
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -128,7 +126,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
 
         self.userId = users[indexPath.row].uid
         self.subview.isHidden = false
-        self.subviewBackground.isHidden = false
         self.subviewUsername.text = username.alias
         self.subviewFollowButton.isHidden = false
         self.subviewUnfollowBtn.isHidden = true
@@ -175,7 +172,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     @IBAction func closeSubview(_ sender: Any) {
         subview.isHidden = true
-        self.subviewBackground.isHidden = true
         self.subviewProfileImage.image = nil
         self.subviewUsername.text = nil
     }

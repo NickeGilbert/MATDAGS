@@ -97,13 +97,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
-    //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
        
         let cachedImages = cell.viewWithTag(1) as? UIImageView
        
-        
         cell.vegiIcon.isHidden = true
         
         if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
@@ -149,12 +147,3 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         tabBarController?.selectedIndex = 1
     }
 }
-
-
-
-
-
-
-
-
-

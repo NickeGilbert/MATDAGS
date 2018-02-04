@@ -26,7 +26,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var commentsTextField: UITextField!
     
     
-    @IBOutlet weak var subviewBackground: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
@@ -54,7 +53,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         vegiIcon.isHidden = true
-        subviewBackground.isHidden = true
         subview.isHidden = true
         commentsTextField.delegate = self
     }
@@ -316,7 +314,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func clickedOnUsername(_ sender: Any) {
-        subviewBackground.isHidden = false
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
         self.subviewUsername.text = self.posts[0].alias
@@ -356,12 +353,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePageSubviewCell", for: indexPath) as! ImagePageSubViewCell
         
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+        
         cell.mySubviewCollectionFeed.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
+        
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         return cell
     }
     
@@ -395,7 +396,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func closeSubview(_ sender: Any) {
-        subviewBackground.isHidden = true
         subview.isHidden = true
     }
     

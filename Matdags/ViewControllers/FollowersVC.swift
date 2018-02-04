@@ -9,6 +9,7 @@ import Firebase
 class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var feedCollectionView: UICollectionView!
+    @IBOutlet weak var zeroImagesMessage: UILabel!
     
     var ref: DatabaseReference!
     var posts = [Post]()
@@ -20,6 +21,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.zeroImagesMessage.isHidden = true
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.clear
@@ -115,7 +117,12 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.clipsToBounds = true
         
         cell.imageFeedView.image = nil
-        cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        
+        if self.posts[indexPath.row].pathToImage != nil {
+            cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        } else {
+        }
+        
         cell.usernameLabel.text = self.posts[indexPath.row].alias
         cell.backgroundColor = UIColor.white
         cell.dropShadow()
