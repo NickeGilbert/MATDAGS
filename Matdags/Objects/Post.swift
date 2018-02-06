@@ -15,4 +15,5 @@ class Post: NSObject {
     var alias : String!
     var vegi : Bool?
     var comments : [String]!
+    var usersRated : Int!
 }

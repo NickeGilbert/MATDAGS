@@ -140,7 +140,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                     "alias" : Auth.auth().currentUser!.displayName!,
 //                    "imgdescription" : self.descriptionField.text!,
                     "imgdescription" : self.descriptionFieldLines.text!,
-                    "postID" : key] as [String : Any]
+                    "postID" : key,
+                    "usersRated" : 0] as [String : Any]
         let postIdExtra = ["postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
         database.child("\(key)").updateChildValues(["vegetarian" : vegFoodBool])

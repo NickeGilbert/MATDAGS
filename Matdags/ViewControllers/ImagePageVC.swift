@@ -43,6 +43,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var count : Int = 0
     var countFollower : Int = 0
     var posts = [Post]()
+    var fetchedStars = 0
+    var usersRated = 0
+    var postRating = 0
     
     var commentConter: Int = 0
     
@@ -66,6 +69,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             } else {
                 self.followerButton.isHidden = true
             }
+            self.usersRated = self.posts[0].usersRated
+            self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
            
@@ -89,8 +94,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        postStars { (true) in
-            completionHandler(true)
+        getInfoForIncremation { (true) in
+            self.usersRated = self.posts[0].usersRated
+            self.postRating = self.posts[0].rating
+            self.postStars { (true) in
+                completionHandler(true)
+            }
         }
     }
     
@@ -121,30 +130,66 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return .lightContent
     }
     
+    func getInfoForIncremation(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        let getInfo = Post()
+        let dbref = db.reference(withPath: "Posts/\(self.posts[0].postID)")
+        dbref.observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String : Any] {
+                getInfo.rating = dict["rating"] as? Int
+                getInfo.usersRated = dict["usersRated"] as? Int
+            }
+            print("\ngetInfoForIncremation true")
+            completionHandler(true)
+        }
+    }
+    
     func postStars(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        let dbref = db.reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
-        if self.posts[0].postID != nil && starsHighlighted != 0 {
-            let ratedPosts = ["Stars" : starsHighlighted] as [String : Any]
-            dbref.updateChildValues(ratedPosts)
+        if self.posts[0].postID != nil {
+            //Post stars to userdb
+            let uref = db.reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
+            if starsHighlighted != 0 {
+                let ratedPosts = ["Stars" : starsHighlighted] as [String : Any]
+                uref.updateChildValues(ratedPosts)
+            }
+            
+            //Post stars to postdb
+            let dbref = db.reference(withPath: "Posts/\(self.posts[0].postID!)")
+            let a = fetchedStars - (fetchedStars - starsHighlighted)
+            let b = fetchedStars + (starsHighlighted - fetchedStars)
+            if starsHighlighted < fetchedStars {
+                let postStars = ["rating" : postRating - fetchedStars + a] as [String : Int]
+                dbref.updateChildValues(postStars)
+            } else if starsHighlighted > fetchedStars {
+                let postStars = ["rating" : postRating - fetchedStars + b] as [String : Int]
+                dbref.updateChildValues(postStars)
+            }
+            
+            if fetchedStars == 0 && starsHighlighted != 0 {
+                usersRated+=1
+                dbref.updateChildValues(["usersRated" : usersRated] as [String : Int])
+            }
+            print("\npostStars true")
             completionHandler(true)
         } else {
-            print("\n No postID found or starHighlighted is 0 \n")
-            completionHandler(false)
+            print("\nNo PostID found!")
+            completionHandler(true)
         }
     }
     
     func getStars() {
+        //Get number of stars
         let getInfo = User()
-        let dbref = Database.database().reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+        let uref = Database.database().reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
+        uref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let firstSnapshot = snapshot.value as? [String : Any] {
                 getInfo.stars = firstSnapshot["Stars"] as? Int
                 self.starsHighlighted = getInfo.stars
+                self.fetchedStars = getInfo.stars
                 
                 print("\n Stars: \(self.starsHighlighted) \n")
                 
                 for button in self.starButtons {
-                    for i in 1...self.starsHighlighted-1 {
+                    for i in 0...Int(self.starsHighlighted)-1 {
                         if button.tag <= i {
                             button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
                         }
@@ -154,6 +199,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 print("\n Cant find rating for post. \n")
             }
         })
+        
+        
     }
     
     func getUserProfileImage(uid: String) {
@@ -162,7 +209,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let firstSnapshot = snapshot.value as? [String : Any] {
                 getInfo.profileImageURL = firstSnapshot["profileImageURL"] as? String
-                
                 if getInfo.profileImageURL != ""  {
                     self.subviewProfileImage.downloadImage(from: getInfo.profileImageURL)
                 } else {
@@ -185,6 +231,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 getInfo.alias = dictionary["alias"] as! String
                 getInfo.imgdescription = dictionary["imgdescription"] as! String
                 getInfo.vegi = dictionary["vegetarian"] as? Bool
+                getInfo.usersRated = dictionary["usersRated"] as? Int
                 self.posts.append(getInfo)
                 print("\n \(self.posts[0].userID) \n")
                 completionHandler(true)
@@ -267,7 +314,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         } else {
             print("\n No Image URL found in array. \n")
         }
-        pointsLabel.text = "\(self.posts[0].rating!) Rating"
+        if self.posts[0].usersRated != 0 {
+            pointsLabel.text = "\(Double(postRating / usersRated)) Rating"
+        } else {
+            pointsLabel.text = "Rating"
+        }
+
         if posts[0].alias != nil{
             toSubViewButton.setTitle(self.posts[0].alias, for: .normal)
         } else {
@@ -305,21 +357,21 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func appendToFirebase() {
+    /*func appendToFirebase() {
         let dbRef = Database.database().reference(withPath: "Posts/\(seguePostID)/stars")
         if starsHighlighted > 0 {
             let feed = ["\(starsHighlighted)" : +1] as [String : Any]
             dbRef.updateChildValues(feed)
         }
-    }
+    }*/
     
     @IBAction func clickedOnUsername(_ sender: Any) {
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
         self.subviewUsername.text = self.posts[0].alias
-        let selectedUser = self.posts[0].userID
-        downloadImages(uid: selectedUser!)
-        getUserProfileImage(uid: selectedUser!)
+        let selectedUser = self.posts[0].userID!
+        downloadImages(uid: selectedUser)
+        getUserProfileImage(uid: selectedUser)
         
     }
     ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
