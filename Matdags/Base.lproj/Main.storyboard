@@ -1245,7 +1245,7 @@
                                             <action selector="clickedOnUsername:" destination="As2-HR-siM" eventType="touchUpInside" id="V0y-Bn-7Ju"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHK-zH-6mw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHK-zH-6mw" userLabel="Rating Label">
                                         <rect key="frame" x="15" y="573" width="256" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="FGL-bo-pBs"/>
@@ -1599,7 +1599,7 @@
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>
                         <outlet property="followerButton" destination="SYW-pk-e4K" id="yej-xk-dgd"/>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
-                        <outlet property="pointsLabel" destination="aHK-zH-6mw" id="W4a-r7-BJT"/>
+                        <outlet property="ratingLabel" destination="aHK-zH-6mw" id="ZHN-iM-7Bs"/>
                         <outlet property="scrollView" destination="Zs8-gX-2Ep" id="IwG-c6-dwl"/>
                         <outlet property="subview" destination="XVj-Tu-c8h" id="ikr-I0-OKe"/>
                         <outlet property="subviewCollectionFeed" destination="73x-ZL-psa" id="MOl-io-YdC"/>

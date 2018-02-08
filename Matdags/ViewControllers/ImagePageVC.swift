@@ -11,7 +11,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
-    @IBOutlet var pointsLabel: UILabel!
+    @IBOutlet var ratingLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
@@ -39,10 +39,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
    
     var seguePostID : String!
     var users = [User]()
-    var starsHighlighted = 0
     var count : Int = 0
     var countFollower : Int = 0
     var posts = [Post]()
+    
+    //Rating System
+    var starsHighlighted = 0
     var fetchedStars = 0
     var usersRated = 0
     var postRating = 0
@@ -69,7 +71,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             } else {
                 self.followerButton.isHidden = true
             }
-            self.usersRated = self.posts[0].usersRated
+            if self.posts[0].usersRated != nil {
+                self.usersRated = self.posts[0].usersRated
+            } else {
+                self.usersRated = 0
+            }
             self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
@@ -95,8 +101,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         getInfoForIncremation { (true) in
-            self.usersRated = self.posts[0].usersRated
-            self.postRating = self.posts[0].rating
+            if self.posts[0].usersRated == nil || self.posts[0].usersRated == 0 {
+                self.usersRated = 0
+            } else {
+                self.usersRated = self.posts[0].usersRated
+            }
+            if self.posts[0].rating == nil || self.posts[0].rating == 0 {
+                self.postRating = 0
+            } else {
+                self.postRating = self.posts[0].rating
+            }
             self.postStars { (true) in
                 completionHandler(true)
             }
@@ -118,10 +132,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
              cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad"
         }
         
-        let cellHight = cell.frame.height
-        var tableHight = tableView.frame.height
+        let cellHeight = cell.frame.height
+        let tableHeight = tableView.frame.height
 
-        tableViewConstraintH.constant = tableHight + cellHight
+        tableViewConstraintH.constant = tableHeight + cellHeight
         return cell
     }
     
@@ -314,10 +328,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         } else {
             print("\n No Image URL found in array. \n")
         }
-        if self.posts[0].usersRated != 0 {
-            pointsLabel.text = "\(Double(postRating / usersRated)) Rating"
+        if postRating != 0 || usersRated != 0 {
+            ratingLabel.text = "\(Double(postRating / usersRated)) Rating"
         } else {
-            pointsLabel.text = "Rating"
+            ratingLabel.text = "No Rating"
         }
 
         if posts[0].alias != nil{
