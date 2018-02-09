@@ -35,7 +35,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @objc func loadData() {
         posts.removeAll()
-        fetchPosts()
+        fetchPosts { (true) in
+            //ToDo
+        }
         self.feedCollectionView.reloadData()
         stopRefresher()
     }
@@ -44,60 +46,65 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.endRefreshing()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        fetchPosts()
+    override func viewWillAppear(_ animated: Bool) {
+        fetchPosts { (true) in
+            
+        }
     }
     
-    func fetchPosts() {
+    func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         self.posts.removeAll()
         self.following.removeAll()
         AppDelegate.instance().showActivityIndicator()
+        
         let ref = Database.database().reference()
         
         ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            let Users = snapshot.value as! [String: AnyObject]
-            
-            for (_,value) in Users {
-                if let ID = value["uid"] as? String {
-                    if ID == Auth.auth().currentUser?.uid {
-                        if let followingUsers = value["Following"] as? [String: String] {
-                            for (_,user) in followingUsers {
-                                self.following.append(user)
+            if let Users = snapshot.value as? [String : AnyObject] {
+                for (_,value) in Users {
+                    if let ID = value["uid"] as? String {
+                        if ID == Auth.auth().currentUser?.uid {
+                            if let followingUsers = value["Following"] as? [String: String] {
+                                for (_,user) in followingUsers {
+                                    self.following.append(user)
+                                }
                             }
-                        }
-                        self.following.append(Auth.auth().currentUser!.uid)
-                        
-                        ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
-                            if let postsSnap = snap.value as? [String: AnyObject] {
-                                for (_,post) in postsSnap {
-                                    if let userID = post["userID"] as? String {
-                                        for each in self.following {
-                                            if each == userID {
-                                                let posst = Post()
-                                                posst.vegi = post["vegetarian"] as? Bool
-                                                if let alias = post["alias"] as? String, let rating = post["rating"] as? Double, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
+                            self.following.append(Auth.auth().currentUser!.uid)
+                            
+                            ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
+                                if let postsSnap = snap.value as? [String: AnyObject] {
+                                    for (_,post) in postsSnap {
+                                        if let userID = post["userID"] as? String {
+                                            for each in self.following {
+                                                if each == userID {
+                                                    let appendPost = Post()
                                                     
-                                                    posst.alias = alias
-                                                    posst.rating = rating
-                                                    posst.pathToImage = pathToImage
-                                                    posst.postID = postID
-                                                    posst.userID = userID
+                                                    appendPost.alias = post["alias"] as? String
+                                                    appendPost.rating = post["rating"] as? Double
+                                                    appendPost.pathToImage = post["pathToImage"] as? String
+                                                    appendPost.postID = post["postID"] as? String
+                                                    appendPost.vegi = post["vegetarian"] as? Bool
+                                                    appendPost.usersRated = post["usersRated"] as? Double
                                                     
-                                                    self.posts.append(posst)
+                                                    self.posts.append(appendPost)
                                                 }
                                             }
+                                            self.feedCollectionView.reloadData()
+                                            AppDelegate.instance().dismissActivityIndicator()
                                         }
-                                        self.feedCollectionView.reloadData()
-                                        AppDelegate.instance().dismissActivityIndicator()
                                     }
+                                } else {
+                                    print("\nNo Posts found in db.")
+                                    AppDelegate.instance().dismissActivityIndicator()
                                 }
-                            } else {
-                                print("\nNo Posts found in db.")
-                                AppDelegate.instance().dismissActivityIndicator()
-                            }
-                        })
+                            })
+                        }
                     }
                 }
+                completionHandler(true)
+            } else {
+                completionHandler(true)
+                print("\nCouldnt fetch Posts in FollowerVC.")
             }
         })
         ref.removeAllObservers()
@@ -124,7 +131,21 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         if self.posts[indexPath.row].pathToImage != nil {
             cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
-        } else {
+        }
+        
+        //Visa stjärnor i varje cell
+        let rating = self.posts[indexPath.row].rating
+        if rating != nil {
+            for button in cell.starButtonArray {
+                button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+                if Int(rating!) > 0 {
+                    for i in 0...Int(rating!)-1 {
+                        if button.tag <= i {
+                            button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                        }
+                    }
+                }
+            }
         }
         
         cell.usernameLabel.text = self.posts[indexPath.row].alias
@@ -134,7 +155,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
             cell.vegiIcon.isHidden = true
-        }else{
+        } else {
             cell.vegiIcon.isHidden = false
         }
         

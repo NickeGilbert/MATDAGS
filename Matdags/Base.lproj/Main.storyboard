@@ -584,50 +584,35 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEi-u7-Xpj">
                                                     <rect key="frame" x="10" y="330" width="150" height="30"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa" userLabel="StarButton1">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                             <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="4K3-ml-CLg"/>
-                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi" userLabel="StarButton2">
                                                             <rect key="frame" x="30" y="0.0" width="30" height="30"/>
                                                             <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="Kp8-op-EGn"/>
-                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign">
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign" userLabel="StarButton3">
                                                             <rect key="frame" x="60" y="0.0" width="30" height="30"/>
                                                             <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="bD0-hK-nYQ"/>
-                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd">
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd" userLabel="StarButton4">
                                                             <rect key="frame" x="90" y="0.0" width="30" height="30"/>
                                                             <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="y3Y-zg-dNe"/>
-                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e">
+                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e" userLabel="StarButton5">
                                                             <rect key="frame" x="120" y="0.0" width="30" height="30"/>
                                                             <state key="normal" image="emptystar30">
                                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="starButtonsTapped:" destination="FLe-CQ-fiB" eventType="touchUpInside" id="vgW-Wl-Phc"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -667,11 +652,11 @@
                                             <outlet property="imageFeedView" destination="a0b-Qj-CIY" id="afh-xU-LHe"/>
                                             <outlet property="usernameLabel" destination="h0R-Jk-APq" id="gNi-L7-q1h"/>
                                             <outlet property="vegiIcon" destination="UZ6-VW-Cm7" id="gL1-Cq-qai"/>
-                                            <outletCollection property="starButtons" destination="3YF-Lz-sNa" collectionClass="NSMutableArray" id="udA-pG-ac7"/>
-                                            <outletCollection property="starButtons" destination="G0p-OH-qWi" collectionClass="NSMutableArray" id="5ft-oj-ueO"/>
-                                            <outletCollection property="starButtons" destination="Zzy-oO-Ign" collectionClass="NSMutableArray" id="U0g-5J-s96"/>
-                                            <outletCollection property="starButtons" destination="v55-NH-lwd" collectionClass="NSMutableArray" id="6cD-m1-Rws"/>
-                                            <outletCollection property="starButtons" destination="7Zx-yP-U6e" collectionClass="NSMutableArray" id="Z6k-9r-yqh"/>
+                                            <outletCollection property="starButtonArray" destination="3YF-Lz-sNa" collectionClass="NSMutableArray" id="sNb-3d-uMR"/>
+                                            <outletCollection property="starButtonArray" destination="G0p-OH-qWi" collectionClass="NSMutableArray" id="Abb-MD-gKT"/>
+                                            <outletCollection property="starButtonArray" destination="Zzy-oO-Ign" collectionClass="NSMutableArray" id="Nea-HR-ZWo"/>
+                                            <outletCollection property="starButtonArray" destination="v55-NH-lwd" collectionClass="NSMutableArray" id="eTK-x3-HUg"/>
+                                            <outletCollection property="starButtonArray" destination="7Zx-yP-U6e" collectionClass="NSMutableArray" id="RhR-a6-V9g"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
