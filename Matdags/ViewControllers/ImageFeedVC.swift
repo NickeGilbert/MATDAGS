@@ -41,10 +41,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.endRefreshing()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
@@ -143,7 +139,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func swipeLeft(_ sender: Any) {
-        print("SWIPE SWIPE!!")
+        print("\nSwiped left.")
         tabBarController?.selectedIndex = 1
     }
 }

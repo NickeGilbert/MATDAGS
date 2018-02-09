@@ -28,8 +28,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.width
+        //Används ej? Kevin
+        //let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        //let width = UIScreen.main.bounds.width
     }
     
     @objc func loadData() {
@@ -75,7 +76,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                         if each == userID {
                                             let posst = Post()
                                             posst.vegi = post["vegetarian"] as? Bool
-                                            if let alias = post["alias"] as? String, let rating = post["rating"] as? Int, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
+                                            if let alias = post["alias"] as? String, let rating = post["rating"] as? Double, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
                                                 
                                                 posst.alias = alias
                                                 posst.rating = rating

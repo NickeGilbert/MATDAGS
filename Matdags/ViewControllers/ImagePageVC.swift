@@ -44,10 +44,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var posts = [Post]()
     
     //Rating System
-    var starsHighlighted = 0
-    var fetchedStars = 0
-    var usersRated = 0
-    var postRating = 0
+    var starsHighlighted = 0.0
+    var fetchedStars = 0.0
+    var usersRated = 0.0
+    var postRating = 0.0
     
     var commentConter: Int = 0
     
@@ -149,8 +149,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let dbref = db.reference(withPath: "Posts/\(self.posts[0].postID)")
         dbref.observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
-                getInfo.rating = dict["rating"] as? Int
-                getInfo.usersRated = dict["usersRated"] as? Int
+                getInfo.rating = dict["rating"] as? Double
+                getInfo.usersRated = dict["usersRated"] as? Double
             }
             print("\ngetInfoForIncremation true")
             completionHandler(true)
@@ -171,16 +171,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let a = fetchedStars - (fetchedStars - starsHighlighted)
             let b = fetchedStars + (starsHighlighted - fetchedStars)
             if starsHighlighted < fetchedStars {
-                let postStars = ["rating" : postRating - fetchedStars + a] as [String : Int]
+                let postStars = ["rating" : postRating - fetchedStars + a] as [String : Double]
                 dbref.updateChildValues(postStars)
             } else if starsHighlighted > fetchedStars {
-                let postStars = ["rating" : postRating - fetchedStars + b] as [String : Int]
+                let postStars = ["rating" : postRating - fetchedStars + b] as [String : Double]
                 dbref.updateChildValues(postStars)
             }
             
             if fetchedStars == 0 && starsHighlighted != 0 {
                 usersRated+=1
-                dbref.updateChildValues(["usersRated" : usersRated] as [String : Int])
+                dbref.updateChildValues(["usersRated" : usersRated] as [String : Double])
             }
             print("\npostStars true")
             completionHandler(true)
@@ -197,8 +197,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         uref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let firstSnapshot = snapshot.value as? [String : Any] {
                 getInfo.stars = firstSnapshot["Stars"] as? Int
-                self.starsHighlighted = getInfo.stars
-                self.fetchedStars = getInfo.stars
+                self.starsHighlighted = Double(getInfo.stars)
+                self.fetchedStars = Double(getInfo.stars)
                 
                 print("\n Stars: \(self.starsHighlighted) \n")
                 
@@ -239,13 +239,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 let getInfo = Post()
                 getInfo.pathToImage = dictionary["pathToImage"] as! String
-                getInfo.rating = dictionary["rating"] as! Int
+                getInfo.rating = dictionary["rating"] as! Double
                 getInfo.userID = dictionary["userID"] as! String
                 getInfo.postID = dictionary["postID"] as! String
                 getInfo.alias = dictionary["alias"] as! String
                 getInfo.imgdescription = dictionary["imgdescription"] as! String
                 getInfo.vegi = dictionary["vegetarian"] as? Bool
-                getInfo.usersRated = dictionary["usersRated"] as? Int
+                getInfo.usersRated = dictionary["usersRated"] as? Double
                 self.posts.append(getInfo)
                 print("\n \(self.posts[0].userID) \n")
                 completionHandler(true)
@@ -359,13 +359,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func starButtonsTapped(_ sender: UIButton) {
-        starsHighlighted = sender.tag + 1
+        starsHighlighted = Double(sender.tag + 1)
         print(starsHighlighted)
         
         for button in starButtons {
             button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
             
-            if button.tag <= starsHighlighted-1 {
+            if Double(button.tag) <= starsHighlighted-1 {
                 button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
             }
         }

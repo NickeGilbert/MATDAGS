@@ -138,7 +138,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                     "date": result,
                     "rating" : 0,
                     "alias" : Auth.auth().currentUser!.displayName!,
-//                    "imgdescription" : self.descriptionField.text!,
                     "imgdescription" : self.descriptionFieldLines.text!,
                     "postID" : key,
                     "usersRated" : 0] as [String : Any]
