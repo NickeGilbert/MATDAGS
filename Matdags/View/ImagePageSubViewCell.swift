@@ -9,9 +9,5 @@
 import UIKit
 
 class ImagePageSubViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var mySubviewCollectionFeed: UIImageView!
-
-    var userID: String!
-    var alias: String!
 }

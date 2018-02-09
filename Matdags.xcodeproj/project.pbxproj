@@ -26,6 +26,7 @@
 		0AA3731D1F86450400E6FE92 /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AA373141F86450400E6FE92 /* AccountKitStrings.bundle */; };
 		0AA3731E1F86450400E6FE92 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA373151F86450400E6FE92 /* Bolts.framework */; };
 		0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABFCB321F862C340086DE20 /* ProfileVC.swift */; };
+		0AC65AE0202E4E31004CB360 /* Subview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC65ADF202E4E31004CB360 /* Subview.swift */; };
 		0AF001D11FC44F47005E6CBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF001D01FC44F47005E6CBE /* User.swift */; };
 		0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF08DB51FE9096A00BCBD43 /* Follow.swift */; };
 		26CAF535201219C900011A6E /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF534201219C900011A6E /* CommentsCell.swift */; };
@@ -74,6 +75,7 @@
 		0AA373141F86450400E6FE92 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AccountKitStrings.bundle; path = FacebookSDK/AccountKitStrings.bundle; sourceTree = "<group>"; };
 		0AA373151F86450400E6FE92 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		0ABFCB321F862C340086DE20 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		0AC65ADF202E4E31004CB360 /* Subview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subview.swift; sourceTree = "<group>"; };
 		0AF001D01FC44F47005E6CBE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0AF08DB51FE9096A00BCBD43 /* Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
 		26CAF534201219C900011A6E /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				0A4CD1C31FAE5F880006986A /* Post.swift */,
 				0AF001D01FC44F47005E6CBE /* User.swift */,
 				0AF08DB51FE9096A00BCBD43 /* Follow.swift */,
+				0AC65ADF202E4E31004CB360 /* Subview.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */,
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				A47197DB2019E63D00C01C39 /* ImagePreVCExt.swift in Sources */,
+				0AC65AE0202E4E31004CB360 /* Subview.swift in Sources */,
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				A423EA322011538400F32C46 /* ImageFeedVCExt.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,

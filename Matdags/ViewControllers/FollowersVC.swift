@@ -36,10 +36,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @objc func loadData() {
         posts.removeAll()
         fetchPosts { (true) in
-            //ToDo
+            //Om det något behöver vänta på fetchPosts kan det läggas här
+            self.feedCollectionView.reloadData()
+            self.stopRefresher()
         }
-        self.feedCollectionView.reloadData()
-        stopRefresher()
     }
     
     func stopRefresher() {
@@ -48,7 +48,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewWillAppear(_ animated: Bool) {
         fetchPosts { (true) in
-            
+            //Om det något behöver vänta på fetchPosts kan det läggas här
         }
     }
     

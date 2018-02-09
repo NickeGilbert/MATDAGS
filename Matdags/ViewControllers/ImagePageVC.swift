@@ -42,6 +42,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var count : Int = 0
     var countFollower = 0
     var posts = [Post]()
+    var subviews = [Subview]()
     
     //Rating System
     var starsHighlighted = 0.0
@@ -117,10 +118,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    var bajs = 5
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bajs
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -215,22 +214,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         
         
-    }
-    
-    func getUserProfileImage(uid: String) {
-        let getInfo = User()
-        let dbref = Database.database().reference(withPath: "Users/\(uid)")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let firstSnapshot = snapshot.value as? [String : Any] {
-                getInfo.profileImageURL = firstSnapshot["profileImageURL"] as? String
-                if getInfo.profileImageURL != ""  {
-                    self.subviewProfileImage.downloadImage(from: getInfo.profileImageURL)
-                } else {
-                    print("\n profileImageURL not found \n")
-                    return
-                }
-            }
-        })
     }
     
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -354,6 +337,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBAction func imagePageBack(_ sender: Any) {
         customWillDisappear { (true) in
+            self.posts.removeAll()
+            self.subviews.removeAll()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -379,41 +364,67 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }*/
     
+        ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
+    
     @IBAction func clickedOnUsername(_ sender: Any) {
         subview.isHidden = false
         self.subviewFollowButton.isHidden = false
         self.subviewUsername.text = self.posts[0].alias
-        let selectedUser = self.posts[0].userID!
-        downloadImages(uid: selectedUser)
-        getUserProfileImage(uid: selectedUser)
+        getUserProfileImage { (true) in
+            self.downloadImages()
+        }
         
     }
-    ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
     
     @IBAction func subviewFollowBtn(_ sender: Any) {
         getFollower()
         addFollower()
     }
-
-    func downloadImages(uid: String) {
-        posts.removeAll()
-        let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")
-        dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPost = Post()
-                    appendPost.pathToImage256 = post["pathToImage256"] as? String
-                    appendPost.postID = post["postID"] as? String
-                    appendPost.vegi = post["vegetarian"] as? Bool
-                    self.posts.insert(appendPost, at: 0)
+    
+    func getUserProfileImage(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        if subviews.count == 0 {
+            let getInfo = User()
+            let puid = self.posts[0].userID!
+            let dbref = Database.database().reference(withPath: "Users/\(puid)")
+            dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let firstSnapshot = snapshot.value as? [String : Any] {
+                    getInfo.profileImageURL = firstSnapshot["profileImageURL"] as? String
+                    if getInfo.profileImageURL != ""  {
+                        self.subviewProfileImage.downloadImage(from: getInfo.profileImageURL)
+                        completionHandler(true)
+                        print("\nHämtade profilbild")
+                    } else {
+                        completionHandler(true)
+                        print("\n profileImageURL not found \n")
+                        return
+                    }
                 }
-            }
-            self.subviewCollectionFeed.reloadData()
-        })
+            })
+        }
+    }
+
+    func downloadImages() {
+        if subviews.count == 0 {
+            subviews.removeAll()
+            let puid = self.posts[0].userID!
+            let dbref = Database.database().reference(withPath: "Users/\(puid)/Posts")
+            dbref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String : AnyObject] {
+                    for (_, post) in dictionary {
+                        let appendPost = Subview()
+                        appendPost.pathToImage256 = post["pathToImage256"] as? String
+                        appendPost.postID = post["postID"] as? String
+                        appendPost.vegi = post["vegetarian"] as? Bool
+                        self.subviews.append(appendPost)
+                    }
+                }
+                self.subviewCollectionFeed.reloadData()
+            })
+        }
     }
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.posts.count
+        return self.subviews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -422,13 +433,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cachedImages = cell.viewWithTag(1) as? UIImageView
         
         cell.mySubviewCollectionFeed.image = nil
-        if self.posts[indexPath.row].pathToImage256 != nil {
-            cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
+        if self.subviews[indexPath.row].pathToImage256 != nil {
+            cell.mySubviewCollectionFeed.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         
-        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        cachedImages?.sd_setImage(with: URL(string: self.subviews[indexPath.row].pathToImage256))
+        
         return cell
     }
     
