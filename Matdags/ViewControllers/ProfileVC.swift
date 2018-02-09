@@ -88,6 +88,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
         
         cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        
         return cell
     }
     

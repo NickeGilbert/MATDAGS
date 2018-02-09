@@ -140,10 +140,10 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                     "alias" : Auth.auth().currentUser!.displayName!,
                     "imgdescription" : self.descriptionFieldLines.text!,
                     "postID" : key,
-                    "usersRated" : 0] as [String : Any]
+                    "usersRated" : 0,
+                    "vegetarian" : vegFoodBool] as [String : Any]
         let postIdExtra = ["postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
-        database.child("\(key)").updateChildValues(["vegetarian" : vegFoodBool])
         
         usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
         usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(["vegetarian" : vegFoodBool])
@@ -162,8 +162,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                 if firstURL != nil {
                     let postURL = ["pathToImage" : firstURL!]
                     database.child("\(key)").updateChildValues(postURL)
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postIdExtra) // NY TEST DANIEL
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL)
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postIdExtra)
                     print("\n Image uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for full size image. \n")
@@ -188,7 +188,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                 if secondURL != nil {
                     let postURL = ["pathToImage256" : secondURL!] as [String : Any]
                     database.child("\(key)").updateChildValues(postURL)
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL) // NY TEST DANIEL
+                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL)
                     print("\n Thumbnail uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for resized image. \n")

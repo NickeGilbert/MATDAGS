@@ -40,7 +40,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var seguePostID : String!
     var users = [User]()
     var count : Int = 0
-    var countFollower : Int = 0
+    var countFollower = 0
     var posts = [Post]()
     
     //Rating System
