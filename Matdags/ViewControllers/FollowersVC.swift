@@ -68,29 +68,32 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.following.append(Auth.auth().currentUser!.uid)
                         
                         ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
-                            let postsSnap = snap.value as! [String: AnyObject]
-                            
-                            for (_,post) in postsSnap {
-                                if let userID = post["userID"] as? String {
-                                    for each in self.following {
-                                        if each == userID {
-                                            let posst = Post()
-                                            posst.vegi = post["vegetarian"] as? Bool
-                                            if let alias = post["alias"] as? String, let rating = post["rating"] as? Double, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
-                                                
-                                                posst.alias = alias
-                                                posst.rating = rating
-                                                posst.pathToImage = pathToImage
-                                                posst.postID = postID
-                                                posst.userID = userID
-                                                
-                                                self.posts.append(posst)
+                            if let postsSnap = snap.value as? [String: AnyObject] {
+                                for (_,post) in postsSnap {
+                                    if let userID = post["userID"] as? String {
+                                        for each in self.following {
+                                            if each == userID {
+                                                let posst = Post()
+                                                posst.vegi = post["vegetarian"] as? Bool
+                                                if let alias = post["alias"] as? String, let rating = post["rating"] as? Double, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
+                                                    
+                                                    posst.alias = alias
+                                                    posst.rating = rating
+                                                    posst.pathToImage = pathToImage
+                                                    posst.postID = postID
+                                                    posst.userID = userID
+                                                    
+                                                    self.posts.append(posst)
+                                                }
                                             }
                                         }
+                                        self.feedCollectionView.reloadData()
+                                        AppDelegate.instance().dismissActivityIndicator()
                                     }
-                                    self.feedCollectionView.reloadData()
-                                    AppDelegate.instance().dismissActivityIndicator()
                                 }
+                            } else {
+                                print("\nNo Posts found in db.")
+                                AppDelegate.instance().dismissActivityIndicator()
                             }
                         })
                     }
