@@ -119,7 +119,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -367,13 +367,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
     
     @IBAction func clickedOnUsername(_ sender: Any) {
-        subview.isHidden = false
-        self.subviewFollowButton.isHidden = false
-        self.subviewUsername.text = self.posts[0].alias
         getUserProfileImage { (true) in
-            self.downloadImages()
+            self.downloadImages(completionHandler: { (true) in
+                self.subview.isHidden = false
+                self.subviewFollowButton.isHidden = false
+                self.subviewUsername.text = self.posts[0].alias
+            })
         }
-        
     }
     
     @IBAction func subviewFollowBtn(_ sender: Any) {
@@ -398,12 +398,17 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         print("\n profileImageURL not found \n")
                         return
                     }
+                } else {
+                    print("\nCouldnt fetch profile image for subview.")
+                    completionHandler(true)
                 }
             })
+        } else {
+            completionHandler(true)
         }
     }
 
-    func downloadImages() {
+    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         if subviews.count == 0 {
             subviews.removeAll()
             let puid = self.posts[0].userID!
@@ -416,10 +421,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         appendPost.postID = post["postID"] as? String
                         appendPost.vegi = post["vegetarian"] as? Bool
                         self.subviews.append(appendPost)
+                        completionHandler(true)
                     }
+                } else {
+                    completionHandler(true)
+                    print("\nCouldnt download data for subview.")
                 }
                 self.subviewCollectionFeed.reloadData()
             })
+        } else {
+            completionHandler(true)
         }
     }
   
