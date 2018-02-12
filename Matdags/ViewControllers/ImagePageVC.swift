@@ -119,23 +119,40 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
-        cell.commentsNameLabel.text = "Bka kad awdad"
-        if commentConter < 2 {
-            cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad a"
-        }else{
-             cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad"
+        
+        let commentsdbref = db.reference(withPath: "Posts/\(seguePostID!)").childByAutoId()
+        let getPostComment = Post()
+        commentsdbref.observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String : Any] {
+                getPostComment.commenter = dict["alias"] as? String
+                getPostComment.comment = dict["comment"] as? String
+                
+                cell.commentsNameLabel.text = getPostComment.commenter!
+                cell.commentsTextLabel.text = getPostComment.comment!
+                
+                print("KOMMENTER SNUBBEN: \(String(describing: getPostComment.commenter))")
+                
+                let cellHeight = cell.frame.height
+                let tableHeight = tableView.frame.height
+                
+                self.tableViewConstraintH.constant = tableHeight + cellHeight
+                
+            }
         }
         
-        let cellHeight = cell.frame.height
-        let tableHeight = tableView.frame.height
-
-        tableViewConstraintH.constant = tableHeight + cellHeight
+//        cell.commentsNameLabel.text = "Bka kad awdad"
+//        if commentConter < 2 {
+//            cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad a"
+//        }else{
+//             cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad"
+//        }
         return cell
+        
     }
     
     
@@ -150,6 +167,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let dict = snapshot.value as? [String : Any] {
                 getInfo.rating = dict["rating"] as? Double
                 getInfo.usersRated = dict["usersRated"] as? Double
+        
             }
             print("\ngetInfoForIncremation true")
             completionHandler(true)
@@ -258,6 +276,20 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentsTextField.text != "" {
             // Skicka data
+            print("SKICKA")
+            let postID = self.posts[0].postID
+            let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
+            let ownID = Auth.auth().currentUser!.uid
+            let userAlias = Auth.auth().currentUser?.displayName
+            let commentSend = commentsTextField.text
+            
+            print("Post refferens : \(postRef)")
+            print("Mitt UID: \(ownID)")
+            print("Kommentaren : \(commentSend!)")
+            print("User alias : \(String(describing: userAlias))")
+        
+            postRef.child(ownID).updateChildValues(["comment" : commentSend!] as [String : String])
+            postRef.child(ownID).updateChildValues(["alias" : userAlias] as! [String : String])
             
             self.commentsTextField.resignFirstResponder()
             self.view.endEditing(true)
