@@ -34,9 +34,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
-        posts.removeAll()
         fetchPosts { (true) in
-            //Om det något behöver vänta på fetchPosts kan det läggas här
             self.feedCollectionView.reloadData()
             self.stopRefresher()
         }
@@ -47,15 +45,17 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchPosts { (true) in
-            //Om det något behöver vänta på fetchPosts kan det läggas här
+        if posts.isEmpty == true {
+            fetchPosts { (true) in
+                //Om något behöver vänta på fetchPosts kan det läggas här
+            }
         }
     }
     
     func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        AppDelegate.instance().showActivityIndicator()
         self.posts.removeAll()
         self.following.removeAll()
-        AppDelegate.instance().showActivityIndicator()
         
         let ref = Database.database().reference()
         
@@ -114,10 +114,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
+    //Om vi gör detta måste activity indicator köras varje gång man trycker på followerVC
+    //prova köra utan att rensa posts så att navigering blir mer smärtfritt
+    /*
     override func viewWillDisappear(_ animated: Bool) {
-        self.posts.removeAll()
-        self.following.removeAll()
-    }
+        //self.posts.removeAll()
+        //self.following.removeAll()
+    } */
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
