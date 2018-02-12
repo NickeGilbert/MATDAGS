@@ -138,13 +138,17 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         //Visa stjärnor i varje cell
         let rating = self.posts[indexPath.row].rating
+        let usersrated = self.posts[indexPath.row].usersRated
         if rating != nil {
             for button in cell.starButtonArray {
                 button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
                 if Int(rating!) > 0 {
-                    for i in 0...Int(rating!)-1 {
-                        if button.tag <= i {
-                            button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                    if Int(usersrated!) > 0 {
+                        let a = rating! / usersrated!
+                        for i in 0...Int(a)-1 {
+                            if button.tag <= i {
+                                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                            }
                         }
                     }
                 }
