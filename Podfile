@@ -15,4 +15,6 @@ target 'Matdags' do
     	pod ‘FBSDKShareKit’
     	pod ‘FBSDKLoginKit’
 
+	pod 'SDWebImage'
+
 end

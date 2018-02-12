@@ -41,10 +41,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.endRefreshing()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
@@ -55,7 +51,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         AppDelegate.instance().showActivityIndicator()
         posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
-        dbref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
@@ -83,12 +79,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    @IBAction func refreshButtonClicked(_ sender: Any) {
-        posts.removeAll()
-        downloadImages()
-        self.collectionFeed.reloadData()
-    }
-    
     @IBAction func cameraButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "cameraSeg", sender: nil)
     }
@@ -97,9 +87,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
-    //HÄR CASHAR VI BILDERNA
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
+       
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+       
         cell.vegiIcon.isHidden = true
         
         if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
@@ -110,11 +102,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
-            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256) 
+            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
-         return cell
+
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -139,16 +133,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func swipeLeft(_ sender: Any) {
-        print("SWIPE SWIPE!!")
+        print("\nSwiped left.")
         tabBarController?.selectedIndex = 1
     }
 }
-
-
-
-
-
-
-
-
-

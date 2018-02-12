@@ -4,33 +4,17 @@
 //  Copyright © 2017 Matdags. All rights reserved.
 
 import UIKit
-import Firebase
 
 class FollowersCell: UICollectionViewCell {
     
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var profileImage: UIImageView!
-    @IBOutlet var imageFeedView: UIImageView!    
-    @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var usernameLabel: UILabel!
+    //@IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var imageFeedView: UIImageView!
     @IBOutlet weak var vegiIcon: UIImageView!
+    @IBOutlet var starButtonArray: [UIButton]!
     
-    
-    var starHighlited = 0
-    var posts = [Post]()
-    var users = [User]()
-    
-    @IBAction func starButtonsTapped(_ sender: UIButton) {
-        starHighlited = sender.tag + 1
-        print(starHighlited)
-        
-        for button in starButtons {
-            button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
-            
-            if button.tag <= starHighlited-1 {
-                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
-            }
-        }
-    }
+    //var posts = [Post]()
+    //var users = [User]()
 
    /* func resizeImage(){
         profileImage.layer.cornerRadius = profileImage.frame.size.height / 2

@@ -9,7 +9,7 @@ import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
+class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet var emailText: UITextField!
     @IBOutlet var password: UITextField!
@@ -78,7 +78,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil {
                 print("\n \(error!) \n")
-                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
+                self.createAlertLogin(title: facebookLoginTitle, message: facebookLoginMessage)
                 return
             } else {
                 self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
@@ -97,7 +97,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("LOGOUT BUTTON FACEBOOK")
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -109,9 +108,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
         AppDelegate.instance().showActivityIndicator()
         Auth.auth().signIn(withEmail: emailText.text!, password: password.text!, completion: { user, error in
             if error != nil{
-                self.createAlertLogin(title: "Error", message: "Något blev fel. Försök igen!")
+                self.createAlertLogin(title: mailLoginErrorTitle, message: mailLoginErrorMessage)
                 print("\n \(error!) \n")
-                self.createAlertLogin(title: "Problem", message: "Något inloggningsproblem uppstod, vänligen försök igen")
+                self.createAlertLogin(title: mailLoginProblemTitle, message: mailLoginProblemMessage)
                 AppDelegate.instance().dismissActivityIndicator()
             } else {
                 self.checkFirebaseInfo(arg: true, completion: { (success) -> Void in
@@ -120,7 +119,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDel
                             self.createFirebaseUser()
                             self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
                         } else {
-                            self.createAlertLogin(title: "Verifiering", message: "Vänligen godkänn ditt konto i din mail")
+                            self.createAlertLogin(title: verifyTitle, message: verifyMessage)
                             AppDelegate.instance().dismissActivityIndicator()
                         }
                     } else {

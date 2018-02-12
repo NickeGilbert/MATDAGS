@@ -35,26 +35,26 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func Register(_ sender: Any) {
         if mail.text == "" {
-            self.createAlertRegister(title: "Mailadress", message: "Du måste ange en mailadress")
+            self.createAlertRegister(title: emptyMail, message: emptyMailMessage)
             return
         }
         if password.text != repassword.text {
-            print("Please re-enter correct password")
-            createAlertRegister(title: "Stämmer inte överrens", message: "Lösenorden måste vara identiska")
+            createAlertRegister(title: passwordTitle, message: passwordMessage)
             return
         }
         if alias.text == "" {
-            self.createAlertRegister(title: "Användarnamn", message: "Ditt användarnamn får inte vara tomt")
+            self.createAlertRegister(title: username , message: usernameMessage)
             return
         }
+        
         Auth.auth().createUser(withEmail: mail.text!, password: password.text!, completion: { user, error in
             if error != nil {
                 print("\n \(error!) \n")
-                self.createAlertRegister(title: "Problem", message: "Något problem uppstod, vänligen försök igen")
+                self.createAlertRegister(title: errorTitle, message: errorMessage)
                 return
             }
             if self.password.text!.count <= 4 {
-                self.createAlertRegister(title: "Lösenordslängd", message: "Lösenordet måste vara längre än 5 tecken, vänligen försök igen")
+                self.createAlertRegister(title: passwordLenghtTitle, message: passwordLenghtMessage)
                 return
             } else {
                 if let userC = user {
@@ -62,11 +62,10 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     changeRequest.displayName = self.alias.text!
                     changeRequest.commitChanges(completion: nil)
                 }
-                print ("User created!")
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     print("\n BEKRÄFTELSEMAIL  \n")
                     
-                self.createAlertRegister(title: "Okay", message: "Du måste gå och Validera ditt konto på din mail!")
+                self.createAlertRegister(title: validateTitle, message: validateMessage)
                 }
             }
         })
@@ -104,6 +103,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func infoClick(_ sender: Any) {
-        createAlertRegister(title: "Användardata", message: "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. ")
+        createAlertRegister(title: infoTitle , message: infoMessage )
     }
 }

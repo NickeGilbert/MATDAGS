@@ -1,4 +1,4 @@
-//  FollowersVC.swift
+    //  FollowersVC.swift
 //  Matdags
 //  Created by Nicklas Gilbertson on 2017-10-17.
 //  Copyright © 2017 Matdags. All rights reserved.
@@ -9,6 +9,7 @@ import Firebase
 class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var feedCollectionView: UICollectionView!
+    @IBOutlet weak var zeroImagesMessage: UILabel!
     
     var ref: DatabaseReference!
     var posts = [Post]()
@@ -19,89 +20,93 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        AppDelegate.instance().showActivityIndicator()
-        
+
+        self.zeroImagesMessage.isHidden = true
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.width
-        
-        
+        //Används ej? Kevin
+        //let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        //let width = UIScreen.main.bounds.width
     }
     
     @objc func loadData() {
-        posts.removeAll()
-        fetchPosts()
-        self.feedCollectionView.reloadData()
-        stopRefresher()
+        fetchPosts { (true) in
+            self.feedCollectionView.reloadData()
+            self.stopRefresher()
+        }
     }
     
     func stopRefresher() {
         self.refresher.endRefreshing()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        posts.removeAll()
-//        self.following.removeAll()
-        fetchPosts()
-//        loadData()
-//        AppDelegate.instance().dismissActivityIndicator()
+    override func viewWillAppear(_ animated: Bool) {
+        if posts.isEmpty == true {
+            fetchPosts { (true) in
+                //Om något behöver vänta på fetchPosts kan det läggas här
+            }
+        }
     }
     
-    func fetchPosts() {
+    func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        AppDelegate.instance().showActivityIndicator()
         self.posts.removeAll()
         self.following.removeAll()
-        AppDelegate.instance().showActivityIndicator()
+        
         let ref = Database.database().reference()
         
         ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            let Users = snapshot.value as! [String: AnyObject]
-            
-            for (_,value) in Users {
-                if let ID = value["uid"] as? String {
-                    if ID == Auth.auth().currentUser?.uid {
-                        if let followingUsers = value["Following"] as? [String: String] {
-                            for (_,user) in followingUsers {
-                                self.following.append(user)
-                            }
-                        }
-                        self.following.append(Auth.auth().currentUser!.uid)
-                        
-                        ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
-                            let postsSnap = snap.value as! [String: AnyObject]
-                            
-                            for (_,post) in postsSnap {
-                                if let userID = post["userID"] as? String {
-                                    for each in self.following {
-                                        if each == userID {
-                                            let posst = Post()
-                                            posst.vegi = post["vegetarian"] as? Bool
-                                            if let alias = post["alias"] as? String, let rating = post["rating"] as? Int, let pathToImage = post["pathToImage"] as? String, let postID = post["postID"] as? String {
-                                                
-                                                posst.alias = alias
-                                                posst.rating = rating
-                                                posst.pathToImage = pathToImage
-                                                posst.postID = postID
-                                                posst.userID = userID
-                                                
-                                                self.posts.append(posst)
-                                            }
-                                        }
-                                    }
-                                    self.feedCollectionView.reloadData()
-                                    AppDelegate.instance().dismissActivityIndicator()
+            if let Users = snapshot.value as? [String : AnyObject] {
+                for (_,value) in Users {
+                    if let ID = value["uid"] as? String {
+                        if ID == Auth.auth().currentUser?.uid {
+                            if let followingUsers = value["Following"] as? [String: String] {
+                                for (_,user) in followingUsers {
+                                    self.following.append(user)
                                 }
                             }
-                        })
+                            self.following.append(Auth.auth().currentUser!.uid)
+                            
+                            ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
+                                if let postsSnap = snap.value as? [String: AnyObject] {
+                                    for (_,post) in postsSnap {
+                                        if let userID = post["userID"] as? String {
+                                            for each in self.following {
+                                                if each == userID {
+                                                    let appendPost = Post()
+                                                    
+                                                    appendPost.alias = post["alias"] as? String
+                                                    appendPost.rating = post["rating"] as? Double
+                                                    appendPost.pathToImage = post["pathToImage"] as? String
+                                                    appendPost.postID = post["postID"] as? String
+                                                    appendPost.vegi = post["vegetarian"] as? Bool
+                                                    appendPost.usersRated = post["usersRated"] as? Double
+                                                    
+                                                    self.posts.append(appendPost)
+                                                }
+                                            }
+                                            self.feedCollectionView.reloadData()
+                                            AppDelegate.instance().dismissActivityIndicator()
+                                        }
+                                    }
+                                } else {
+                                    print("\nNo Posts found in db.")
+                                    AppDelegate.instance().dismissActivityIndicator()
+                                }
+                            })
+                        }
                     }
                 }
+                completionHandler(true)
+            } else {
+                completionHandler(true)
+                print("\nCouldnt fetch Posts in FollowerVC.")
             }
         })
-        
         ref.removeAllObservers()
     }
     
@@ -109,35 +114,55 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
+    //Om vi gör detta måste activity indicator köras varje gång man trycker på followerVC
+    //prova köra utan att rensa posts så att navigering blir mer smärtfritt
+    /*
     override func viewWillDisappear(_ animated: Bool) {
-        self.posts.removeAll()
-        self.following.removeAll()
-    }
+        //self.posts.removeAll()
+        //self.following.removeAll()
+    } */
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+        
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
         
         cell.layer.cornerRadius = 2
         cell.clipsToBounds = true
         
         cell.imageFeedView.image = nil
-        cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        
+        if self.posts[indexPath.row].pathToImage != nil {
+            cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+        }
+        
+        //Visa stjärnor i varje cell
+        let rating = self.posts[indexPath.row].rating
+        if rating != nil {
+            for button in cell.starButtonArray {
+                button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+                if Int(rating!) > 0 {
+                    for i in 0...Int(rating!)-1 {
+                        if button.tag <= i {
+                            button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                        }
+                    }
+                }
+            }
+        }
+        
         cell.usernameLabel.text = self.posts[indexPath.row].alias
-//        cell.layer.borderColor = UIColor.lightGray.cgColor
-//        cell.layer.borderWidth = 1
         cell.backgroundColor = UIColor.white
         cell.dropShadow()
-        
-        
-        
         cell.vegiIcon.isHidden = true
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
             cell.vegiIcon.isHidden = true
-        }else{
+        } else {
             cell.vegiIcon.isHidden = false
         }
         
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         return cell
     }
     
@@ -149,6 +174,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func swipeRight(_ sender: Any) {
         tabBarController?.selectedIndex = 0
     }
+    
     @IBAction func swipeLeft(_ sender: Any) {
         tabBarController?.selectedIndex = 2
     }

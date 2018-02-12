@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
+
 extension UIViewController {
    
     func checkFirebaseInfo(arg: Bool, completion: @escaping (Bool) -> ()) {
@@ -75,7 +76,5 @@ extension UIViewController {
             database.updateChildValues(feed)
             print("\n Firebase User Created! \n")
         }
-        
     }
-    
 }
