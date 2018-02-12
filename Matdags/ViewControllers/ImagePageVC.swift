@@ -216,9 +216,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 getInfo.stars = firstSnapshot["Stars"] as? Int
                 self.starsHighlighted = Double(getInfo.stars)
                 self.fetchedStars = Double(getInfo.stars)
-                
-                print("\n Stars: \(self.starsHighlighted) \n")
-                
                 for button in self.starButtons {
                     for i in 0...Int(self.starsHighlighted)-1 {
                         if button.tag <= i {
