@@ -44,6 +44,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var posts = [Post]()
     var subviews = [Subview]()
     
+    var comments: Array<DataSnapshot> = []
+    
     //Rating System
     var starsHighlighted = 0.0
     var fetchedStars = 0.0
@@ -53,7 +55,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var commentConter: Int = 0
     
     //test daniel
-    var comments = [CommentsCell]()
+    var commentsCell = [CommentsCell]()
     
     
     override func viewDidLoad() {
@@ -64,7 +66,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         downloadInfo { (true) in
             print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
@@ -80,7 +81,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
-           
+            self.observeComments()
+            super.viewWillAppear(animated)
         }
         
         commentsTableView.isScrollEnabled = false
@@ -97,7 +99,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
-        
     }
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -116,34 +117,20 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 completionHandler(true)
             }
         }
-    }
+    }   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
         
-        let commentsdbref = db.reference(withPath: "Posts/\(seguePostID!)").childByAutoId()
-        let getPostComment = Post()
-        commentsdbref.observeSingleEvent(of: .value) { (snapshot) in
-            if let dict = snapshot.value as? [String : Any] {
-                getPostComment.commenter = dict["alias"] as? String
-                getPostComment.comment = dict["comment"] as? String
-                
-                cell.commentsNameLabel.text = getPostComment.commenter!
-                cell.commentsTextLabel.text = getPostComment.comment!
-                
-                print("KOMMENTER SNUBBEN: \(String(describing: getPostComment.commenter))")
-                
-                let cellHeight = cell.frame.height
-                let tableHeight = tableView.frame.height
-                
-                self.tableViewConstraintH.constant = tableHeight + cellHeight
-                
-            }
-        }
+        let cellHeight = cell.frame.height
+        let tableHeight = tableView.frame.height
+        
+        self.tableViewConstraintH.constant = tableHeight + cellHeight
+        
         
 //        cell.commentsNameLabel.text = "Bka kad awdad"
 //        if commentConter < 2 {
@@ -158,6 +145,32 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func observeComments() {
+        let commentsdbref = db.reference(withPath: "Posts/\(seguePostID!)")
+        commentsdbref.observe(.childAdded) { (snapshot) in
+            self.comments.append(snapshot)
+            if self.comments.isEmpty != true {
+                self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
+            }
+        }
+        commentsdbref.observe(.childRemoved) { (snapshot) in
+            let index = self.indexOfMessage(snapshot)
+            self.comments.remove(at: index)
+            self.commentsTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.automatic)
+        }
+    }
+    
+    func indexOfMessage(_ snapshot: DataSnapshot) -> Int {
+        var index = 0
+        for  comment in self.comments {
+            if snapshot.key == comment.key {
+                return index
+            }
+            index += 1
+        }
+        return -1
     }
     
     func getInfoForIncremation(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -259,7 +272,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func commentButtonClick(_ sender: UIButton) {
-        print("comment click")
         commentsView.isHidden = false
         commentsTextField.becomeFirstResponder()
     }
@@ -272,21 +284,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentsTextField.text != "" {
-            // Skicka data
-            print("SKICKA")
             let postID = self.posts[0].postID
             let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
-            let ownID = Auth.auth().currentUser!.uid
-            let userAlias = Auth.auth().currentUser?.displayName
             let commentSend = commentsTextField.text
             
             print("Post refferens : \(postRef)")
-            print("Mitt UID: \(ownID)")
+            print("Mitt UID: \(uid)")
             print("Kommentaren : \(commentSend!)")
-            print("User alias : \(String(describing: userAlias))")
+            print("User alias : \(alias!)")
         
-            postRef.child(ownID).updateChildValues(["comment" : commentSend!] as [String : String])
-            postRef.child(ownID).updateChildValues(["alias" : userAlias] as! [String : String])
+            postRef.child(uid).updateChildValues(["uid" : uid] as [String: Any])
+            postRef.child(uid).updateChildValues(["alias" : alias!] as [String : Any])
+            postRef.child(uid).updateChildValues(["comment" : commentSend!] as [String : Any])
             
             self.commentsTextField.resignFirstResponder()
             self.view.endEditing(true)
@@ -298,6 +307,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             commentsTextField.resignFirstResponder()
             self.view.endEditing(true)
             commentsView.isHidden = true
+            AppDelegate.instance().dismissActivityIndicator()
             return true
         }
 
@@ -384,14 +394,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         }
     }
-    
-    /*func appendToFirebase() {
-        let dbRef = Database.database().reference(withPath: "Posts/\(seguePostID)/stars")
-        if starsHighlighted > 0 {
-            let feed = ["\(starsHighlighted)" : +1] as [String : Any]
-            dbRef.updateChildValues(feed)
-        }
-    }*/
     
         ///////////////////////////////////SUBVIEW//////////////////////////////////////////////
     

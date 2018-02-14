@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A4CD1C41FAE5F880006986A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD1C31FAE5F880006986A /* Post.swift */; };
+		0A6DD38920343CF20072C034 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DD38820343CF20072C034 /* Comment.swift */; };
 		0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A706CBB1F73B70800B0345C /* AppDelegate.swift */; };
 		0A706CBE1F73B70800B0345C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A706CBD1F73B70800B0345C /* LoginVC.swift */; };
 		0A706CC11F73B70800B0345C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A706CBF1F73B70800B0345C /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		0A4CD1C31FAE5F880006986A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0A6DD38820343CF20072C034 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0A706CB81F73B70800B0345C /* Matdags.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matdags.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A706CBB1F73B70800B0345C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A706CBD1F73B70800B0345C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				0AF001D01FC44F47005E6CBE /* User.swift */,
 				0AF08DB51FE9096A00BCBD43 /* Follow.swift */,
 				0AC65ADF202E4E31004CB360 /* Subview.swift */,
+				0A6DD38820343CF20072C034 /* Comment.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */,
 				26CAF535201219C900011A6E /* CommentsCell.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,
+				0A6DD38920343CF20072C034 /* Comment.swift in Sources */,
 				A43C314F2026418A0058ADCE /* RegisterAlertText.swift in Sources */,
 				0A8B33191FA08742007BAE27 /* ImagePreVC.swift in Sources */,
 				A4AE6C192012C76200F05B44 /* LoginVCExt.swift in Sources */,
@@ -593,7 +597,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -627,7 +631,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
