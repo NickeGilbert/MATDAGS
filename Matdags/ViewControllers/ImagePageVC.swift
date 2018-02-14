@@ -36,13 +36,15 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     let uid = Auth.auth().currentUser!.uid
     let db = Database.database()
     let alias = Auth.auth().currentUser!.displayName
-   
+
     var seguePostID : String!
     var users = [User]()
     var count : Int = 0
     var countFollower = 0
     var posts = [Post]()
     var subviews = [Subview]()
+    
+    var commentsRef = Database.database().reference()
     
     var comments: Array<DataSnapshot> = []
     
@@ -66,6 +68,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        comments.removeAll()
+        commentsRef = commentsRef.child("Posts/\(seguePostID!)/comments")
+        
         downloadInfo { (true) in
             print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
@@ -81,9 +88,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
-            self.observeComments()
-            super.viewWillAppear(animated)
         }
+        
+        observeComments()
         
         commentsTableView.isScrollEnabled = false
         commentsTableView.separatorStyle = .none
@@ -117,7 +124,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 completionHandler(true)
             }
         }
-    }   
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.comments.count
@@ -131,15 +138,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.tableViewConstraintH.constant = tableHeight + cellHeight
         
-        
-//        cell.commentsNameLabel.text = "Bka kad awdad"
-//        if commentConter < 2 {
-//            cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad a"
-//        }else{
-//             cell.commentsTextLabel.text = "AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad AWDA DWAD DAwda da dwad adadad ada dad ada d adadada dadad"
-//        }
+        if let commentDict = comments[indexPath.row].value as? [String : AnyObject] {
+            cell.commentsTextLabel.text = commentDict["comment"] as? String
+            cell.commentsNameLabel.text  = commentDict["alias"] as? String
+        }
         return cell
-        
     }
     
     
@@ -148,18 +151,19 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func observeComments() {
-        let commentsdbref = db.reference(withPath: "Posts/\(seguePostID!)")
-        commentsdbref.observe(.childAdded) { (snapshot) in
+        commentsRef.observe(.childAdded, with: { (snapshot) -> Void in
             self.comments.append(snapshot)
-            if self.comments.isEmpty != true {
-                self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
-            }
-        }
-        commentsdbref.observe(.childRemoved) { (snapshot) in
+            self.commentsTableView.beginUpdates()
+            self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
+            self.commentsTableView.endUpdates()
+        })
+        commentsRef.observe(.childRemoved, with: { (snapshot) -> Void in
             let index = self.indexOfMessage(snapshot)
             self.comments.remove(at: index)
+            self.commentsTableView.beginUpdates()
             self.commentsTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.automatic)
-        }
+            self.commentsTableView.endUpdates()
+        })
     }
     
     func indexOfMessage(_ snapshot: DataSnapshot) -> Int {
@@ -286,6 +290,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if commentsTextField.text != "" {
             let postID = self.posts[0].postID
             let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
+            let key = postRef.childByAutoId().key
             let commentSend = commentsTextField.text
             
             print("Post refferens : \(postRef)")
@@ -293,24 +298,21 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("Kommentaren : \(commentSend!)")
             print("User alias : \(alias!)")
         
-            postRef.child(uid).updateChildValues(["uid" : uid] as [String: Any])
-            postRef.child(uid).updateChildValues(["alias" : alias!] as [String : Any])
-            postRef.child(uid).updateChildValues(["comment" : commentSend!] as [String : Any])
+            postRef.child(key).updateChildValues(["uid" : uid] as [String: Any])
+            postRef.child(key).updateChildValues(["alias" : alias!] as [String : Any])
+            postRef.child(key).updateChildValues(["comment" : commentSend!] as [String : Any])
             
             self.commentsTextField.resignFirstResponder()
             self.view.endEditing(true)
             self.commentsView.isHidden = true
-            AppDelegate.instance().dismissActivityIndicator()
             return true
             
         }else{
             commentsTextField.resignFirstResponder()
             self.view.endEditing(true)
             commentsView.isHidden = true
-            AppDelegate.instance().dismissActivityIndicator()
             return true
         }
-
     }
     
     func addFollower() {
@@ -378,8 +380,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         customWillDisappear { (true) in
             self.posts.removeAll()
             self.subviews.removeAll()
+            self.commentsRef.removeAllObservers()
             self.dismiss(animated: true, completion: nil)
         }
+        
     }
     
     @IBAction func starButtonsTapped(_ sender: UIButton) {
