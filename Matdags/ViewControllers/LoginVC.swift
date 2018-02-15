@@ -65,33 +65,32 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         AppDelegate.instance().showActivityIndicator()
-        
-        print("DETTA ÄR ERROR: \(error)")
-        
         if error != nil {
-            return
+            print("\(error)")
             AppDelegate.instance().dismissActivityIndicator()
-        }
-        
-        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        
-        Auth.auth().signIn(with: credential) { (user, error) in
-            if error != nil {
-                print("\n \(error!) \n")
-                self.createAlertLogin(title: facebookLoginTitle, message: facebookLoginMessage)
-                return
-            } else {
-                self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
-                self.fetchProfile()
-                self.checkFirebaseInfo(arg: true, completion: { (success) -> Void in
-                    if success {
-                        self.createFirebaseUser()
-                    } else {
-                        print("\n Användaren finns redan så inget skickades till databasen! \n")
-                    }
-                })
-                print("\n INLOGGAD MED FACEBOOK \n ")
-                AppDelegate.instance().dismissActivityIndicator()
+            return
+        } else {
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if error != nil {
+                    try! Auth.auth().signOut()
+                    print("\n \(error!) \n")
+                    self.createAlertLogin(title: facebookLoginTitle, message: facebookLoginMessage)
+                    AppDelegate.instance().dismissActivityIndicator()
+                    return
+                } else {
+                    self.performSegue(withIdentifier: "HomeToFeed", sender: AnyObject.self)
+                    self.fetchProfile()
+                    self.checkFirebaseInfo(arg: true, completion: { (success) -> Void in
+                        if success {
+                            self.createFirebaseUser()
+                        } else {
+                            print("\nAnvändaren finns redan så inget skickades till databasen!")
+                        }
+                    })
+                    print("\nInloggad med Facebook.")
+                    AppDelegate.instance().dismissActivityIndicator()
+                }
             }
         }
     }
