@@ -35,6 +35,7 @@
 		A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41F16861FBDF86900500EF8 /* ProfileCell.swift */; };
 		A423EA2F201151D500F32C46 /* FollowerVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423EA2E201151D500F32C46 /* FollowerVCExt.swift */; };
 		A423EA322011538400F32C46 /* ImageFeedVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423EA312011538400F32C46 /* ImageFeedVCExt.swift */; };
+		A42426902035F0CE0029125C /* DeleteAccountAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
 		A43C314F2026418A0058ADCE /* RegisterAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C314E2026418A0058ADCE /* RegisterAlertText.swift */; };
@@ -89,6 +90,7 @@
 		A41F16861FBDF86900500EF8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		A423EA2E201151D500F32C46 /* FollowerVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVCExt.swift; sourceTree = "<group>"; };
 		A423EA312011538400F32C46 /* ImageFeedVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedVCExt.swift; sourceTree = "<group>"; };
+		A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountAlertText.swift; sourceTree = "<group>"; };
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A43C314E2026418A0058ADCE /* RegisterAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAlertText.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				A43C314E2026418A0058ADCE /* RegisterAlertText.swift */,
 				A43C3151202646320058ADCE /* LoginAlertText.swift */,
+				A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A42426902035F0CE0029125C /* DeleteAccountAlertText.swift in Sources */,
 				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
