@@ -257,6 +257,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         tabBarController?.selectedIndex = 3
     }
     
+    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        URLCache.shared.removeAllCachedResponses()
+    }
+    
     //Vad ska vi med dessa två funktioner om de inte gör något? 
    /* func followingCount() {
         let uid = Auth.auth().currentUser!.uid
