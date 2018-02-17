@@ -879,15 +879,27 @@
                                     <action selector="deleteaccountBtn:" destination="1IS-aF-BiB" eventType="touchUpInside" id="YJz-bt-TLw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT0-iQ-MLx">
+                                <rect key="frame" x="137" y="60" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="Fru-pu-x7X"/>
+                                    <constraint firstAttribute="width" constant="140" id="dhb-KQ-TNc"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="profileImageAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="l8k-P9-UVM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IWr-3y-d8T" secondAttribute="trailing" constant="80" id="0fr-uI-71O"/>
+                            <constraint firstItem="IT0-iQ-MLx" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="4Lx-xx-g1c"/>
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" constant="80" id="5jV-5q-iBW"/>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="eVr-3d-fSh" secondAttribute="trailing" id="BFn-hz-XnN"/>
                             <constraint firstItem="eVr-3d-fSh" firstAttribute="top" secondItem="YeT-Gu-iAA" secondAttribute="top" id="CUD-9K-SjA"/>
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="trailing" secondItem="zwZ-zg-AZ4" secondAttribute="trailing" id="DCn-Ct-lQq"/>
                             <constraint firstAttribute="bottomMargin" secondItem="eVr-3d-fSh" secondAttribute="bottom" id="J4q-ew-KiZ"/>
+                            <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IT0-iQ-MLx" secondAttribute="trailing" constant="137" id="QbH-hH-oqG"/>
                             <constraint firstItem="Zv7-sa-0uO" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="Vil-6O-7Bu"/>
                             <constraint firstItem="5bs-t6-os4" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="5" id="WlK-HQ-QaV"/>
                             <constraint firstItem="5bs-t6-os4" firstAttribute="leading" secondItem="Zv7-sa-0uO" secondAttribute="trailing" constant="70" id="fbO-Ao-rrE"/>

@@ -145,7 +145,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         return size
     }
     
-    @IBAction func profileSettingsAction(_ sender: UIButton) {
+    @IBAction func profileImageAction(_ sender: UIButton) {
         print(newPic)
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.delegate = self
@@ -155,6 +155,18 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
+    
+    
+//    @IBAction func profileSettingsAction(_ sender: UIButton) {
+//        print(newPic)
+//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+//            imagePicker.delegate = self
+//            imagePicker.modalPresentationStyle = .overCurrentContext
+//            imagePicker.sourceType = .photoLibrary;
+//            imagePicker.allowsEditing = true
+//            self.present(imagePicker, animated: true, completion: nil)
+//        }
+//    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         print("Running")
