@@ -42,7 +42,7 @@ extension UIViewController {
             if(FBSDKAccessToken.current() == nil) {
                 
                 let user = Auth.auth().currentUser
-                
+ 
                 user?.delete { error in
                     if let error = error {
                         // An error happened.
@@ -50,7 +50,19 @@ extension UIViewController {
                         // Account deleted.
                     }
                 }
-
+                let userID = Auth.auth().currentUser?.uid
+                let currenUserRef = Database.database().reference().child("users").child(userID!)
+                currenUserRef.observe(.value, with: { (snapshot) in
+                    
+                    Auth.auth().currentUser?.delete(completion: { (error) in
+                        if error == nil {
+                            
+                        } else {
+                            
+                        }
+                    })
+                })
+                
                 let firebaseAuth = Auth.auth()
                 do {
                     try firebaseAuth.signOut()
@@ -64,6 +76,7 @@ extension UIViewController {
                 
             } else {
                 print("DU ÄR INLOGGAD PÅ FACEBOOK")
+                
             }
         }))
         
@@ -72,11 +85,7 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
+  
     
     
     
