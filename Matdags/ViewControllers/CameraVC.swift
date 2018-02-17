@@ -129,10 +129,12 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBAction func flashBtnPressed(_ sender: Any) {
         switch flashControlState {
         case .off:
-            flashBtn.setTitle("FLASH ON", for: .normal)
+            flashBtn.setBackgroundImage(#imageLiteral(resourceName: "flashOn"), for: .normal)
+            //flashBtn.setTitle("FLASH ON", for: .normal)
             flashControlState = .on
         case .on:
-            flashBtn.setTitle("FLASH OFF", for: .normal)
+           // flashBtn.setTitle("FLASH OFF", for: .normal)
+            flashBtn.setBackgroundImage(#imageLiteral(resourceName: "flashOff"), for: .normal)
             flashControlState = .off
         }
     }
