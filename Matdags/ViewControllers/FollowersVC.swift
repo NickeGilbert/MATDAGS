@@ -182,5 +182,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func swipeLeft(_ sender: Any) {
         tabBarController?.selectedIndex = 2
     }
+    
+    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        URLCache.shared.removeAllCachedResponses()
+    }
 }
 

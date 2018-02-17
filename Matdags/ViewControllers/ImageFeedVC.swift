@@ -136,4 +136,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("\nSwiped left.")
         tabBarController?.selectedIndex = 1
     }
+    
+    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        URLCache.shared.removeAllCachedResponses()
+    }
 }
