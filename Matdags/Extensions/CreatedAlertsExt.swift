@@ -40,6 +40,14 @@ extension UIViewController {
         
         alert.addAction(UIAlertAction(title: "JA", style: UIAlertActionStyle.default, handler:{ action in
             if(FBSDKAccessToken.current() == nil) {
+               
+                Auth.auth().currentUser?.delete(completion: { (error) in
+                    if let error = error {
+                        
+                    } else {
+                        
+                    }
+                })
                 
                 let user = Auth.auth().currentUser
  
@@ -53,14 +61,7 @@ extension UIViewController {
                 let userID = Auth.auth().currentUser?.uid
                 let currenUserRef = Database.database().reference().child("users").child(userID!)
                 currenUserRef.observe(.value, with: { (snapshot) in
-                    
-                    Auth.auth().currentUser?.delete(completion: { (error) in
-                        if error == nil {
-                            
-                        } else {
-                            
-                        }
-                    })
+                   
                 })
                 
                 let firebaseAuth = Auth.auth()
