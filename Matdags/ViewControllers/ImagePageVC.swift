@@ -98,6 +98,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             automaticallyAdjustsScrollViewInsets = false
         }
         
+        //myImageView.dropShadow()
+        
     }
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
