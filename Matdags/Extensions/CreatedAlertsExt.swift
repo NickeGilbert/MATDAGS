@@ -39,6 +39,7 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "JA", style: UIAlertActionStyle.default, handler:{ action in
+           
             if(FBSDKAccessToken.current() == nil) {
                
                 Auth.auth().currentUser?.delete(completion: { (error) in
@@ -76,7 +77,25 @@ extension UIViewController {
                 }
                 
             } else {
-                print("DU ÄR INLOGGAD PÅ FACEBOOK")
+                //FÖR FACEBOOK
+                Auth.auth().currentUser?.delete(completion: { (error) in
+                    if let error = error {
+                        
+                    } else {
+                        
+                    }
+                })
+                
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                    let loginManager = FBSDKLoginManager()
+                    loginManager.logOut() // this is an instance function
+                    self.performSegue(withIdentifier: "profileLogout", sender: nil)
+                    print(" \n DU HAR PRECIS LOGGAT UT \n")
+                } catch {
+                    print("\n ERROR NÄR DU LOGGADE UT \n")
+                }
                 
             }
         }))
