@@ -27,10 +27,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
-        
-        //Används ej? Kevin
-        //let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //let width = UIScreen.main.bounds.width
     }
     
     @objc func loadData() {

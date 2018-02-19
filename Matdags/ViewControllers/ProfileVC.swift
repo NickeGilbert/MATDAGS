@@ -277,7 +277,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
       
         self.deleteAccountAlert(title: deleteTitle, message: deleteText)
         
-        //Resten av funktion ligger i CreateAlertExt
+        //Resten av funktion ligger i Extensions/CreateAlertExt.swift
         
     }
     
