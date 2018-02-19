@@ -268,7 +268,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("\n No Image URL found in array. \n")
         }
         if postRating != 0 || usersRated != 0 {
-            ratingLabel.text = "\(Double(postRating / usersRated)) Rating"
+            ratingLabel.text = "\(Double(round(10*postRating / usersRated)/10)) Rating"
         } else {
             ratingLabel.text = "No Rating"
         }
