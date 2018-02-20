@@ -48,6 +48,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
         subview.layer.cornerRadius = 3
         subview.clipsToBounds = true
+        
+        subviewUnfollowBtn.backgroundColor = followUser
+        subviewFollowButton.backgroundColor = unfollowUser
+        
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {

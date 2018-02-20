@@ -54,6 +54,7 @@
 		A4AE6C152012BC8000F05B44 /* CreatedAlertsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */; };
 		A4AE6C192012C76200F05B44 /* LoginVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE6C182012C76200F05B44 /* LoginVCExt.swift */; };
 		A4BF80481FB447A2000D7DF5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF80471FB447A2000D7DF5 /* SearchCell.swift */; };
+		A4CE752D203CB53A000E4A3B /* UIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE752C203CB53A000E4A3B /* UIColors.swift */; };
 		A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */; };
 		A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedAlertsExt.swift; sourceTree = "<group>"; };
 		A4AE6C182012C76200F05B44 /* LoginVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCExt.swift; sourceTree = "<group>"; };
 		A4BF80471FB447A2000D7DF5 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		A4CE752C203CB53A000E4A3B /* UIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
 		A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVC.swift; sourceTree = "<group>"; };
 		A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matdags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +239,7 @@
 				A43C314E2026418A0058ADCE /* RegisterAlertText.swift */,
 				A43C3151202646320058ADCE /* LoginAlertText.swift */,
 				A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */,
+				A4CE752C203CB53A000E4A3B /* UIColors.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				0A706CBC1F73B70800B0345C /* AppDelegate.swift in Sources */,
 				A47197DB2019E63D00C01C39 /* ImagePreVCExt.swift in Sources */,
 				0AC65AE0202E4E31004CB360 /* Subview.swift in Sources */,
+				A4CE752D203CB53A000E4A3B /* UIColors.swift in Sources */,
 				A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */,
 				A423EA322011538400F32C46 /* ImageFeedVCExt.swift in Sources */,
 				0A8B331C1FA08742007BAE27 /* CameraVC.swift in Sources */,
@@ -613,7 +617,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -647,7 +651,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

@@ -36,6 +36,38 @@ extension UIViewController {
            
             if(FBSDKAccessToken.current() == nil) {
                
+                var ref = DatabaseReference()
+                let user = Auth.auth().currentUser
+                guard let uid = Auth.auth().currentUser?.uid else {
+                    return
+                }
+                
+                ref = Database.database().reference()
+                
+                ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
+                    if error == nil {
+                       // deleteFbAuthFromFirebase()
+                        print(ref)
+                    } else{
+                        print(error)
+                    }
+                }
+            )
+            
+            func deleteFbAuthFromFirebase(){
+                let user = Auth.auth().currentUser
+                let id = user?.uid
+                user?.delete { error in
+                    if let error = error {
+                        print(error)
+                        
+                    } else {
+                        
+                    }
+                }
+            }
+            
+               
                 Auth.auth().currentUser?.delete(completion: { (error) in
                     if let error = error {
                         
@@ -43,8 +75,6 @@ extension UIViewController {
                         
                     }
                 })
-                
-                let user = Auth.auth().currentUser
  
                 user?.delete { error in
                     if let error = error {
@@ -53,8 +83,9 @@ extension UIViewController {
                         // Account deleted.
                     }
                 }
+                
                 let userID = Auth.auth().currentUser?.uid
-                let currenUserRef = Database.database().reference().child("users").child(userID!)
+                let currenUserRef = Database.database().reference().child("users/\(userID)").child(userID!)
                 currenUserRef.observe(.value, with: { (snapshot) in
                    
                 })
@@ -72,14 +103,48 @@ extension UIViewController {
                 
             } else {
                 //FÖR FACEBOOK
+                var Useruid = Auth.auth().currentUser?.uid
+                    var ref = DatabaseReference()
+                    let user = Auth.auth().currentUser
+                    guard let uid = Auth.auth().currentUser?.uid else {
+                        return
+                    }
+                    
+                    ref = Database.database().reference()
+                    
+                    ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
+                        if error == nil {
+                            deleteFbAuthFromFirebase()
+                            print(ref)
+                        }else{
+                            print(error)
+                        }
+                    }
+                    )
+            }
+            
+                
+                func deleteFbAuthFromFirebase(){
+                    let user = Auth.auth().currentUser
+                    let id = user?.uid
+                    user?.delete { error in
+                        if let error = error {
+                            print(error)
+                            
+                        } else {
+                            
+                        }
+                    }
+                }
+            
                 Auth.auth().currentUser?.delete(completion: { (error) in
                     if let error = error {
-                        
+
                     } else {
-                       
+
                     }
                 })
-                
+
                 let firebaseAuth = Auth.auth()
                 do {
                     try firebaseAuth.signOut()
@@ -90,7 +155,7 @@ extension UIViewController {
                 } catch {
                     print("\n ERROR NÄR DU LOGGADE UT \n")
                 }
-            }
+            
         }))
         
         alert.addAction(UIAlertAction(title: "NEJ", style: UIAlertActionStyle.default, handler:{ action in
