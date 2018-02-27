@@ -10,3 +10,4 @@ import UIKit
 
 var followUser = #colorLiteral(red: 1, green: 0.6771685481, blue: 0, alpha: 1)
 var unfollowUser = #colorLiteral(red: 1, green: 0.6771685481, blue: 0, alpha: 1)
+var profileImage = #imageLiteral(resourceName: "profileImagePlaceholder")

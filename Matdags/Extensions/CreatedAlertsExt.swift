@@ -33,6 +33,13 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "JA", style: UIAlertActionStyle.default, handler:{ action in
+            
+            let uid = Auth.auth().currentUser?.uid
+            let database = Database.database().reference(withPath: "Posts")
+            let usrdatabase = Database.database().reference(withPath: "Users")
+            let storage = Storage.storage().reference().child("images").child(uid!)
+            let key = database.childByAutoId().key
+            let imageRef = storage.child("\(key)")
            
             if(FBSDKAccessToken.current() == nil) {
                
@@ -46,28 +53,15 @@ extension UIViewController {
                 
                 ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                     if error == nil {
-                       // deleteFbAuthFromFirebase()
+                        self.deleteFbAuthFromFirebase()
+                        allOfMyPosts()
                         print(ref)
                     } else{
-                        print(error)
+
                     }
                 }
             )
-            
-            func deleteFbAuthFromFirebase(){
-                let user = Auth.auth().currentUser
-                let id = user?.uid
-                user?.delete { error in
-                    if let error = error {
-                        print(error)
-                        
-                    } else {
-                        
-                    }
-                }
-            }
-            
-               
+     
                 Auth.auth().currentUser?.delete(completion: { (error) in
                     if let error = error {
                         
@@ -90,20 +84,11 @@ extension UIViewController {
                    
                 })
                 
-                let firebaseAuth = Auth.auth()
-                do {
-                    try firebaseAuth.signOut()
-                    let loginManager = FBSDKLoginManager()
-                    loginManager.logOut() // this is an instance function
-                    self.performSegue(withIdentifier: "profileLogout", sender: nil)
-                    print(" \n DU HAR PRECIS LOGGAT UT \n")
-                } catch {
-                    print("\n ERROR NÄR DU LOGGADE UT \n")
-                }
+                self.logOutFromApp()
                 
             } else {
                 //FÖR FACEBOOK
-                var Useruid = Auth.auth().currentUser?.uid
+                    var Useruid = Auth.auth().currentUser?.uid
                     var ref = DatabaseReference()
                     let user = Auth.auth().currentUser
                     guard let uid = Auth.auth().currentUser?.uid else {
@@ -114,52 +99,79 @@ extension UIViewController {
                     
                     ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                         if error == nil {
-                            deleteFbAuthFromFirebase()
+                            self.deleteFbAuthFromFirebase()
+                            allOfMyPosts()
                             print(ref)
                         }else{
-                            print(error)
+
                         }
                     }
                     )
-            }
-            
                 
-                func deleteFbAuthFromFirebase(){
-                    let user = Auth.auth().currentUser
-                    let id = user?.uid
-                    user?.delete { error in
-                        if let error = error {
-                            print(error)
-                            
-                        } else {
-                            
+                    ref.child("Posts/\(key)/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
+                        if error == nil {
+                            allOfMyPosts()
+                            print(ref, "TA BORT ANVÄNDARENS POSTS")
+                        }else{
+
                         }
                     }
-                }
+                )
+            }
+            
+            func allOfMyPosts() {
+                let dbref = Database.database().reference().child("Posts/\(key)")
+                dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let tempSnapshot = snapshot.value as? [String : AnyObject] {
+                        for (_, each) in tempSnapshot {
+                            let getUser = User()
+                            getUser.postID = each["postID"] as? String
+                            print("\(each) MINA POSTS ")
+
+                        }
+                    }
+                })
+            }
             
                 Auth.auth().currentUser?.delete(completion: { (error) in
                     if let error = error {
-
+                        
                     } else {
-
                     }
                 })
 
-                let firebaseAuth = Auth.auth()
-                do {
-                    try firebaseAuth.signOut()
-                    let loginManager = FBSDKLoginManager()
-                    loginManager.logOut() // this is an instance function
-                    self.performSegue(withIdentifier: "profileLogout", sender: nil)
-                    print(" \n DU HAR PRECIS LOGGAT UT \n")
-                } catch {
-                    print("\n ERROR NÄR DU LOGGADE UT \n")
-                }
+            self.logOutFromApp()
             
         }))
         
         alert.addAction(UIAlertAction(title: "NEJ", style: UIAlertActionStyle.default, handler:{ action in
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteFbAuthFromFirebase(){
+        let user = Auth.auth().currentUser
+        let id = user?.uid
+        user?.delete { error in
+            if let error = error {
+                print(error)
+                
+            } else {
+                
+            }
+        }
+    }
+    
+    func logOutFromApp() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut() // this is an instance function
+            self.performSegue(withIdentifier: "profileLogout", sender: nil)
+            print(" \n DU HAR PRECIS LOGGAT UT \n")
+        } catch {
+            print("\n ERROR NÄR DU LOGGADE UT \n")
+        }
     }
 }

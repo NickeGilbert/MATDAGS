@@ -115,7 +115,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if self.users[indexPath.row].profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
         } else {
-            cell.pictureOutlet.image = #imageLiteral(resourceName: "profileImagePlaceholder")
+            cell.pictureOutlet.image = profileImage
         }
         
         return cell

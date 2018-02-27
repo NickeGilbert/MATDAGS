@@ -110,14 +110,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return self.posts.count
     }
     
-    //Om vi gör detta måste activity indicator köras varje gång man trycker på followerVC
-    //prova köra utan att rensa posts så att navigering blir mer smärtfritt
-    /*
-    override func viewWillDisappear(_ animated: Bool) {
-        //self.posts.removeAll()
-        //self.following.removeAll()
-    } */
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
         
