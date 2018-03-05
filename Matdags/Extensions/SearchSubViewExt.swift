@@ -13,6 +13,8 @@ extension SearchVC {
     
     @IBAction func closeSubview(_ sender: Any) {
         subview.isHidden = true
+        posts.removeAll()
+        self.subviewCollectionFeed.reloadData()
         self.subviewProfileImage.image = nil
         self.subviewUsername.text = nil
     }

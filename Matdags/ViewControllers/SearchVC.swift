@@ -54,7 +54,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
-        
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -149,12 +148,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     print("\nYou are following this user.")
                     self.subviewFollowButton.isHidden = true
                     self.subviewUnfollowBtn.isHidden = false
-                    return
+                    break
                 } else {
                     print("\nYou are not following this user.")
                     self.subviewFollowButton.isHidden = false
                     self.subviewUnfollowBtn.isHidden = true
-                    return
+                    break
                 }
             }
         }
@@ -166,9 +165,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
     }
     
-    func insertRow() {
-        self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
-    }
     
     func updateSearchResults(for searchController: UISearchController) {
         filteredUsers = []
