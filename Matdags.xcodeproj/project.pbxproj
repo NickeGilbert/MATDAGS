@@ -153,7 +153,7 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		0A4CD1C01FAE46240006986A /* View */ = {
+		0A4CD1C01FAE46240006986A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */,
@@ -164,7 +164,7 @@
 				A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */,
 				26CAF534201219C900011A6E /* CommentsCell.swift */,
 			);
-			path = View;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		0A4CD1C11FAE46680006986A /* Objects */ = {
@@ -205,7 +205,7 @@
 				A485559120176224008F8C1F /* Utilities */,
 				A423EA302011528100F32C46 /* Extensions */,
 				0A4CD1C11FAE46680006986A /* Objects */,
-				0A4CD1C01FAE46240006986A /* View */,
+				0A4CD1C01FAE46240006986A /* Cells */,
 				0A4CD1BF1FAE46000006986A /* ViewControllers */,
 				A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */,
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
@@ -617,7 +617,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87587NY5AL;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -651,7 +651,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87587NY5AL;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

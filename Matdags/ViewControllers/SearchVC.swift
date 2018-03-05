@@ -9,7 +9,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     @IBOutlet weak var subviewUnfollowBtn: UIButton!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
@@ -31,24 +31,25 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
-    var yourFollowers = [String]()
+    var userFollowing = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subviewUnfollowBtn.isHidden = true
-        getUserUID()
+        getUserFollowing()
         self.subview.isHidden = true
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
+        
         getUserInfo(in: dispatchGroup) { (true) in
             self.searchUsersTableView.reloadData()
             
         }
+        
         subview.layer.cornerRadius = 3
         subview.clipsToBounds = true
-        
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
         
@@ -58,7 +59,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         tabBarController?.selectedIndex = 2
     }
 
-    func getUserUID() {
+    func getUserFollowing() {
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference().child("Users/\(uid)/Following")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -67,7 +68,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     let appendUser = User()
                     appendUser.uid = each["uid"] as? String
                     print("\(each) ANVÄNDARNAS UID ")
-                    self.yourFollowers.append(each as! String)
+                    self.userFollowing.append(each as! String)
                 }
             }
         })
@@ -86,7 +87,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     appendUser.profileImageURL = each["profileImageURL"] as? String
                     print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
                     self.users.append(appendUser)
-                    self.insertRow()
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -110,12 +110,15 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         
+        cell.pictureOutlet.image = defaultProfileImage
         cell.usernameLabel.text = username.alias
         
-        if self.users[indexPath.row].profileImageURL != "" {
-            cell.pictureOutlet.downloadImage(from: self.users[indexPath.row].profileImageURL)
+        let imageURL = username.profileImageURL
+        
+        if username.profileImageURL != "" {
+            cell.pictureOutlet.downloadImage(from: imageURL!)
         } else {
-            cell.pictureOutlet.image = profileImage
+            cell.pictureOutlet.image = defaultProfileImage
         }
         
         return cell
@@ -133,7 +136,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         self.subviewFollowButton.isHidden = false
         self.subviewUnfollowBtn.isHidden = true
         
-        for user in yourFollowers {
+        for user in userFollowing {
             if userId == user {
                 self.subviewFollowButton.isHidden = true
                 self.subviewUnfollowBtn.isHidden = false
@@ -146,7 +149,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
         } else {
-            self.subviewProfileImage.image = nil
+            self.subviewProfileImage.image = defaultProfileImage
         }
     }
     
@@ -154,19 +157,15 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
     }
     
-    func filterContent(searchText:String) {
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredUsers = []
         let searchText = self.searchController.searchBar.text ?? ""
         filteredUsers = self.users.filter { user in
-
-            let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().characters.count == 0            
+            
+            let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().count == 0
             return username
         }
-       
+        
         searchUsersTableView.reloadData()
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContent(searchText: searchController.searchBar.text!)
-        print(userId)
     }
 }
