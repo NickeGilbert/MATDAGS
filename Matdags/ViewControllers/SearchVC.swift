@@ -35,6 +35,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchUsersTableView.separatorStyle = .none
         self.subviewUnfollowBtn.isHidden = true
         getUserFollowing()
         self.subview.isHidden = true
@@ -127,22 +129,33 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        let uid = Auth.auth().currentUser!.uid
+        let userID = username.uid
         
-        downloadImages(uid: username.uid)
+        downloadImages(uid: userID!)
 
-        self.userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
-        self.subviewFollowButton.isHidden = false
+        self.subviewFollowButton.isHidden = true
         self.subviewUnfollowBtn.isHidden = true
         
-        for user in userFollowing {
-            if userId == user {
-                self.subviewFollowButton.isHidden = true
-                self.subviewUnfollowBtn.isHidden = false
-            } else if userId == Auth.auth().currentUser?.uid {
-                self.subviewFollowButton.isHidden = true
-                self.subviewUnfollowBtn.isHidden = true
+        
+        if uid == userID {
+            self.subviewFollowButton.isHidden = true
+            self.subviewUnfollowBtn.isHidden = true
+        } else if uid != userID {
+            for user in userFollowing {
+                if userID == user {
+                    print("\nYou are following this user.")
+                    self.subviewFollowButton.isHidden = true
+                    self.subviewUnfollowBtn.isHidden = false
+                    return
+                } else {
+                    print("\nYou are not following this user.")
+                    self.subviewFollowButton.isHidden = false
+                    self.subviewUnfollowBtn.isHidden = true
+                    return
+                }
             }
         }
         
