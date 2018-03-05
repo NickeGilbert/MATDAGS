@@ -88,6 +88,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     appendUser.profileImageURL = each["profileImageURL"] as? String
                     print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
                     self.users.append(appendUser)
+                    self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
