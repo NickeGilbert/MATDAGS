@@ -135,7 +135,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userID = username.uid
         
         downloadImages(uid: userID!)
-
+        
+        //ToDO: SearchBar måste vara under subview när den visas.
+        
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
         self.subviewFollowButton.isHidden = true
