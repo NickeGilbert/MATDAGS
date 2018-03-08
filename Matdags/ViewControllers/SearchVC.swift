@@ -41,6 +41,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         getUserFollowing()
         self.subview.isHidden = true
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
@@ -169,13 +170,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     
     func updateSearchResults(for searchController: UISearchController) {
         filteredUsers = []
+        
         let searchText = self.searchController.searchBar.text ?? ""
-        filteredUsers = self.users.filter { user in
-            
+        
+        filteredUsers = self.users.filter {
+            user in
             let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().count == 0
             return username
         }
         
+        if self.searchController.searchBar.text != "" {
+            searchUsersTableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         searchUsersTableView.reloadData()
     }
 }
