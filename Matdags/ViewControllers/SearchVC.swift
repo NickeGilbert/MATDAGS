@@ -36,25 +36,29 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TableView
         searchUsersTableView.separatorStyle = .none
-        self.subviewUnfollowBtn.isHidden = true
-        getUserFollowing()
-        self.subview.isHidden = true
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
         searchUsersTableView.tableHeaderView = searchController.searchBar
         
-        getUserInfo(in: dispatchGroup) { (true) in
-            self.searchUsersTableView.reloadData()
-            
-        }
-        
+        //SubView
+        subview.isHidden = true
         subview.layer.cornerRadius = 3
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
+        
+        //SearchController
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        
+        //Get Data
+        getUserFollowing()
+        getUserInfo(in: dispatchGroup) { (true) in
+            self.searchUsersTableView.reloadData()
+            
+        }
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -69,7 +73,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                 for (_, each) in tempSnapshot {
                     let appendUser = User()
                     appendUser.uid = each["uid"] as? String
-                    print("\(each) ANVÄNDARNAS UID ")
                     self.userFollowing.append(each as! String)
                 }
             }
