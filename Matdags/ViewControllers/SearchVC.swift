@@ -8,7 +8,7 @@ import Firebase
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var subviewUnfollowBtn: UIButton!
     @IBOutlet weak var subview: UIView!
@@ -21,22 +21,27 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
     
-    var ref: DatabaseReference!
-    var subviewCell = SearchSubViewCell()
     var posts = [Post]()
     var users = [User]()
-    var search = [SearchCell]()
     var filteredUsers = [User]()
-    var username = User()
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
     var userFollowing = [String]()
+    var isSearching = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Get Data
+        getUserFollowing()
+        getUserInfo(in: dispatchGroup) { (true) in
+            self.searchUsersTableView.reloadData()
+        }
+        
         //TableView
+        searchUsersTableView.delegate = self
+        searchUsersTableView.dataSource = self
         searchUsersTableView.separatorStyle = .none
         searchUsersTableView.tableHeaderView = searchController.searchBar
         
@@ -48,17 +53,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         subviewFollowButton.backgroundColor = unfollowUser
         
         //SearchController
-        searchController.searchResultsUpdater = self
+        //searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        
-        //Get Data
-        getUserFollowing()
-        getUserInfo(in: dispatchGroup) { (true) in
-            self.searchUsersTableView.reloadData()
-            
-        }
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -90,7 +88,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
                     appendUser.alias = each["alias"] as? String
                     appendUser.uid = each["uid"] as? String
                     appendUser.profileImageURL = each["profileImageURL"] as? String
-                    print("\n \(appendUser.alias) \n \(appendUser.uid) /n \(appendUser.profileImageURL)")
+                    print("\n\(appendUser.alias!) \n\(appendUser.uid!) \n\(appendUser.profileImageURL!)\n")
                     self.users.append(appendUser)
                     self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
                 }
@@ -121,7 +119,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         
         let imageURL = username.profileImageURL
         
-        if username.profileImageURL != "" {
+        if username.profileImageURL != nil && username.profileImageURL != "" {
             cell.pictureOutlet.downloadImage(from: imageURL!)
         } else {
             cell.pictureOutlet.image = defaultProfileImage
@@ -170,25 +168,42 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating, 
         }
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        filterUsers { (true) in
+            self.searchUsersTableView.reloadData()
+        }
+    }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        filteredUsers = []
-        
-        let searchText = self.searchController.searchBar.text ?? ""
-        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchUsersTableView.reloadData()
+    }
+    
+    func filterUsers(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        let searchText = searchController.searchBar.text ?? ""
         filteredUsers = self.users.filter {
             user in
             let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().count == 0
             return username
         }
-        
-        if self.searchController.searchBar.text != "" {
-            searchUsersTableView.reloadData()
-        }
+        completionHandler(true)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchUsersTableView.reloadData()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != nil || searchBar.text != "" {
+            isSearching = true
+            
+            filteredUsers = []
+            
+            filterUsers(completionHandler: { (true) in
+                self.searchUsersTableView.reloadData()
+            })
+            
+        } else {
+            isSearching = false
+            
+            searchUsersTableView.reloadData()
+        }
     }
 }
