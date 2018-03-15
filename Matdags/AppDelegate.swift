@@ -14,6 +14,11 @@ struct GlobalVariables {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    override init() {
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
+    }
 
     var window: UIWindow?
     var actIdc = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -94,7 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FBSDKApplicationDelegate.sharedInstance().application(application,
             didFinishLaunchingWithOptions: launchOptions)
-        FirebaseApp.configure()
         return true
     }
     

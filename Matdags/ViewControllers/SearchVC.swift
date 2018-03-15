@@ -21,23 +21,28 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
     
+    //Database stuff
+    let db = Database.database()
+    let uid = Auth.auth().currentUser!.uid
+    
     var posts = [Post]()
     var users = [User]()
-    var filteredUsers = [User]()
     var count : Int = 0
     var countFollower : Int = 0
     var userId = ""
     var userFollowing = [String]()
+    var initialFeed = [String]()
     var isSearching = false
+    var searchRef = Database.database().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //DB Refs
+        searchRef = searchRef.child("Users")
+        
         //Get Data
         getUserFollowing()
-        getUserInfo(in: dispatchGroup) { (true) in
-            self.searchUsersTableView.reloadData()
-        }
         
         //TableView
         searchUsersTableView.delegate = self
@@ -53,7 +58,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         subviewFollowButton.backgroundColor = unfollowUser
         
         //SearchController
-        //searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -64,8 +68,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     }
 
     func getUserFollowing() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference().child("Users/\(uid)/Following")
+        //Används för subviewn om man följer eller inte följer användaren
+        let dbref = db.reference().child("Users/\(uid)/Following")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let tempSnapshot = snapshot.value as? [String : AnyObject] {
                 for (_, each) in tempSnapshot {
@@ -77,33 +81,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         })
     }
     
-    func getUserInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        AppDelegate.instance().showActivityIndicator()
-        let dbref = Database.database().reference(withPath: "Users")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                dispatchGroup.enter()
-                for (_, each) in dictionary {
-                    let appendUser = User()
-                    appendUser.alias = each["alias"] as? String
-                    appendUser.uid = each["uid"] as? String
-                    appendUser.profileImageURL = each["profileImageURL"] as? String
-                    print("\n\(appendUser.alias!) \n\(appendUser.uid!) \n\(appendUser.profileImageURL!)\n")
-                    self.users.append(appendUser)
-                    self.searchUsersTableView.insertRows(at: [IndexPath(row:self.users.count-1,section:0)], with: UITableViewRowAnimation.automatic)
-                }
-                dispatchGroup.leave()
-                dispatchGroup.notify(queue: .main, execute: {
-                    print("\n dispatchGroup completed \n")
-                    completionHandler(true)
-                    AppDelegate.instance().dismissActivityIndicator()
-                })
-            }
-        })
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? filteredUsers.count : users.count
+        return users.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -112,17 +91,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
-        
-        cell.pictureOutlet.image = defaultProfileImage
-        cell.usernameLabel.text = username.alias
-        
-        let imageURL = username.profileImageURL
-        
-        if username.profileImageURL != nil && username.profileImageURL != "" {
-            cell.pictureOutlet.downloadImage(from: imageURL!)
-        } else {
+        if !users.isEmpty {
+            let username = users[indexPath.row]
+            
             cell.pictureOutlet.image = defaultProfileImage
+            cell.usernameLabel.text = username.alias
+            
+            let imageURL = username.profileImageURL
+            
+            if username.profileImageURL != nil && username.profileImageURL != "" {
+                cell.pictureOutlet.downloadImage(from: imageURL!)
+            } else {
+                cell.pictureOutlet.image = defaultProfileImage
+            }
+            
+        } else {
+            self.searchUsersTableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
         return cell
@@ -130,13 +114,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
-        let username = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        let username = users[indexPath.row]
         let uid = Auth.auth().currentUser!.uid
         let userID = username.uid
         
         downloadImages(uid: userID!)
         
-        //ToDO: SearchBar måste vara under subview när den visas.
+        //ToDo: SearchBar måste vara under subview när den visas.
         
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
@@ -170,42 +154,56 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         }
     }
     
+    func searchForUser() {
+        let inputText = searchController.searchBar.text
+        searchRef.queryOrdered(byChild: "alias").queryStarting(atValue: inputText).queryEnding(atValue: inputText! + "\u{f8ff}", childKey: "alias").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, each) in dictionary {
+                    let appendUser = User()
+                    appendUser.alias = each["alias"] as? String
+                    appendUser.uid = each["uid"] as? String
+                    appendUser.profileImageURL = each["profileImageURL"] as? String
+                    print("\n\(appendUser.alias!) \n\(appendUser.uid!) \n\(appendUser.profileImageURL!)\n")
+                    self.users.append(appendUser)
+                    self.searchUsersTableView.insertRows(at: [IndexPath(row: self.users.count-1, section: 0)], with: .none)
+                }
+            }
+        })
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isSearching = false
+        users = []
         searchBar.text = ""
-        filterUsers { (true) in
-            self.searchUsersTableView.reloadData()
-        }
+        searchUsersTableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchUsersTableView.reloadData()
     }
     
-    func filterUsers(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        let searchText = searchController.searchBar.text ?? ""
-        filteredUsers = self.users.filter {
-            user in
-            let username = user.alias.lowercased().contains(searchText.lowercased()) || searchText.lowercased().count == 0
-            return username
+    func filterUsers() {
+        if isSearching {
+            searchRef.removeAllObservers()
+            searchForUser()
         }
-        completionHandler(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text != nil || searchBar.text != "" {
-            isSearching = true
-            
-            filteredUsers = []
-            
-            filterUsers(completionHandler: { (true) in
-                self.searchUsersTableView.reloadData()
-            })
-            
-        } else {
+        if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             
+            users = []
+            
             searchUsersTableView.reloadData()
+            
+        } else {
+            isSearching = true
+            
+            users = []
+            
+            searchUsersTableView.reloadData()
+            
+            filterUsers()
         }
     }
 }
