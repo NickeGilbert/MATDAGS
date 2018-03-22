@@ -198,8 +198,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         let key = database.childByAutoId().key
         let imageRef = storage.child("\(key)")
         let imageRef256 = storage.child("\(key)256")
-        let resizedImage = AppDelegate.instance().resizeImage(image: self.image!, targetSize: CGSize.init(width: 256, height: 256))
-        let fullImage = AppDelegate.instance().resizeImage(image: self.image!, targetSize: CGSize.init(width: 1024, height: 1024))
+        let resizedImage = AppDelegate.instance().resizeImage(image: photo.image!, targetSize: CGSize.init(width: 256, height: 256))
+        let fullImage = AppDelegate.instance().resizeImage(image: photo.image!, targetSize: CGSize.init(width: 1024, height: 1024))
         
         //Datum
         let date = Date()
