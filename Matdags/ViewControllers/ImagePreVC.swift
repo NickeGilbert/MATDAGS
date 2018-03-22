@@ -6,6 +6,7 @@
 import UIKit
 import AVFoundation
 import Firebase
+import CoreImage
 
 class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
@@ -14,23 +15,40 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var vegFood: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var descriptionFieldLines: UITextView!
+    @IBOutlet weak var filterScrollView: UIScrollView!
+    
+    var CIFilterNames = ["CIPhotoEffectChrome",
+                         "CIPhotoEffectFade",
+                         "CIPhotoEffectInstant",
+                         "CIPhotoEffectNoir",
+                         "CIPhotoEffectProcess",
+                         "CIPhotoEffectTonal",
+                         "CIPhotoEffectTransfer"]
     
     var vegFoodBool : Bool = false
     var commentBool : Bool = false
     var hiddenTextfield = true
+    
+    //CIFilter Stuff
+    let context = CIContext()
     
     var image: UIImage!
     let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         photo.image = self.image
         
+        filterScrollView.isHidden = true
+        
+        loadFilters()
+        
+        descriptionFieldLines.delegate = self
+        descriptionFieldLines.isHidden = true
 //        descriptionField.delegate = self
 //        descriptionField.setLeftPaddingPoints(20)
 //        descriptionField.setRightPaddingPoints(20)
-
-        descriptionFieldLines.delegate = self
 
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -47,18 +65,64 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 //
 //        }
         
-        descriptionFieldLines.isHidden = true
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
-        }else{
-            
+        } else {
+            return
         }
-        
-        
     }
     
+    func loadFilters() {
+        //Init Button
+        let buttonPadding = CGFloat(10)
+        var xPosition = CGFloat(0)
+        let buttonWidth = CGFloat(self.view.frame.width / 3)
+        let buttonHeight = filterScrollView.frame.height
+        
+        //Scrollview Stuff
+        let resizedImage = AppDelegate.instance().resizeImage(image: photo.image!, targetSize: CGSize.init( width: buttonWidth, height: buttonHeight))
+        let contentWidth = (buttonWidth + buttonPadding) * CGFloat(CIFilterNames.count) - buttonPadding
+        
+        for i in 0..<CIFilterNames.count {
+            let coreImage = CIImage(image: resizedImage)
+            let previewImageButton = UIButton()
+            let filter = CIFilter(name: "\(CIFilterNames[i])")
+            filter!.setDefaults()
+            filter!.setValue(coreImage, forKey: kCIInputImageKey)
+            let filteredImageData = filter?.value(forKey: kCIOutputImageKey) as! CIImage
+            let filteredImageRef = context.createCGImage(filteredImageData, from: filteredImageData.extent)
+            let imageForButton = UIImage(cgImage: filteredImageRef!)
+            
+            previewImageButton.tag = i
+            previewImageButton.addTarget(self, action: #selector(previewImageButtonClicked), for: .touchUpInside)
+            previewImageButton.setImage(imageForButton, for: .normal)
+            previewImageButton.frame = CGRect(x: xPosition, y: 0, width: buttonWidth, height: buttonHeight)
+            
+            xPosition += buttonWidth + buttonPadding
+            
+            filterScrollView.addSubview(previewImageButton)
+        }
+        
+        filterScrollView.contentSize = CGSize(width: contentWidth, height: filterScrollView.frame.height)
+    }
+    
+    @objc func previewImageButtonClicked(sender: UIButton) {
+        photo.image = self.image!
+        
+        let coreImage = CIImage(image: photo.image!)
+        let filter = CIFilter(name: "\(CIFilterNames[sender.tag])")
+        filter!.setDefaults()
+        filter!.setValue(coreImage, forKey: kCIInputImageKey)
+        let filteredImageData = filter?.value(forKey: kCIOutputImageKey) as! CIImage
+        let filteredImageRef = context.createCGImage(filteredImageData, from: filteredImageData.extent)
+        let imageForPhoto = UIImage(cgImage: filteredImageRef!, scale: photo.image!.scale, orientation: photo.image!.imageOrientation)
+        
+        photo.image = imageForPhoto
+        
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        
 //        descriptionField.isHidden = true
 //        if descriptionField.text == "" {
 //            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
@@ -114,6 +178,15 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         
         descriptionFieldLines.isHidden = false
         descriptionFieldLines.becomeFirstResponder()
+    }
+    @IBAction func filterButtonClicked(_ sender: Any) {
+        print("\nYou clicked the filter button!")
+        
+        if filterScrollView.isHidden {
+            filterScrollView.isHidden = false
+        } else {
+            filterScrollView.isHidden = true
+        }
     }
     
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {

@@ -966,6 +966,18 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBF-A8-2bW">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-Jl-bbp">
+                                        <rect key="frame" x="85" y="12" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Filters">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterButtonClicked:" destination="2ez-7q-i8j" eventType="touchUpInside" id="tHm-wm-uWM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="vax-r1-PnK"/>
@@ -1034,6 +1046,13 @@
                                     <action selector="postButton:" destination="2ez-7q-i8j" eventType="touchUpInside" id="Y1B-tW-UT9"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQc-0R-Jpu">
+                                <rect key="frame" x="0.0" y="461" width="414" height="150"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="gJK-32-YhO"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1047,6 +1066,7 @@
                             <constraint firstItem="vmJ-rb-PPw" firstAttribute="bottom" secondItem="m3d-i9-TOS" secondAttribute="bottom" constant="5" id="K29-YD-5kL"/>
                             <constraint firstItem="vmJ-rb-PPw" firstAttribute="bottom" secondItem="Wha-fx-ceG" secondAttribute="bottom" constant="5" id="NYO-nt-Iq8"/>
                             <constraint firstItem="cUn-EM-FWZ" firstAttribute="trailing" secondItem="vmJ-rb-PPw" secondAttribute="trailing" id="QQs-eL-2NN"/>
+                            <constraint firstItem="iQc-0R-Jpu" firstAttribute="trailing" secondItem="vmJ-rb-PPw" secondAttribute="trailing" id="R0U-Tu-Ay6"/>
                             <constraint firstItem="vmJ-rb-PPw" firstAttribute="trailing" secondItem="m3d-i9-TOS" secondAttribute="trailing" constant="20" id="Tg4-iT-lUH"/>
                             <constraint firstItem="Bl1-iS-nHd" firstAttribute="trailing" secondItem="vmJ-rb-PPw" secondAttribute="trailing" id="Th7-0i-9r3"/>
                             <constraint firstItem="sBF-A8-2bW" firstAttribute="top" secondItem="Bl1-iS-nHd" secondAttribute="bottom" id="V2f-IM-rO3"/>
@@ -1055,6 +1075,8 @@
                             <constraint firstItem="sBF-A8-2bW" firstAttribute="leading" secondItem="vmJ-rb-PPw" secondAttribute="leading" id="amw-hq-O4x"/>
                             <constraint firstItem="nWk-yA-OE6" firstAttribute="leading" secondItem="vmJ-rb-PPw" secondAttribute="leading" id="bIX-go-0ul"/>
                             <constraint firstItem="cUn-EM-FWZ" firstAttribute="top" secondItem="heh-I0-F8Y" secondAttribute="top" id="did-4S-bKs"/>
+                            <constraint firstItem="iQc-0R-Jpu" firstAttribute="leading" secondItem="vmJ-rb-PPw" secondAttribute="leading" id="hL1-2F-3eb"/>
+                            <constraint firstItem="ho1-wZ-bVz" firstAttribute="top" secondItem="iQc-0R-Jpu" secondAttribute="bottom" constant="30" id="jfv-B9-rJa"/>
                             <constraint firstItem="vmJ-rb-PPw" firstAttribute="bottom" secondItem="sBF-A8-2bW" secondAttribute="bottom" id="kVJ-to-zqS"/>
                             <constraint firstItem="sBF-A8-2bW" firstAttribute="trailing" secondItem="vmJ-rb-PPw" secondAttribute="trailing" id="nsI-Vx-8hG"/>
                             <constraint firstItem="Wha-fx-ceG" firstAttribute="leading" secondItem="vmJ-rb-PPw" secondAttribute="leading" constant="20" id="pWi-sF-KsO"/>
@@ -1072,13 +1094,14 @@
                         <outlet property="commentBtn" destination="Dwm-Dz-lPi" id="5VQ-Pf-qmw"/>
                         <outlet property="descriptionField" destination="nWk-yA-OE6" id="GNs-CC-Kq7"/>
                         <outlet property="descriptionFieldLines" destination="Bl1-iS-nHd" id="2fu-7i-ZV2"/>
+                        <outlet property="filterScrollView" destination="iQc-0R-Jpu" id="hZD-Bl-b7a"/>
                         <outlet property="photo" destination="cUn-EM-FWZ" id="gZn-oE-St5"/>
                         <outlet property="vegFood" destination="m3d-i9-TOS" id="rvs-LR-QmU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbv-vd-J5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3482.4000000000001" y="-530.28485757121439"/>
+            <point key="canvasLocation" x="3481.1594202898555" y="-530.70652173913049"/>
         </scene>
         <!--CameraVC-->
         <scene sceneID="hhI-Ad-C3A">
