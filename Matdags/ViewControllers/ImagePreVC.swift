@@ -73,6 +73,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func loadFilters() {
+        //ToDo: Användaren ska kunna ta bort filter
+        
         //Init Button
         let buttonPadding = CGFloat(10)
         var xPosition = CGFloat(0)

@@ -967,9 +967,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBF-A8-2bW">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-Jl-bbp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-Jl-bbp">
                                         <rect key="frame" x="85" y="12" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Filters">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -980,6 +979,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="hBh-Jl-bbp" firstAttribute="leading" secondItem="sBF-A8-2bW" secondAttribute="leading" constant="85" id="OpB-cX-sFg"/>
+                                    <constraint firstItem="hBh-Jl-bbp" firstAttribute="top" secondItem="sBF-A8-2bW" secondAttribute="top" constant="12" id="jKa-0f-IoQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="hBh-Jl-bbp" secondAttribute="bottom" constant="8" id="jNU-rE-HEr"/>
+                                    <constraint firstAttribute="trailing" secondItem="hBh-Jl-bbp" secondAttribute="trailing" constant="283" id="jnO-0M-2YW"/>
                                     <constraint firstAttribute="height" constant="50" id="vax-r1-PnK"/>
                                 </constraints>
                             </view>

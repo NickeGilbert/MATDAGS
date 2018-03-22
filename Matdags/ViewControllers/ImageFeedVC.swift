@@ -19,8 +19,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        posts.removeAll()
-        downloadImages()
+        loadData()
         
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
@@ -32,9 +31,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @objc func loadData() {
         posts.removeAll()
-        downloadImages()
-        self.collectionFeed.reloadData()
-        stopRefresher()
+        downloadImages { (true) in
+            self.collectionFeed.reloadData()
+            self.stopRefresher()
+            print(self.posts.count)
+        }
     }
     
     func stopRefresher() {
@@ -47,9 +48,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func downloadImages() {
-        AppDelegate.instance().showActivityIndicator()
-        posts.removeAll()
+    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference(withPath: "Posts")
         dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
@@ -61,8 +60,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     self.posts.insert(appendPost, at: 0)
                 }
             }
-            self.collectionFeed.reloadData()
-            AppDelegate.instance().dismissActivityIndicator()
+            completionHandler(true)
         })
     }
 
