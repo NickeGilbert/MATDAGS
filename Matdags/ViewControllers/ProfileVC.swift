@@ -34,17 +34,18 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var fromSearch = false
 
     override func viewDidLoad() {
-        resizeImage()
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        getUserInfo()
-        posts.removeAll()
-        getPostInfo { (true) in
-            self.profileCollectionFeed.reloadData()
-        }
-        profileSettingsButtonOutlet.isHidden = true;
-        profileNameLabel.text = ""
         
+        if posts.isEmpty {
+            loadData()
+        }
+        
+        resizeImage()
+        getUserInfo()
+        
+        profileNameLabel.text = ""
         profileSettingsButtonOutlet.isHidden = false
+        
         ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -62,6 +63,50 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
         
     }
+    
+    @objc func loadData() {
+        getPostInfo{ (true) in
+            self.posts.sort(by: {$0.date > $1.date})
+            self.profileCollectionFeed.reloadData()
+            print(self.posts.count)
+        }
+    }
+    
+    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        posts.removeAll()
+        let uid = Auth.auth().currentUser!.uid
+        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
+        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dictionary {
+                    let appendPosts = Post()
+                    appendPosts.date = post["date"] as? String
+                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
+                    appendPosts.postID = post["postID"] as? String
+                    appendPosts.vegi = post["vegetarian"] as? Bool
+                    self.posts.append(appendPosts)
+                }
+            }
+            completionHandler(true)
+        })
+    }
+    
+    func getUserInfo() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let tempSnapshot = snapshot.value as? [String : Any] {
+                let appendInfo = User()
+                appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
+                if appendInfo.profileImageURL != ""  {
+                    self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
+                } else {
+                    print("\n profileImageURL not found \n")
+                    return
+                }
+            }
+        })
+    }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -70,7 +115,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
         
-       let cachedImages = cell.viewWithTag(1) as? UIImageView
+       //let cachedImages = cell.viewWithTag(1) as? UIImageView
         
         cell.myProfileImageCollection.image = nil
         cell.vegiIcon.isHidden = true
@@ -87,27 +132,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         
-        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         
         return cell
-    }
-    
-    func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        let uid = Auth.auth().currentUser!.uid
-        let db = Database.database().reference(withPath: "Users/\(uid)/Posts")
-        db.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String : AnyObject] {
-                for (_, post) in dictionary {
-                    let appendPosts = Post()
-                    appendPosts.pathToImage256 = post["pathToImage256"] as? String
-                    appendPosts.postID = post["postID"] as? String
-                    appendPosts.vegi = post["vegetarian"] as? Bool
-                    
-                    self.posts.insert(appendPosts, at: 0)
-                    completionHandler(true)
-                }
-            }
-        })
     }
     
     func resizeImage(){
@@ -182,7 +209,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
 
@@ -225,26 +252,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             uploadTask.resume()
         }
     }
-    
-    func getUserInfo() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users/\(uid)")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : Any] {
-                let appendInfo = User()
-                appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
-                
-                if appendInfo.profileImageURL != ""  {
-                    self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
-                } else {
-                    print("\n profileImageURL not found \n")
-                    return
-                }
-            }
-        })
-    }
    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSegProfile", sender: indexPath)
     }
@@ -280,48 +288,5 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         //Resten av funktion ligger i Extensions/CreateAlertExt.swift
         
     }
-    
-    
-    
-    //Vad ska vi med dessa två funktioner om de inte gör något? 
-   /* func followingCount() {
-        let uid = Auth.auth().currentUser!.uid
-        let dbref = Database.database().reference(withPath: "Users/\(uid)")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : Any] {
-                let appendInfo = User()
-                appendInfo.followingCounter = tempSnapshot["followingCounter"] as? String
-                if appendInfo.followingCounter != "" {
-                    print("HEJSAN SVEJSAN 1")
-                } else {
-                    print("TOMTEGLAS")
-                    return
-                }
-            }
-        })
-    }
-    
-    func followersCount() {
-        let ref = Database.database().reference()
-        
-        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            let Users = snapshot.value as! [String: AnyObject]
-            
-            for (_,value) in Users {
-                if let ID = value["uid"] as? String {
-                    if ID == Auth.auth().currentUser?.uid {
-                        if let followingUsers = value["followingCounter"] as? [String: String] {
-                            for (_,user) in followingUsers {
-                                print(followingUsers)
-                                print(Users)
-                            }
-                        }
-                    }
-                }
-            }
-        })
-    }*/
-    
-    
 }
 

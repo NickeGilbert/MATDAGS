@@ -17,4 +17,5 @@ class Post: NSObject {
     var commenter : String?
     var comment : String?
     var usersRated : Double!
+    var date : String!
 }

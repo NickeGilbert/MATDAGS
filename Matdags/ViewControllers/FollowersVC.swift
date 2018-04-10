@@ -20,6 +20,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if posts.isEmpty {
+            loadData()
+        }
 
         self.zeroImagesMessage.isHidden = true
         self.refresher = UIRefreshControl()
@@ -31,8 +35,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @objc func loadData() {
         fetchPosts { (true) in
+            self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
             self.stopRefresher()
+            print(self.posts.count)
         }
     }
     
@@ -40,16 +46,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.endRefreshing()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if posts.isEmpty == true {
-            fetchPosts { (true) in
-                //Om något behöver vänta på fetchPosts kan det läggas här
-            }
-        }
-    }
-    
     func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        AppDelegate.instance().showActivityIndicator()
         self.posts.removeAll()
         self.following.removeAll()
         
@@ -75,6 +72,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                 if each == userID {
                                                     let appendPost = Post()
                                                     
+                                                    appendPost.date = post["date"] as? String
                                                     appendPost.alias = post["alias"] as? String
                                                     appendPost.rating = post["rating"] as? Double
                                                     appendPost.pathToImage = post["pathToImage"] as? String
@@ -85,19 +83,16 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     self.posts.append(appendPost)
                                                 }
                                             }
-                                            self.feedCollectionView.reloadData()
-                                            AppDelegate.instance().dismissActivityIndicator()
                                         }
                                     }
                                 } else {
                                     print("\nNo Posts found in db.")
-                                    AppDelegate.instance().dismissActivityIndicator()
                                 }
+                                completionHandler(true)
                             })
                         }
                     }
                 }
-                completionHandler(true)
             } else {
                 completionHandler(true)
                 print("\nCouldnt fetch Posts in FollowerVC.")

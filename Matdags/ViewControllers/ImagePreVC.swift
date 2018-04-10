@@ -206,22 +206,24 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         //Datum
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "ddMMyyyy"
-        let result = formatter.string(from: date)
+        formatter.dateFormat = "HH:mm:ss dd-MM-yyyy"
+        let currentDate = formatter.string(from: date)
         
         let postfeed = ["userID" : uid!,
-                    "date": result,
+                    "date": currentDate,
                     "rating" : 0,
                     "alias" : Auth.auth().currentUser!.displayName!,
                     "imgdescription" : self.descriptionFieldLines.text!,
                     "postID" : key,
                     "usersRated" : 0,
                     "vegetarian" : vegFoodBool] as [String : Any]
-        let postIdExtra = ["postID" : key] as [String : Any]
         database.child("\(key)").updateChildValues(postfeed)
         
-        usrdatabase.child("\(uid!)").child("Posts").updateChildValues(["\(key)" : key])
-        usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(["vegetarian" : vegFoodBool])
+        let usrPostFeed = ["date" : currentDate,
+                           "postID" : key,
+                           "vegetarian" : vegFoodBool] as [String : Any]
+        
+        usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(usrPostFeed)
         
         //Bild i full storlek
         if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
@@ -238,7 +240,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                     let postURL = ["pathToImage" : firstURL!]
                     database.child("\(key)").updateChildValues(postURL)
                     usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL)
-                    usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postIdExtra)
                     print("\n Image uploaded! \n")
                 } else {
                     print("\n Could not allocate URL for full size image. \n")

@@ -30,8 +30,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
-        posts.removeAll()
         downloadImages { (true) in
+            self.posts.sort(by: {$0.date > $1.date})
             self.collectionFeed.reloadData()
             self.stopRefresher()
             print(self.posts.count)
@@ -49,15 +49,18 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        self.posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
-        dbref.queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { (snapshot) in
+        //ToDo: Begränsa queryn till maxantal posts
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
+                    appendPost.date = post["date"] as? String
                     appendPost.pathToImage256 = post["pathToImage256"] as? String
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
-                    self.posts.insert(appendPost, at: 0)
+                    self.posts.append(appendPost)
                 }
             }
             completionHandler(true)
@@ -88,24 +91,24 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
        
-        let cachedImages = cell.viewWithTag(1) as? UIImageView
+        //let cachedImages = cell.viewWithTag(1) as? UIImageView
        
         cell.vegiIcon.isHidden = true
+        cell.myImage.image = nil
         
         if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
             cell.vegiIcon.isHidden = true
-        }else{
+        } else {
             cell.vegiIcon.isHidden = false
         }
         
-        cell.myImage.image = nil
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
 
-        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         return cell
     }
     
