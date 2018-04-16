@@ -20,12 +20,18 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.zeroImagesMessage.isHidden = true
         
         if posts.isEmpty {
             loadData()
+            zeroImagesMessage.isHidden = true
         }
-
-        self.zeroImagesMessage.isHidden = true
+        
+        if posts.isEmpty == true {
+            zeroImagesMessage.isHidden = false
+            zeroImagesMessage.text = zeroImages
+        }
+        
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.clear
@@ -81,6 +87,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     appendPost.usersRated = post["usersRated"] as? Double
                                                     
                                                     self.posts.append(appendPost)
+                                                    self.zeroImagesMessage.isHidden = true
                                                 }
                                             }
                                         }
