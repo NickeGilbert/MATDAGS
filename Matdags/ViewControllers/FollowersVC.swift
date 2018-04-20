@@ -28,6 +28,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         if posts.isEmpty == true {
+            
             zeroImagesMessage.isHidden = false
             zeroImagesMessage.text = zeroImages
         }
