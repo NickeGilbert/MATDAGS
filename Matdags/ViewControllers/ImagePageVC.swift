@@ -17,7 +17,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-
+    @IBOutlet weak var containerView: UIView!
+    
     //test daniel
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
@@ -65,6 +66,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         vegiIcon.isHidden = true
         subview.isHidden = true
         commentsTextField.delegate = self
+        containerView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -310,4 +312,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             })
         }
     }
+    
+    @IBAction func openContainerView(_ sender: Any) {
+        containerView.isHidden = false
+    }
+    
+    
 }
