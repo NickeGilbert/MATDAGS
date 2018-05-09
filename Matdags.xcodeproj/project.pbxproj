@@ -41,7 +41,6 @@
 		A43C314F2026418A0058ADCE /* RegisterAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C314E2026418A0058ADCE /* RegisterAlertText.swift */; };
 		A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C3151202646320058ADCE /* LoginAlertText.swift */; };
 		A43C315620264E700058ADCE /* SupportingFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C315520264E700058ADCE /* SupportingFile.m */; };
-		A43DC2DF20A36D800051CD3C /* KeyboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DC2DE20A36D800051CD3C /* KeyboardExt.swift */; };
 		A44A12172035C7EA00F6EAEE /* SearchSubViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */; };
 		A44A12192035C87B00F6EAEE /* ImagePageSubViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */; };
 		A44A121B2035C8F000F6EAEE /* ImagePageVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */; };
@@ -101,7 +100,6 @@
 		A43C3151202646320058ADCE /* LoginAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertText.swift; sourceTree = "<group>"; };
 		A43C315420264E6F0058ADCE /* Matdags-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Matdags-Bridging-Header.h"; sourceTree = "<group>"; };
 		A43C315520264E700058ADCE /* SupportingFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupportingFile.m; sourceTree = "<group>"; };
-		A43DC2DE20A36D800051CD3C /* KeyboardExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExt.swift; sourceTree = "<group>"; };
 		A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewExt.swift; sourceTree = "<group>"; };
 		A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSubViewExt.swift; sourceTree = "<group>"; };
 		A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVCExt.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 				A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */,
 				A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */,
 				A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */,
-				A43DC2DE20A36D800051CD3C /* KeyboardExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,7 +452,6 @@
 				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
-				A43DC2DF20A36D800051CD3C /* KeyboardExt.swift in Sources */,
 				A485559320176246008F8C1F /* Enums.swift in Sources */,
 				A43C315620264E700058ADCE /* SupportingFile.m in Sources */,
 				0A706CBE1F73B70800B0345C /* LoginVC.swift in Sources */,

@@ -1318,10 +1318,10 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f17-TZ-hP6">
-                                        <rect key="frame" x="0.0" y="658" width="414" height="400"/>
+                                        <rect key="frame" x="0.0" y="658" width="414" height="10"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="400" identifier="commentsTableViewCellHeight" id="5qk-Y4-J9f"/>
+                                            <constraint firstAttribute="height" constant="10" identifier="commentsTableViewCellHeight" id="5qk-Y4-J9f"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentsCell" rowHeight="200" id="pSO-OR-IHc" customClass="CommentsCell" customModule="Matdags" customModuleProvider="target">
@@ -1332,7 +1332,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaD-hG-VUU" userLabel="commentName">
-                                                            <rect key="frame" x="20" y="20.666666666666671" width="359" height="25"/>
+                                                            <rect key="frame" x="20" y="18" width="371" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="CnI-3i-712"/>
                                                             </constraints>
@@ -1341,7 +1341,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBN-gI-jgP" userLabel="commetsText">
-                                                            <rect key="frame" x="25" y="56" width="364" height="143.66666666666666"/>
+                                                            <rect key="frame" x="25" y="53.333333333333336" width="364" height="126.33333333333331"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1353,7 +1353,7 @@
                                                         <constraint firstItem="nBN-gI-jgP" firstAttribute="leading" secondItem="g8O-n0-wFe" secondAttribute="leading" constant="25" id="FST-DY-54o"/>
                                                         <constraint firstItem="PaD-hG-VUU" firstAttribute="top" secondItem="g8O-n0-wFe" secondAttribute="topMargin" constant="10" id="NP9-nf-Ixx"/>
                                                         <constraint firstItem="PaD-hG-VUU" firstAttribute="leading" secondItem="g8O-n0-wFe" secondAttribute="leading" constant="20" id="SDB-iL-wfi"/>
-                                                        <constraint firstAttribute="bottom" secondItem="nBN-gI-jgP" secondAttribute="bottom" id="nOj-mU-tVJ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nBN-gI-jgP" secondAttribute="bottom" constant="20" symbolic="YES" id="nOj-mU-tVJ"/>
                                                         <constraint firstItem="nBN-gI-jgP" firstAttribute="top" secondItem="PaD-hG-VUU" secondAttribute="bottom" constant="10" id="zyx-o7-hS9"/>
                                                     </constraints>
                                                 </tableViewCellContentView>

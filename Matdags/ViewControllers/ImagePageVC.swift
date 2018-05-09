@@ -230,6 +230,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func commentButtonClick(_ sender: UIButton) {
+        commentsTextField.text = ""
         commentsView.isHidden = false
         commentsTextField.becomeFirstResponder()
     }
@@ -333,7 +334,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let key = database.childByAutoId().key
         let ref = DatabaseReference()
         
-        ref.database.reference().child("Posts").child(key).child(uid).removeValue { (error, database) in
+        ref.database.reference().child("Posts").child(seguePostID).child(uid).removeValue { (error, database) in
             if error != nil {
                 
                 print(error?.localizedDescription)
