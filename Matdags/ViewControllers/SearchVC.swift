@@ -23,7 +23,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     //Database stuff
     let db = Database.database()
-    let uid = Auth.auth().currentUser!.uid
+    let uid = Auth.auth().currentUser?.uid
     
     var posts = [Post]()
     var users = [User]()
@@ -37,8 +37,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         //DB Refs
         searchRef = searchRef.child("Users")

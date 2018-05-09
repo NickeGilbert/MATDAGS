@@ -41,10 +41,12 @@
 		A43C314F2026418A0058ADCE /* RegisterAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C314E2026418A0058ADCE /* RegisterAlertText.swift */; };
 		A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C3151202646320058ADCE /* LoginAlertText.swift */; };
 		A43C315620264E700058ADCE /* SupportingFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C315520264E700058ADCE /* SupportingFile.m */; };
+		A43DC2DF20A36D800051CD3C /* KeyboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DC2DE20A36D800051CD3C /* KeyboardExt.swift */; };
 		A44A12172035C7EA00F6EAEE /* SearchSubViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */; };
 		A44A12192035C87B00F6EAEE /* ImagePageSubViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */; };
 		A44A121B2035C8F000F6EAEE /* ImagePageVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */; };
 		A45ABBA61FE01F780052E6A7 /* SearchSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */; };
+		A460CC7820A35F5300DBDE23 /* ImagePageText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A460CC7720A35F5300DBDE23 /* ImagePageText.swift */; };
 		A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4650B001FB368FC00BC618E /* SearchVC.swift */; };
 		A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */; };
 		A47197DB2019E63D00C01C39 /* ImagePreVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47197DA2019E63D00C01C39 /* ImagePreVCExt.swift */; };
@@ -53,7 +55,6 @@
 		A4AE137C1F9618AA005013EC /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE137B1F9618AA005013EC /* FollowersVC.swift */; };
 		A4AE6C152012BC8000F05B44 /* CreatedAlertsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */; };
 		A4AE6C192012C76200F05B44 /* LoginVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AE6C182012C76200F05B44 /* LoginVCExt.swift */; };
-		A4BD29B4208F8FA7000DDF5C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD29B3208F8FA7000DDF5C /* ContainerVC.swift */; };
 		A4BF80481FB447A2000D7DF5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF80471FB447A2000D7DF5 /* SearchCell.swift */; };
 		A4CE752D203CB53A000E4A3B /* UIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE752C203CB53A000E4A3B /* UIColors.swift */; };
 		A4DA93B820851DD0007765B2 /* FollowerVCText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DA93B720851DD0007765B2 /* FollowerVCText.swift */; };
@@ -100,10 +101,12 @@
 		A43C3151202646320058ADCE /* LoginAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertText.swift; sourceTree = "<group>"; };
 		A43C315420264E6F0058ADCE /* Matdags-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Matdags-Bridging-Header.h"; sourceTree = "<group>"; };
 		A43C315520264E700058ADCE /* SupportingFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupportingFile.m; sourceTree = "<group>"; };
+		A43DC2DE20A36D800051CD3C /* KeyboardExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExt.swift; sourceTree = "<group>"; };
 		A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewExt.swift; sourceTree = "<group>"; };
 		A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSubViewExt.swift; sourceTree = "<group>"; };
 		A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVCExt.swift; sourceTree = "<group>"; };
 		A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewCell.swift; sourceTree = "<group>"; };
+		A460CC7720A35F5300DBDE23 /* ImagePageText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageText.swift; sourceTree = "<group>"; };
 		A4650B001FB368FC00BC618E /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedCell.swift; sourceTree = "<group>"; };
 		A47197DA2019E63D00C01C39 /* ImagePreVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreVCExt.swift; sourceTree = "<group>"; };
@@ -112,7 +115,6 @@
 		A4AE137B1F9618AA005013EC /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
 		A4AE6C142012BC8000F05B44 /* CreatedAlertsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedAlertsExt.swift; sourceTree = "<group>"; };
 		A4AE6C182012C76200F05B44 /* LoginVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCExt.swift; sourceTree = "<group>"; };
-		A4BD29B3208F8FA7000DDF5C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		A4BF80471FB447A2000D7DF5 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		A4CE752C203CB53A000E4A3B /* UIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
 		A4DA93B720851DD0007765B2 /* FollowerVCText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVCText.swift; sourceTree = "<group>"; };
@@ -153,7 +155,6 @@
 				A4650B001FB368FC00BC618E /* SearchVC.swift */,
 				0A91F4211F73D19800304F32 /* RegisterVC.swift */,
 				0A706CBD1F73B70800B0345C /* LoginVC.swift */,
-				A4BD29B3208F8FA7000DDF5C /* ContainerVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -234,6 +235,7 @@
 				A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */,
 				A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */,
 				A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */,
+				A43DC2DE20A36D800051CD3C /* KeyboardExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,6 +248,7 @@
 				A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */,
 				A4CE752C203CB53A000E4A3B /* UIColors.swift */,
 				A4DA93B720851DD0007765B2 /* FollowerVCText.swift */,
+				A460CC7720A35F5300DBDE23 /* ImagePageText.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -448,9 +451,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A42426902035F0CE0029125C /* DeleteAccountAlertText.swift in Sources */,
+				A460CC7820A35F5300DBDE23 /* ImagePageText.swift in Sources */,
 				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
+				A43DC2DF20A36D800051CD3C /* KeyboardExt.swift in Sources */,
 				A485559320176246008F8C1F /* Enums.swift in Sources */,
 				A43C315620264E700058ADCE /* SupportingFile.m in Sources */,
 				0A706CBE1F73B70800B0345C /* LoginVC.swift in Sources */,
@@ -471,7 +476,6 @@
 				A45ABBA61FE01F780052E6A7 /* SearchSubViewCell.swift in Sources */,
 				A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */,
 				A44A121B2035C8F000F6EAEE /* ImagePageVCExt.swift in Sources */,
-				A4BD29B4208F8FA7000DDF5C /* ContainerVC.swift in Sources */,
 				0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */,
 				A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */,
 				26CAF535201219C900011A6E /* CommentsCell.swift in Sources */,

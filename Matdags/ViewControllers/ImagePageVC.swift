@@ -17,7 +17,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var containerView: UIView!
+    
+    
+    @IBOutlet weak var removeImageContainer: UIView!
+    @IBOutlet weak var deleteImage: UIButton!
+    
     
     //test daniel
     @IBOutlet weak var commentsTableView: UITableView!
@@ -37,7 +41,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     let uid = Auth.auth().currentUser!.uid
     let db = Database.database()
     let alias = Auth.auth().currentUser!.displayName
-
+    
     var seguePostID : String!
     var users = [User]()
     var count : Int = 0
@@ -46,7 +50,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var subviews = [Subview]()
     
     var commentsRef = Database.database().reference()
-    
     var comments: Array<DataSnapshot> = []
     
     //Rating System
@@ -66,7 +69,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         vegiIcon.isHidden = true
         subview.isHidden = true
         commentsTextField.delegate = self
-        containerView.isHidden = true
+        removeImageContainer.isHidden = true
+        deleteImage.setTitle(removeImage,for: .normal)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,8 +83,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadInfo { (true) in
             print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
+                self.deleteImage.isHidden = true
                 self.followerButton.isHidden = false
             } else {
+                self.deleteImage.isHidden = false
                 self.followerButton.isHidden = true
             }
             if self.posts[0].usersRated != nil {
@@ -110,7 +117,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         //myImageView.dropShadow()
-        
     }
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -314,8 +320,27 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func openContainerView(_ sender: Any) {
-        containerView.isHidden = false
+            self.removeImageContainer.isHidden = false
     }
     
-    
+    @IBAction func dismissRemoveImageContainer(_ sender: Any) {
+        removeImageContainer.isHidden = true
+    }
+
+    @IBAction func deleteImage(_ sender: Any) {
+        
+        let database = Database.database().reference(withPath: "Posts")
+        let key = database.childByAutoId().key
+        let ref = DatabaseReference()
+        
+        ref.database.reference().child("Posts").child(key).child(uid).removeValue { (error, database) in
+            if error != nil {
+                
+                print(error?.localizedDescription)
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+    }
 }
