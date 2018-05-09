@@ -38,6 +38,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchController.searchBar.becomeFirstResponder()
         //DB Refs
         searchRef = searchRef.child("Users")
         
@@ -62,6 +63,16 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
  
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchController.searchBar.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchController.searchBar.becomeFirstResponder()
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
