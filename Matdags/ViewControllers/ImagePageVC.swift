@@ -329,19 +329,54 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
 
     @IBAction func deleteImage(_ sender: Any) {
+   
+        print("TJO \(seguePostID!)")
+        deletePosts()
+    
+    }
+    
+    func deletePosts() {
+
         
-        let database = Database.database().reference(withPath: "Posts")
-        let key = database.childByAutoId().key
-        let ref = DatabaseReference()
-        
-        ref.database.reference().child("Posts").child(seguePostID).child(uid).removeValue { (error, database) in
+        //Tas bort från ImagePageVC
+        let ref = Database.database().reference().child("Posts").child(seguePostID)
+            ref.removeValue { (error, ref) in
             if error != nil {
-                
-                print(error?.localizedDescription)
+                print("DIDN'T GO THROUGH")
                 return
             }
             self.dismiss(animated: true, completion: nil)
+            print("POST DELETED")
         }
         
+        //Tas bort från ProfileVC
+        let myRef = Database.database().reference().child("Users").child(uid).child("Posts").child(seguePostID)
+        myRef.removeValue { (error, ref) in
+            if error != nil {
+                print("DIDN'T GO THROUGH")
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+            print("POST DELETED")
+        }
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
