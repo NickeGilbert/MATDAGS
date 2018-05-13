@@ -127,36 +127,30 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = users[indexPath.row]
-        let uid = Auth.auth().currentUser!.uid
         let userID = username.uid
         
-        downloadImages(uid: userID!)
+        downloadImages(uid: username.uid)
         
-        //ToDo: SearchBar måste vara under subview när den visas.
-        
+        self.userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
-        self.subviewFollowButton.isHidden = true
+        self.subviewFollowButton.isHidden = false
         self.subviewUnfollowBtn.isHidden = true
-        
-        
+
         if uid == userID {
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
-        } else if uid != userID {
+        }
             for user in userFollowing {
-                if userID == user {
+                if userId == user {
                     print("\nYou are following this user.")
                     self.subviewFollowButton.isHidden = true
                     self.subviewUnfollowBtn.isHidden = false
-                    break
                 } else {
                     print("\nYou are not following this user.")
                     self.subviewFollowButton.isHidden = false
                     self.subviewUnfollowBtn.isHidden = true
-                    break
                 }
-            }
         }
         
         if username.profileImageURL != "" {
@@ -187,6 +181,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         users = []
         searchBar.text = ""
         searchUsersTableView.reloadData()
+        self.subview.isHidden = true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -203,16 +198,14 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
-            
             users = []
-            
+            self.subview.isHidden = true
             searchUsersTableView.reloadData()
             
         } else {
             isSearching = true
-            
             users = []
-            
+            self.subview.isHidden = true
             searchUsersTableView.reloadData()
             
             filterUsers()

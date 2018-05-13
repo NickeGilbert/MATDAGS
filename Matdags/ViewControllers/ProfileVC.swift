@@ -115,7 +115,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
         
-       //let cachedImages = cell.viewWithTag(1) as? UIImageView
+       let cachedImages = cell.viewWithTag(1) as? UIImageView
         
         cell.myProfileImageCollection.image = nil
         cell.vegiIcon.isHidden = true
@@ -132,7 +132,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         
-        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         
         return cell
     }
