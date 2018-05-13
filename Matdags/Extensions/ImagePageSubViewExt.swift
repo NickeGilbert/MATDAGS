@@ -12,6 +12,8 @@ import Firebase
 extension ImagePageVC {
     
     @IBAction func subviewFollowBtn(_ sender: Any) {
+        subviewFollowButton.isHidden = true
+        subviewUnfollowButton.isHidden = false
         getFollower()
         addFollower()
     }

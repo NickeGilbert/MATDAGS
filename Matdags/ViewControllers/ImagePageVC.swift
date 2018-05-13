@@ -15,9 +15,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
+    @IBOutlet weak var unfollowingButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    @IBOutlet weak var subviewUnfollowButton: UIButton!
     
     @IBOutlet weak var removeImageContainer: UIView!
     @IBOutlet weak var deleteImage: UIButton!
@@ -29,7 +30,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsTextField: UITextField!
-    
     
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
@@ -48,6 +48,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var countFollower = 0
     var posts = [Post]()
     var subviews = [Subview]()
+    var userFollowing = [String]()
     
     var commentsRef = Database.database().reference()
     var comments: Array<DataSnapshot> = []
@@ -66,12 +67,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        subviewFollowButton.isHidden = true
         vegiIcon.isHidden = true
         subview.isHidden = true
         commentsTextField.delegate = self
         removeImageContainer.isHidden = true
         deleteImage.setTitle(removeImage,for: .normal)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,9 +86,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if self.posts[0].userID != self.uid {
                 self.deleteImage.isHidden = true
                 self.followerButton.isHidden = false
+                self.subviewFollowButton.isHidden = false
             } else {
                 self.deleteImage.isHidden = false
                 self.followerButton.isHidden = true
+                self.unfollowingButton.isHidden = true
+                self.subviewFollowButton.isHidden = true
             }
             if self.posts[0].usersRated != nil {
                 self.usersRated = self.posts[0].usersRated
@@ -97,6 +101,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
+            self.checkUserUid()
         }
         
         observeComments()
@@ -109,6 +114,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         followerButton.clipsToBounds = true
         subviewFollowButton.layer.cornerRadius = 3
         subviewFollowButton.clipsToBounds = true
+        subviewUnfollowButton.layer.cornerRadius = 3
+        subviewUnfollowButton.clipsToBounds = true
         
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
@@ -225,6 +232,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func followUser(_ sender: Any) {
+        followerButton.isHidden = true
+        unfollowingButton.isHidden = false
         getFollower()
         addFollower()
     }
@@ -354,6 +363,45 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
             print("POST DELETED")
         }
+    }
+    
+    func getUserFollowing() {
+        //Används för subviewn om man följer eller inte följer användaren
+        let dbref = db.reference().child("Users/\(uid)/Following")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let tempSnapshot = snapshot.value as? [String : AnyObject] {
+                for (_, each) in tempSnapshot {
+                    let appendUser = User()
+                    appendUser.uid = each["uid"] as? String
+                    self.userFollowing.append(each as! String)
+                }
+            }
+        })
+    }
+    
+    func checkUserUid() {
+        
+       let userId = self.posts[0].userID
+        
+        self.subviewFollowButton.isHidden = true
+        self.subviewUnfollowButton.isHidden = true
+        
+        if uid == userId {
+            self.subviewFollowButton.isHidden = true
+            self.subviewUnfollowButton.isHidden = true
+        }
+        for user in userFollowing {
+            if userId == user {
+                print("\nYou are following this user.")
+                self.subviewFollowButton.isHidden = true
+                self.subviewUnfollowButton.isHidden = false
+            } else {
+                print("\nYou are not following this user.")
+                self.subviewFollowButton.isHidden = false
+                self.subviewUnfollowButton.isHidden = true
+            }
+        }
+        
     }
     
 }
