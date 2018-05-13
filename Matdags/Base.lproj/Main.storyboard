@@ -301,7 +301,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="03B-wQ-ZeK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="03B-wQ-ZeK">
                                 <rect key="frame" x="0.0" y="44" width="375" height="729"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -349,7 +349,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ov9-gQ-xAZ">
-                                <rect key="frame" x="10" y="54" width="355" height="665"/>
+                                <rect key="frame" x="10" y="99" width="355" height="620"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="jtj-HS-waf">
                                         <rect key="frame" x="50" y="50" width="70" height="70"/>
@@ -383,6 +383,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il3-Eq-ogL">
                                         <rect key="frame" x="151" y="85" width="80" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.69411764710000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="EE0-hz-nVT"/>
                                         </constraints>
@@ -396,7 +397,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9GM-4R-t9x">
-                                        <rect key="frame" x="0.0" y="140" width="355" height="525"/>
+                                        <rect key="frame" x="0.0" y="140" width="355" height="480"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="sr6-ir-d3P">
                                             <size key="itemSize" width="102" height="95"/>
@@ -450,6 +451,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXh-I3-2DF">
                                         <rect key="frame" x="151" y="85" width="80" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.69411764710000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="LaI-Q5-JvM"/>
                                         </constraints>
@@ -495,7 +497,7 @@
                             <constraint firstItem="03B-wQ-ZeK" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" id="ryZ-67-TKp"/>
                             <constraint firstItem="TJZ-xb-2ql" firstAttribute="trailing" secondItem="Ov9-gQ-xAZ" secondAttribute="trailing" constant="10" id="xve-9n-BWM"/>
                             <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="leading" secondItem="TJZ-xb-2ql" secondAttribute="leading" constant="10" id="ymg-21-x3O"/>
-                            <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" constant="10" id="zET-bB-esg"/>
+                            <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" constant="55" id="zET-bB-esg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
                         <connections>
@@ -1867,7 +1869,7 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="l1h-Lg-NhA"/>
     </inferredMetricsTieBreakers>
