@@ -13,6 +13,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
    
     @IBOutlet var collectionFeed: UICollectionView!
     
+    let dispatchGroup = DispatchGroup()
     var posts = [Post]()
     var refresher : UIRefreshControl!
     var isVegi : Bool = false
@@ -29,13 +30,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
-        downloadImages { (true) in
-            if self.posts.isEmpty {
-                self.posts.sort(by: {$0.timestamp > $1.timestamp})
-            }
+        downloadImages(completionHandler: { (true) in
+            self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.stopRefresher()
-        }
+        }, in: dispatchGroup)
     }
     
     func stopRefresher() {
@@ -54,7 +53,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.collectionFeed.reloadData()
     }
     
-    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void), in dispatchGroup: DispatchGroup) {
+        dispatchGroup.enter()
         self.posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
         //ToDo: Begränsa queryn till maxantal posts
@@ -62,15 +62,20 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
-                    appendPost.timestamp = post["timestamp"] as? String
                     appendPost.date = post["date"] as? String
                     appendPost.pathToImage256 = post["pathToImage256"] as? String
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
+                    appendPost.timestamp = post["timestamp"] as? String
+                    print(appendPost.timestamp)
                     self.posts.append(appendPost)
                 }
+                dispatchGroup.leave()
+                dispatchGroup.notify(queue: .main, execute: {
+                    print("\n dispatchGroup completed. \n")
+                    completionHandler(true)
+                })
             }
-            completionHandler(true)
         })
     }
 
