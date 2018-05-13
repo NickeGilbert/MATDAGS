@@ -62,12 +62,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
+//                    print("Detta! :" ,post.description)
                     appendPost.date = post["date"] as? String
                     appendPost.pathToImage256 = post["pathToImage256"] as? String
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
+//                    print("Timestamp before: ", post["timestamp"] as? String)
                     appendPost.timestamp = post["timestamp"] as? String
-                    print(appendPost.timestamp)
+                    print("TimeStamp2 after: ", appendPost.timestamp)
                     self.posts.append(appendPost)
                 }
                 dispatchGroup.leave()
