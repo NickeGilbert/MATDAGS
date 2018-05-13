@@ -194,7 +194,11 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         formatter.dateFormat = "HH:mm:ss dd-MM-yyyy"
         let currentDate = formatter.string(from: date)
         
+        //Timestamp
+        let timestamp = Date().timeIntervalSince1970
+        
         let postfeed = ["userID" : uid!,
+                    "timestamp": timestamp,
                     "date": currentDate,
                     "rating" : 0,
                     "alias" : Auth.auth().currentUser!.displayName!,
