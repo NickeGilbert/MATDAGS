@@ -132,8 +132,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         downloadImages(uid: userID!)
         
-        //ToDo: SearchBar måste vara under subview när den visas.
-        
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
         self.subviewFollowButton.isHidden = true
@@ -187,6 +185,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         users = []
         searchBar.text = ""
         searchUsersTableView.reloadData()
+        self.subview.isHidden = true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -203,16 +202,14 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
-            
             users = []
-            
+            self.subview.isHidden = true
             searchUsersTableView.reloadData()
             
         } else {
             isSearching = true
-            
             users = []
-            
+            self.subview.isHidden = true
             searchUsersTableView.reloadData()
             
             filterUsers()
