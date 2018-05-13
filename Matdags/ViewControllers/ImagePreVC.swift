@@ -15,6 +15,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var descriptionFieldLines: UITextView!
     @IBOutlet weak var filterScrollView: UIScrollView!
+    @IBOutlet weak var filterButton: UIButton!
     
     var CIFilterNames = ["CIPhotoEffectChrome",
                          "CIPhotoEffectFade",
@@ -56,6 +57,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
         descriptionFieldLines.isHidden = true
         filterScrollView.isHidden = true
+        filterButton.setImage(UIImage(named: "filter"), for: .normal)
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
         } else {
@@ -171,8 +173,10 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         
         if filterScrollView.isHidden {
             filterScrollView.isHidden = false
+            filterButton.setImage(UIImage(named: "filterUse2"), for: .normal)
         } else {
             filterScrollView.isHidden = true
+            filterButton.setImage(UIImage(named: "filter"), for: .normal)
         }
     }
     
