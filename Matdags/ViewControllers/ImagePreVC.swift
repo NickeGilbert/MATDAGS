@@ -46,9 +46,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         
         descriptionFieldLines.delegate = self
         descriptionFieldLines.isHidden = true
-//        descriptionField.delegate = self
-//        descriptionField.setLeftPaddingPoints(20)
-//        descriptionField.setRightPaddingPoints(20)
 
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -57,14 +54,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        
-//        descriptionField.isHidden = true
-//        if descriptionField.text == "" {
-//            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
-//        }else{
-//
-//        }
-        
+
+        descriptionFieldLines.isHidden = true
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
         } else {
@@ -124,21 +115,14 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        
-//        descriptionField.isHidden = true
-//        if descriptionField.text == "" {
-//            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
-//        }else{
-//
-//        }
-        
+    
         descriptionFieldLines.isHidden = true
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
         }else{
-            
+
         }
-            return true
+        return true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -175,11 +159,12 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     @IBAction func commentClick(_ sender: UIButton) {
         commentBtn.setImage(UIImage(named: "commentButton50orange"), for: .normal)
-//        descriptionField.isHidden = false
-//        descriptionField.becomeFirstResponder()
-        
-        descriptionFieldLines.isHidden = false
-        descriptionFieldLines.becomeFirstResponder()
+        if descriptionFieldLines.isHidden == true {
+            descriptionFieldLines.isHidden = false
+            descriptionFieldLines.becomeFirstResponder()
+        }else{
+            descriptionFieldLines.isHidden = true
+        }
     }
     @IBAction func filterButtonClicked(_ sender: Any) {
         print("\nYou clicked the filter button!")
