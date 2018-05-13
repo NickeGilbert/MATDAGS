@@ -33,24 +33,16 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadImages(completionHandler: { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
-            self.stopRefresher()
+            self.refresher.endRefreshing()
         }, in: dispatchGroup)
     }
-    
-    func stopRefresher() {
-        self.refresher.endRefreshing()
-    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.collectionFeed.reloadData()
     }
     
     func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void), in dispatchGroup: DispatchGroup) {
@@ -67,7 +59,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
                     appendPost.timestamp = post["timestamp"] as? String
-                    print(appendPost.timestamp)
                     self.posts.append(appendPost)
                 }
                 dispatchGroup.leave()
