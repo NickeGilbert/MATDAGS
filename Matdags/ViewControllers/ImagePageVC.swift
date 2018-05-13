@@ -329,15 +329,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
 
     @IBAction func deleteImage(_ sender: Any) {
-   
-        print("TJO \(seguePostID!)")
         deletePosts()
-    
     }
     
     func deletePosts() {
 
-        
         //Tas bort från ImagePageVC
         let ref = Database.database().reference().child("Posts").child(seguePostID)
             ref.removeValue { (error, ref) in
@@ -356,7 +352,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 print("DIDN'T GO THROUGH")
                 return
             }
-            self.dismiss(animated: true, completion: nil)
             print("POST DELETED")
         }
     }
