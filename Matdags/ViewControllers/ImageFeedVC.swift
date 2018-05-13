@@ -30,10 +30,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @objc func loadData() {
         downloadImages { (true) in
-            self.posts.sort(by: {$0.timestamp > $1.timestamp})
+            if self.posts.isEmpty {
+                self.posts.sort(by: {$0.timestamp > $1.timestamp})
+            }
             self.collectionFeed.reloadData()
             self.stopRefresher()
-            print(self.posts.count)
         }
     }
     
@@ -61,6 +62,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     let appendPost = Post()
+                    appendPost.timestamp = post["timestamp"] as? String
                     appendPost.date = post["date"] as? String
                     appendPost.pathToImage256 = post["pathToImage256"] as? String
                     appendPost.postID = post["postID"] as? String
