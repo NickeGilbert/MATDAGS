@@ -116,9 +116,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
         
        let cachedImages = cell.viewWithTag(1) as? UIImageView
-        
         cell.myProfileImageCollection.image = nil
         cell.vegiIcon.isHidden = true
+        cell.layer.cornerRadius = 2
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
             cell.vegiIcon.isHidden = true
@@ -168,7 +168,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width/3.3, height: self.view.frame.width/3.3)
+        let size = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
         return size
     }
     

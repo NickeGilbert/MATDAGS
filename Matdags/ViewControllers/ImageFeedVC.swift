@@ -98,6 +98,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
        
         cell.vegiIcon.isHidden = true
         cell.myImage.image = nil
+        cell.layer.cornerRadius = 2
         
         if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
             cell.vegiIcon.isHidden = true
@@ -116,7 +117,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let storleken = CGSize(width: self.view.frame.width/3.1, height: self.view.frame.width/3.1)
+        let storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
         return storleken
     }
     
