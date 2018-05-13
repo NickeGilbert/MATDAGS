@@ -11,7 +11,6 @@ import CoreImage
 class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var vegFood: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var descriptionFieldLines: UITextView!
@@ -56,6 +55,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         self.view.endEditing(true)
 
         descriptionFieldLines.isHidden = true
+        filterScrollView.isHidden = true
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
         } else {

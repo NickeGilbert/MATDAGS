@@ -1095,7 +1095,6 @@
                     </view>
                     <connections>
                         <outlet property="commentBtn" destination="Dwm-Dz-lPi" id="5VQ-Pf-qmw"/>
-                        <outlet property="descriptionField" destination="nWk-yA-OE6" id="GNs-CC-Kq7"/>
                         <outlet property="descriptionFieldLines" destination="Bl1-iS-nHd" id="2fu-7i-ZV2"/>
                         <outlet property="filterScrollView" destination="iQc-0R-Jpu" id="hZD-Bl-b7a"/>
                         <outlet property="photo" destination="cUn-EM-FWZ" id="gZn-oE-St5"/>
