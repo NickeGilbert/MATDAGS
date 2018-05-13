@@ -213,7 +213,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         let timestamp = Date().timeIntervalSince1970
         
         let postfeed = ["userID" : uid!,
-                    "timestamp": timestamp,
+                    "timestamp": String(timestamp),
                     "date": currentDate,
                     "rating" : 0,
                     "alias" : Auth.auth().currentUser!.displayName!,
