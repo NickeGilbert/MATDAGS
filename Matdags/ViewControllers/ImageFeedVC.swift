@@ -98,7 +98,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
        
-        //let cachedImages = cell.viewWithTag(1) as? UIImageView
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
        
         cell.vegiIcon.isHidden = true
         cell.myImage.image = nil
@@ -115,7 +115,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
 
-        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         return cell
     }
     
