@@ -26,12 +26,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.clear
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
-        
     }
     
     @objc func loadData() {
         downloadImages { (true) in
-            self.posts.sort(by: {$0.date > $1.date})
+            self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.stopRefresher()
             print(self.posts.count)
