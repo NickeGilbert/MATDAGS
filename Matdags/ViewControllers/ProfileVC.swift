@@ -36,9 +36,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
-        if posts.isEmpty {
-            loadData()
-        }
+//        if posts.isEmpty {
+//            loadData()
+//        }
         
         resizeImage()
         getUserInfo()
@@ -62,6 +62,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             print(error.localizedDescription)
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        posts.removeAll()
+        loadData()
     }
     
     @objc func loadData() {

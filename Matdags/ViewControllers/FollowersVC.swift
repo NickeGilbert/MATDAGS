@@ -22,10 +22,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         self.zeroImagesMessage.isHidden = true
         
-        if posts.isEmpty {
-            loadData()
-            zeroImagesMessage.isHidden = true
-        }
+//        if posts.isEmpty {
+//            self.posts.removeAll()
+//            loadData()
+//            zeroImagesMessage.isHidden = true
+//        }
         
         if posts.isEmpty == true {
             
@@ -35,9 +36,21 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.clear
+//        self.refresher.tintColor = UIColor.clear
+        self.refresher.tintColor = UIColor.orange
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if posts.isEmpty {
+            loadData()
+            zeroImagesMessage.isHidden = true
+        }else{
+            self.posts.removeAll()
+            loadData()
+            self.refresher.beginRefreshing()
+        }
     }
     
     @objc func loadData() {
@@ -118,9 +131,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         let cachedImages = cell.viewWithTag(1) as? UIImageView
         
-        cell.layer.cornerRadius = 2
-        cell.clipsToBounds = true
-        
         cell.imageFeedView.image = nil
         
         if self.posts[indexPath.row].pathToImage != nil {
@@ -148,8 +158,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         cell.usernameLabel.text = self.posts[indexPath.row].alias
         cell.backgroundColor = UIColor.white
-        cell.dropShadow()
+//        cell.dropShadow()
         cell.vegiIcon.isHidden = true
+        
+        cell.layer.cornerRadius = 2
+        cell.clipsToBounds = true
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
             cell.vegiIcon.isHidden = true

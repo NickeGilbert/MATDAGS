@@ -20,7 +20,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+//        loadData()
         
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
@@ -43,6 +43,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
         }
+        posts.removeAll()
+        loadData()
     }
     
     func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void), in dispatchGroup: DispatchGroup) {
