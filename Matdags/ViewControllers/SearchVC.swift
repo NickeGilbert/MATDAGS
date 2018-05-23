@@ -29,7 +29,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     var users = [User]()
     var count : Int = 0
     var countFollower : Int = 0
-    var userId = ""
+    var userId: String!
     var userFollowing = [String]()
     var initialFeed = [String]()
     var isSearching = false
@@ -38,11 +38,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        subviewFollowButton.setTitle("FÖLJ", for: .normal)
-        subviewUnfollowBtn.setTitle("FÖLJER", for: .normal)
-        
-        searchController.searchBar.becomeFirstResponder()
         //DB Refs
         searchRef = searchRef.child("Users")
         
@@ -75,12 +70,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         super.viewDidAppear(animated)
         searchController.searchBar.becomeFirstResponder()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        searchController.searchBar.becomeFirstResponder()
-    }
-    
+
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
@@ -91,10 +81,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if userID! != nil { //FUNGERER INTE ÄN
+            if ref != nil { //FUNGERER INTE ÄN
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
-                    print(uidValue.value)
+                    print("SNAPSHOT", uidValue.value)
                     let appendUser = User()
                     appendUser.uid = uidValue.value as? String
                     self.userFollowing.append(appendUser.uid)
@@ -146,27 +136,25 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
+ 
 
         if uid! == ownUserID! {
-            print("THIS IS uid", uid!, "ownUserID", ownUserID!)
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
         } else {
-            print("User following is: ",userFollowing)
             for user in userFollowing {
-                print("user is this: ", user)
-                print("Other user is this: ", userId)
-                print("USER", user)
-                print("USERID", userId)
+                print("\nUSER IS: ", user)
+                print("YOUR ARE FOLLOWING: ", userFollowing)
 
                 if userId == user {
-                    print("KOLL", userId == user)
-                    print("\nYou are following this user.")
+                    print("SUCCESS CHECK:", user, userFollowing)
+                    print("\nYou are following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = false
                     self.subviewFollowButton.isHidden = true
 
                 } else {
-                    print("\nYou are not following this user.")
+                    print("FAILED CHECK:", user, userFollowing)
+                    print("\nYou are not following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = true
                     self.subviewFollowButton.isHidden = false
                 }
