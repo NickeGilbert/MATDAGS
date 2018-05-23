@@ -49,11 +49,17 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            print("My user id : ", userID!)
             let value = snapshot.value as! NSDictionary
+            let hej = value["followingCounter"]
+            if hej != nil {
+                print("HEJ : ",hej!)
+            }
             let username = value["alias"] as? String ?? ""
-            
             let followingCounter = value["followingCounter"] as? Int ?? 0
             let followerCounter = value["followerCounter"] as? Int ?? 0
+            
+            print("Following counter : ", followingCounter, " Follower Counter : ", followerCounter)
             
             self.following.text = String(followingCounter)
             self.followers.text = String(followerCounter)

@@ -140,7 +140,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
             cellCounter += 1
         }
-        print("Storleken : ", storleken)
+//        print("Storleken : ", storleken)
         return storleken
     }
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
