@@ -53,16 +53,19 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         //SubView
         subview.isHidden = true
-        subview.layer.cornerRadius = 3
+//        subview.layer.cornerRadius = 2
+        subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
+        subviewFollowButton.layer.cornerRadius = 5
         
         //SearchController
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
- 
+
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,6 +128,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.searchController.searchBar.endEditing(true)
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = users[indexPath.row]
         let userID = username.uid
@@ -186,6 +190,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchUsersTableView.reloadData()
+        searchBar.endEditing(true)
     }
     
     func filterUsers() {

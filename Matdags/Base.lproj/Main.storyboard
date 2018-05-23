@@ -349,7 +349,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ov9-gQ-xAZ">
-                                <rect key="frame" x="10" y="75" width="300" height="434"/>
+                                <rect key="frame" x="10" y="83" width="300" height="426"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="jtj-HS-waf">
                                         <rect key="frame" x="50" y="50" width="70" height="70"/>
@@ -397,7 +397,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9GM-4R-t9x">
-                                        <rect key="frame" x="0.0" y="140" width="300" height="294"/>
+                                        <rect key="frame" x="0.0" y="140" width="300" height="286"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="sr6-ir-d3P">
                                             <size key="itemSize" width="102" height="95"/>
@@ -497,7 +497,7 @@
                             <constraint firstItem="03B-wQ-ZeK" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" id="ryZ-67-TKp"/>
                             <constraint firstItem="TJZ-xb-2ql" firstAttribute="trailing" secondItem="Ov9-gQ-xAZ" secondAttribute="trailing" constant="10" id="xve-9n-BWM"/>
                             <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="leading" secondItem="TJZ-xb-2ql" secondAttribute="leading" constant="10" id="ymg-21-x3O"/>
-                            <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" constant="55" id="zET-bB-esg"/>
+                            <constraint firstItem="Ov9-gQ-xAZ" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" constant="63" id="zET-bB-esg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
                         <connections>
@@ -1480,7 +1480,7 @@
                                 </constraints>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVj-Tu-c8h" userLabel="Subview">
-                                <rect key="frame" x="10" y="30" width="300" height="479"/>
+                                <rect key="frame" x="10" y="30" width="300" height="528"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qv3-Uo-O5q" userLabel="Subview Profile Image">
                                         <rect key="frame" x="50" y="50" width="70" height="70"/>
@@ -1554,7 +1554,7 @@
                                         <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                        <rect key="frame" x="0.0" y="145" width="300" height="334"/>
+                                        <rect key="frame" x="0.0" y="145" width="300" height="383"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
                                             <size key="itemSize" width="101" height="101"/>
@@ -1909,7 +1909,7 @@
         <image name="vegButton50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
