@@ -109,6 +109,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
+            self.getUserFollowing()
             self.checkUserUid()
         }
         
@@ -334,7 +335,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         getUserProfileImage { (true) in
             self.downloadImages(completionHandler: { (true) in
                 self.subview.isHidden = false
-                self.subviewFollowButton.isHidden = false
                 self.subviewUsername.text = self.posts[0].alias
             })
         }
@@ -397,41 +397,55 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func getUserFollowing() {
-        //Används för subviewn om man följer eller inte följer användaren
-        let dbref = db.reference().child("Users/\(uid)/Following")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : AnyObject] {
-                for (_, each) in tempSnapshot {
+        //Används för Subviewn
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if ref != nil { //FUNGERER INTE ÄN
+                let value = snapshot.value as! NSDictionary
+                for uidValue in value {
+                    print("SNAPSHOT", uidValue.value)
                     let appendUser = User()
-                    appendUser.uid = each["uid"] as? String
-                    self.userFollowing.append(each as! String)
+                    appendUser.uid = uidValue.value as? String
+                    self.userFollowing.append(appendUser.uid)
                 }
+            } else {
+                return
             }
         })
     }
     
     func checkUserUid() {
         
-       let userId = self.posts[0].userID
-        
-        self.subviewFollowButton.isHidden = true
-        self.subviewUnfollowButton.isHidden = true
+       let userId = self.posts[0].userID!
         
         if uid == userId {
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowButton.isHidden = true
-        }
-        for user in userFollowing {
-            if userId == user {
-                print("\nYou are following this user.")
-                self.subviewFollowButton.isHidden = true
-                self.subviewUnfollowButton.isHidden = false
-            } else {
-                print("\nYou are not following this user.")
-                self.subviewFollowButton.isHidden = false
-                self.subviewUnfollowButton.isHidden = true
+            print("MY USERID IS: ", self.posts[0].userID!)
+            print("userId is: ", userId)
+        } else {
+            print("WHAT USER IS THIS? :", userId)
+            for user in userFollowing {
+                print("\nUSER IS: ", user)
+                print("YOUR ARE FOLLOWING: ", userFollowing)
+                
+                if userId == user {
+                    print("SUCCESS CHECK:", user, userFollowing)
+                    print("\nYou are following this user.")
+                    self.subviewFollowButton.isHidden = true
+                    self.subviewUnfollowButton.isHidden = false
+                } else {
+                    print("FAILED CHECK:", user, userFollowing)
+                    print("\nYou are not following this user.")
+                    self.subviewFollowButton.isHidden = false
+                    self.subviewUnfollowButton.isHidden = true
+                }
             }
+            print("after user loop")
         }
+        
         
     }
     
