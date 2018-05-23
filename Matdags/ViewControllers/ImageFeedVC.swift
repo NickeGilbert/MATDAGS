@@ -17,6 +17,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var posts = [Post]()
     var refresher : UIRefreshControl!
     var isVegi : Bool = false
+    var cellCounter : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
         }, in: dispatchGroup)
+        cellCounter = 0
     }
 
     
@@ -119,9 +121,34 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+        var storleken = CGSize()
+
+        let n = Int(arc4random_uniform(2))
+        let onePart = self.view.frame.width / 3.2
+        let twoPart = onePart + onePart + 8
+
+        if cellCounter == 3 {
+            if n == 0 {
+                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                cellCounter = 1
+            } else {
+                storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+                cellCounter = -1
+            }
+
+        }else{
+            storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+            cellCounter += 1
+        }
+        print("Storleken : ", storleken)
         return storleken
     }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        var storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//        return storleken
+//
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSeg", sender: indexPath)
