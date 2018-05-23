@@ -20,9 +20,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subviewUnfollowButton: UIButton!
     
-    @IBOutlet weak var removeImageContainer: UIView!
+    @IBOutlet weak var imagePageSettingsView: UIView!
     @IBOutlet weak var deleteImage: UIButton!
     
+    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     
     //test daniel
     @IBOutlet weak var commentsTableView: UITableView!
@@ -36,6 +37,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewProfileImage: UIImageView!
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
+    
     
     let dispatchGroup = DispatchGroup()
     let uid = Auth.auth().currentUser!.uid
@@ -71,9 +73,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         vegiIcon.isHidden = true
         subview.isHidden = true
         commentsTextField.delegate = self
-        removeImageContainer.isHidden = true
+        imagePageSettingsView.isHidden = true
         deleteImage.setTitle(removeImage,for: .normal)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -85,6 +92,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
                 self.deleteImage.isHidden = true
+                self.imagePageSettingsViewHeightConstraint.constant = 60
                 self.followerButton.isHidden = false
                 self.subviewFollowButton.isHidden = false
             } else {
@@ -108,13 +116,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         commentsTableView.isScrollEnabled = false
         commentsTableView.separatorStyle = .none
-        subview.layer.cornerRadius = 3
+        subview.layer.cornerRadius = 2
         subview.clipsToBounds = true
-        followerButton.layer.cornerRadius = 3
+        followerButton.layer.cornerRadius = 2
         followerButton.clipsToBounds = true
-        subviewFollowButton.layer.cornerRadius = 3
+        subviewFollowButton.layer.cornerRadius = 2
         subviewFollowButton.clipsToBounds = true
-        subviewUnfollowButton.layer.cornerRadius = 3
+        subviewUnfollowButton.layer.cornerRadius = 2
         subviewUnfollowButton.clipsToBounds = true
         
         if #available(iOS 11.0, *) {
@@ -124,7 +132,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         //myImageView.dropShadow()
+        imagePageSettingsView.layer.cornerRadius = 2
     }
+    
+    
     
     func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         getInfoForIncremation { (true) in
@@ -245,10 +256,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-        
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentsTextField.text != "" {
@@ -330,16 +341,36 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func openContainerView(_ sender: Any) {
-            self.removeImageContainer.isHidden = false
-    }
-    
-    @IBAction func dismissRemoveImageContainer(_ sender: Any) {
-        removeImageContainer.isHidden = true
+        if self.imagePageSettingsView.isHidden == true {
+             self.imagePageSettingsView.isHidden = false
+        }   else {
+             self.imagePageSettingsView.isHidden = true
+        }
     }
 
-    @IBAction func deleteImage(_ sender: Any) {
-        deletePosts()
+    @IBAction func reportImage(_ sender: Any) {
+        let alert = UIAlertController(title: "Vill du Anmäla bilden?", message: "Tänk på att inte missbruka denna tjäst då du själv kan bli avstängd", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Anmäl", style: .destructive, handler: { action in
+            
+            
+            let alert2 = UIAlertController(title: "Anmälan är skickad", message: "Vi ska ta en titt på bilden", preferredStyle: .alert)
+            alert2.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+            self.present(alert2, animated: true)
+            
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
+    @IBAction func deleteImage(_ sender: Any) {
+        let alert = UIAlertController(title: "Vill du ta bort bilden?", message: "Detta går inte att ångra", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ta bort", style: .destructive, handler: { action in
+            self.deletePosts()
+        }))
+        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     
     func deletePosts() {
 
