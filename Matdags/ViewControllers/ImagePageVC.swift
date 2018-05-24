@@ -32,6 +32,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsTextField: UITextField!
     
+    
+    @IBOutlet weak var topSubView: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
@@ -74,7 +76,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subviewFollowButton.isHidden = true
         subviewUnfollowButton.isHidden = true
         vegiIcon.isHidden = true
-        subview.isHidden = true
+        topSubView.isHidden = true
+        subview.isHidden = false
         commentsTextField.delegate = self
         imagePageSettingsView.isHidden = true
         deleteImage.setTitle(removeImage,for: .normal)
@@ -255,6 +258,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func commentButtonClick(_ sender: UIButton) {
+        imagePageSettingsView.isHidden = true
         commentsTextField.text = ""
         commentsView.isHidden = false
         commentsTextField.becomeFirstResponder()
@@ -338,7 +342,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func clickedOnUsername(_ sender: Any) {
         getUserProfileImage { (true) in
             self.downloadImages(completionHandler: { (true) in
-                self.subview.isHidden = false
+                self.imagePageSettingsView.isHidden = true
+                self.topSubView.isHidden = false
                 self.subviewUsername.text = self.posts[0].alias
             })
         }

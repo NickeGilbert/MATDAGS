@@ -122,7 +122,7 @@ extension ImagePageVC {
     }
     
     @IBAction func closeSubview(_ sender: Any) {
-        subview.isHidden = true
+        topSubView.isHidden = true
     }
     
 }
