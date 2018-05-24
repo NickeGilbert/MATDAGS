@@ -69,7 +69,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        followerButton.isHidden = true
+        unfollowingButton.isHidden = true
         subviewFollowButton.isHidden = true
+        subviewUnfollowButton.isHidden = true
         vegiIcon.isHidden = true
         subview.isHidden = true
         commentsTextField.delegate = self
@@ -110,7 +113,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortFirebaseInfo()
             self.getStars()
             self.getUserFollowing()
-            self.checkUserUid()
         }
         
         observeComments()
@@ -398,17 +400,19 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func getUserFollowing() {
         //Används för Subviewn
-        let ref = Database.database().reference()
+        var ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if ref != nil { //FUNGERER INTE ÄN
+            if (snapshot.value as? NSDictionary) != nil { //FUNGERER INTE ÄN
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
                     print("SNAPSHOT", uidValue.value)
                     let appendUser = User()
                     appendUser.uid = uidValue.value as? String
                     self.userFollowing.append(appendUser.uid)
+                    
+                    self.checkUserUid()
                 }
             } else {
                 return
@@ -427,6 +431,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("userId is: ", userId)
         } else {
             print("WHAT USER IS THIS? :", userId)
+            print("YOUR ARE FOLLOWING :", self.userFollowing)
             for user in userFollowing {
                 print("\nUSER IS: ", user)
                 print("YOUR ARE FOLLOWING: ", userFollowing)
@@ -434,11 +439,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 if userId == user {
                     print("SUCCESS CHECK:", user, userFollowing)
                     print("\nYou are following this user.")
+                    self.followerButton.isHidden = true
+                    self.unfollowingButton.isHidden = false
                     self.subviewFollowButton.isHidden = true
                     self.subviewUnfollowButton.isHidden = false
+                    break
                 } else {
                     print("FAILED CHECK:", user, userFollowing)
                     print("\nYou are not following this user.")
+                    self.followerButton.isHidden = false
+                    self.unfollowingButton.isHidden = true
                     self.subviewFollowButton.isHidden = false
                     self.subviewUnfollowButton.isHidden = true
                 }

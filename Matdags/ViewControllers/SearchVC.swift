@@ -133,7 +133,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         downloadImages(uid: username.uid)
         
-        self.userId = users[indexPath.row].uid
+        let userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
  
