@@ -102,7 +102,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
        
         cell.vegiIcon.isHidden = true
         cell.myImage.image = nil
-        cell.layer.cornerRadius = 2
+        cell.layer.cornerRadius = 5
         
         if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
             cell.vegiIcon.isHidden = true

@@ -17,6 +17,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet var searchUsersTableView: UITableView!
     @IBOutlet weak var subviewFollowButton: UIButton!
+    @IBOutlet weak var topSubView: UIView!
     
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
@@ -52,7 +53,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchUsersTableView.tableHeaderView = searchController.searchBar
         
         //SubView
-        subview.isHidden = true
+        topSubView.isHidden = true
 //        subview.layer.cornerRadius = 2
         subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
@@ -136,7 +137,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         downloadImages(uid: username.uid)
         
         self.userId = users[indexPath.row].uid
-        self.subview.isHidden = false
+        self.topSubView.isHidden = false
         self.subviewUsername.text = username.alias
         self.subviewFollowButton.isHidden = false
         self.subviewUnfollowBtn.isHidden = true
@@ -185,7 +186,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         users = []
         searchBar.text = ""
         searchUsersTableView.reloadData()
-        self.subview.isHidden = true
+        self.topSubView.isHidden = true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -204,13 +205,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             users = []
-            self.subview.isHidden = true
+            self.topSubView.isHidden = true
             searchUsersTableView.reloadData()
             
         } else {
             isSearching = true
             users = []
-            self.subview.isHidden = true
+            self.topSubView.isHidden = true
             searchUsersTableView.reloadData()
             
             filterUsers()

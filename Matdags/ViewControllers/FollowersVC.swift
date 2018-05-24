@@ -161,7 +161,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        cell.dropShadow()
         cell.vegiIcon.isHidden = true
         
-        cell.layer.cornerRadius = 2
+        cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {

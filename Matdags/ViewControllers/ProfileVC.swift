@@ -129,7 +129,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
        let cachedImages = cell.viewWithTag(1) as? UIImageView
         cell.myProfileImageCollection.image = nil
         cell.vegiIcon.isHidden = true
-        cell.layer.cornerRadius = 2
+        cell.layer.cornerRadius = 5
         
         if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
             cell.vegiIcon.isHidden = true

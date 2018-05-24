@@ -160,11 +160,11 @@
 		0A4CD1C01FAE46240006986A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */,
 				A468251A1F8B888C0040DC29 /* ImageFeedCell.swift */,
 				A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */,
 				A4BF80471FB447A2000D7DF5 /* SearchCell.swift */,
 				A41F16861FBDF86900500EF8 /* ProfileCell.swift */,
-				A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */,
 				A48BAC122006A54100D2D185 /* ImagePageSubViewCell.swift */,
 				26CAF534201219C900011A6E /* CommentsCell.swift */,
 			);

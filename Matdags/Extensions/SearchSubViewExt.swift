@@ -12,7 +12,7 @@ import Firebase
 extension SearchVC {
     
     @IBAction func closeSubview(_ sender: Any) {
-        subview.isHidden = true
+        topSubView.isHidden = true
         posts.removeAll()
         self.subviewCollectionFeed.reloadData()
         self.subviewProfileImage.image = nil
