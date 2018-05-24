@@ -70,6 +70,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        followerButton.backgroundColor = followUserBtn
+        unfollowingButton.backgroundColor = unfollowUserBtn
+        subviewFollowButton.backgroundColor = followUserBtn
+        subviewUnfollowButton.backgroundColor = unfollowUserBtn
         followerButton.isHidden = true
         unfollowingButton.isHidden = true
         subviewFollowButton.isHidden = true
