@@ -30,7 +30,7 @@ extension SearchVC {
         let dbref = db.reference(withPath: "Users/\(uid)/Following")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.subviewUsername.text != nil {
-            let following = ["\(self.subviewUsername.text!)" : "\(userId)"] as [String : Any]
+            let following = ["\(self.subviewUsername.text!)" : "\(userId!)"] as [String : Any]
             
             count+=1
             let counter = ["followingCounter" : count ] as [String : Int]
@@ -45,7 +45,7 @@ extension SearchVC {
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
-        let followerid = userId
+        let followerid = userId!
         let dbref = db.reference(withPath: "Users/\(followerid)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
         if userId != nil {

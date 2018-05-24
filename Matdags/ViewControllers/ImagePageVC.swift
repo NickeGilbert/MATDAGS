@@ -375,6 +375,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.present(alert, animated: true)
     }
     
+    @IBAction func unfollowUser(_ sender: Any) {
+        unfollowUser()
+    }
+    
+    
+    
     
     func deletePosts() {
 
@@ -402,11 +408,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func getUserFollowing() {
         //Används för Subviewn
-        var ref = Database.database().reference()
+        let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if (snapshot.value as? NSDictionary) != nil { //FUNGERER INTE ÄN
+            if (snapshot.value as? NSDictionary) != nil {
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
                     print("SNAPSHOT", uidValue.value)
