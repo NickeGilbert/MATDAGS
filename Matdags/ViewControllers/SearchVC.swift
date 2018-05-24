@@ -22,6 +22,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
     
+    
+    //poop
+    
+    
     //Database stuff
     let db = Database.database()
     let uid = Auth.auth().currentUser?.uid
