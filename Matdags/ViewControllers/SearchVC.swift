@@ -89,7 +89,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if ref != nil { //FUNGERER INTE ÄN
+            if (snapshot.value as? NSDictionary) != nil { //FUNGERER INTE ÄN
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
                     print("SNAPSHOT", uidValue.value)
@@ -154,6 +154,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
         } else {
+            print("HEJSAN! : ", ownUserID)
+            print("HEJSAN :", userFollowing)
             for user in userFollowing {
                 print("\nUSER IS: ", user)
                 print("YOUR ARE FOLLOWING: ", userFollowing)
@@ -163,12 +165,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
                     print("\nYou are following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = false
                     self.subviewFollowButton.isHidden = true
-
+                    break
                 } else {
                     print("FAILED CHECK:", user, userFollowing)
                     print("\nYou are not following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = true
                     self.subviewFollowButton.isHidden = false
+                    break
                 }
             }
             print("after user loop")
