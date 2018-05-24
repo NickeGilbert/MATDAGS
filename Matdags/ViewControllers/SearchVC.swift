@@ -21,7 +21,11 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
-
+    
+    
+    //poop
+    
+    
     //Database stuff
     let db = Database.database()
     let uid = Auth.auth().currentUser?.uid
@@ -58,6 +62,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
+
+        subviewFollowButton.layer.cornerRadius = 5
+        subviewFollowButton.isHidden = true
+        subviewUnfollowBtn.isHidden = true
         
         //SearchController
         searchController.searchBar.delegate = self
