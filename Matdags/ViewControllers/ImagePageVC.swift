@@ -11,7 +11,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
-    @IBOutlet var ratingLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
@@ -304,11 +303,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             myImageView.downloadImage(from: self.posts[0].pathToImage)
         } else {
             print("\n No Image URL found in array. \n")
-        }
-        if postRating != 0 || usersRated != 0 {
-            ratingLabel.text = "\(Double(round(10*postRating / usersRated)/10)) Rating"
-        } else {
-            ratingLabel.text = "No Rating"
         }
 
         if posts[0].alias != nil{
