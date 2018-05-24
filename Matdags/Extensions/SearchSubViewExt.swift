@@ -60,6 +60,32 @@ extension SearchVC {
         }
     }
     
+    func unfollowUser() {
+        let followingUsername = self.subviewUsername.text!
+        let followingid = userId!
+        let mySelf = Auth.auth().currentUser!.displayName!
+        
+        //Tas bort från sig själv
+        let dbref = db.reference(withPath: "Users/\(uid!)/Following/\(followingUsername)")
+        print("dbrf: ", dbref)
+        dbref.removeValue { (error, ref) in
+            if error != nil {
+                print("DIDN'T GO THROUGH")
+                return
+            }
+        }
+
+        //Tas bort från användaren
+        let dbUserRef = db.reference(withPath: "Users/\(followingid)/Follower/\(mySelf)")
+        print("dbrf: ", dbref)
+        dbUserRef.removeValue { (error, ref) in
+            if error != nil {
+                print("DIDN'T GO THROUGH")
+                return
+            }
+        }
+    }
+    
     func downloadImages(uid: String) {
         posts.removeAll()
         let dbref = Database.database().reference(withPath: "Users/\(uid)/Posts")

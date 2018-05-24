@@ -61,8 +61,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
 //        subview.layer.cornerRadius = 2
         subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
-        subviewUnfollowBtn.backgroundColor = followUser
-        subviewFollowButton.backgroundColor = unfollowUser
+        subviewUnfollowBtn.backgroundColor = unfollowUserBtn
+        subviewFollowButton.backgroundColor = followUserBtn
 
         subviewFollowButton.layer.cornerRadius = 5
         subviewFollowButton.isHidden = true
@@ -257,5 +257,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             
             filterUsers()
         }
+    }
+    
+    
+    @IBAction func unfollowUser(_ sender: Any) {
+        unfollowUser()
     }
 }
