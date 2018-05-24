@@ -57,6 +57,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         //SubView
         topSubView.isHidden = true
+        
 //        subview.layer.cornerRadius = 2
         subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
@@ -87,7 +88,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchController.searchBar.becomeFirstResponder()
-        
+        topSubView.layer.zPosition = 2
+        searchController.searchBar.layer.zPosition = 1
     }
 
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
