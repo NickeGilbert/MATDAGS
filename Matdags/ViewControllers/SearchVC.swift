@@ -30,7 +30,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     var users = [User]()
     var count : Int = 0
     var countFollower : Int = 0
-    var userId = ""
+    var userId: String!
     var userFollowing = [String]()
     var initialFeed = [String]()
     var isSearching = false
@@ -39,7 +39,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchController.searchBar.becomeFirstResponder()
         //DB Refs
         searchRef = searchRef.child("Users")
         
@@ -59,7 +58,10 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
+
         subviewFollowButton.layer.cornerRadius = 5
+        subviewFollowButton.isHidden = true
+        subviewUnfollowBtn.isHidden = true
         
         //SearchController
         searchController.searchBar.delegate = self
@@ -72,30 +74,31 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         super.viewDidAppear(animated)
         searchController.searchBar.becomeFirstResponder()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        searchController.searchBar.becomeFirstResponder()
-    }
-    
+
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
-
+    
     func getUserFollowing() {
-        //Används för subviewn om man följer eller inte följer användaren
-        let dbref = db.reference().child("Users/\(uid)/Following")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let tempSnapshot = snapshot.value as? [String : AnyObject] {
-                for (_, each) in tempSnapshot {
+
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if ref != nil { //FUNGERER INTE ÄN
+                let value = snapshot.value as! NSDictionary
+                for uidValue in value {
+                    print("SNAPSHOT", uidValue.value)
                     let appendUser = User()
-                    appendUser.uid = each["uid"] as? String
-                    self.userFollowing.append(each as! String)
+                    appendUser.uid = uidValue.value as? String
+                    self.userFollowing.append(appendUser.uid)
                 }
+            } else {
+                return
             }
         })
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -131,31 +134,43 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.searchController.searchBar.endEditing(true)
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = users[indexPath.row]
-        let userID = username.uid
+        let ownUserID = username.uid
         
         downloadImages(uid: username.uid)
         
+
         self.userId = users[indexPath.row].uid
         self.topSubView.isHidden = false
+        let userId = users[indexPath.row].uid
+        self.subview.isHidden = false
         self.subviewUsername.text = username.alias
-        self.subviewFollowButton.isHidden = false
-        self.subviewUnfollowBtn.isHidden = true
+ 
 
-        if uid == userID {
+        if uid! == ownUserID! {
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
-        }
+        } else {
             for user in userFollowing {
+                print("\nUSER IS: ", user)
+                print("YOUR ARE FOLLOWING: ", userFollowing)
+
                 if userId == user {
-                    print("\nYou are following this user.")
-                    self.subviewFollowButton.isHidden = true
+                    print("SUCCESS CHECK:", user, userFollowing)
+                    print("\nYou are following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = false
+                    self.subviewFollowButton.isHidden = true
+
                 } else {
-                    print("\nYou are not following this user.")
-                    self.subviewFollowButton.isHidden = false
+                    print("FAILED CHECK:", user, userFollowing)
+                    print("\nYou are not following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = true
+                    self.subviewFollowButton.isHidden = false
                 }
+            }
+            print("after user loop")
         }
+        
+        
         
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image
