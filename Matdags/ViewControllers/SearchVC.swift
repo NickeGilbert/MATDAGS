@@ -67,6 +67,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         subviewFollowButton.layer.cornerRadius = 5
         subviewFollowButton.isHidden = true
         subviewUnfollowBtn.isHidden = true
+        subviewUnfollowBtn.layer.cornerRadius = 5
         
         //SearchController
         searchController.searchBar.delegate = self
