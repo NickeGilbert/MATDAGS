@@ -17,6 +17,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet var searchUsersTableView: UITableView!
     @IBOutlet weak var subviewFollowButton: UIButton!
+    @IBOutlet weak var topSubView: UIView!
     
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
@@ -51,8 +52,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchUsersTableView.tableHeaderView = searchController.searchBar
         
         //SubView
-        subview.isHidden = true
-        subview.layer.cornerRadius = 3
+        topSubView.isHidden = true
+//        subview.layer.cornerRadius = 2
+        subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = followUser
         subviewFollowButton.backgroundColor = unfollowUser
@@ -61,7 +63,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
- 
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,12 +127,16 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.searchController.searchBar.endEditing(true)
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = users[indexPath.row]
         let ownUserID = username.uid
         
         downloadImages(uid: username.uid)
         
+
+        self.userId = users[indexPath.row].uid
+        self.topSubView.isHidden = false
         let userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
@@ -193,11 +199,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         users = []
         searchBar.text = ""
         searchUsersTableView.reloadData()
-        self.subview.isHidden = true
+        self.topSubView.isHidden = true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchUsersTableView.reloadData()
+        searchBar.endEditing(true)
     }
     
     func filterUsers() {
@@ -211,13 +218,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             users = []
-            self.subview.isHidden = true
+            self.topSubView.isHidden = true
             searchUsersTableView.reloadData()
             
         } else {
             isSearching = true
             users = []
-            self.subview.isHidden = true
+            self.topSubView.isHidden = true
             searchUsersTableView.reloadData()
             
             filterUsers()

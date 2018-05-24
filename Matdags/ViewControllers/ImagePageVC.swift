@@ -119,13 +119,15 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         commentsTableView.isScrollEnabled = false
         commentsTableView.separatorStyle = .none
-        subview.layer.cornerRadius = 2
+        subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
-        followerButton.layer.cornerRadius = 2
+        followerButton.layer.cornerRadius = 5
         followerButton.clipsToBounds = true
-        subviewFollowButton.layer.cornerRadius = 2
+        unfollowingButton.layer.cornerRadius = 5
+        unfollowingButton.clipsToBounds = true
+        subviewFollowButton.layer.cornerRadius = 5
         subviewFollowButton.clipsToBounds = true
-        subviewUnfollowButton.layer.cornerRadius = 2
+        subviewUnfollowButton.layer.cornerRadius = 5
         subviewUnfollowButton.clipsToBounds = true
         
         if #available(iOS 11.0, *) {
@@ -135,7 +137,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         //myImageView.dropShadow()
-        imagePageSettingsView.layer.cornerRadius = 2
+        imagePageSettingsView.layer.cornerRadius = 5
     }
     
     
