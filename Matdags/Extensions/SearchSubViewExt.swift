@@ -20,6 +20,8 @@ extension SearchVC {
     }
     
     @IBAction func subviewFollowUser(_ sender: Any) {
+        self.subviewFollowButton.isHidden = true
+        self.subviewUnfollowBtn.isHidden = false
         addFollower()
         getFollower()
     }

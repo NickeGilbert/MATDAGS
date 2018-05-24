@@ -262,6 +262,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     
     @IBAction func unfollowUser(_ sender: Any) {
+        self.subviewUnfollowBtn.isHidden = true
+        self.subviewFollowButton.isHidden = false
         unfollowUser()
     }
 }

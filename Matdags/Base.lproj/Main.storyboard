@@ -1316,7 +1316,7 @@
                                             <constraint firstAttribute="width" constant="80" id="Bt3-eT-XUK"/>
                                             <constraint firstAttribute="height" constant="30" id="mmC-Mo-2b1"/>
                                         </constraints>
-                                        <state key="normal" title="Följ">
+                                        <state key="normal" title="FÖLJ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1330,7 +1330,7 @@
                                             <constraint firstAttribute="height" constant="30" id="Mun-AY-mWg"/>
                                             <constraint firstAttribute="width" constant="82" id="eli-JI-AOf"/>
                                         </constraints>
-                                        <state key="normal" title="Följer">
+                                        <state key="normal" title="FÖLJER">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>

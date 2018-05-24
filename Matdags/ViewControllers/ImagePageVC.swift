@@ -379,6 +379,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func unfollowUser(_ sender: Any) {
+        self.unfollowingButton.isHidden = true
+        self.followerButton.isHidden = false
         unfollowUser()
     }
     
