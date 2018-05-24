@@ -79,7 +79,7 @@ extension ImagePageVC {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePageSubviewCell", for: indexPath) as! ImagePageSubViewCell
         
         let cachedImages = cell.viewWithTag(1) as? UIImageView
-        
+        cell.layer.cornerRadius = 5
         cell.mySubviewCollectionFeed.image = nil
         if self.subviews[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.subviews[indexPath.row].pathToImage256)

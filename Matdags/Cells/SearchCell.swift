@@ -22,7 +22,7 @@ class SearchCell: UITableViewCell {
         pictureOutlet.layer.cornerRadius = pictureOutlet.frame.size.height / 2
         pictureOutlet.clipsToBounds = true
         self.pictureOutlet.layer.borderColor = UIColor.white.cgColor
-        self.pictureOutlet.layer.borderWidth = 4
+        self.pictureOutlet.layer.borderWidth = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
