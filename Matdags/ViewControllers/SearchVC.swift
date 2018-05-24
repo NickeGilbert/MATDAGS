@@ -8,7 +8,7 @@ import Firebase
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarControllerDelegate {
     
     @IBOutlet weak var subviewUnfollowBtn: UIButton!
     @IBOutlet weak var subview: UIView!
@@ -71,17 +71,33 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        self.tabBarController?.delegate = self
         
     }
+    
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("POOOPis")
+        self.searchController.isActive = false
+        topSubView.isHidden = true
+//        users = []
+//        searchUsersTableView.reloadData()
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchController.searchBar.becomeFirstResponder()
+        
     }
 
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//
+//    }
+    
     
     func getUserFollowing() {
 
