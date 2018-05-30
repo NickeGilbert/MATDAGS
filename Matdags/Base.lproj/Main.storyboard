@@ -390,7 +390,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="EE0-hz-nVT"/>
                                                 </constraints>
-                                                <state key="normal" title="Följ">
+                                                <state key="normal" title="FÖLJ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -458,13 +458,14 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="LaI-Q5-JvM"/>
                                                 </constraints>
-                                                <state key="normal" title="Följer">
+                                                <state key="normal" title="FÖLJER">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="followButton:" destination="hJz-AY-mR2" eventType="touchUpInside" id="RND-pO-Hfh"/>
                                                     <action selector="subviewFollowUser:" destination="hJz-AY-mR2" eventType="touchUpInside" id="1Oc-i8-07U"/>
                                                     <action selector="subviewFollowUser:" destination="daa-NH-ElQ" eventType="touchUpInside" id="I6M-am-25q"/>
+                                                    <action selector="unfollowUser:" destination="daa-NH-ElQ" eventType="touchUpInside" id="Vty-Vf-HdH"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1315,7 +1316,7 @@
                                             <constraint firstAttribute="width" constant="80" id="Bt3-eT-XUK"/>
                                             <constraint firstAttribute="height" constant="30" id="mmC-Mo-2b1"/>
                                         </constraints>
-                                        <state key="normal" title="Följ">
+                                        <state key="normal" title="FÖLJ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1329,9 +1330,12 @@
                                             <constraint firstAttribute="height" constant="30" id="Mun-AY-mWg"/>
                                             <constraint firstAttribute="width" constant="82" id="eli-JI-AOf"/>
                                         </constraints>
-                                        <state key="normal" title="Följer">
+                                        <state key="normal" title="FÖLJER">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="unfollowUser:" destination="As2-HR-siM" eventType="touchUpInside" id="cEp-Yf-up8"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beskrivning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFQ-ed-rU3">
                                         <rect key="frame" x="15" y="580.33333333333337" width="345" height="18"/>
@@ -1528,7 +1532,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="4BQ-kR-uWI"/>
                                                 </constraints>
-                                                <state key="normal" title="Följ">
+                                                <state key="normal" title="FÖLJ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -1544,7 +1548,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="jdW-eu-nl2"/>
                                                 </constraints>
-                                                <state key="normal" title="Följer">
+                                                <state key="normal" title="FÖLJER">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>

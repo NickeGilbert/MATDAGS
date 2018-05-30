@@ -42,6 +42,34 @@ extension ImagePageVC {
         }
     }
     
+    func unfollowUser() {
+        let followerId = posts[0].userID!
+        let followingid = posts[0].alias
+        let mySelf = Auth.auth().currentUser!.displayName!
+        print("MYSELF", mySelf)
+        print("DANIELS UID:", followerId)
+        
+        //Tas bort från sig själv
+            let dbref = db.reference(withPath: "Users/\(uid)/Following/\(followingid!)")
+            print("dbrf: ", dbref)
+            dbref.removeValue { (error, ref) in
+                if error != nil {
+                    print("DIDN'T GO THROUGH")
+                    return
+                }
+            }
+
+        //Tas bort från användaren
+        let dbUserRef = db.reference(withPath: "Users/\(followerId)/Follower/\(mySelf)")
+        print("dbrf: ", dbref)
+        dbUserRef.removeValue { (error, ref) in
+            if error != nil {
+                print("DIDN'T GO THROUGH")
+                return
+            }
+        }
+    }
+    
     func postStars(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         if self.posts[0].postID != nil {
             //Post stars to userdb

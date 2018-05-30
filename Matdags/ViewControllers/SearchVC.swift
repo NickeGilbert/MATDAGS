@@ -61,8 +61,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
 //        subview.layer.cornerRadius = 2
         subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
-        subviewUnfollowBtn.backgroundColor = followUser
-        subviewFollowButton.backgroundColor = unfollowUser
+        subviewUnfollowBtn.backgroundColor = unfollowUserBtn
+        subviewFollowButton.backgroundColor = followUserBtn
 
         subviewFollowButton.layer.cornerRadius = 5
         subviewFollowButton.isHidden = true
@@ -167,35 +167,37 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
+        
+        self.subviewUnfollowBtn.isHidden = true
+        self.subviewFollowButton.isHidden = false
  
 
-        if uid! == ownUserID! {
+        if self.uid! == ownUserID! {
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
         } else {
             print("HEJSAN! : ", ownUserID)
-            print("HEJSAN :", userFollowing)
-            for user in userFollowing {
+            print("HEJSAN :", self.userFollowing)
+            for user in self.userFollowing {
                 print("\nUSER IS: ", user)
-                print("YOUR ARE FOLLOWING: ", userFollowing)
-
+                print("YOUR ARE FOLLOWING: ", self.userFollowing)
+                
                 if userId == user {
-                    print("SUCCESS CHECK:", user, userFollowing)
+                    print("SUCCESS CHECK:", user, self.userFollowing)
                     print("\nYou are following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = false
                     self.subviewFollowButton.isHidden = true
-                    break
+                   // break
                 } else {
-                    print("FAILED CHECK:", user, userFollowing)
+                    print("FAILED CHECK:", user, self.userFollowing)
                     print("\nYou are not following this user.", userId!)
                     self.subviewUnfollowBtn.isHidden = true
                     self.subviewFollowButton.isHidden = false
-                    break
+                 //   break
                 }
             }
             print("after user loop")
         }
-        
         
         
         if username.profileImageURL != "" {
@@ -256,5 +258,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             
             filterUsers()
         }
+    }
+    
+    
+    @IBAction func unfollowUser(_ sender: Any) {
+        self.subviewUnfollowBtn.isHidden = true
+        self.subviewFollowButton.isHidden = false
+        unfollowUser()
     }
 }
