@@ -1442,6 +1442,45 @@
                                             <action selector="commentButtonClick:" destination="As2-HR-siM" eventType="touchUpInside" id="F9Y-SK-P1G"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aa-a5-AAT">
+                                        <rect key="frame" x="203" y="359.33333333333331" width="155" height="100"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z6-bS-EeC" userLabel="Report">
+                                                <rect key="frame" x="5" y="5" width="145" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="1Xp-ZN-wHf"/>
+                                                </constraints>
+                                                <state key="normal" title="Anmäl bild"/>
+                                                <connections>
+                                                    <action selector="reportImage:" destination="As2-HR-siM" eventType="touchUpInside" id="geU-UV-awe"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBR-Dt-sIw">
+                                                <rect key="frame" x="5" y="49" width="145" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="yMF-Cb-tHJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Radera bild">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteImage:" destination="As2-HR-siM" eventType="touchUpInside" id="TzQ-VA-LjV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="HBR-Dt-sIw" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" constant="5" id="7gQ-gm-yFL"/>
+                                            <constraint firstAttribute="trailing" secondItem="8Z6-bS-EeC" secondAttribute="trailing" constant="5" id="Uh1-yo-To9"/>
+                                            <constraint firstAttribute="width" constant="155" id="cdp-Oh-6N3"/>
+                                            <constraint firstAttribute="trailing" secondItem="HBR-Dt-sIw" secondAttribute="trailing" constant="5" id="gjx-oH-f5N"/>
+                                            <constraint firstAttribute="bottom" secondItem="HBR-Dt-sIw" secondAttribute="bottom" constant="11" id="jd9-cV-x29"/>
+                                            <constraint firstItem="8Z6-bS-EeC" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" constant="5" id="nFU-DS-nZd"/>
+                                            <constraint firstItem="8Z6-bS-EeC" firstAttribute="top" secondItem="5aa-a5-AAT" secondAttribute="top" constant="5" id="nZ3-dS-XZ8"/>
+                                            <constraint firstAttribute="height" constant="100" id="wm1-i2-7oP"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="f17-TZ-hP6" firstAttribute="top" secondItem="KBd-xM-Mhx" secondAttribute="bottom" constant="1" id="0II-RX-JSu"/>
@@ -1466,6 +1505,8 @@
                                     <constraint firstAttribute="trailing" secondItem="Ym5-8W-WRJ" secondAttribute="trailing" id="Ube-48-u6k"/>
                                     <constraint firstItem="yFD-xP-oGg" firstAttribute="top" secondItem="Zs8-gX-2Ep" secondAttribute="top" constant="40" id="VDX-hx-AgP"/>
                                     <constraint firstItem="KBd-xM-Mhx" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" id="Wu6-Cg-T0f"/>
+                                    <constraint firstAttribute="trailing" secondItem="5aa-a5-AAT" secondAttribute="trailing" constant="17" id="XSh-gi-zNo"/>
+                                    <constraint firstItem="8bX-0q-PyZ" firstAttribute="top" secondItem="5aa-a5-AAT" secondAttribute="bottom" constant="20" id="bea-i7-RVj"/>
                                     <constraint firstItem="8bX-0q-PyZ" firstAttribute="top" secondItem="Ym5-8W-WRJ" secondAttribute="bottom" constant="10" id="fc3-H8-rEd"/>
                                     <constraint firstItem="K6Q-8d-FO2" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" constant="15" id="g52-dC-wzT"/>
                                     <constraint firstItem="yFD-xP-oGg" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" constant="15" id="gPN-GZ-pfj"/>
@@ -1629,45 +1670,6 @@
                                     <constraint firstAttribute="trailing" secondItem="XVj-Tu-c8h" secondAttribute="trailing" constant="10" id="veO-DK-1Wv"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aa-a5-AAT">
-                                <rect key="frame" x="205" y="421" width="155" height="100"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z6-bS-EeC" userLabel="Report">
-                                        <rect key="frame" x="20" y="15" width="115" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="115" id="0Wj-0e-fiP"/>
-                                            <constraint firstAttribute="height" constant="29" id="jaC-dG-F3l"/>
-                                        </constraints>
-                                        <state key="normal" title="Anmäl bild"/>
-                                        <connections>
-                                            <action selector="reportImage:" destination="As2-HR-siM" eventType="touchUpInside" id="geU-UV-awe"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBR-Dt-sIw">
-                                        <rect key="frame" x="20" y="55" width="115" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="115" id="FUZ-45-R2U"/>
-                                            <constraint firstAttribute="height" constant="30" id="HLs-b4-JaF"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="Radera bild">
-                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="deleteImage:" destination="As2-HR-siM" eventType="touchUpInside" id="TzQ-VA-LjV"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="155" id="0Xq-wM-LLa"/>
-                                    <constraint firstItem="8Z6-bS-EeC" firstAttribute="top" secondItem="5aa-a5-AAT" secondAttribute="top" constant="15" id="3q1-Vn-foR"/>
-                                    <constraint firstAttribute="height" constant="100" id="ITw-XT-Cwz"/>
-                                    <constraint firstAttribute="bottom" secondItem="HBR-Dt-sIw" secondAttribute="bottom" constant="15" id="JZ5-aP-g30"/>
-                                    <constraint firstAttribute="trailing" secondItem="8Z6-bS-EeC" secondAttribute="trailing" constant="20" id="aTS-Xc-DoN"/>
-                                    <constraint firstAttribute="trailing" secondItem="HBR-Dt-sIw" secondAttribute="trailing" constant="20" id="bnU-OJ-hI1"/>
-                                </constraints>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-hq-MOK" userLabel="commentsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
@@ -1714,10 +1716,8 @@
                             <constraint firstItem="XQz-Jm-hsB" firstAttribute="top" secondItem="QCA-3I-UXr" secondAttribute="top" id="XC7-We-lwC"/>
                             <constraint firstAttribute="bottom" secondItem="Zs8-gX-2Ep" secondAttribute="bottom" id="Yse-f7-j2K"/>
                             <constraint firstItem="uJr-hq-MOK" firstAttribute="leading" secondItem="kbd-fN-5ia" secondAttribute="leading" id="kSi-zc-23S"/>
-                            <constraint firstItem="kbd-fN-5ia" firstAttribute="trailing" secondItem="5aa-a5-AAT" secondAttribute="trailing" constant="15" id="lI7-9x-Yj8"/>
                             <constraint firstAttribute="trailing" secondItem="XQz-Jm-hsB" secondAttribute="trailing" id="mE0-da-ixM"/>
                             <constraint firstItem="Zs8-gX-2Ep" firstAttribute="leading" secondItem="QCA-3I-UXr" secondAttribute="leading" id="qH9-ah-JYv"/>
-                            <constraint firstItem="5aa-a5-AAT" firstAttribute="centerY" secondItem="QCA-3I-UXr" secondAttribute="centerY" constant="65" id="vpn-2u-aP3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                     </view>
@@ -1730,7 +1730,7 @@
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>
                         <outlet property="followerButton" destination="SYW-pk-e4K" id="yej-xk-dgd"/>
                         <outlet property="imagePageSettingsView" destination="5aa-a5-AAT" id="mhW-JN-TPo"/>
-                        <outlet property="imagePageSettingsViewHeightConstraint" destination="ITw-XT-Cwz" id="iR2-yr-iKZ"/>
+                        <outlet property="imagePageSettingsViewHeightConstraint" destination="wm1-i2-7oP" id="I63-mG-L4V"/>
                         <outlet property="myImageView" destination="Ym5-8W-WRJ" id="dHG-sa-bub"/>
                         <outlet property="scrollView" destination="Zs8-gX-2Ep" id="IwG-c6-dwl"/>
                         <outlet property="subview" destination="XVj-Tu-c8h" id="ikr-I0-OKe"/>
