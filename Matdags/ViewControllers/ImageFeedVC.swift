@@ -87,9 +87,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    @IBAction func cameraButtonClicked(_ sender: Any) {
+    @IBAction func camerButtonTouch(_ sender: Any) {
         performSegue(withIdentifier: "cameraSeg", sender: nil)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.posts.count
