@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakgrund1" translatesAutoresizingMaskIntoConstraints="NO" id="IHA-Hh-mX0" userLabel="loginBackgroundImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="820"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="771"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylk-cS-VPh">
                                 <rect key="frame" x="215" y="269" width="100" height="40"/>
@@ -130,7 +130,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakgrund1" translatesAutoresizingMaskIntoConstraints="NO" id="vUs-MO-8e4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="5Ss-6H-1Q2">
                                 <rect key="frame" x="87.666666666666686" y="74" width="200" height="70"/>
@@ -515,7 +515,7 @@
                             <outletCollection property="gestureRecognizers" destination="xUr-OM-bxF" appends="YES" id="fMt-Si-8iy"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="searchButton" id="uN5-7r-vK9">
+                    <tabBarItem key="tabBarItem" title="" image="searchButton2Final" id="uN5-7r-vK9">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -703,7 +703,7 @@
                             <outletCollection property="gestureRecognizers" destination="ENx-1a-WRN" appends="YES" id="9hY-Ak-Ou8"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="favoriterButton" id="1Um-M8-3VX" userLabel="Följare">
+                    <tabBarItem key="tabBarItem" title="" image="favoriterButton2Final" id="1Um-M8-3VX" userLabel="Följare">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -938,7 +938,7 @@
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profileButton" id="lP8-fs-3y6" userLabel="Item 3">
+                    <tabBarItem key="tabBarItem" title="" image="profileButton2Final" id="lP8-fs-3y6" userLabel="Item 3">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -1784,14 +1784,22 @@
                                     <constraint firstAttribute="height" constant="44" id="1EG-mN-h6c"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Matdags" id="xrn-oX-qH1">
-                                        <barButtonItem key="leftBarButtonItem" title="Camera" image="kameraButton2Final" id="zI2-48-LAB">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="cameraButtonClicked:" destination="ypM-Uw-J9l" id="0HL-K2-QXw"/>
-                                                <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="F3C-ho-Xp7"/>
-                                            </connections>
-                                        </barButtonItem>
+                                    <navigationItem id="xrn-oX-qH1">
+                                        <leftBarButtonItems>
+                                            <barButtonItem title="Camera" image="kameraButton2Final" id="zI2-48-LAB">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="cameraButtonClicked:" destination="ypM-Uw-J9l" id="0HL-K2-QXw"/>
+                                                    <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="F3C-ho-Xp7"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem enabled="NO" style="plain" id="NtQ-8B-DC9">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F54-yf-Cez">
+                                                    <rect key="frame" x="80" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </button>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" style="plain" id="aPh-CH-Epm">
                                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz" userLabel="LoggOut">
@@ -1869,12 +1877,21 @@
                                     <outlet property="prefetchDataSource" destination="ypM-Uw-J9l" id="1vv-ED-D40"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matdagsLogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="Ax4-pq-3kr">
+                                <rect key="frame" x="150" y="57" width="75" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="uIb-W1-U0N"/>
+                                    <constraint firstAttribute="width" constant="75" id="w1W-6V-lza"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="Ax4-pq-3kr" firstAttribute="centerX" secondItem="udC-lS-VJ9" secondAttribute="centerX" id="J3X-Fk-bpR"/>
                             <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="trailing" secondItem="TAp-li-cdH" secondAttribute="trailing" id="VEb-0D-lMn"/>
                             <constraint firstItem="TAp-li-cdH" firstAttribute="leading" secondItem="5bJ-SZ-EuZ" secondAttribute="leading" id="WwW-6l-qoR"/>
+                            <constraint firstItem="Ax4-pq-3kr" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" constant="13" id="Z3l-qy-S8f"/>
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="leading" secondItem="udC-lS-VJ9" secondAttribute="leading" id="coc-oX-4kZ"/>
                             <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="bottom" secondItem="TAp-li-cdH" secondAttribute="bottom" id="mKz-rq-N4n"/>
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" id="o3T-ug-Qdo"/>
@@ -1886,7 +1903,7 @@
                             <outletCollection property="gestureRecognizers" destination="Vbc-XZ-9NL" appends="YES" id="EPA-Vl-31c"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="homeButton" id="e9t-XX-NrY">
+                    <tabBarItem key="tabBarItem" title="" image="homeButton2Final" id="e9t-XX-NrY">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="UXm-UH-lXh"/>
@@ -1916,26 +1933,27 @@
         <image name="cog1" width="37" height="36"/>
         <image name="commentUse2Final" width="45" height="45"/>
         <image name="emptystar30" width="30" height="30"/>
-        <image name="favoriterButton" width="45" height="45"/>
+        <image name="favoriterButton2Final" width="45" height="45"/>
         <image name="filterUse2Final" width="45" height="45"/>
         <image name="flashOff" width="80" height="108"/>
-        <image name="homeButton" width="45" height="45"/>
+        <image name="homeButton2Final" width="45" height="45"/>
         <image name="image" width="100" height="100"/>
         <image name="kameraButton2Final" width="45" height="45"/>
         <image name="logoMatdags" width="100" height="30"/>
         <image name="logoutButton2Final" width="45" height="45"/>
+        <image name="matdagsLogoFinal" width="100" height="30"/>
         <image name="moreUse2Final" width="45" height="45"/>
-        <image name="profileButton" width="45" height="45"/>
+        <image name="profileButton2Final" width="45" height="45"/>
         <image name="profileImagePlaceholder" width="240" height="240"/>
         <image name="refreshButton" width="45" height="45"/>
-        <image name="searchButton" width="45" height="45"/>
+        <image name="searchButton2Final" width="45" height="45"/>
         <image name="shareButton" width="150" height="150"/>
         <image name="vegButton50" width="50" height="50"/>
         <image name="vegButtonUse2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="lIt-D9-Es6"/>
         <segue reference="qav-lz-AQ2"/>
-        <segue reference="l1h-Lg-NhA"/>
+        <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
 </document>
