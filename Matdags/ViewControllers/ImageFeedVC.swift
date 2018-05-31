@@ -160,9 +160,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let selectedCell = sender as! NSIndexPath
             let selectedRow = selectedCell.row
             let imagePage = segue.destination as! ImagePageVC
+            
             if self.posts[selectedRow].postID != nil {
                 imagePage.seguePostID = self.posts[selectedRow].postID
             }
+
         } else {
             print("\n Segue with identifier (imagePage) not found. \n")
         }
