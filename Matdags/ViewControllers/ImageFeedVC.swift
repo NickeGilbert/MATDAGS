@@ -25,7 +25,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.clear
+        self.refresher.tintColor = UIColor.lightGray
+        self.refresher.attributedTitle = NSAttributedString(string: "Hello")
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
     }
@@ -122,6 +123,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         var storleken = CGSize()
 
         let n = Int(arc4random_uniform(2))
@@ -141,9 +143,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
             cellCounter += 1
         }
-//        print("Storleken : ", storleken)
         return storleken
     }
+    
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //
 //        var storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
