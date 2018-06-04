@@ -1887,7 +1887,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEf-ai-GII">
-                                        <rect key="frame" x="5" y="80" width="145" height="35"/>
+                                        <rect key="frame" x="5" y="75" width="145" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="b0K-ns-q3s"/>
                                         </constraints>
@@ -1923,7 +1923,7 @@
                                     <constraint firstItem="l24-kN-DnW" firstAttribute="leading" secondItem="5rY-3X-jiu" secondAttribute="leading" constant="25" id="NFK-RU-NKY"/>
                                     <constraint firstAttribute="height" constant="120" id="OuT-2A-3xR"/>
                                     <constraint firstItem="Fmn-sb-rkR" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="RhV-pw-eT3"/>
-                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="bottom" secondItem="VEf-ai-GII" secondAttribute="bottom" constant="5" id="bR0-Yu-Md5"/>
+                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="bottom" secondItem="VEf-ai-GII" secondAttribute="bottom" constant="10" id="bR0-Yu-Md5"/>
                                     <constraint firstItem="WQf-pN-tvI" firstAttribute="centerX" secondItem="5rY-3X-jiu" secondAttribute="centerX" id="eq5-Hp-ghI"/>
                                     <constraint firstItem="WQf-pN-tvI" firstAttribute="top" secondItem="h0B-hi-QyW" secondAttribute="top" constant="5" id="i4X-Vb-ny2"/>
                                     <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="VEf-ai-GII" secondAttribute="trailing" constant="5" id="m2G-EQ-AcN"/>
