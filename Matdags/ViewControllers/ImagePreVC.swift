@@ -59,7 +59,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         filterScrollView.isHidden = true
         filterButton.setImage(UIImage(named: "filter"), for: .normal)
         if descriptionFieldLines.text == "" {
-            commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
+            commentBtn.setImage(UIImage(named: "commentUse2Final"), for: .normal)
         } else {
             return
         }
@@ -154,7 +154,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
             vegFood.setImage(UIImage(named: "vegButton100.png"), for: .normal)
             vegFoodBool = true
         }else{
-            vegFood.setImage(UIImage(named: "vegButton100off.png"), for: .normal)
+            vegFood.setImage(UIImage(named: "vegButtonUse2Final.png"), for: .normal)
             vegFoodBool = false
         }
     }
@@ -173,7 +173,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         
         if filterScrollView.isHidden {
             filterScrollView.isHidden = false
-            filterButton.setImage(UIImage(named: "filterUse2"), for: .normal)
+            filterButton.setImage(UIImage(named: "filterUse2Final"), for: .normal)
         } else {
             filterScrollView.isHidden = true
             filterButton.setImage(UIImage(named: "filter"), for: .normal)

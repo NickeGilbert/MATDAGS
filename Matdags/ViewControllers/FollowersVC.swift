@@ -43,8 +43,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
-//        self.refresher.tintColor = UIColor.clear
-        self.refresher.tintColor = UIColor.orange
+        self.refresher.tintColor = UIColor.lightGray
+        self.refresher.attributedTitle = NSAttributedString(string: "Hello")
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
         self.feedCollectionView.delegate = self

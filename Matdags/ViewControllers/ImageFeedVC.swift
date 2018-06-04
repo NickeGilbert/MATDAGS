@@ -10,14 +10,17 @@ import FBSDKShareKit
 import FBSDKCoreKit
 
 class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-   
+
     @IBOutlet var collectionFeed: UICollectionView!
+    @IBOutlet weak var settingsView: UIView!
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
     var refresher : UIRefreshControl!
-    var isVegi : Bool = false
     var cellCounter : Int = 0
+    var cellCounter2 : Int = 0
+    var moreBool : Bool = false
+    var vegiBool : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +28,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.clear
+        self.refresher.tintColor = UIColor.lightGray
+        self.refresher.attributedTitle = NSAttributedString(string: "Hello")
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
+        settingsView.isHidden = true
+        settingsView.layer.cornerRadius = 5
+        
     }
     
     @objc func loadData() {
@@ -37,6 +44,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.refresher.endRefreshing()
         }, in: dispatchGroup)
         cellCounter = 0
+        cellCounter2 = 0
     }
 
     
@@ -63,7 +71,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
                     appendPost.timestamp = post["timestamp"] as? String
-                    self.posts.append(appendPost)
+                    if self.vegiBool == true {
+                        if appendPost.vegi == true {
+                            self.posts.append(appendPost)
+                        }
+                    }else{
+                        self.posts.append(appendPost)
+                    }
+
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -73,23 +88,60 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         })
     }
-
-    @IBAction func loggaOut(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            let loginManager = FBSDKLoginManager()
-            loginManager.logOut() // this is an instance function
-            performSegue(withIdentifier: "logout", sender: nil)
-            print(" \n DU HAR PRECIS LOGGAT UT \n")
-        } catch {
-            print("\n ERROR NÄR DU LOGGADE UT \n")
+    
+    @IBAction func moreClick(_ sender: Any) {
+        if moreBool == false {
+            settingsView.isHidden = false
+            moreBool = true
+        }else{
+            settingsView.isHidden = true
+            moreBool = false
         }
     }
     
-    @IBAction func cameraButtonClicked(_ sender: Any) {
+    @IBOutlet weak var vegiClickImage: UIImageView!
+    @IBOutlet weak var vegiClickButton: UIButton!
+    
+    @IBAction func vegiClick(_ sender: Any) {
+        if vegiBool == false {
+            vegiClickImage.image = UIImage(named: "vegButton50SettingsFinal")
+            loadViewIfNeeded()
+            vegiBool = true
+            posts.removeAll()
+            loadData()
+        } else {
+            vegiClickImage.image = UIImage(named: "vegButtonUseSettings2Final")
+            vegiBool = false
+            posts.removeAll()
+            loadData()
+            
+        }
+        
+        
+    }
+    
+    @IBAction func logOut(_ sender: Any) {
+        let alert = UIAlertController(title: "Vill du logga ut?", message: "Du kan logga in igen", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Logga ut", style: .destructive, handler: { action in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut() // this is an instance function
+                self.performSegue(withIdentifier: "logout", sender: nil)
+                print(" \n DU HAR PRECIS LOGGAT UT \n")
+            } catch {
+                print("\n ERROR NÄR DU LOGGADE UT \n")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func camerButtonTouch(_ sender: Any) {
         performSegue(withIdentifier: "cameraSeg", sender: nil)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.posts.count
@@ -120,29 +172,89 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         var storleken = CGSize()
 
         let n = Int(arc4random_uniform(2))
         let onePart = self.view.frame.width / 3.2
         let twoPart = onePart + onePart + 8
-
-        if cellCounter == 3 {
-            if n == 0 {
+        let topCounter = Int(arc4random_uniform(2))
+        
+        func left() {
+            if cellCounter == 3 { // fungerande från vänster
+                if n == 0 {
+                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                    cellCounter = 1
+                    cellCounter2 = 2
+                } else {
+                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+                    cellCounter = -1
+                    cellCounter2 = 0
+                }
+                
+            }else{
                 storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                cellCounter = 1
-            } else {
-                storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
-                cellCounter = -1
+                cellCounter += 1
+                cellCounter2 += 1
             }
-
-        }else{
-            storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-            cellCounter += 1
         }
-//        print("Storleken : ", storleken)
+        
+        func right(){
+            if cellCounter2 == 4 { // fungerande från höger
+                if n == 0 {
+                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                    cellCounter2 = 2
+                    cellCounter = 1
+                } else {
+                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+                    cellCounter2 = 0
+                    cellCounter = -1
+                }
+                
+            }else{
+                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                cellCounter2 += 1
+                cellCounter += 1
+            }
+        }
+        
+        
+        
+        
+        if topCounter == 0 {
+            left()
+        }else{
+            right()
+        }
+        
+        
+        print("Cellcounter 1 : ", cellCounter)
+        print("CellCounter 2 : ", cellCounter2)
+        print("---------------")
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         return storleken
     }
+    
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //
 //        var storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
@@ -160,9 +272,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let selectedCell = sender as! NSIndexPath
             let selectedRow = selectedCell.row
             let imagePage = segue.destination as! ImagePageVC
+            
             if self.posts[selectedRow].postID != nil {
                 imagePage.seguePostID = self.posts[selectedRow].postID
             }
+
         } else {
             print("\n Segue with identifier (imagePage) not found. \n")
         }

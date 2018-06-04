@@ -22,6 +22,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var imagePageSettingsView: UIView!
     @IBOutlet weak var deleteImage: UIButton!
     
+//    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     
     //test daniel
