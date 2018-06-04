@@ -11,13 +11,16 @@ import FBSDKCoreKit
 
 class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
+    @IBOutlet weak var tempSwitch: UISwitch!
     @IBOutlet var collectionFeed: UICollectionView!
+    @IBOutlet weak var settingsView: UIView!
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
     var refresher : UIRefreshControl!
     var isVegi : Bool = false
     var cellCounter : Int = 0
+    var cellCounter2 : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.attributedTitle = NSAttributedString(string: "Hello")
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
+        settingsView.isHidden = true
+        
     }
     
     @objc func loadData() {
@@ -38,6 +43,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.refresher.endRefreshing()
         }, in: dispatchGroup)
         cellCounter = 0
+        cellCounter2 = 0
     }
 
     
@@ -46,8 +52,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
         }
+        tempSwitch.setOn(false, animated: false)
         posts.removeAll()
         loadData()
+        var navCon = UINavigationControllerDelegate.self
     }
     
     func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void), in dispatchGroup: DispatchGroup) {
@@ -64,7 +72,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
                     appendPost.timestamp = post["timestamp"] as? String
-                    self.posts.append(appendPost)
+                    if self.tempSwitch.isOn == true {
+                        if appendPost.vegi == true {
+                            self.posts.append(appendPost)
+                        }
+                    }else{
+                        self.posts.append(appendPost)
+                    }
+
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -74,7 +89,18 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         })
     }
-
+    
+    
+    @IBAction func tempSwith(_ sender: Any) {
+        print("Switched ", tempSwitch.isOn)
+        posts.removeAll()
+        loadData()
+        self.navigationController?.navigationBar.layer.zPosition = -1
+        self.tabBarController?.tabBar.layer.zPosition = -1
+        settingsView.layer.zPosition = 0
+        settingsView.isHidden = false
+    }
+    
     @IBAction func loggaOut(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -122,6 +148,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var storleken = CGSize()
@@ -129,20 +157,77 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let n = Int(arc4random_uniform(2))
         let onePart = self.view.frame.width / 3.2
         let twoPart = onePart + onePart + 8
-
-        if cellCounter == 3 {
-            if n == 0 {
+        let topCounter = Int(arc4random_uniform(2))
+        
+        func left() {
+            if cellCounter == 3 { // fungerande från vänster
+                if n == 0 {
+                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                    cellCounter = 1
+                    cellCounter2 = 2
+                } else {
+                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+                    cellCounter = -1
+                    cellCounter2 = 0
+                }
+                
+            }else{
                 storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                cellCounter = 1
-            } else {
-                storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
-                cellCounter = -1
+                cellCounter += 1
+                cellCounter2 += 1
             }
-
-        }else{
-            storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-            cellCounter += 1
         }
+        
+        func right(){
+            if cellCounter2 == 4 { // fungerande från höger
+                if n == 0 {
+                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                    cellCounter2 = 2
+                    cellCounter = 1
+                } else {
+                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+                    cellCounter2 = 0
+                    cellCounter = -1
+                }
+                
+            }else{
+                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+                cellCounter2 += 1
+                cellCounter += 1
+            }
+        }
+        
+        
+        
+        
+        if topCounter == 0 {
+            left()
+        }else{
+            right()
+        }
+        
+        
+        print("Cellcounter 1 : ", cellCounter)
+        print("CellCounter 2 : ", cellCounter2)
+        print("---------------")
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         return storleken
     }
     

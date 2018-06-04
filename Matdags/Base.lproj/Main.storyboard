@@ -1785,19 +1785,30 @@
                                 </constraints>
                                 <items>
                                     <navigationItem id="xrn-oX-qH1">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="NtQ-8B-DC9">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F54-yf-Cez" userLabel="camera">
-                                                <rect key="frame" x="16" y="0.0" width="45" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="cameraButton2Final"/>
+                                        <leftBarButtonItems>
+                                            <barButtonItem style="plain" id="NtQ-8B-DC9">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F54-yf-Cez" userLabel="camera">
+                                                    <rect key="frame" x="16" y="0.0" width="45" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="cameraButton2Final"/>
+                                                    <connections>
+                                                        <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="6VM-3Q-lAN"/>
+                                                    </connections>
+                                                </button>
                                                 <connections>
-                                                    <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="6VM-3Q-lAN"/>
+                                                    <action selector="camerButtonTouch:" destination="ypM-Uw-J9l" id="fDN-Rt-LtV"/>
                                                 </connections>
-                                            </button>
-                                            <connections>
-                                                <action selector="camerButtonTouch:" destination="ypM-Uw-J9l" id="fDN-Rt-LtV"/>
-                                            </connections>
-                                        </barButtonItem>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="7Bz-k8-x6m">
+                                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="rag-oU-hCg">
+                                                    <rect key="frame" x="69" y="6.6666666666666679" width="51" height="31.000000000000004"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="tempSwith:" destination="ypM-Uw-J9l" eventType="valueChanged" id="2qO-FK-Ung"/>
+                                                    </connections>
+                                                </switch>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" style="plain" id="aPh-CH-Epm">
                                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz" userLabel="LoggOut">
@@ -1882,6 +1893,12 @@
                                     <constraint firstAttribute="width" constant="75" id="w1W-6V-lza"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-3X-jiu" userLabel="settingsView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="safeArea" id="h0B-hi-QyW"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -1909,6 +1926,8 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionFeed" destination="TAp-li-cdH" id="NYa-mG-oL4"/>
+                        <outlet property="settingsView" destination="5rY-3X-jiu" id="ZaJ-cw-AUZ"/>
+                        <outlet property="tempSwitch" destination="rag-oU-hCg" id="eLA-J2-zmS"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Xnk-uj-Z3I"/>
                         <segue destination="As2-HR-siM" kind="show" identifier="imagePageSeg" id="lIt-D9-Es6"/>
                     </connections>
