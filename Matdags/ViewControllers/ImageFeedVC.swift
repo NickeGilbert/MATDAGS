@@ -10,17 +10,17 @@ import FBSDKShareKit
 import FBSDKCoreKit
 
 class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-   
-    @IBOutlet weak var tempSwitch: UISwitch!
+
     @IBOutlet var collectionFeed: UICollectionView!
     @IBOutlet weak var settingsView: UIView!
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
     var refresher : UIRefreshControl!
-    var isVegi : Bool = false
     var cellCounter : Int = 0
     var cellCounter2 : Int = 0
+    var moreBool : Bool = false
+    var vegiBool : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
         settingsView.isHidden = true
+        settingsView.layer.cornerRadius = 5
         
     }
     
@@ -52,10 +53,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
         }
-        tempSwitch.setOn(false, animated: false)
         posts.removeAll()
         loadData()
-        var navCon = UINavigationControllerDelegate.self
     }
     
     func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void), in dispatchGroup: DispatchGroup) {
@@ -72,7 +71,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
                     appendPost.timestamp = post["timestamp"] as? String
-                    if self.tempSwitch.isOn == true {
+                    if self.vegiBool == true {
                         if appendPost.vegi == true {
                             self.posts.append(appendPost)
                         }
@@ -90,28 +89,53 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
-    
-    @IBAction func tempSwith(_ sender: Any) {
-        print("Switched ", tempSwitch.isOn)
-        posts.removeAll()
-        loadData()
-        self.navigationController?.navigationBar.layer.zPosition = -1
-        self.tabBarController?.tabBar.layer.zPosition = -1
-        settingsView.layer.zPosition = 0
-        settingsView.isHidden = false
+    @IBAction func moreClick(_ sender: Any) {
+        if moreBool == false {
+            settingsView.isHidden = false
+            moreBool = true
+        }else{
+            settingsView.isHidden = true
+            moreBool = false
+        }
     }
     
-    @IBAction func loggaOut(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            let loginManager = FBSDKLoginManager()
-            loginManager.logOut() // this is an instance function
-            performSegue(withIdentifier: "logout", sender: nil)
-            print(" \n DU HAR PRECIS LOGGAT UT \n")
-        } catch {
-            print("\n ERROR NÄR DU LOGGADE UT \n")
+    @IBOutlet weak var vegiClickImage: UIImageView!
+    @IBOutlet weak var vegiClickButton: UIButton!
+    
+    @IBAction func vegiClick(_ sender: Any) {
+        if vegiBool == false {
+            vegiClickImage.image = UIImage(named: "vegButton50SettingsFinal")
+            loadViewIfNeeded()
+            vegiBool = true
+            posts.removeAll()
+            loadData()
+        } else {
+            vegiClickImage.image = UIImage(named: "vegButtonUseSettings2Final")
+            vegiBool = false
+            posts.removeAll()
+            loadData()
+            
         }
+        
+        
+    }
+    
+    @IBAction func logOut(_ sender: Any) {
+        let alert = UIAlertController(title: "Vill du logga ut?", message: "Du kan logga in igen", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Logga ut", style: .destructive, handler: { action in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut() // this is an instance function
+                self.performSegue(withIdentifier: "logout", sender: nil)
+                print(" \n DU HAR PRECIS LOGGAT UT \n")
+            } catch {
+                print("\n ERROR NÄR DU LOGGADE UT \n")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
     @IBAction func camerButtonTouch(_ sender: Any) {

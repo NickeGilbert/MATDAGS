@@ -7,7 +7,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1437,7 +1436,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aa-a5-AAT">
-                                        <rect key="frame" x="203" y="359.33333333333331" width="155" height="100"/>
+                                        <rect key="frame" x="205" y="359.33333333333331" width="155" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z6-bS-EeC" userLabel="Report">
                                                 <rect key="frame" x="5" y="5" width="145" height="40"/>
@@ -1445,7 +1444,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="1Xp-ZN-wHf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <state key="normal" title="Anmäl bild"/>
+                                                <state key="normal" title="Anmäl bild">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="reportImage:" destination="As2-HR-siM" eventType="touchUpInside" id="geU-UV-awe"/>
                                                 </connections>
@@ -1516,7 +1517,7 @@
                                     <constraint firstItem="YFQ-ed-rU3" firstAttribute="top" secondItem="SYW-pk-e4K" secondAttribute="bottom" constant="15" id="Vuy-21-Tct"/>
                                     <constraint firstAttribute="trailing" secondItem="YFQ-ed-rU3" secondAttribute="trailing" constant="15" id="Wbf-1j-Bhd"/>
                                     <constraint firstItem="KBd-xM-Mhx" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" constant="50" id="Wu6-Cg-T0f"/>
-                                    <constraint firstAttribute="trailing" secondItem="5aa-a5-AAT" secondAttribute="trailing" constant="17" id="XSh-gi-zNo"/>
+                                    <constraint firstAttribute="trailing" secondItem="5aa-a5-AAT" secondAttribute="trailing" constant="15" id="XSh-gi-zNo"/>
                                     <constraint firstItem="8bX-0q-PyZ" firstAttribute="top" secondItem="K6Q-8d-FO2" secondAttribute="bottom" constant="22.5" id="g6e-Oy-1ek"/>
                                     <constraint firstItem="2uV-Oc-j6y" firstAttribute="top" secondItem="Ym5-8W-WRJ" secondAttribute="bottom" constant="10" id="g8p-Nn-xbf"/>
                                     <constraint firstItem="yFD-xP-oGg" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" constant="15" id="gPN-GZ-pfj"/>
@@ -1785,54 +1786,30 @@
                                 </constraints>
                                 <items>
                                     <navigationItem id="xrn-oX-qH1">
-                                        <leftBarButtonItems>
-                                            <barButtonItem style="plain" id="NtQ-8B-DC9">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F54-yf-Cez" userLabel="camera">
-                                                    <rect key="frame" x="16" y="0.0" width="45" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="cameraButton2Final"/>
-                                                    <connections>
-                                                        <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="6VM-3Q-lAN"/>
-                                                    </connections>
-                                                </button>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="NtQ-8B-DC9" userLabel="camera">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F54-yf-Cez" userLabel="camera">
+                                                <rect key="frame" x="16" y="0.0" width="45" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="cameraButton2Final"/>
                                                 <connections>
-                                                    <action selector="camerButtonTouch:" destination="ypM-Uw-J9l" id="fDN-Rt-LtV"/>
+                                                    <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="6VM-3Q-lAN"/>
                                                 </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" id="7Bz-k8-x6m">
-                                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="rag-oU-hCg">
-                                                    <rect key="frame" x="69" y="6.6666666666666679" width="51" height="31.000000000000004"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="tempSwith:" destination="ypM-Uw-J9l" eventType="valueChanged" id="2qO-FK-Ung"/>
-                                                    </connections>
-                                                </switch>
-                                            </barButtonItem>
-                                        </leftBarButtonItems>
-                                        <rightBarButtonItems>
-                                            <barButtonItem title="Item" style="plain" id="aPh-CH-Epm">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nGT-5Q-dlz" userLabel="LoggOut">
-                                                    <rect key="frame" x="314" y="0.0" width="45" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="logoutButton2Final"/>
-                                                    <connections>
-                                                        <action selector="loggaOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="Qwe-3r-FN4"/>
-                                                    </connections>
-                                                </button>
-                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" id="61O-Cy-Jd5">
-                                                <inset key="largeContentSizeImageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5I5-G1-GnB">
-                                                    <rect key="frame" x="261" y="0.0" width="45" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="refreshButton"/>
-                                                    <connections>
-                                                        <action selector="refreshButtonClicked:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="CDa-iv-kPW"/>
-                                                    </connections>
-                                                </button>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
+                                            </button>
+                                            <connections>
+                                                <action selector="camerButtonTouch:" destination="ypM-Uw-J9l" id="fDN-Rt-LtV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="61O-Cy-Jd5" userLabel="more">
+                                            <inset key="largeContentSizeImageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5I5-G1-GnB" userLabel="more">
+                                                <rect key="frame" x="314" y="0.0" width="45" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="moreUseSettings2Final"/>
+                                                <connections>
+                                                    <action selector="moreClick:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="I44-CM-Eyr"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1893,17 +1870,80 @@
                                     <constraint firstAttribute="width" constant="75" id="w1W-6V-lza"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-3X-jiu" userLabel="settingsView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-3X-jiu" userLabel="settingsView">
+                                <rect key="frame" x="205" y="93" width="155" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmn-sb-rkR">
+                                        <rect key="frame" x="5" y="5" width="145" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="fYD-GG-1X6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <state key="normal" title="Vego">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="vegiClick:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="b2n-Gn-UBd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEf-ai-GII">
+                                        <rect key="frame" x="5" y="80" width="145" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="b0K-ns-q3s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Logga ut">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="bLD-Oh-W9f"/>
+                                        </connections>
+                                    </button>
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l24-kN-DnW" userLabel="devider">
+                                        <rect key="frame" x="25" y="55" width="105" height="1"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="oO2-SG-3QW"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButtonUseSettings2Final" translatesAutoresizingMaskIntoConstraints="NO" id="WQf-pN-tvI">
+                                        <rect key="frame" x="60" y="5" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="6Kx-qK-HFF"/>
+                                            <constraint firstAttribute="width" constant="35" id="fYE-Gb-Klb"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.99998790029999995" blue="0.9999920726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="l24-kN-DnW" firstAttribute="top" secondItem="Fmn-sb-rkR" secondAttribute="bottom" constant="10" id="20c-ca-ib7"/>
+                                    <constraint firstItem="VEf-ai-GII" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="7q6-Uu-hVk"/>
+                                    <constraint firstAttribute="width" constant="155" id="A9t-Uy-NMl"/>
+                                    <constraint firstAttribute="trailing" secondItem="l24-kN-DnW" secondAttribute="trailing" constant="25" id="Alz-eb-mVh"/>
+                                    <constraint firstItem="l24-kN-DnW" firstAttribute="leading" secondItem="5rY-3X-jiu" secondAttribute="leading" constant="25" id="NFK-RU-NKY"/>
+                                    <constraint firstAttribute="height" constant="120" id="OuT-2A-3xR"/>
+                                    <constraint firstItem="Fmn-sb-rkR" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="RhV-pw-eT3"/>
+                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="bottom" secondItem="VEf-ai-GII" secondAttribute="bottom" constant="5" id="bR0-Yu-Md5"/>
+                                    <constraint firstItem="WQf-pN-tvI" firstAttribute="centerX" secondItem="5rY-3X-jiu" secondAttribute="centerX" id="eq5-Hp-ghI"/>
+                                    <constraint firstItem="WQf-pN-tvI" firstAttribute="top" secondItem="h0B-hi-QyW" secondAttribute="top" constant="5" id="i4X-Vb-ny2"/>
+                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="VEf-ai-GII" secondAttribute="trailing" constant="5" id="m2G-EQ-AcN"/>
+                                    <constraint firstItem="Fmn-sb-rkR" firstAttribute="top" secondItem="5rY-3X-jiu" secondAttribute="top" constant="5" id="qPm-hx-Jmz"/>
+                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="Fmn-sb-rkR" secondAttribute="trailing" constant="5" id="xKg-5o-vsZ"/>
+                                </constraints>
                                 <viewLayoutGuide key="safeArea" id="h0B-hi-QyW"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="l24-kN-DnW"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="5rY-3X-jiu" firstAttribute="top" secondItem="bsR-Dv-XLS" secondAttribute="bottom" constant="5" id="5Hk-td-Wx9"/>
                             <constraint firstItem="Ax4-pq-3kr" firstAttribute="centerX" secondItem="udC-lS-VJ9" secondAttribute="centerX" id="J3X-Fk-bpR"/>
+                            <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="trailing" secondItem="5rY-3X-jiu" secondAttribute="trailing" constant="15" id="KWE-8C-IkO"/>
                             <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="trailing" secondItem="TAp-li-cdH" secondAttribute="trailing" id="VEb-0D-lMn"/>
                             <constraint firstItem="TAp-li-cdH" firstAttribute="leading" secondItem="5bJ-SZ-EuZ" secondAttribute="leading" id="WwW-6l-qoR"/>
                             <constraint firstItem="Ax4-pq-3kr" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" constant="13" id="Z3l-qy-S8f"/>
@@ -1927,7 +1967,8 @@
                     <connections>
                         <outlet property="collectionFeed" destination="TAp-li-cdH" id="NYa-mG-oL4"/>
                         <outlet property="settingsView" destination="5rY-3X-jiu" id="ZaJ-cw-AUZ"/>
-                        <outlet property="tempSwitch" destination="rag-oU-hCg" id="eLA-J2-zmS"/>
+                        <outlet property="vegiClickButton" destination="Fmn-sb-rkR" id="263-YU-mlV"/>
+                        <outlet property="vegiClickImage" destination="WQf-pN-tvI" id="FjI-7Y-cve"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Xnk-uj-Z3I"/>
                         <segue destination="As2-HR-siM" kind="show" identifier="imagePageSeg" id="lIt-D9-Es6"/>
                     </connections>
@@ -1956,16 +1997,16 @@
         <image name="homeButton2Final" width="45" height="45"/>
         <image name="image" width="100" height="100"/>
         <image name="logoMatdags" width="100" height="30"/>
-        <image name="logoutButton2Final" width="45" height="45"/>
         <image name="matdagsLogoFinal" width="100" height="30"/>
         <image name="moreUse2Final" width="45" height="45"/>
+        <image name="moreUseSettings2Final" width="45" height="45"/>
         <image name="profileButton2Final" width="45" height="45"/>
         <image name="profileImagePlaceholder" width="240" height="240"/>
-        <image name="refreshButton" width="45" height="45"/>
         <image name="searchButton2Final" width="45" height="45"/>
         <image name="shareButton" width="150" height="150"/>
         <image name="vegButton50" width="50" height="50"/>
         <image name="vegButtonUse2Final" width="45" height="45"/>
+        <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lIt-D9-Es6"/>
