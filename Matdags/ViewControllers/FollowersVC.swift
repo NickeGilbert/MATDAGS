@@ -10,6 +10,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBOutlet var feedCollectionView: UICollectionView!
     @IBOutlet weak var zeroImagesMessage: UILabel!
+    @IBOutlet weak var subviewCollectionView: UICollectionView!
+    @IBOutlet weak var subview: UIView!
+    @IBOutlet weak var subviewUsername: UILabel!
+    @IBOutlet weak var subviewProfileImage: UIImageView!
     
     var ref: DatabaseReference!
     var posts = [Post]()
@@ -17,16 +21,19 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var seguePostID : String!
     var following = [String]()
     var refresher : UIRefreshControl!
+    var subviews = [Subview]()
+    
+    let uid = Auth.auth().currentUser!.uid
+    let db = Database.database()
+    let alias = Auth.auth().currentUser!.displayName
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.zeroImagesMessage.isHidden = true
         
-//        if posts.isEmpty {
-//            self.posts.removeAll()
-//            loadData()
-//            zeroImagesMessage.isHidden = true
-//        }
+        //subview.layer.cornerRadius = 20
+       // subview.clipsToBounds = true
+        self.subview.isHidden = true
+        self.zeroImagesMessage.isHidden = true
         
         if posts.isEmpty == true {
             
@@ -40,6 +47,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.tintColor = UIColor.orange
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
+        self.feedCollectionView.delegate = self
+        self.feedCollectionView.dataSource = self
+        self.subviewCollectionView.delegate = self
+        self.subviewCollectionView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,9 +68,20 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         fetchPosts { (true) in
             self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
+            self.subviewCollectionView.reloadData()
             self.stopRefresher()
             print(self.posts.count)
         }
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        getUserProfileImage { (true) in
+            self.downloadImages(completionHandler: { (true) in
+                self.subviewCollectionView.reloadData()
+                self.subview.isHidden = false
+            })
+        }
+        
     }
     
     func stopRefresher() {
@@ -123,60 +145,97 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return self.posts.count
+        if collectionView == feedCollectionView {
+                print("POSTS: ", self.posts.count)
+            return self.posts.count
+        
+        } else {
+              print("SUBVIEWS: ", self.subviews.count)
+            return self.subviews.count
+          
+        }
+   
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
-        
-        let cachedImages = cell.viewWithTag(1) as? UIImageView
-        
-        cell.imageFeedView.image = nil
-        
-        if self.posts[indexPath.row].pathToImage != nil {
-            cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
-        }
-        
-        //Visa stjärnor i varje cell
-        let rating = self.posts[indexPath.row].rating
-        let usersrated = self.posts[indexPath.row].usersRated
-        if rating != nil {
-            for button in cell.starButtonArray {
-                button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
-                if Int(rating!) > 0 {
-                    if Int(usersrated!) > 0 {
-                        let a = rating! / usersrated!
-                        for i in 0...Int(a)-1 {
-                            if button.tag <= i {
-                                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+        if collectionView == self.feedCollectionView {
+            let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+            
+            let cachedImages = cell.viewWithTag(1) as? UIImageView
+            
+            cell.imageFeedView.image = nil
+            
+            if self.posts[indexPath.row].pathToImage != nil {
+                cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+            }
+            
+            //Visa stjärnor i varje cell
+            let rating = self.posts[indexPath.row].rating
+            let usersrated = self.posts[indexPath.row].usersRated
+            if rating != nil {
+                for button in cell.starButtonArray {
+                    button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+                    if Int(rating!) > 0 {
+                        if Int(usersrated!) > 0 {
+                            let a = rating! / usersrated!
+                            for i in 0...Int(a)-1 {
+                                if button.tag <= i {
+                                    button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        
-        cell.usernameLabel.text = self.posts[indexPath.row].alias
-        cell.backgroundColor = UIColor.white
-//        cell.dropShadow()
-        cell.vegiIcon.isHidden = true
-        
-        cell.layer.cornerRadius = 10
-        cell.clipsToBounds = true
-        
-        if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(FollowersVC.tapFunction))
+            cell.usernameLabel.isUserInteractionEnabled = true
+            cell.usernameLabel.addGestureRecognizer(tap)
+            
+            cell.usernameLabel.text = self.posts[indexPath.row].alias
+            subviewUsername.text = cell.usernameLabel.text
+            print("NAME1: ", subviewUsername.text!)
+            
+            cell.backgroundColor = UIColor.white
+            //        cell.dropShadow()
             cell.vegiIcon.isHidden = true
+            
+            cell.layer.cornerRadius = 10
+            cell.clipsToBounds = true
+            
+            if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+                cell.vegiIcon.isHidden = true
+            } else {
+                cell.vegiIcon.isHidden = false
+            }
+            
+            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+            return cell
         } else {
-            cell.vegiIcon.isHidden = false
+            
+            let cellB = subviewCollectionView.dequeueReusableCell(withReuseIdentifier: "subviewFollowersCell", for: indexPath) as! FollowerSubViewCell
+            
+            cellB.layer.cornerRadius = 5
+            cellB.mySubviewCollectionFeed.image = nil
+            if self.subviews[indexPath.row].pathToImage256 != nil {
+                cellB.mySubviewCollectionFeed.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
+            } else {
+                print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            }
+            return cellB
         }
-        
-        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
-        return cell
     }
+        
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 100)
-        return storleken
+        if collectionView == feedCollectionView {
+            let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 100)
+            return storleken
+        } else {
+            let size = CGSize(width: self.view.frame.width/3.5, height: self.view.frame.width/3.5)
+            return size
+        }
+       
     }
     
     @IBAction func swipeRight(_ sender: Any) {
@@ -190,5 +249,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
         URLCache.shared.removeAllCachedResponses()
     }
+    
+    @IBAction func subviewDismissBtn(_ sender: Any) {
+        subview.isHidden = true
+    }
+    
 }
 

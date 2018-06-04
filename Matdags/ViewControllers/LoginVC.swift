@@ -140,7 +140,6 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
             return true
         } else {
             self.view.endEditing(true)
-            login()
             return true
         }
     }

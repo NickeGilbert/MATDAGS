@@ -13,6 +13,12 @@ class FollowersCell: UICollectionViewCell {
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var starButtonArray: [UIButton]!
     
+    
+    @IBOutlet weak var mySubviewCollectionFeed: UIImageView!
+    
+    
+    
+   
     //var posts = [Post]()
     //var users = [User]()
 
