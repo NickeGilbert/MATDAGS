@@ -29,9 +29,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //subview.layer.cornerRadius = 20
-       // subview.clipsToBounds = true
+
         self.subview.isHidden = true
         self.zeroImagesMessage.isHidden = true
         
@@ -150,6 +148,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         if collectionView == feedCollectionView {
                 print("POSTS: ", self.posts.count)
+          
             return self.posts.count
         
         } else {
@@ -167,7 +166,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let cachedImages = cell.viewWithTag(1) as? UIImageView
             
             cell.imageFeedView.image = nil
-            
             if self.posts[indexPath.row].pathToImage != nil {
                 cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
             }

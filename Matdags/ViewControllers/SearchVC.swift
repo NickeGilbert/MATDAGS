@@ -57,8 +57,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         //SubView
         topSubView.isHidden = true
-        
-//        subview.layer.cornerRadius = 2
+
         subview.layer.cornerRadius = 20
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = unfollowUserBtn
@@ -81,8 +80,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         print("POOOPis")
         self.searchController.isActive = false
         topSubView.isHidden = true
-//        users = []
-//        searchUsersTableView.reloadData()
     }
 
     
@@ -96,11 +93,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         tabBarController?.selectedIndex = 2
     }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//
-//    }
-    
     
     func getUserFollowing() {
 
@@ -108,7 +100,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if (snapshot.value as? NSDictionary) != nil { //FUNGERER INTE ÄN
+            if (snapshot.value as? NSDictionary) != nil {
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
                     print("SNAPSHOT", uidValue.value)
@@ -169,15 +161,15 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.subviewUsername.text = username.alias
         
         self.subviewUnfollowBtn.isHidden = true
-        self.subviewFollowButton.isHidden = false
+        self.subviewFollowButton.isHidden = true
  
 
         if self.uid! == ownUserID! {
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
         } else {
-            print("HEJSAN! : ", ownUserID)
-            print("HEJSAN :", self.userFollowing)
+            print("ANVÄNDAREN JAG KLICKADE PÅS UID! : ", ownUserID!)
+            print("ANVÄNDARE JAG FÖLJER :", self.userFollowing)
             for user in self.userFollowing {
                 print("\nUSER IS: ", user)
                 print("YOUR ARE FOLLOWING: ", self.userFollowing)

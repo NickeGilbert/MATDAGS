@@ -194,18 +194,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
-    
-//    @IBAction func profileSettingsAction(_ sender: UIButton) {
-//        print(newPic)
-//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-//            imagePicker.delegate = self
-//            imagePicker.modalPresentationStyle = .overCurrentContext
-//            imagePicker.sourceType = .photoLibrary;
-//            imagePicker.allowsEditing = true
-//            self.present(imagePicker, animated: true, completion: nil)
-//        }
-//    }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         print("Running")
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -257,7 +245,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 dispatchGroup.notify(queue: .main, execute: {
                     print("\n Async completed \n")
                     AppDelegate.instance().dismissActivityIndicator()
-//                    self.dismiss(animated: false, completion: nil)
                 })
             })
             uploadTask.resume()

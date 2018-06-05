@@ -113,11 +113,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             vegiClickImage.image = UIImage(named: "vegButtonUseSettings2Final")
             vegiBool = false
             posts.removeAll()
-            loadData()
-            
+            loadData()      
         }
-        
-        
     }
     
     @IBAction func logOut(_ sender: Any) {
@@ -221,46 +218,18 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         }
         
-        
-        
-        
         if topCounter == 0 {
             left()
         }else{
             right()
         }
         
-        
         print("Cellcounter 1 : ", cellCounter)
         print("CellCounter 2 : ", cellCounter2)
         print("---------------")
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         return storleken
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        var storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-//        return storleken
-//
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSeg", sender: indexPath)

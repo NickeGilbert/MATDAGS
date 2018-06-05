@@ -79,7 +79,7 @@ extension FollowersVC {
             
             
             let puid = Auth.auth().currentUser!.uid
-            print("puid", puid)
+           
             let userUID = self.posts[0].postID
             print("userID posts", userUID)
             
