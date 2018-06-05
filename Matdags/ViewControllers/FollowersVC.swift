@@ -257,5 +257,21 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subview.isHidden = true
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "imagePageSeg", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "imagePageSeg")
+        {
+            let selectedCell = sender as! NSIndexPath
+            let selectedRow = selectedCell.row
+            let imagePage = segue.destination as! ImagePageVC
+            imagePage.seguePostID = self.posts[selectedRow].postID
+        } else {
+            print("\n Segue with identifier (imagePage) not found. \n")
+        }
+    }
+    
 }
 

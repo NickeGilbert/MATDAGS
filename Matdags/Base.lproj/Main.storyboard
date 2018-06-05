@@ -826,6 +826,7 @@
                         <outlet property="subviewProfileImage" destination="QFP-Fg-I0h" id="v6l-fV-Jib"/>
                         <outlet property="subviewUsername" destination="2wz-89-Tef" id="mZk-8P-FRT"/>
                         <outlet property="zeroImagesMessage" destination="of9-fs-zpr" id="mGs-77-4B2"/>
+                        <segue destination="As2-HR-siM" kind="show" identifier="imagePageSeg" id="jqz-7P-XQE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K0-30-kYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1738,7 +1739,7 @@
                                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                                <rect key="frame" x="0.0" y="152" width="355" height="537"/>
+                                                <rect key="frame" x="0.0" y="152" width="355" height="586"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
                                                     <size key="itemSize" width="101" height="101"/>
@@ -1895,7 +1896,7 @@
                 <swipeGestureRecognizer direction="right" id="fNl-2b-zWO"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2ex-fQ-t2R"/>
             </objects>
-            <point key="canvasLocation" x="3477.5999999999999" y="-1267.2413793103449"/>
+            <point key="canvasLocation" x="5623" y="242"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -2106,7 +2107,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1677.5999999999999" y="-526.84729064039414"/>
+            <point key="canvasLocation" x="1676" y="-531"/>
         </scene>
     </scenes>
     <resources>
@@ -2135,7 +2136,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="jqz-7P-XQE"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

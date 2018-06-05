@@ -102,7 +102,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
                 self.deleteImage.isHidden = true
-                self.imagePageSettingsViewHeightConstraint.constant = 60
+                self.imagePageSettingsViewHeightConstraint.constant = 120
                 self.followerButton.isHidden = false
                 self.subviewFollowButton.isHidden = false
             } else {
