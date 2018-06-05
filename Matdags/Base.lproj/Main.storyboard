@@ -1739,7 +1739,7 @@
                                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                                <rect key="frame" x="0.0" y="152" width="355" height="586"/>
+                                                <rect key="frame" x="0.0" y="152" width="355" height="537"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
                                                     <size key="itemSize" width="101" height="101"/>
@@ -2136,7 +2136,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jqz-7P-XQE"/>
+        <segue reference="lIt-D9-Es6"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
