@@ -71,10 +71,20 @@ extension FollowersVC {
     func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         if subviews.count == 0 {
             subviews.removeAll()
+            
+            //Här får vi vilka användare som finns hos oss!
+            self.following.append(Auth.auth().currentUser!.uid)
+            print("HEJSAN: ", self.following)
+            
+            
+            
             let puid = Auth.auth().currentUser!.uid
             print("puid", puid)
-            let userUID = self.posts[0].userID
-            print("userID", userUID)
+            let userUID = self.posts[0].postID
+            print("userID posts", userUID)
+            
+            
+            
             let dbref = Database.database().reference(withPath: "Users/\(puid)/Posts")
             dbref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String : AnyObject] {
@@ -91,9 +101,15 @@ extension FollowersVC {
                     print("\nCouldnt download data for subview.")
                 }
                 self.subviewCollectionView.reloadData()
+                self.feedCollectionView.reloadData()
             })
         } else {
             completionHandler(true)
         }
     }
+    
+    func getUserUID() {
+        
+    }
+    
 }

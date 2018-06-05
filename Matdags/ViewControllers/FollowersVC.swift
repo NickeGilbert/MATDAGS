@@ -23,9 +23,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var refresher : UIRefreshControl!
     var subviews = [Subview]()
     
-    let uid = Auth.auth().currentUser!.uid
+    let uid = Auth.auth().currentUser?.uid
     let db = Database.database()
-    let alias = Auth.auth().currentUser!.displayName
+    let alias = Auth.auth().currentUser?.displayName
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +102,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                             if let followingUsers = value["Following"] as? [String: String] {
                                 for (_,user) in followingUsers {
                                     self.following.append(user)
+                                    print("ANVÄNDARE :", user)
                                 }
                             }
                             self.following.append(Auth.auth().currentUser!.uid)
@@ -124,6 +125,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true
+                                                    print("POSTS: ", self.posts)
+
                                                 }
                                             }
                                         }
@@ -161,7 +164,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if collectionView == self.feedCollectionView {
             let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
             
-            let cachedImages = cell.viewWithTag(1) as? UIImageView
+            //let cachedImages = cell.viewWithTag(1) as? UIImageView
             
             cell.imageFeedView.image = nil
             
@@ -209,7 +212,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 cell.vegiIcon.isHidden = false
             }
             
-            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+          //  cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
             return cell
         } else {
             

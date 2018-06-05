@@ -472,8 +472,23 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         
     }
-    
+    @IBAction func blockUser(_ sender: Any) {
+        print("PRESSED")
+        let userId = self.posts[0].userID!
+        print("Användarens uid: ", userId)
+        let dbref = db.reference(withPath: "Users/\(uid)/BlockedUser")
+            print("DATABASEN: ", dbref)
+        if self.posts[0].userID != nil {
+            let blockedUser = ["\(self.posts[0].alias!)" : "\(userId)" ] as [String : Any]
+            dbref.updateChildValues(blockedUser)
+        } else {
+            print("COULD NOT BLOCK USER")
+        }
+   
+    }
 }
+    
+
 
 
 
