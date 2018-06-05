@@ -164,7 +164,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if collectionView == self.feedCollectionView {
             let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
             
-            //let cachedImages = cell.viewWithTag(1) as? UIImageView
+            let cachedImages = cell.viewWithTag(1) as? UIImageView
             
             cell.imageFeedView.image = nil
             
@@ -212,7 +212,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 cell.vegiIcon.isHidden = false
             }
             
-          //  cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
             return cell
         } else {
             
