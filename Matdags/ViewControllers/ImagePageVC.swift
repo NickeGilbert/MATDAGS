@@ -52,8 +52,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var seguePostID : String!
     var users = [User]()
-    var count : Int = 0
-    var countFollower = 0
+    var peoplelIFollowCount : Int = 0
+    var countPeopleThatFollowMe : Int = 0
     var posts = [Post]()
     var subviews = [Subview]()
     var userFollowing = [String]()
@@ -75,6 +75,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserFollowersCounter()
         followerButton.backgroundColor = followUserBtn
         unfollowingButton.backgroundColor = unfollowUserBtn
         subviewFollowButton.backgroundColor = followUserBtn
