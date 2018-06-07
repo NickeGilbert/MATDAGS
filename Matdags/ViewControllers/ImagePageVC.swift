@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
 
     @IBOutlet weak var vegiIcon: UIImageView!
@@ -19,8 +19,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subviewUnfollowButton: UIButton!
     
+    
+    @IBOutlet weak var settingsOverlayView: UIView!
     @IBOutlet weak var imagePageSettingsView: UIView!
     @IBOutlet weak var deleteImage: UIButton!
+    @IBOutlet weak var reportImage: UIButton!
+    @IBOutlet weak var blockUser: UIButton!
     
 //    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
@@ -83,14 +87,28 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         topSubView.isHidden = true
         subview.isHidden = false
         commentsTextField.delegate = self
-        imagePageSettingsView.isHidden = true
+        settingsOverlayView.isHidden = true
         deleteImage.setTitle(removeImage,for: .normal)
+        
+        let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
+        clickUITapGestureRecognizer.delegate = self
+        settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
+    
+    @IBAction func onSelect(_ sender: Any) {
+        settingsOverlayView.isHidden = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 
+    @IBOutlet weak var deleteToUBlockUserConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blockToReportConstraint: NSLayoutConstraint!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -101,15 +119,22 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadInfo { (true) in
             print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
-                self.deleteImage.isHidden = true
-                self.imagePageSettingsViewHeightConstraint.constant = 120
+                self.deleteImage.isHidden = true // SOME DUDE
                 self.followerButton.isHidden = false
                 self.subviewFollowButton.isHidden = false
+                self.imagePageSettingsViewHeightConstraint.constant = 105
+                self.blockToReportConstraint.constant = 20
+//                self.imagePageSettingsView.layoutIfNeeded()
             } else {
-                self.deleteImage.isHidden = false
+                self.deleteImage.isHidden = false // MYSELF
+                self.reportImage.isHidden = true
+                self.blockUser.isHidden = true
                 self.followerButton.isHidden = true
                 self.unfollowingButton.isHidden = true
                 self.subviewFollowButton.isHidden = true
+                self.imagePageSettingsViewHeightConstraint.constant = 60
+                self.deleteToUBlockUserConstraint.constant = -40
+//                self.imagePageSettingsView.layoutIfNeeded()
             }
             if self.posts[0].usersRated != nil {
                 self.usersRated = self.posts[0].usersRated
@@ -262,7 +287,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func commentButtonClick(_ sender: UIButton) {
-        imagePageSettingsView.isHidden = true
+        settingsOverlayView.isHidden = true
         commentsTextField.text = ""
         commentsView.isHidden = false
         commentsTextField.becomeFirstResponder()
@@ -341,7 +366,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func clickedOnUsername(_ sender: Any) {
         getUserProfileImage { (true) in
             self.downloadImages(completionHandler: { (true) in
-                self.imagePageSettingsView.isHidden = true
+                self.settingsOverlayView.isHidden = true
                 self.topSubView.isHidden = false
                 self.subviewUsername.text = self.posts[0].alias
             })
@@ -349,11 +374,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func openContainerView(_ sender: Any) {
-        if self.imagePageSettingsView.isHidden == true {
-             self.imagePageSettingsView.isHidden = false
-        }   else {
-             self.imagePageSettingsView.isHidden = true
-        }
+        settingsOverlayView.isHidden = false
     }
 
     @IBAction func reportImage(_ sender: Any) {
