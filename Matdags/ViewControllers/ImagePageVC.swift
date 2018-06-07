@@ -75,7 +75,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserFollowersCounter()
+        getUserThatIFollowCounter()
         followerButton.backgroundColor = followUserBtn
         unfollowingButton.backgroundColor = unfollowUserBtn
         subviewFollowButton.backgroundColor = followUserBtn
@@ -146,6 +146,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortFirebaseInfo()
             self.getStars()
             self.getUserFollowing()
+            self.getUserThatFollowMeCounter() 
         }
         
         observeComments()
