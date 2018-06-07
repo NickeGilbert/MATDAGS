@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1997,87 +1997,99 @@
                                     <constraint firstAttribute="width" constant="75" id="w1W-6V-lza"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-3X-jiu" userLabel="settingsView">
-                                <rect key="frame" x="205" y="93" width="155" height="120"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVV-vv-GTK" userLabel="settingsOverlayView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmn-sb-rkR">
-                                        <rect key="frame" x="5" y="5" width="145" height="60"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-3X-jiu" userLabel="settingsView">
+                                        <rect key="frame" x="110.33333333333331" y="341" width="155" height="130"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmn-sb-rkR">
+                                                <rect key="frame" x="5" y="5" width="145" height="65"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="65" id="fYD-GG-1X6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                <state key="normal" title="Vego">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="vegiClick:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="b2n-Gn-UBd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEf-ai-GII">
+                                                <rect key="frame" x="5" y="85" width="145" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="b0K-ns-q3s"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <state key="normal" title="Logga ut">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="bLD-Oh-W9f"/>
+                                                </connections>
+                                            </button>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l24-kN-DnW" userLabel="devider">
+                                                <rect key="frame" x="25" y="55" width="105" height="1"/>
+                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="oO2-SG-3QW"/>
+                                                </constraints>
+                                            </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButtonUseSettings2Final" translatesAutoresizingMaskIntoConstraints="NO" id="WQf-pN-tvI">
+                                                <rect key="frame" x="59.666666666666671" y="10" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="6Kx-qK-HFF"/>
+                                                    <constraint firstAttribute="width" constant="35" id="fYE-Gb-Klb"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.99998790029999995" blue="0.9999920726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="fYD-GG-1X6"/>
+                                            <constraint firstItem="l24-kN-DnW" firstAttribute="top" secondItem="Fmn-sb-rkR" secondAttribute="bottom" constant="10" id="20c-ca-ib7"/>
+                                            <constraint firstAttribute="height" constant="130" id="6ZP-dz-ftP"/>
+                                            <constraint firstItem="VEf-ai-GII" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="7q6-Uu-hVk"/>
+                                            <constraint firstAttribute="trailing" secondItem="l24-kN-DnW" secondAttribute="trailing" constant="25" id="Alz-eb-mVh"/>
+                                            <constraint firstAttribute="width" constant="155" id="D9E-Rg-Ag4"/>
+                                            <constraint firstItem="l24-kN-DnW" firstAttribute="leading" secondItem="5rY-3X-jiu" secondAttribute="leading" constant="25" id="NFK-RU-NKY"/>
+                                            <constraint firstItem="Fmn-sb-rkR" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="RhV-pw-eT3"/>
+                                            <constraint firstItem="h0B-hi-QyW" firstAttribute="bottom" secondItem="VEf-ai-GII" secondAttribute="bottom" constant="10" id="bR0-Yu-Md5"/>
+                                            <constraint firstItem="WQf-pN-tvI" firstAttribute="centerX" secondItem="5rY-3X-jiu" secondAttribute="centerX" id="eq5-Hp-ghI"/>
+                                            <constraint firstItem="WQf-pN-tvI" firstAttribute="top" secondItem="h0B-hi-QyW" secondAttribute="top" constant="10" id="i4X-Vb-ny2"/>
+                                            <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="VEf-ai-GII" secondAttribute="trailing" constant="5" id="m2G-EQ-AcN"/>
+                                            <constraint firstItem="Fmn-sb-rkR" firstAttribute="top" secondItem="5rY-3X-jiu" secondAttribute="top" constant="5" id="qPm-hx-Jmz"/>
+                                            <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="Fmn-sb-rkR" secondAttribute="trailing" constant="5" id="xKg-5o-vsZ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                        <state key="normal" title="Vego">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="vegiClick:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="b2n-Gn-UBd"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEf-ai-GII">
-                                        <rect key="frame" x="5" y="75" width="145" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="b0K-ns-q3s"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                        <state key="normal" title="Logga ut">
-                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logOut:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="bLD-Oh-W9f"/>
-                                        </connections>
-                                    </button>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l24-kN-DnW" userLabel="devider">
-                                        <rect key="frame" x="25" y="55" width="105" height="1"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.5" id="oO2-SG-3QW"/>
-                                        </constraints>
+                                        <viewLayoutGuide key="safeArea" id="h0B-hi-QyW"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="l24-kN-DnW"/>
+                                            </mask>
+                                        </variation>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButtonUseSettings2Final" translatesAutoresizingMaskIntoConstraints="NO" id="WQf-pN-tvI">
-                                        <rect key="frame" x="60" y="5" width="35" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="6Kx-qK-HFF"/>
-                                            <constraint firstAttribute="width" constant="35" id="fYE-Gb-Klb"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.99998790029999995" blue="0.9999920726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="l24-kN-DnW" firstAttribute="top" secondItem="Fmn-sb-rkR" secondAttribute="bottom" constant="10" id="20c-ca-ib7"/>
-                                    <constraint firstItem="VEf-ai-GII" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="7q6-Uu-hVk"/>
-                                    <constraint firstAttribute="width" constant="155" id="A9t-Uy-NMl"/>
-                                    <constraint firstAttribute="trailing" secondItem="l24-kN-DnW" secondAttribute="trailing" constant="25" id="Alz-eb-mVh"/>
-                                    <constraint firstItem="l24-kN-DnW" firstAttribute="leading" secondItem="5rY-3X-jiu" secondAttribute="leading" constant="25" id="NFK-RU-NKY"/>
-                                    <constraint firstAttribute="height" constant="120" id="OuT-2A-3xR"/>
-                                    <constraint firstItem="Fmn-sb-rkR" firstAttribute="leading" secondItem="h0B-hi-QyW" secondAttribute="leading" constant="5" id="RhV-pw-eT3"/>
-                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="bottom" secondItem="VEf-ai-GII" secondAttribute="bottom" constant="10" id="bR0-Yu-Md5"/>
-                                    <constraint firstItem="WQf-pN-tvI" firstAttribute="centerX" secondItem="5rY-3X-jiu" secondAttribute="centerX" id="eq5-Hp-ghI"/>
-                                    <constraint firstItem="WQf-pN-tvI" firstAttribute="top" secondItem="h0B-hi-QyW" secondAttribute="top" constant="5" id="i4X-Vb-ny2"/>
-                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="VEf-ai-GII" secondAttribute="trailing" constant="5" id="m2G-EQ-AcN"/>
-                                    <constraint firstItem="Fmn-sb-rkR" firstAttribute="top" secondItem="5rY-3X-jiu" secondAttribute="top" constant="5" id="qPm-hx-Jmz"/>
-                                    <constraint firstItem="h0B-hi-QyW" firstAttribute="trailing" secondItem="Fmn-sb-rkR" secondAttribute="trailing" constant="5" id="xKg-5o-vsZ"/>
+                                    <constraint firstItem="5rY-3X-jiu" firstAttribute="centerX" secondItem="MVV-vv-GTK" secondAttribute="centerX" id="PRq-u3-tS2"/>
+                                    <constraint firstItem="5rY-3X-jiu" firstAttribute="centerY" secondItem="MVV-vv-GTK" secondAttribute="centerY" id="btc-U2-yQv"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="h0B-hi-QyW"/>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="l24-kN-DnW"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="5rY-3X-jiu" firstAttribute="top" secondItem="bsR-Dv-XLS" secondAttribute="bottom" constant="5" id="5Hk-td-Wx9"/>
                             <constraint firstItem="Ax4-pq-3kr" firstAttribute="centerX" secondItem="udC-lS-VJ9" secondAttribute="centerX" id="J3X-Fk-bpR"/>
-                            <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="trailing" secondItem="5rY-3X-jiu" secondAttribute="trailing" constant="15" id="KWE-8C-IkO"/>
+                            <constraint firstItem="MVV-vv-GTK" firstAttribute="top" secondItem="udC-lS-VJ9" secondAttribute="top" id="NCC-s9-Jhq"/>
+                            <constraint firstItem="MVV-vv-GTK" firstAttribute="trailing" secondItem="5bJ-SZ-EuZ" secondAttribute="trailing" id="TRD-kR-eR5"/>
                             <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="trailing" secondItem="TAp-li-cdH" secondAttribute="trailing" id="VEb-0D-lMn"/>
                             <constraint firstItem="TAp-li-cdH" firstAttribute="leading" secondItem="5bJ-SZ-EuZ" secondAttribute="leading" id="WwW-6l-qoR"/>
                             <constraint firstItem="Ax4-pq-3kr" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" constant="13" id="Z3l-qy-S8f"/>
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="leading" secondItem="udC-lS-VJ9" secondAttribute="leading" id="coc-oX-4kZ"/>
+                            <constraint firstItem="MVV-vv-GTK" firstAttribute="leading" secondItem="5bJ-SZ-EuZ" secondAttribute="leading" id="kft-YN-G26"/>
                             <constraint firstItem="5bJ-SZ-EuZ" firstAttribute="bottom" secondItem="TAp-li-cdH" secondAttribute="bottom" id="mKz-rq-N4n"/>
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" id="o3T-ug-Qdo"/>
                             <constraint firstItem="TAp-li-cdH" firstAttribute="top" secondItem="bsR-Dv-XLS" secondAttribute="bottom" id="rqB-FY-Fyo"/>
+                            <constraint firstAttribute="bottom" secondItem="MVV-vv-GTK" secondAttribute="bottom" id="sPs-Ln-Tkj"/>
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="width" secondItem="udC-lS-VJ9" secondAttribute="width" id="uVZ-AC-6Ab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-SZ-EuZ"/>
@@ -2093,6 +2105,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionFeed" destination="TAp-li-cdH" id="NYa-mG-oL4"/>
+                        <outlet property="settingsOverlayView" destination="MVV-vv-GTK" id="N4f-M3-Azd"/>
                         <outlet property="settingsView" destination="5rY-3X-jiu" id="ZaJ-cw-AUZ"/>
                         <outlet property="vegiClickButton" destination="Fmn-sb-rkR" id="263-YU-mlV"/>
                         <outlet property="vegiClickImage" destination="WQf-pN-tvI" id="FjI-7Y-cve"/>
@@ -2107,7 +2120,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1676" y="-531"/>
+            <point key="canvasLocation" x="1676" y="-531.2807881773399"/>
         </scene>
     </scenes>
     <resources>

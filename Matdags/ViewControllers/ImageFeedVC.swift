@@ -9,10 +9,11 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import FBSDKCoreKit
 
-class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 
     @IBOutlet var collectionFeed: UICollectionView!
     @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsOverlayView: UIView!
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
@@ -32,9 +33,20 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.refresher.attributedTitle = NSAttributedString(string: "Hello")
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.collectionFeed!.addSubview(refresher)
-        settingsView.isHidden = true
+        settingsOverlayView.isHidden = true
         settingsView.layer.cornerRadius = 5
         
+        let tapRecognizerSettings = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
+        tapRecognizerSettings.delegate = self
+        settingsOverlayView?.addGestureRecognizer(tapRecognizerSettings)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
+    
+    @IBAction func onSelect(_ sender: Any) {
+        settingsOverlayView.isHidden = true
     }
     
     @objc func loadData() {
@@ -90,13 +102,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func moreClick(_ sender: Any) {
-        if moreBool == false {
-            settingsView.isHidden = false
-            moreBool = true
-        }else{
-            settingsView.isHidden = true
-            moreBool = false
-        }
+        settingsOverlayView.isHidden = false
     }
     
     @IBOutlet weak var vegiClickImage: UIImageView!
