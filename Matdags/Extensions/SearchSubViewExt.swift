@@ -38,6 +38,7 @@ extension SearchVC {
             let counter = ["followingCounter" : count ] as [String : Int]
             uref.updateChildValues(counter)
             dbref.updateChildValues(following)
+            print("HEJSAN: ", counter)
         } else {
             print("\n userID not found when adding follower \n")
         }
@@ -63,12 +64,18 @@ extension SearchVC {
     }
     
     func unfollowUser() {
+        let uid = Auth.auth().currentUser!.uid
+        let uref = db.reference(withPath: "Users/\(uid)")
         let followingUsername = self.subviewUsername.text!
         let followingid = userId!
         let mySelf = Auth.auth().currentUser!.displayName!
         
         //Tas bort från sig själv
-        let dbref = db.reference(withPath: "Users/\(uid!)/Following/\(followingUsername)")
+        let dbref = db.reference(withPath: "Users/\(uid)/Following/\(followingUsername)")
+        count-=1
+        let counter = ["followingCounter" : count ] as [String : Int]
+        uref.updateChildValues(counter)
+        
         print("dbrf: ", dbref)
         dbref.removeValue { (error, ref) in
             if error != nil {
@@ -77,8 +84,12 @@ extension SearchVC {
             }
         }
 
-        //Tas bort från användaren
+        //Tas bort från den du följer
         let dbUserRef = db.reference(withPath: "Users/\(followingid)/Follower/\(mySelf)")
+        countFollower-=1
+        let Usercounter = ["followerCounter" : countFollower ] as [String : Int]
+        uref.updateChildValues(Usercounter)
+        
         print("dbrf: ", dbref)
         dbUserRef.removeValue { (error, ref) in
             if error != nil {
