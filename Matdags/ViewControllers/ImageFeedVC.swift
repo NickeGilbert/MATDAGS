@@ -9,7 +9,7 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import FBSDKCoreKit
 
-class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UITabBarControllerDelegate {
 
     @IBOutlet var collectionFeed: UICollectionView!
     @IBOutlet weak var settingsView: UIView!

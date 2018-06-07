@@ -133,7 +133,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.unfollowingButton.isHidden = true
                 self.subviewFollowButton.isHidden = true
                 self.imagePageSettingsViewHeightConstraint.constant = 60
-                self.deleteToUBlockUserConstraint.constant = -40
+                self.deleteToUBlockUserConstraint.constant = -45
 //                self.imagePageSettingsView.layoutIfNeeded()
             }
             if self.posts[0].usersRated != nil {
