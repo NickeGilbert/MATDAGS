@@ -146,21 +146,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        if collectionView == feedCollectionView {
-                print("POSTS: ", self.posts.count)
-          
             return self.posts.count
-        
-        } else {
-              print("SUBVIEWS: ", self.subviews.count)
-            return self.subviews.count
-          
-        }
-   
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.feedCollectionView {
             let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
             
             let cachedImages = cell.viewWithTag(1) as? UIImageView
@@ -188,13 +178,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     }
                 }
             }
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(FollowersVC.tapFunction))
-            cell.usernameLabel.isUserInteractionEnabled = true
-            cell.usernameLabel.addGestureRecognizer(tap)
-            
+        
             cell.usernameLabel.text = self.posts[indexPath.row].alias
-            subviewUsername.text = cell.usernameLabel.text
             print("NAME1: ", subviewUsername.text!)
             
             cell.backgroundColor = UIColor.white
@@ -212,31 +197,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
             return cell
-        } else {
-            
-            let cellB = subviewCollectionView.dequeueReusableCell(withReuseIdentifier: "subviewFollowersCell", for: indexPath) as! FollowerSubViewCell
-            
-            cellB.layer.cornerRadius = 5
-            cellB.mySubviewCollectionFeed.image = nil
-            if self.subviews[indexPath.row].pathToImage256 != nil {
-                cellB.mySubviewCollectionFeed.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
-            } else {
-                print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
-            }
-            return cellB
-        }
+    
     }
         
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == feedCollectionView {
             let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 100)
             return storleken
-        } else {
-            let size = CGSize(width: self.view.frame.width/3.5, height: self.view.frame.width/3.5)
-            return size
-        }
-       
     }
     
     @IBAction func swipeRight(_ sender: Any) {
