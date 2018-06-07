@@ -1874,12 +1874,6 @@
                             <constraint firstItem="Zs8-gX-2Ep" firstAttribute="leading" secondItem="QCA-3I-UXr" secondAttribute="leading" id="qH9-ah-JYv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="XQz-Jm-hsB"/>
-                                <exclude reference="uJr-hq-MOK"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="blockToReportConstraint" destination="Rdu-Os-PJV" id="T6s-lm-3bt"/>
