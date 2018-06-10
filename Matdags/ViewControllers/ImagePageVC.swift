@@ -387,6 +387,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             
             let alert2 = UIAlertController(title: "Anmälan är skickad", message: "Vi ska ta en titt på bilden", preferredStyle: .alert)
+            self.reportPost()
+            self.reportPostSecond()
             alert2.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
             self.present(alert2, animated: true)
             
@@ -513,7 +515,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func reportUserPost(_ sender: Any) {
-        reportPost()
+        //Denna får inte tas bort, är kopplad till att Post anmäls.
     }
     
 }

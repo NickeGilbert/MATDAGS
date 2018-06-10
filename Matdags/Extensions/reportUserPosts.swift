@@ -9,27 +9,51 @@
 import UIKit
 import Firebase
 
-var maxReports = 5
-var countReports = 0
-
 extension ImagePageVC {
     
     func reportPost() {
-        print("PRESSED")
-        let userPostId = self.posts[0]
-        print("Användarens post id: ", userPostId)
-        let ref = Database.database().reference().child("Posts").child(seguePostID)
-        print("DATABASEN: ", ref)
-        if self.posts[0] != nil {
-            //let userRepots = ["Reports" : "\(reports)" ] as [String : Any]
-            
-            reports = reports+1
-            let myReports = ["Reports" : reports ] as [String : Int]
-            ref.updateChildValues(myReports)
+        if reports <= 5 {
+            let userPostId = self.posts[0]
+            let ref = Database.database().reference().child("Posts").child(seguePostID)
+            if self.posts[0] != nil {
+                //let userRepots = ["Reports" : "\(reports)" ] as [String : Any]
+                
+                reports = reports+1
+                let myReports = ["Reports" : reports ] as [String : Int]
+                ref.updateChildValues(myReports)
+            } else {
+                print("Did not work")
+            }
         } else {
-            print("COULD NOT BLOCK USER")
+            self.deletePosts()
         }
-        
+    }
+    
+    func reportPostSecond() {
+        if reports <= 5 {
+            let userPostUID = self.posts[0].userID
+            print("Användarens post id: ", userPostUID)
+            let ref = Database.database().reference().child("Users").child(userPostUID!).child("Posts").child(seguePostID)
+            print("DATABASEN ÄR: ", ref)
+            if self.posts[0] != nil {
+                
+                reports = reports+1
+                let myReports = ["Reports" : reports ] as [String : Int]
+                ref.updateChildValues(myReports)
+            } else {
+                print("Did not work")
+            }
+        } else {
+            let userPostUID = self.posts[0].userID
+            let myRef = Database.database().reference().child("Users").child(userPostUID!).child("Posts").child(seguePostID)
+            myRef.removeValue { (error, ref) in
+                if error != nil {
+                    print("DIDN'T GO THROUGH")
+                    return
+                }
+                print("POST DELETED")
+            }
+        }
     }
     
     func checkHowManyReportsPostHave() {
@@ -44,7 +68,6 @@ extension ImagePageVC {
             print(error.localizedDescription)
         }
     }
-    
     
     
     
