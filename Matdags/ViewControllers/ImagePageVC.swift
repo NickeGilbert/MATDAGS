@@ -54,6 +54,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var users = [User]()
     var peoplelIFollowCount : Int = 0
     var countPeopleThatFollowMe : Int = 0
+    var reports : Int = 0
     var posts = [Post]()
     var subviews = [Subview]()
     var userFollowing = [String]()
@@ -146,7 +147,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortFirebaseInfo()
             self.getStars()
             self.getUserFollowing()
-            self.getUserThatFollowMeCounter() 
+            self.getUserThatFollowMeCounter()
+            self.checkHowManyReportsPostHave()
         }
         
         observeComments()
@@ -502,13 +504,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let dbref = db.reference(withPath: "Users/\(uid)/BlockedUser")
             print("DATABASEN: ", dbref)
         if self.posts[0].userID != nil {
-            let blockedUser = ["\(self.posts[0].alias!)" : "\(userId)" ] as [String : Any]
+            let blockedUser = ["\(self.posts[0].alias)" : "\(userId)" ] as [String : Any]
             dbref.updateChildValues(blockedUser)
         } else {
             print("COULD NOT BLOCK USER")
         }
    
     }
+    
+    @IBAction func reportUserPost(_ sender: Any) {
+        reportPost()
+    }
+    
 }
     
 
