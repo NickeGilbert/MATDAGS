@@ -38,7 +38,6 @@ extension SearchVC {
             let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
             uref.updateChildValues(counter)
             dbref.updateChildValues(following)
-            print("HEJSAN: ", counter)
         } else {
             print("\n userID not found when adding follower \n")
         }
@@ -65,7 +64,6 @@ extension SearchVC {
             // Get user value
             let value = snapshot.value as? NSDictionary
             self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
-            print("THE USER THAT I HAVE CLICKED \(self.posts[0].alias) HAVE ", self.countPeopleThatFollowMe ,"FOLLOWERS")
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -106,7 +104,6 @@ extension SearchVC {
         let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
         uref.updateChildValues(counter)
         
-        print("dbrf: ", dbref)
         dbref.removeValue { (error, ref) in
             if error != nil {
                 print("DIDN'T GO THROUGH")
@@ -120,8 +117,7 @@ extension SearchVC {
         countPeopleThatFollowMe = countPeopleThatFollowMe-1
         let myFollowersCounter = ["followerCounter" : countPeopleThatFollowMe ] as [String : Int]
         userRef.updateChildValues(myFollowersCounter)
-        
-        print("dbrf: ", dbref)
+
         dbUserRef.removeValue { (error, ref) in
             if error != nil {
                 print("DIDN'T GO THROUGH")

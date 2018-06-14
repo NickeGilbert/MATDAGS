@@ -77,7 +77,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("POOOPis")
         self.searchController.isActive = false
         topSubView.isHidden = true
     }
@@ -103,7 +102,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             if (snapshot.value as? NSDictionary) != nil {
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
-                    print("SNAPSHOT", uidValue.value)
                     let appendUser = User()
                     appendUser.uid = uidValue.value as? String
                     self.userFollowing.append(appendUser.uid)
@@ -168,8 +166,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowBtn.isHidden = true
         } else {
-            print("ANVÄNDAREN JAG KLICKADE PÅS UID! : ", ownUserID!)
-            print("ANVÄNDARE JAG FÖLJER :", self.userFollowing)
+            print("THE USER IS CLICKED ON UID! : ", ownUserID!)
+            print("USERS IM FOLLOWING :", self.userFollowing)
             for user in self.userFollowing {
                 print("\nUSER IS: ", user)
                 print("YOUR ARE FOLLOWING: ", self.userFollowing)
@@ -208,7 +206,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
                     appendUser.alias = each["alias"] as? String
                     appendUser.uid = each["uid"] as? String
                     appendUser.profileImageURL = each["profileImageURL"] as? String
-                    print("\n\(appendUser.alias!) \n\(appendUser.uid!) \n\(appendUser.profileImageURL!)\n")
                     self.users.append(appendUser)
                     self.searchUsersTableView.insertRows(at: [IndexPath(row: self.users.count-1, section: 0)], with: .none)
                 }
@@ -251,7 +248,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             filterUsers()
         }
     }
-    
     
     @IBAction func unfollowUser(_ sender: Any) {
         self.subviewUnfollowBtn.isHidden = true
