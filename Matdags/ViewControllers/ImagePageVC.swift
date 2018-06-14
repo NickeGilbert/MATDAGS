@@ -55,6 +55,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var peoplelIFollowCount : Int = 0
     var countPeopleThatFollowMe : Int = 0
     var reports : Int = 0
+    var reportsOnUsers : Int = 0
     var posts = [Post]()
     var subviews = [Subview]()
     var userFollowing = [String]()
@@ -297,12 +298,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         commentsTextField.becomeFirstResponder()
     }
     
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.view.endEditing(true)
-//
-//    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentsTextField.text != "" {
             let postID = self.posts[0].postID
@@ -387,8 +382,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             
             let alert2 = UIAlertController(title: "Anmälan är skickad", message: "Vi ska ta en titt på bilden", preferredStyle: .alert)
-            self.reportPost()
-            self.reportPostSecond()
+           // self.reportPost()
+         //   self.reportPostSecond()
+            self.reportUsers()
             alert2.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
             self.present(alert2, animated: true)
             
@@ -411,32 +407,26 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.followerButton.isHidden = false
         unfollowUser()
     }
-    
-    
-    
-    
+ 
     func deletePosts() {
-
         //Tas bort från ImagePageVC
         let ref = Database.database().reference().child("Posts").child(seguePostID)
             ref.removeValue { (error, ref) in
             if error != nil {
-                print("DIDN'T GO THROUGH")
                 return
             }
             self.dismiss(animated: true, completion: nil)
-            print("POST DELETED")
         }
-        
+
         //Tas bort från ProfileVC
         let myRef = Database.database().reference().child("Users").child(uid).child("Posts").child(seguePostID)
         myRef.removeValue { (error, ref) in
             if error != nil {
-                print("DIDN'T GO THROUGH")
                 return
             }
             print("POST DELETED")
         }
+        
     }
     
     func getUserFollowing() {
@@ -448,7 +438,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if (snapshot.value as? NSDictionary) != nil {
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
-                    print("SNAPSHOT", uidValue.value)
                     let appendUser = User()
                     appendUser.uid = uidValue.value as? String
                     self.userFollowing.append(appendUser.uid)
@@ -462,56 +451,32 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func checkUserUid() {
-        
        let userId = self.posts[0].userID!
         
         if uid == userId {
             self.subviewFollowButton.isHidden = true
             self.subviewUnfollowButton.isHidden = true
-            print("MY USERID IS: ", self.posts[0].userID!)
-            print("userId is: ", userId)
         } else {
-            print("WHAT USER IS THIS? :", userId)
-            print("YOUR ARE FOLLOWING :", self.userFollowing)
             for user in userFollowing {
-                print("\nUSER IS: ", user)
-                print("YOUR ARE FOLLOWING: ", userFollowing)
-                
                 if userId == user {
-                    print("SUCCESS CHECK:", user, userFollowing)
-                    print("\nYou are following this user.")
                     self.followerButton.isHidden = true
                     self.unfollowingButton.isHidden = false
                     self.subviewFollowButton.isHidden = true
                     self.subviewUnfollowButton.isHidden = false
                     break
                 } else {
-                    print("FAILED CHECK:", user, userFollowing)
-                    print("\nYou are not following this user.")
                     self.followerButton.isHidden = false
                     self.unfollowingButton.isHidden = true
                     self.subviewFollowButton.isHidden = false
                     self.subviewUnfollowButton.isHidden = true
                 }
             }
-            print("after user loop")
         }
-        
-        
     }
+    
     @IBAction func blockUser(_ sender: Any) {
-        
+        reportUsers()
         print("PRESSED")
-        let userId = self.posts[0].userID!
-        print("Användarens uid: ", userId)
-        let dbref = db.reference(withPath: "Users/\(uid)/BlockedUser")
-            print("DATABASEN: ", dbref)
-        if self.posts[0].userID != nil {
-            let blockedUser = ["\(self.posts[0].alias)" : "\(userId)" ] as [String : Any]
-            dbref.updateChildValues(blockedUser)
-        } else {
-            print("COULD NOT BLOCK USER")
-        }
    
     }
     
@@ -521,22 +486,5 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
 }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
