@@ -38,6 +38,7 @@
 		A42426902035F0CE0029125C /* DeleteAccountAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */; };
 		A42DD9FA1F73D57400D04740 /* ImageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */; };
 		A42DD9FC1F73DA5800D04740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */; };
+		A42E9FB020D2530100702A0A /* BlockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42E9FAF20D2530100702A0A /* BlockUser.swift */; };
 		A43C314F2026418A0058ADCE /* RegisterAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C314E2026418A0058ADCE /* RegisterAlertText.swift */; };
 		A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43C3151202646320058ADCE /* LoginAlertText.swift */; };
 		A43C315620264E700058ADCE /* SupportingFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A43C315520264E700058ADCE /* SupportingFile.m */; };
@@ -98,6 +99,7 @@
 		A424268F2035F0CE0029125C /* DeleteAccountAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountAlertText.swift; sourceTree = "<group>"; };
 		A42DD9F91F73D57400D04740 /* ImageFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedVC.swift; sourceTree = "<group>"; };
 		A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A42E9FAF20D2530100702A0A /* BlockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUser.swift; sourceTree = "<group>"; };
 		A43C314E2026418A0058ADCE /* RegisterAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAlertText.swift; sourceTree = "<group>"; };
 		A43C3151202646320058ADCE /* LoginAlertText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertText.swift; sourceTree = "<group>"; };
 		A43C315420264E6F0058ADCE /* Matdags-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Matdags-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */,
 				A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */,
 				A4DA9FB720B89FC9006FED91 /* reportUserPosts.swift */,
+				A42E9FAF20D2530100702A0A /* BlockUser.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				A44A121B2035C8F000F6EAEE /* ImagePageVCExt.swift in Sources */,
 				0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */,
 				A4A263F320BAD3B0000D4001 /* FollowerSubViewCell.swift in Sources */,
+				A42E9FB020D2530100702A0A /* BlockUser.swift in Sources */,
 				A468251B1F8B888C0040DC29 /* ImageFeedCell.swift in Sources */,
 				26CAF535201219C900011A6E /* CommentsCell.swift in Sources */,
 				0A91F4221F73D19800304F32 /* RegisterVC.swift in Sources */,

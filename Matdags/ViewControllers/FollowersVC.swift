@@ -180,7 +180,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         
             cell.usernameLabel.text = self.posts[indexPath.row].alias
-            print("NAME1: ", subviewUsername.text!)
             
             cell.backgroundColor = UIColor.white
             //        cell.dropShadow()

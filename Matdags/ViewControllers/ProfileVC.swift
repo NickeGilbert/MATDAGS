@@ -68,17 +68,13 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            print("My user id : ", userID!)
             let value = snapshot.value as! NSDictionary
-            let hej = value["followingCounter"]
-            if hej != nil {
-                print("HEJ : ",hej!)
+            let uAreFollowing = value["followingCounter"]
+            if uAreFollowing != nil {
             }
             let username = value["alias"] as? String ?? ""
             let followingCounter = value["followingCounter"] as? Int ?? 0
             let followerCounter = value["followerCounter"] as? Int ?? 0
-            
-            print("Following counter : ", followingCounter, " Follower Counter : ", followerCounter)
             
             self.following.text = String(followingCounter)
             self.followers.text = String(followerCounter)
@@ -118,7 +114,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 if appendInfo.profileImageURL != ""  {
                     self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
                 } else {
-                    print("\n profileImageURL not found \n")
                     return
                 }
             }
@@ -146,7 +141,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.myProfileImageCollection.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {
-            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            
         }
         
         cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
@@ -241,9 +236,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 if imageURL != nil {
                     let postURL = ["profileImageURL" : imageURL!] as [String : Any]
                     database.updateChildValues(postURL)
-                    print("\n Profile picture uploaded successfully! \n")
                 } else {
-                    print("\n Could not allocate URL for resized image. \n")
                     dispatchGroup.leave()
                     AppDelegate.instance().dismissActivityIndicator()
                 }
@@ -269,7 +262,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             let imagePage = segue.destination as! ImagePageVC
             imagePage.seguePostID = self.posts[selectedRow].postID
         } else {
-            print("\n Segue with identifier (imagePage) not found. \n")
+            
         }
     }
     
@@ -288,7 +281,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBAction func deleteaccountBtn(_ sender: Any) {
       
         self.deleteAccountAlert(title: deleteTitle, message: deleteText)
-        
         //Resten av funktion ligger i Extensions/CreateAlertExt.swift
         
     }

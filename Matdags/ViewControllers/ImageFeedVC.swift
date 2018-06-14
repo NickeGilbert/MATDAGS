@@ -22,6 +22,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var cellCounter2 : Int = 0
     var moreBool : Bool = false
     var vegiBool : Bool = false
+    var myBlockedUsers = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
