@@ -126,7 +126,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.followerButton.isHidden = false
                 self.subviewFollowButton.isHidden = false
                 self.imagePageSettingsViewHeightConstraint.constant = 105
-                self.blockToReportConstraint.constant = 20
+//                self.blockToReportConstraint.constant = 20
 //                self.imagePageSettingsView.layoutIfNeeded()
             } else {
                 self.deleteImage.isHidden = false // MYSELF
@@ -136,7 +136,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.unfollowingButton.isHidden = true
                 self.subviewFollowButton.isHidden = true
                 self.imagePageSettingsViewHeightConstraint.constant = 60
-                self.deleteToUBlockUserConstraint.constant = -45
+//                self.deleteToUBlockUserConstraint.constant = -45
 //                self.imagePageSettingsView.layoutIfNeeded()
             }
             if self.posts[0].usersRated != nil {
