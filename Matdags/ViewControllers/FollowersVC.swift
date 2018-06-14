@@ -15,7 +15,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
     
-    var ref: DatabaseReference!
     var posts = [Post]()
     var users = [User]()
     var seguePostID : String!
