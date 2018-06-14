@@ -20,9 +20,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var refresher : UIRefreshControl!
     var cellCounter : Int = 0
     var cellCounter2 : Int = 0
-    var moreBool : Bool = false
     var vegiBool : Bool = false
     var myBlockedUsers = [String]()
+    var postsDuplicateArray = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
