@@ -24,10 +24,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var postsDuplicateArray = [Post]()
     var myBlockedUsers = [String]()
     var usersThatBlockedMe = [String]()
+    let db = Database.database()
+    let uid = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.lightGray
@@ -56,7 +58,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
             self.getMyBlockedUsers()
-           // self.getUsersThatBlockedMe()
+          
             
             
            
