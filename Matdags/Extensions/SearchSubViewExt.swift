@@ -34,8 +34,8 @@ extension SearchVC {
         if self.subviewUsername.text != nil {
             let following = ["\(self.subviewUsername.text!)" : "\(userId!)"] as [String : Any]
             
-            count+=1
-            let counter = ["followingCounter" : count ] as [String : Int]
+            peoplelIFollowCount = peoplelIFollowCount+1
+            let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
             uref.updateChildValues(counter)
             dbref.updateChildValues(following)
             print("HEJSAN: ", counter)
@@ -44,19 +44,48 @@ extension SearchVC {
         }
     }
     
+    func getUserThatIFollowCounter() {
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            
+            let value = snapshot.value as? NSDictionary
+            self.peoplelIFollowCount = value?["followingCounter"] as? Int ?? -1
+            print("PEOPLE IM FOLLOWING", self.peoplelIFollowCount)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getUserThatFollowMeCounter() {
+        let ref = Database.database().reference()
+        let followerid = posts[0].userID
+        ref.child("Users").child(followerid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
+            print("THE USER THAT I HAVE CLICKED \(self.posts[0].alias) HAVE ", self.countPeopleThatFollowMe ,"FOLLOWERS")
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    
     func getFollower() {
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
         let alias = Auth.auth().currentUser!.displayName
         let followerid = userId!
+        let userRef = db.reference(withPath: "Users/\(followerid)")
         let dbref = db.reference(withPath: "Users/\(followerid)/Follower")
         let uref = db.reference(withPath: "Users/\(uid)")
         if userId != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
             
-            countFollower+=1
-            let counter = ["followerCounter" : countFollower ] as [String : Int]
-            uref.updateChildValues(counter)
+            countPeopleThatFollowMe = countPeopleThatFollowMe+1
+            let counter = ["followerCounter" : countPeopleThatFollowMe ] as [String : Int]
+            userRef.updateChildValues(counter)
             dbref.updateChildValues(follower)
         } else {
             print("\n userID not found when getting follower \n")
@@ -68,12 +97,13 @@ extension SearchVC {
         let uref = db.reference(withPath: "Users/\(uid)")
         let followingUsername = self.subviewUsername.text!
         let followingid = userId!
+        let userRef = db.reference(withPath: "Users/\(followingid)")
         let mySelf = Auth.auth().currentUser!.displayName!
         
         //Tas bort från sig själv
         let dbref = db.reference(withPath: "Users/\(uid)/Following/\(followingUsername)")
-        count-=1
-        let counter = ["followingCounter" : count ] as [String : Int]
+        peoplelIFollowCount = peoplelIFollowCount-1
+        let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
         uref.updateChildValues(counter)
         
         print("dbrf: ", dbref)
@@ -86,9 +116,10 @@ extension SearchVC {
 
         //Tas bort från den du följer
         let dbUserRef = db.reference(withPath: "Users/\(followingid)/Follower/\(mySelf)")
-        countFollower-=1
-        let Usercounter = ["followerCounter" : countFollower ] as [String : Int]
-        uref.updateChildValues(Usercounter)
+        
+        countPeopleThatFollowMe = countPeopleThatFollowMe-1
+        let myFollowersCounter = ["followerCounter" : countPeopleThatFollowMe ] as [String : Int]
+        userRef.updateChildValues(myFollowersCounter)
         
         print("dbrf: ", dbref)
         dbUserRef.removeValue { (error, ref) in

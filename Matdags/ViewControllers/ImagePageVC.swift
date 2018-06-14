@@ -52,8 +52,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var seguePostID : String!
     var users = [User]()
-    var count : Int = 0
-    var countFollower = 0
+    var peoplelIFollowCount : Int = 0
+    var countPeopleThatFollowMe : Int = 0
+    var reports : Int = 0
     var posts = [Post]()
     var subviews = [Subview]()
     var userFollowing = [String]()
@@ -75,6 +76,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserThatIFollowCounter()
         followerButton.backgroundColor = followUserBtn
         unfollowingButton.backgroundColor = unfollowUserBtn
         subviewFollowButton.backgroundColor = followUserBtn
@@ -145,6 +147,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortFirebaseInfo()
             self.getStars()
             self.getUserFollowing()
+            self.getUserThatFollowMeCounter()
+            self.checkHowManyReportsPostHave()
         }
         
         observeComments()
@@ -383,6 +387,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             
             let alert2 = UIAlertController(title: "Anmälan är skickad", message: "Vi ska ta en titt på bilden", preferredStyle: .alert)
+            self.reportPost()
+            self.reportPostSecond()
             alert2.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
             self.present(alert2, animated: true)
             
@@ -500,13 +506,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let dbref = db.reference(withPath: "Users/\(uid)/BlockedUser")
             print("DATABASEN: ", dbref)
         if self.posts[0].userID != nil {
-            let blockedUser = ["\(self.posts[0].alias!)" : "\(userId)" ] as [String : Any]
+            let blockedUser = ["\(self.posts[0].alias)" : "\(userId)" ] as [String : Any]
             dbref.updateChildValues(blockedUser)
         } else {
             print("COULD NOT BLOCK USER")
         }
    
     }
+    
+    @IBAction func reportUserPost(_ sender: Any) {
+        //Denna får inte tas bort, är kopplad till att Post anmäls.
+    }
+    
 }
     
 

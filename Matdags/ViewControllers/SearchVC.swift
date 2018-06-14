@@ -32,8 +32,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     var posts = [Post]()
     var users = [User]()
-    var count : Int = 0
-    var countFollower : Int = 0
+    var peoplelIFollowCount : Int = 0
+    var countPeopleThatFollowMe : Int = 0
     var userId: String!
     var userFollowing = [String]()
     var initialFeed = [String]()
@@ -160,7 +160,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
         
-        self.subviewUnfollowBtn.isHidden = true
+       self.subviewUnfollowBtn.isHidden = true
         self.subviewFollowButton.isHidden = true
  
 

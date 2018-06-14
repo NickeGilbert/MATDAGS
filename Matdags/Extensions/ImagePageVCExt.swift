@@ -17,44 +17,56 @@ extension ImagePageVC {
         if self.posts[0].userID != nil {
             let following = ["\(self.posts[0].alias!)" : self.posts[0].userID!] as [String : Any]
             
-//            print("SKIT:", count)
-//            count+=1
-//            let counter = ["followingCounter" : count ] as [String : Int]
-//            uref.updateChildValues(counter)
-//            print("OSTRON: ", count)
+            peoplelIFollowCount = peoplelIFollowCount+1
+            let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
+            uref.updateChildValues(counter)
             dbref.updateChildValues(following)
-            getUserFollowingCounter()
         } else {
             print("\n userID not found when adding follower \n")
         }
     }
     
-    func getUserFollowingCounter() {
-        let dbref = db.reference(withPath: "Users/\(uid)/followerCounter").observeSingleEvent(of: .value, with: { (snapshot) in
+    func getUserThatIFollowCounter() {
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
             
-            if (snapshot.value as? NSDictionary) != nil {
-                let value = snapshot.value as! NSDictionary
-                for counter in value {
-                    print("SNAPSHOT", counter.value)
-                }
-            } else {
-                return
-            }
-        })
-        print("COOLT", dbref)
+            let value = snapshot.value as? NSDictionary
+            self.peoplelIFollowCount = value?["followingCounter"] as? Int ?? -1
+            print("PEOPLE IM FOLLOWING", self.peoplelIFollowCount)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getUserThatFollowMeCounter() {
+        let ref = Database.database().reference()
+        let followerid = posts[0].userID
+        ref.child("Users").child(followerid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
+            print("THE USER THAT I HAVE CLICKED \(self.posts[0].alias) HAVE ", self.countPeopleThatFollowMe ,"FOLLOWERS")
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     func getFollower() {
         let followerid = posts[0].userID
         let dbref = db.reference(withPath: "Users/\(followerid!)/Follower")
+        let userRef = db.reference(withPath: "Users/\(followerid!)")
         let uref = db.reference(withPath: "Users/\(uid)")
         if self.posts[0].userID != nil {
             let follower = ["\(alias!)" : "\(uid)" ] as [String : Any]
-            
-            countFollower+=1
-            let counter = ["followerCounter" : countFollower ] as [String : Int]
-            uref.updateChildValues(counter)
+
+            countPeopleThatFollowMe = countPeopleThatFollowMe+1
+            let counter = ["followerCounter" : countPeopleThatFollowMe ] as [String : Int]
+            userRef.updateChildValues(counter)
             dbref.updateChildValues(follower)
+            
+            
         } else {
             print("\n userID not found when getting follower \n")
         }
@@ -63,17 +75,15 @@ extension ImagePageVC {
     func unfollowUser() {
         let followerId = posts[0].userID!
         let followingid = posts[0].alias
+        let userRef = db.reference(withPath: "Users/\(followerId)")
         let uref = db.reference(withPath: "Users/\(uid)")
         let mySelf = Auth.auth().currentUser!.displayName!
-        print("MYSELF", mySelf)
-        print("DANIELS UID:", followerId)
-        
-        //Tas bort från sig själv
+
         let dbref = db.reference(withPath: "Users/\(uid)/Following/\(followingid!)")
-        count-=1
-        let counter = ["followingCounter" : count ] as [String : Int]
+        peoplelIFollowCount = peoplelIFollowCount-1
+        let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
         uref.updateChildValues(counter)
-            print("dbrf: ", dbref)
+
             dbref.removeValue { (error, ref) in
                 if error != nil {
                     print("DIDN'T GO THROUGH")
@@ -81,14 +91,12 @@ extension ImagePageVC {
                 }
             }
 
-        //Tas bort från användaren
         let dbUserRef = db.reference(withPath: "Users/\(followerId)/Follower/\(mySelf)")
-        print("KISS: ", countFollower)
-        countFollower-=1
-        print("COUNTERFOLLOWER BAJS: ", countFollower)
-        let Usercounter = ["followerCounter" : countFollower ] as [String : Int]
-        uref.updateChildValues(Usercounter)
-        print("dbrf: ", dbref)
+
+        countPeopleThatFollowMe = countPeopleThatFollowMe-1
+        let myFollowersCounter = ["followerCounter" : countPeopleThatFollowMe ] as [String : Int]
+        userRef.updateChildValues(myFollowersCounter)
+        
         dbUserRef.removeValue { (error, ref) in
             if error != nil {
                 print("DIDN'T GO THROUGH")

@@ -45,7 +45,26 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         
         profileNameLabel.text = ""
         profileSettingsButtonOutlet.isHidden = false
+        getFollwersCounting()
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        posts.removeAll()
+        loadData()
+    }
+    
+    @objc func loadData() {
+        getPostInfo{ (true) in
+            self.posts.sort(by: {$0.date > $1.date})
+            self.getFollwersCounting()
+            self.profileCollectionFeed.reloadData()
+            print(self.posts.count)
+        }
+    }
+    
+    func getFollwersCounting() {
         ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -68,19 +87,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             print(error.localizedDescription)
         }
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        posts.removeAll()
-        loadData()
-    }
-    
-    @objc func loadData() {
-        getPostInfo{ (true) in
-            self.posts.sort(by: {$0.date > $1.date})
-            self.profileCollectionFeed.reloadData()
-            print(self.posts.count)
-        }
     }
     
     func getPostInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
