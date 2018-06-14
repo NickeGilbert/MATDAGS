@@ -210,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				A43C315320264E500058ADCE /* Supporting files */,
-				A43C3150202645D00058ADCE /* Services */,
 				A485559120176224008F8C1F /* Utilities */,
 				A423EA302011528100F32C46 /* Extensions */,
 				0A4CD1C11FAE46680006986A /* Objects */,
@@ -259,6 +258,7 @@
 		A43C315320264E500058ADCE /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				A43C3150202645D00058ADCE /* Services */,
 				A43C315520264E700058ADCE /* SupportingFile.m */,
 				A43C315420264E6F0058ADCE /* Matdags-Bridging-Header.h */,
 			);
@@ -633,7 +633,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87587NY5AL;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -667,7 +667,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 87587NY5AL;
+				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

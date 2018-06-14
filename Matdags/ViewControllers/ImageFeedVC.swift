@@ -22,10 +22,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var cellCounter2 : Int = 0
     var moreBool : Bool = false
     var vegiBool : Bool = false
+    var postsDuplicateArray = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadData()
         
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
@@ -83,14 +83,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     appendPost.postID = post["postID"] as? String
                     appendPost.vegi = post["vegetarian"] as? Bool
                     appendPost.timestamp = post["timestamp"] as? String
-                    if self.vegiBool == true {
-                        if appendPost.vegi == true {
-                            self.posts.append(appendPost)
-                        }
-                    }else{
-                        self.posts.append(appendPost)
-                    }
-
+                    self.posts.append(appendPost)
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
@@ -113,13 +106,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             vegiClickImage.image = UIImage(named: "vegButton50SettingsFinal")
             loadViewIfNeeded()
             vegiBool = true
-            posts.removeAll()
-            loadData()
+            postsDuplicateArray = posts
+            posts = posts.filter { ($0.vegi == true) }
+            collectionFeed.reloadData()
         } else {
             vegiClickImage.image = UIImage(named: "vegButtonUseSettings2Final")
             vegiBool = false
-            posts.removeAll()
-            loadData()      
+            posts = postsDuplicateArray
+            collectionFeed.reloadData()
         }
     }
     
