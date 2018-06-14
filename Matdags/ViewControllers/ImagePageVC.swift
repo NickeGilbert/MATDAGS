@@ -382,9 +382,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             
             let alert2 = UIAlertController(title: "Anmälan är skickad", message: "Vi ska ta en titt på bilden", preferredStyle: .alert)
-           // self.reportPost()
-         //   self.reportPostSecond()
-            self.reportUsers()
+            self.reportPost()
+            self.reportPostSecond()
+            
             alert2.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
             self.present(alert2, animated: true)
             
@@ -475,8 +475,21 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func blockUser(_ sender: Any) {
-        reportUsers()
-        print("PRESSED")
+        
+        let alert = UIAlertController(title: "Vill du blockera användaren?", message: "Tänk på att inte missbruka denna tjäst då du själv kan bli avstängd", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Blockera", style: .destructive, handler: { action in
+            
+            
+            //let alert2 = UIAlertController(title: "Anmälan är skickad", message: "Vi ska ta en titt på bilden", preferredStyle: .alert)
+            self.reportUsers()
+            
+            alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
    
     }
     

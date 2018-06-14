@@ -21,8 +21,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var cellCounter : Int = 0
     var cellCounter2 : Int = 0
     var vegiBool : Bool = false
-    var myBlockedUsers = [String]()
     var postsDuplicateArray = [Post]()
+    var myBlockedUsers = [String]()
+    var usersThatBlockedMe = [String]()
+    
+    let uid = Auth.auth().currentUser!.uid
+    let db = Database.database()
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +59,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
+            self.getMyBlockedUsers()
+           // self.getUsersThatBlockedMe()
+            
+            
+           
+            
+            
         }, in: dispatchGroup)
         cellCounter = 0
         cellCounter2 = 0
