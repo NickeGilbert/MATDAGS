@@ -25,10 +25,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var myBlockedUsers = [String]()
     var usersThatBlockedMe = [String]()
     
-    let uid = Auth.auth().currentUser!.uid
-    let db = Database.database()
-    var ref: DatabaseReference!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
