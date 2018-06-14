@@ -1553,10 +1553,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aa-a5-AAT">
-                                                <rect key="frame" x="100" y="328.66666666666669" width="175" height="155"/>
+                                                <rect key="frame" x="100" y="331.33333333333331" width="175" height="150"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLe-wf-Imq" userLabel="blockUser">
-                                                        <rect key="frame" x="5" y="60" width="165" height="34"/>
+                                                        <rect key="frame" x="0.0" y="50" width="175" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="GxQ-6M-IyS"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                         <state key="normal" title="Blockera användare">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1566,9 +1569,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z6-bS-EeC" userLabel="Report">
-                                                        <rect key="frame" x="5" y="10" width="165" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="1Xp-ZN-wHf"/>
+                                                            <constraint firstAttribute="height" constant="50" id="1Xp-ZN-wHf"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                         <state key="normal" title="Anmäl bild">
@@ -1580,9 +1583,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBR-Dt-sIw">
-                                                        <rect key="frame" x="5" y="104" width="165" height="40"/>
+                                                        <rect key="frame" x="0.0" y="100" width="175" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="yMF-Cb-tHJ"/>
+                                                            <constraint firstAttribute="height" constant="50" id="yMF-Cb-tHJ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                         <state key="normal" title="Radera bild">
@@ -1595,18 +1598,17 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="HBR-Dt-sIw" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" constant="5" id="7gQ-gm-yFL"/>
-                                                    <constraint firstItem="kLe-wf-Imq" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" constant="5" id="848-of-sN1"/>
-                                                    <constraint firstItem="HBR-Dt-sIw" firstAttribute="top" secondItem="kLe-wf-Imq" secondAttribute="bottom" constant="10" id="Pex-RM-vQ4"/>
-                                                    <constraint firstItem="kLe-wf-Imq" firstAttribute="top" secondItem="8Z6-bS-EeC" secondAttribute="bottom" constant="10" id="Rdu-Os-PJV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="8Z6-bS-EeC" secondAttribute="trailing" constant="5" id="Uh1-yo-To9"/>
-                                                    <constraint firstAttribute="height" constant="155" id="ZCB-l8-Z9b"/>
-                                                    <constraint firstAttribute="trailing" secondItem="HBR-Dt-sIw" secondAttribute="trailing" constant="5" id="gjx-oH-f5N"/>
-                                                    <constraint firstAttribute="bottom" secondItem="HBR-Dt-sIw" secondAttribute="bottom" constant="11" id="jd9-cV-x29"/>
-                                                    <constraint firstItem="8Z6-bS-EeC" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" constant="5" id="nFU-DS-nZd"/>
-                                                    <constraint firstItem="8Z6-bS-EeC" firstAttribute="top" secondItem="5aa-a5-AAT" secondAttribute="top" constant="10" id="nZ3-dS-XZ8"/>
+                                                    <constraint firstItem="HBR-Dt-sIw" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" id="7gQ-gm-yFL"/>
+                                                    <constraint firstItem="kLe-wf-Imq" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" id="848-of-sN1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8Z6-bS-EeC" secondAttribute="trailing" id="Uh1-yo-To9"/>
+                                                    <constraint firstAttribute="height" constant="150" id="ZCB-l8-Z9b"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HBR-Dt-sIw" secondAttribute="trailing" id="gjx-oH-f5N"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HBR-Dt-sIw" secondAttribute="bottom" id="jd9-cV-x29"/>
+                                                    <constraint firstItem="8Z6-bS-EeC" firstAttribute="leading" secondItem="5aa-a5-AAT" secondAttribute="leading" id="nFU-DS-nZd"/>
+                                                    <constraint firstItem="8Z6-bS-EeC" firstAttribute="top" secondItem="5aa-a5-AAT" secondAttribute="top" id="nZ3-dS-XZ8"/>
+                                                    <constraint firstItem="kLe-wf-Imq" firstAttribute="top" secondItem="8Z6-bS-EeC" secondAttribute="bottom" id="oaQ-bi-rzI"/>
                                                     <constraint firstAttribute="width" constant="175" id="rZ5-UU-Hzt"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kLe-wf-Imq" secondAttribute="trailing" constant="5" id="tS4-1j-Hrn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kLe-wf-Imq" secondAttribute="trailing" id="tS4-1j-Hrn"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1875,16 +1877,20 @@
                             <constraint firstItem="Zs8-gX-2Ep" firstAttribute="leading" secondItem="QCA-3I-UXr" secondAttribute="leading" id="qH9-ah-JYv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="XQz-Jm-hsB"/>
+                                <exclude reference="uJr-hq-MOK"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="blockToReportConstraint" destination="Rdu-Os-PJV" id="T6s-lm-3bt"/>
                         <outlet property="blockUser" destination="kLe-wf-Imq" id="H2P-bo-Ho6"/>
                         <outlet property="commentButton" destination="jx8-5r-HBK" id="QDa-jU-X4k"/>
                         <outlet property="commentsTableView" destination="f17-TZ-hP6" id="KZW-q5-41C"/>
                         <outlet property="commentsTextField" destination="zS1-9L-eK1" id="YUB-Ie-FPD"/>
                         <outlet property="commentsView" destination="uJr-hq-MOK" id="RE5-f0-QCW"/>
                         <outlet property="deleteImage" destination="HBR-Dt-sIw" id="UGB-gd-ns5"/>
-                        <outlet property="deleteToUBlockUserConstraint" destination="Pex-RM-vQ4" id="HkG-SF-MX9"/>
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>
                         <outlet property="followerButton" destination="SYW-pk-e4K" id="yej-xk-dgd"/>
                         <outlet property="imagePageSettingsView" destination="5aa-a5-AAT" id="mhW-JN-TPo"/>
