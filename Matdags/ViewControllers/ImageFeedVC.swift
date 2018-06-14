@@ -53,18 +53,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
+        getMyBlockedUsers()
         downloadImages(completionHandler: { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
-            self.getMyBlockedUsers()
-          
-            
-            
-           
-            
-            
-        }, in: dispatchGroup)
+        }, in: self.dispatchGroup)
+        
         cellCounter = 0
         cellCounter2 = 0
     }
@@ -87,13 +82,18 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
-                    let appendPost = Post()
-                    appendPost.date = post["date"] as? String
-                    appendPost.pathToImage256 = post["pathToImage256"] as? String
-                    appendPost.postID = post["postID"] as? String
-                    appendPost.vegi = post["vegetarian"] as? Bool
-                    appendPost.timestamp = post["timestamp"] as? String
-                    self.posts.append(appendPost)
+                    
+                    let filteredUid = post["userID"] as? String
+                    
+                    if !self.myBlockedUsers.contains(filteredUid!) {
+                        let appendPost = Post()
+                        appendPost.date = post["date"] as? String
+                        appendPost.pathToImage256 = post["pathToImage256"] as? String
+                        appendPost.postID = post["postID"] as? String
+                        appendPost.vegi = post["vegetarian"] as? Bool
+                        appendPost.timestamp = post["timestamp"] as? String
+                        self.posts.append(appendPost)
+                    }
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {

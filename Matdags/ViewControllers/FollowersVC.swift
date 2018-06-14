@@ -78,7 +78,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.subview.isHidden = false
             })
         }
-        
     }
     
     func stopRefresher() {

@@ -32,7 +32,7 @@ extension ImagePageVC {
 
 extension ImageFeedVC {
     func getMyBlockedUsers() {
-        let dbref = db.reference(withPath: "Users/\(uid)/MyBlockedUsers").observeSingleEvent(of: .value) { (snapshot) in
+        let ref = Database.database().reference().child("Users").child(uid!).child("MyBlockedUsers").observeSingleEvent(of: .value) { (snapshot) in
 
             if (snapshot.value as? NSDictionary) != nil {
                 let value = snapshot.value as! NSDictionary
@@ -43,32 +43,8 @@ extension ImageFeedVC {
                     print("MY BLOCKED USERS:", self.myBlockedUsers)
                 }
             }
-            self.checkMyBlockedUsers()
+            //self.checkMyBlockedUsers()
         }
         
     }
-    
-    func checkMyBlockedUsers() {
-        for user in myBlockedUsers {
-            print("USERS BLOCKED:", user)
-        }
-    }
-
-
-    
-    func getUsersThatBlockedMe() {
-        let dbref = db.reference(withPath: "Users/\(uid)/UsersThatBlockedMe").observeSingleEvent(of: .value) { (snapshot) in
-
-            if (snapshot.value as? NSDictionary) != nil {
-                let value = snapshot.value as! NSDictionary
-                for uidValue in value {
-                    let appendUser = User()
-                    appendUser.uid = uidValue.value as? String
-                    self.usersThatBlockedMe.append(appendUser.uid)
-
-                }
-            }
-        }
-    }
-
 }
