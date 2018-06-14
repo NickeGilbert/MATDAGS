@@ -257,7 +257,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 getInfo.usersRated = dict["usersRated"] as? Double
         
             }
-            print("\ngetInfoForIncremation true")
             completionHandler(true)
         }
     }
@@ -279,7 +278,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 print("\n \(self.posts[0].userID) \n")
                 completionHandler(true)
             } else {
-                print("\n No info in dictionary \n")
             }
         })
     }
@@ -331,7 +329,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if self.posts[0].pathToImage != nil {
             myImageView.downloadImage(from: self.posts[0].pathToImage)
         } else {
-            print("\n No Image URL found in array. \n")
         }
 
         if posts[0].alias != nil{
@@ -424,7 +421,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             if error != nil {
                 return
             }
-            print("POST DELETED")
         }
         
     }

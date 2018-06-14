@@ -32,7 +32,6 @@ extension ImagePageVC {
         if reportsOnUsers <= 5 {
             let userPostUID = self.posts[0].userID
             let ref = Database.database().reference().child("Users").child(userPostUID!).child("Posts").child(seguePostID)
-            print("DATABASEN ÄR: ", ref)
             if self.posts[0] != nil {
                 
                 reportsOnUsers = reportsOnUsers+1
@@ -49,7 +48,6 @@ extension ImagePageVC {
                     print("DIDN'T GO THROUGH")
                     return
                 }
-                print("POST DELETED")
             }
         }
     }
@@ -61,7 +59,6 @@ extension ImagePageVC {
             
             let value = snapshot.value as? NSDictionary
             self.reports = value?["Reports"] as? Int ?? -1
-            print("THE USER THAT I HAVE CLICKED ON HAVE ", self.reports ,"ON THIS POST")
         }) { (error) in
             print(error.localizedDescription)
         }

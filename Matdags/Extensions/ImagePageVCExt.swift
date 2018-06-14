@@ -34,7 +34,6 @@ extension ImagePageVC {
             
             let value = snapshot.value as? NSDictionary
             self.peoplelIFollowCount = value?["followingCounter"] as? Int ?? -1
-            print("PEOPLE IM FOLLOWING", self.peoplelIFollowCount)
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -47,7 +46,6 @@ extension ImagePageVC {
             // Get user value
             let value = snapshot.value as? NSDictionary
             self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
-            print("THE USER THAT I HAVE CLICKED \(self.posts[0].alias) HAVE ", self.countPeopleThatFollowMe ,"FOLLOWERS")
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -66,9 +64,8 @@ extension ImagePageVC {
             userRef.updateChildValues(counter)
             dbref.updateChildValues(follower)
             
-            
         } else {
-            print("\n userID not found when getting follower \n")
+
         }
     }
     
@@ -130,10 +127,8 @@ extension ImagePageVC {
                 usersRated+=1
                 dbref.updateChildValues(["usersRated" : usersRated] as [String : Double])
             }
-            print("\npostStars true")
             completionHandler(true)
         } else {
-            print("\nNo PostID found!")
             completionHandler(true)
         }
     }
@@ -155,7 +150,6 @@ extension ImagePageVC {
                     }
                 }
             } else {
-                print("\n Cant find rating for post. \n")
             }
         })
     }
