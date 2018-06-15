@@ -15,6 +15,10 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repassword: UITextField!
     @IBOutlet weak var showPass: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,15 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         alias.delegate = self
         password.delegate = self
         repassword.delegate = self
+        
+        mail.placeholder = NSLocalizedString("emailPlaceholder", comment: "")
+        alias.placeholder = NSLocalizedString("usernamePlaceholder", comment: "")
+        password.placeholder = NSLocalizedString("passwordPlaceholder", comment: "")
+        repassword.placeholder = NSLocalizedString("rePasswordPlaceholder", comment: "")
+        showPass.setTitle(NSLocalizedString("showPasswordPlaceholder", comment: ""), for: .normal)
+        registerButton.setTitle(NSLocalizedString("registerButton", comment: ""), for: .normal)
+        infoButton.setTitle(NSLocalizedString("infoButton", comment: ""), for: .normal)
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

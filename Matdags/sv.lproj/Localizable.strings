@@ -13,3 +13,12 @@
 "LoginButton" = "Logga in";
 "orLabel" = "Eller";
 "RegisterButton" = "Registrera";
+
+//REGISTER VC
+"emailPlaceholder" = "Email";
+"usernamePlaceholder" = "Användarnamn";
+"passwordPlaceholder" = "Lösenord";
+"rePasswordPlaceholder" = "Upprepa Lösenord";
+"showPasswordPlaceholder" = "Visa Lösenord";
+"registerButton" = "Registrera";
+"infoButton" = "Info";

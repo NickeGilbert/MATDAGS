@@ -32,19 +32,19 @@ extension ImagePageVC {
 
 extension ImageFeedVC {
     func getMyBlockedUsers() {
-//        var ref = Database.database().reference().child("Users").child(uid!).child("MyBlockedUsers").observeSingleEvent(of: .value) { (snapshot) in
-//
-//            if (snapshot.value as? NSDictionary) != nil {
-//                let value = snapshot.value as! NSDictionary
-//                for uidValue in value {
-//                    let appendUser = User()
-//                    appendUser.uid = uidValue.value as? String
-//                    self.myBlockedUsers.append(appendUser.uid)
-//                    print("MY BLOCKED USERS:", self.myBlockedUsers)
-//                }
-//            }
-//            //self.checkMyBlockedUsers()
-//        }
+        var ref = Database.database().reference().child("Users").child(uid!).child("MyBlockedUsers").observeSingleEvent(of: .value) { (snapshot) in
+
+            if (snapshot.value as? NSDictionary) != nil {
+                let value = snapshot.value as! NSDictionary
+                for uidValue in value {
+                    let appendUser = User()
+                    appendUser.uid = uidValue.value as? String
+                    self.myBlockedUsers.append(appendUser.uid)
+                    print("MY BLOCKED USERS:", self.myBlockedUsers)
+                }
+            }
+            //self.checkMyBlockedUsers()
+        }
         
     }
 }

@@ -13,3 +13,12 @@
 "LoginButton" = "Sign in";
 "orLabel" = "Or";
 "RegisterButton" = "Register";
+
+//REGISTER VC
+"emailPlaceholder" = "Email";
+"usernamePlaceholder" = "Username";
+"passwordPlaceholder" = "Password";
+"rePasswordPlaceholder" = "Repeat Password";
+"showPasswordPlaceholder" = "Show Password";
+"registerButton" = "register";
+"infoButton" = "Info";

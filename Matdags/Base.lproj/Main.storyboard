@@ -285,8 +285,10 @@
                     <navigationItem key="navigationItem" id="7As-S9-rC7"/>
                     <connections>
                         <outlet property="alias" destination="k5m-v6-3NY" id="2Vu-xH-VFB"/>
+                        <outlet property="infoButton" destination="D1E-0w-DoR" id="iBY-3E-rt3"/>
                         <outlet property="mail" destination="ycj-nc-8Co" id="kPK-Cs-xNf"/>
                         <outlet property="password" destination="S4a-eJ-mDF" id="21R-vv-ygt"/>
+                        <outlet property="registerButton" destination="wDt-4h-gMm" id="iIF-6J-248"/>
                         <outlet property="repassword" destination="Vgv-u7-xhh" id="CpR-JG-8UB"/>
                         <outlet property="showPass" destination="hGu-6i-kzd" id="VqV-es-Bib"/>
                         <segue destination="LgI-ON-4hY" kind="presentation" identifier="RegToFeed" id="qav-lz-AQ2"/>
@@ -2063,9 +2065,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABk-Rw-W6d"/>
         <segue reference="nf1-k1-DaM"/>
-        <segue reference="Pq7-cy-tEF"/>
+        <segue reference="qav-lz-AQ2"/>
         <segue reference="l1h-Lg-NhA"/>
     </inferredMetricsTieBreakers>
 </document>
