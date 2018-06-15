@@ -1,0 +1,117 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0pZ-IM-U5X"; */
+"0pZ-IM-U5X.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "1zu-QC-3R4"; */
+"1zu-QC-3R4.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "2wz-89-Tef"; */
+"2wz-89-Tef.text" = "username";
+
+/* Class = "UIButton"; normalTitle = "Anmäl bild"; ObjectID = "8Z6-bS-EeC"; */
+"8Z6-bS-EeC.normalTitle" = "Anmäl bild";
+
+/* Class = "UIButton"; normalTitle = "title"; ObjectID = "8bX-0q-PyZ"; */
+"8bX-0q-PyZ.normalTitle" = "title";
+
+/* Class = "UIButton"; normalTitle = "Registrera"; ObjectID = "BFq-ui-eaI"; */
+"BFq-ui-eaI.normalTitle" = "Registrera";
+
+/* Class = "UILabel"; text = "Följare"; ObjectID = "BWv-pV-Ovt"; */
+"BWv-pV-Ovt.text" = "Följare";
+
+/* Class = "UIButton"; normalTitle = "Info"; ObjectID = "D1E-0w-DoR"; */
+"D1E-0w-DoR.normalTitle" = "Info";
+
+/* Class = "UIButton"; normalTitle = "FÖLJER"; ObjectID = "Et4-X9-KV7"; */
+"Et4-X9-KV7.normalTitle" = "FÖLJER";
+
+/* Class = "UIButton"; normalTitle = "Vego"; ObjectID = "Fmn-sb-rkR"; */
+"Fmn-sb-rkR.normalTitle" = "Vego";
+
+/* Class = "UIButton"; normalTitle = "Radera bild"; ObjectID = "HBR-Dt-sIw"; */
+"HBR-Dt-sIw.normalTitle" = "Radera bild";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "IWr-3y-d8T"; */
+"IWr-3y-d8T.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "FÖLJ"; ObjectID = "Il3-Eq-ogL"; */
+"Il3-Eq-ogL.normalTitle" = "FÖLJ";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "LVP-FS-hsQ"; */
+"LVP-FS-hsQ.text" = "username";
+
+/* Class = "UILabel"; text = "Följer"; ObjectID = "LgR-jC-Tpn"; */
+"LgR-jC-Tpn.text" = "Följer";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PaD-hG-VUU"; */
+"PaD-hG-VUU.text" = "Label";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "R2M-1M-qIm"; */
+"R2M-1M-qIm.text" = "0";
+
+/* Class = "UITextField"; placeholder = "Lösenord"; ObjectID = "S4a-eJ-mDF"; */
+"S4a-eJ-mDF.placeholder" = "Lösenord";
+
+/* Class = "UIButton"; normalTitle = "FÖLJ"; ObjectID = "SYW-pk-e4K"; */
+"SYW-pk-e4K.normalTitle" = "FÖLJ";
+
+/* Class = "UIButton"; normalTitle = "FÖLJ"; ObjectID = "URZ-ON-1vI"; */
+"URZ-ON-1vI.normalTitle" = "FÖLJ";
+
+/* Class = "UIButton"; normalTitle = "FÖLJER"; ObjectID = "UXh-I3-2DF"; */
+"UXh-I3-2DF.normalTitle" = "FÖLJER";
+
+/* Class = "UIButton"; normalTitle = "Logga ut"; ObjectID = "VEf-ai-GII"; */
+"VEf-ai-GII.normalTitle" = "Logga ut";
+
+/* Class = "UITextField"; placeholder = "Upprepa Lösenord"; ObjectID = "Vgv-u7-xhh"; */
+"Vgv-u7-xhh.placeholder" = "Upprepa Lösenord";
+
+/* Class = "UILabel"; text = "Beskrivning"; ObjectID = "YFQ-ed-rU3"; */
+"YFQ-ed-rU3.text" = "Beskrivning";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "YSK-Fo-yrz"; */
+"YSK-Fo-yrz.text" = "username";
+
+/* Class = "UIButton"; normalTitle = "Logga in"; ObjectID = "Ylk-cS-VPh"; */
+"Ylk-cS-VPh.normalTitle" = "Logga in";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Z73-ED-0zL"; */
+"Z73-ED-0zL.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "FÖLJER"; ObjectID = "d57-2Q-n2J"; */
+"d57-2Q-n2J.normalTitle" = "FÖLJER";
+
+/* Class = "UILabel"; text = "Eller"; ObjectID = "feq-2p-exR"; */
+"feq-2p-exR.text" = "Eller";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "h0R-Jk-APq"; */
+"h0R-Jk-APq.text" = "Username";
+
+/* Class = "UIButton"; normalTitle = "Visa Lösenord"; ObjectID = "hGu-6i-kzd"; */
+"hGu-6i-kzd.normalTitle" = "Visa Lösenord";
+
+/* Class = "UIButton"; selectedTitle = "Dölj Lösenord"; ObjectID = "hGu-6i-kzd"; */
+"hGu-6i-kzd.selectedTitle" = "Dölj Lösenord";
+
+/* Class = "UITextField"; placeholder = "Användarnamn"; ObjectID = "k5m-v6-3NY"; */
+"k5m-v6-3NY.placeholder" = "Användarnamn";
+
+/* Class = "UIButton"; normalTitle = "Blockera användare"; ObjectID = "kLe-wf-Imq"; */
+"kLe-wf-Imq.normalTitle" = "Blockera användare";
+
+/* Class = "UILabel"; text = "label"; ObjectID = "nBN-gI-jgP"; */
+"nBN-gI-jgP.text" = "label";
+
+/* Class = "UILabel"; text = "Användarnamn"; ObjectID = "s6o-ir-c87"; */
+"s6o-ir-c87.text" = "Användarnamn";
+
+/* Class = "UIButton"; normalTitle = "Registrera"; ObjectID = "wDt-4h-gMm"; */
+"wDt-4h-gMm.normalTitle" = "Registrera";
+
+/* Class = "UITextField"; placeholder = "Lösenord"; ObjectID = "xV9-dy-edu"; */
+"xV9-dy-edu.placeholder" = "Lösenord";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "ycj-nc-8Co"; */
+"ycj-nc-8Co.placeholder" = "Email";
