@@ -125,7 +125,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.deleteImage.isHidden = true // SOME DUDE
                 self.followerButton.isHidden = false
                 self.subviewFollowButton.isHidden = false
-                self.imagePageSettingsViewHeightConstraint.constant = 105
+                self.imagePageSettingsViewHeightConstraint.constant = 100
 //                self.blockToReportConstraint.constant = 20
 //                self.imagePageSettingsView.layoutIfNeeded()
             } else {
@@ -135,7 +135,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.followerButton.isHidden = true
                 self.unfollowingButton.isHidden = true
                 self.subviewFollowButton.isHidden = true
-                self.imagePageSettingsViewHeightConstraint.constant = 60
+                self.imagePageSettingsViewHeightConstraint.constant = 50
 //                self.deleteToUBlockUserConstraint.constant = -45
 //                self.imagePageSettingsView.layoutIfNeeded()
             }
@@ -156,7 +156,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         commentsTableView.isScrollEnabled = false
         commentsTableView.separatorStyle = .none
-        subview.layer.cornerRadius = 20
+        subview.layer.cornerRadius = 10
         subview.clipsToBounds = true
         followerButton.layer.cornerRadius = 5
         followerButton.clipsToBounds = true

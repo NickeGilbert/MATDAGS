@@ -10,17 +10,17 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBOutlet var feedCollectionView: UICollectionView!
     @IBOutlet weak var zeroImagesMessage: UILabel!
-    @IBOutlet weak var subviewCollectionView: UICollectionView!
-    @IBOutlet weak var subview: UIView!
-    @IBOutlet weak var subviewUsername: UILabel!
-    @IBOutlet weak var subviewProfileImage: UIImageView!
+//    @IBOutlet weak var subviewCollectionView: UICollectionView!
+//    @IBOutlet weak var subview: UIView!
+//    @IBOutlet weak var subviewUsername: UILabel!
+//    @IBOutlet weak var subviewProfileImage: UIImageView!
     
     var posts = [Post]()
     var users = [User]()
     var seguePostID : String!
     var following = [String]()
     var refresher : UIRefreshControl!
-    var subviews = [Subview]()
+//    var subviews = [Subview]()
     
     let uid = Auth.auth().currentUser?.uid
     let db = Database.database()
@@ -29,7 +29,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.subview.isHidden = true
+//        self.subview.isHidden = true
         self.zeroImagesMessage.isHidden = true
         
         if posts.isEmpty == true {
@@ -46,8 +46,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.feedCollectionView!.addSubview(refresher)
         self.feedCollectionView.delegate = self
         self.feedCollectionView.dataSource = self
-        self.subviewCollectionView.delegate = self
-        self.subviewCollectionView.dataSource = self
+//        self.subviewCollectionView.delegate = self
+//        self.subviewCollectionView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,20 +65,20 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         fetchPosts { (true) in
             self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
-            self.subviewCollectionView.reloadData()
+//            self.subviewCollectionView.reloadData()
             self.stopRefresher()
             print(self.posts.count)
         }
     }
     
-    @objc func tapFunction(sender:UITapGestureRecognizer) {
-        getUserProfileImage { (true) in
-            self.downloadImages(completionHandler: { (true) in
-                self.subviewCollectionView.reloadData()
-                self.subview.isHidden = false
-            })
-        }
-    }
+//    @objc func tapFunction(sender:UITapGestureRecognizer) {
+//        getUserProfileImage { (true) in
+//            self.downloadImages(completionHandler: { (true) in
+//                self.subviewCollectionView.reloadData()
+//                self.subview.isHidden = false
+//            })
+//        }
+//    }
     
     func stopRefresher() {
         self.refresher.endRefreshing()
@@ -215,9 +215,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         URLCache.shared.removeAllCachedResponses()
     }
     
-    @IBAction func subviewDismissBtn(_ sender: Any) {
-        subview.isHidden = true
-    }
+//    @IBAction func subviewDismissBtn(_ sender: Any) {
+//        subview.isHidden = true
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "imagePageSeg", sender: indexPath)

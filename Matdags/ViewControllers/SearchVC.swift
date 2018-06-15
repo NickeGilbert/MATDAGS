@@ -58,7 +58,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         //SubView
         topSubView.isHidden = true
 
-        subview.layer.cornerRadius = 20
+        subview.layer.cornerRadius = 10
         subview.clipsToBounds = true
         subviewUnfollowBtn.backgroundColor = unfollowUserBtn
         subviewFollowButton.backgroundColor = followUserBtn
