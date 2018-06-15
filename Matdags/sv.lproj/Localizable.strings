@@ -6,6 +6,10 @@
   Copyright © 2018 Matdags. All rights reserved.
 */
 
-
+//SVENSKA
 //LOGIN VC
-"TEST" = "DET ÄR PÅ SVENSKA";
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Lösenord";
+"LoginButton" = "Logga in";
+"orLabel" = "Eller";
+"RegisterButton" = "Registrera";

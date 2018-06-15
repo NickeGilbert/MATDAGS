@@ -112,7 +112,10 @@
                     <navigationItem key="navigationItem" id="QLn-Aw-gRa"/>
                     <connections>
                         <outlet property="emailText" destination="Z73-ED-0zL" id="rrV-di-tSi"/>
+                        <outlet property="loginVCLoginButton" destination="Ylk-cS-VPh" id="r7V-LC-o3u"/>
+                        <outlet property="orLabel" destination="feq-2p-exR" id="dAj-1a-OrM"/>
                         <outlet property="password" destination="xV9-dy-edu" id="YHK-el-isS"/>
+                        <outlet property="registerButton" destination="BFq-ui-eaI" id="R7S-hT-ywa"/>
                         <segue destination="LgI-ON-4hY" kind="presentation" identifier="HomeToFeed" id="Pq7-cy-tEF"/>
                     </connections>
                 </viewController>
@@ -2060,8 +2063,9 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ABk-Rw-W6d"/>
         <segue reference="nf1-k1-DaM"/>
-        <segue reference="qav-lz-AQ2"/>
+        <segue reference="Pq7-cy-tEF"/>
         <segue reference="l1h-Lg-NhA"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,6 +13,11 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet var emailText: UITextField!
     @IBOutlet var password: UITextField!
+    @IBOutlet weak var loginVCLoginButton: UIButton!
+    @IBOutlet weak var orLabel: UILabel!
+    @IBOutlet weak var registerButton: UIButton!
+    
+    
     var FBdata : Any?
     
     let loginButton: FBSDKLoginButton = {
@@ -25,6 +30,13 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         emailText.delegate = self
         password.delegate = self
+        
+        emailText.placeholder = NSLocalizedString("emailPlaceholder", comment: "")
+        password.placeholder = NSLocalizedString("passwordPlaceholder", comment: "")
+        loginVCLoginButton.setTitle(NSLocalizedString("LoginButton", comment: ""), for: .normal)
+        orLabel.text = NSLocalizedString("orLabel", comment: "")
+        registerButton.setTitle(NSLocalizedString("RegisterButton", comment: ""), for: .normal)
+        
         view.addSubview(loginButton)
         loginButton.frame = CGRect(x: 65, y: 400, width: view.frame.width - 130, height: 50)
         loginButton.delegate = self
