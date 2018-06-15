@@ -156,7 +156,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         commentsTableView.isScrollEnabled = false
         commentsTableView.separatorStyle = .none
-        subview.layer.cornerRadius = 20
+        subview.layer.cornerRadius = 10
         subview.clipsToBounds = true
         followerButton.layer.cornerRadius = 5
         followerButton.clipsToBounds = true
