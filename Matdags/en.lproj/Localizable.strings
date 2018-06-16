@@ -22,3 +22,7 @@
 "showPasswordPlaceholder" = "Show Password";
 "registerButton" = "register";
 "infoButton" = "Info";
+
+//SEARCH VC
+"followButton" = "FOLLOW";
+"followingButton" = "FOLLOWING";

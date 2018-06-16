@@ -22,3 +22,7 @@
 "showPasswordPlaceholder" = "Visa Lösenord";
 "registerButton" = "Registrera";
 "infoButton" = "Info";
+
+//SEARCH VC
+"followButton" = "FÖLJ";
+"followingButton" = "FÖLJER";
