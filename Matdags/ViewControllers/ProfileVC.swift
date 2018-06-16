@@ -17,6 +17,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
     
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followers: UILabel!
     @IBOutlet weak var following: UILabel!
     
@@ -36,10 +38,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
-//        if posts.isEmpty {
-//            loadData()
-//        }
-        
         resizeImage()
         getUserInfo()
         
@@ -48,6 +46,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         getFollwersCounting()
         
         
+        followingLabel.text = NSLocalizedString("followingLabel", comment: "")
+        followersLabel.text = NSLocalizedString("followerLabel", comment: "")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -280,7 +280,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     @IBAction func deleteaccountBtn(_ sender: Any) {
       
-        self.deleteAccountAlert(title: deleteTitle, message: deleteText)
+        self.deleteAccountAlert(title: NSLocalizedString("DeleteAccountHeader", comment: ""), message: NSLocalizedString("DeleteAccountText", comment: ""))
         //Resten av funktion ligger i Extensions/CreateAlertExt.swift
         
     }

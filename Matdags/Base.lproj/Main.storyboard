@@ -953,7 +953,9 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="followers" destination="R2M-1M-qIm" id="F3w-Lb-RD7"/>
+                        <outlet property="followersLabel" destination="BWv-pV-Ovt" id="rws-PK-ug9"/>
                         <outlet property="following" destination="0pZ-IM-U5X" id="mv9-23-4Vl"/>
+                        <outlet property="followingLabel" destination="LgR-jC-Tpn" id="ala-Gv-17o"/>
                         <outlet property="profileCollectionFeed" destination="ACP-Vh-ap7" id="Oqt-Ld-bWg"/>
                         <outlet property="profileNameLabel" destination="IWr-3y-d8T" id="toA-cT-qS1"/>
                         <outlet property="profilePictureOutlet" destination="Zv7-sa-0uO" id="G9z-ds-Cn4"/>
@@ -2065,8 +2067,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="qav-lz-AQ2"/>
-        <segue reference="l1h-Lg-NhA"/>
+        <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
 </document>

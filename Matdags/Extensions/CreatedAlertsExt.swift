@@ -32,7 +32,7 @@ extension UIViewController {
     func deleteAccountAlert (title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "JA", style: UIAlertActionStyle.default, handler:{ action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountYES", comment: ""), style: UIAlertActionStyle.default, handler:{ action in
             
             let uid = Auth.auth().currentUser?.uid
             let database = Database.database().reference(withPath: "Posts")
@@ -144,7 +144,7 @@ extension UIViewController {
             
         }))
         
-        alert.addAction(UIAlertAction(title: "NEJ", style: UIAlertActionStyle.default, handler:{ action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: UIAlertActionStyle.default, handler:{ action in
         }))
         self.present(alert, animated: true, completion: nil)
     }

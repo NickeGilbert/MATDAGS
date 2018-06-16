@@ -26,3 +26,11 @@
 //SEARCH VC
 "followButton" = "FOLLOW";
 "followingButton" = "FOLLOWING";
+
+//PROFILE VC
+"followingLabel" = "Following";
+"followerLabel" = "Followers";
+"DeleteAccountHeader" = "Delete Account";
+"DeleteAccountText" = "Are you sure u wanna delete your account?";
+"deleteAccountYES" = "YES";
+"deleteAccountNO" = "NO";

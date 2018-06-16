@@ -26,3 +26,11 @@
 //SEARCH VC
 "followButton" = "FÖLJ";
 "followingButton" = "FÖLJER";
+
+//PROFILE VC
+"followingLabel" = "Följer";
+"followerLabel" = "Följare";
+"DeleteAccountHeader" = "Radera konto";
+"DeleteAccountText" = "Är du säker på att du vill ta bort ditt konto?";
+"deleteAccountYES" = "JA";
+"deleteAccountNO" = "NEJ";
