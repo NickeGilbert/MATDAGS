@@ -39,8 +39,19 @@
 "zeroImagesTextMessage" = "Foton du tagit och foton från människor du följer visas här!";
 
 //IMAGEPAGE VC
-"followButton" = "FOLLOW";
-"followingButton" = "FOLLOWING";
+"followButton" = "FÖLJ";
+"followingButton" = "FÖLJER";
 "deleteImage" = "Radera bild";
 "blockUser" = "Blockera användare";
 "reportImage" = "Anmäl bild";
+
+//IMAGEPRE VC
+"saveImageTitle" = "Hurra!";
+"saveImageMessage" = "Bilden sparades på din telefon!";
+
+//IMAGEFEED VC
+"logoutTitle" = "Vill du logga ut?";
+"logoutMessage" = "Du kan logga in igen";
+"logOut" = "Logga ut";
+"closeTitle" = "Stäng";
+"logoutButton" = "Logga ut";

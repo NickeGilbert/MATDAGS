@@ -44,3 +44,14 @@
 "deleteImage" = "Delete image";
 "blockUser" = "Block user";
 "reportImage" = "Report image";
+
+//IMAGEPRE VC
+"saveImageTitle" = "Hurray!";
+"saveImageMessage" = "Your image was saved on your phone!";
+
+//IMAGEFEED VC
+"logoutTitle" = "Would you like to log out?";
+"logoutMessage" = "You can always log in again";
+"logOut" = "Log out";
+"closeTitle" = "Close";
+"logoutButton" = "Log out";

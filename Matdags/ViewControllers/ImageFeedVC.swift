@@ -14,6 +14,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet var collectionFeed: UICollectionView!
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var settingsOverlayView: UIView!
+    @IBOutlet weak var logoutButton: UIButton!
+    
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
@@ -30,6 +32,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        logoutButton.setTitle(NSLocalizedString("logoutButton", comment: ""), for: .normal)
         self.refresher = UIRefreshControl()
         self.collectionFeed!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.lightGray
@@ -128,8 +131,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func logOut(_ sender: Any) {
-        let alert = UIAlertController(title: "Vill du logga ut?", message: "Du kan logga in igen", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Logga ut", style: .destructive, handler: { action in
+        let alert = UIAlertController(title: NSLocalizedString("logoutTitle", comment: ""), message: NSLocalizedString("logoutMessage", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("logOut", comment: ""), style: .destructive, handler: { action in
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
@@ -146,7 +149,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func camerButtonTouch(_ sender: Any) {
-        performSegue(withIdentifier: "cameraSeg", sender: nil)
+        performSegue(withIdentifier: NSLocalizedString("closeTitle", comment: ""), sender: nil)
     }
     
     

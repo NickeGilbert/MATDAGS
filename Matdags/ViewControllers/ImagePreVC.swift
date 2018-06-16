@@ -144,7 +144,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBAction func saveLocalButton(_ sender: Any) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         print("\n Image saved to local library. \n")
-        let alert = UIAlertController(title: "Hurra!", message: "Bilden sparades på din telefon!", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("saveImageTitle", comment: ""), message: NSLocalizedString("saveImageMessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
