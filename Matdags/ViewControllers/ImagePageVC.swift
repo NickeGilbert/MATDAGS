@@ -77,6 +77,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        followerButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
+        unfollowingButton.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
+        subviewFollowButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
+        subviewUnfollowButton.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
+        
+        reportImage.setTitle(NSLocalizedString("reportImage", comment: ""), for: .normal)
+        blockUser.setTitle(NSLocalizedString("blockUser", comment: ""), for: .normal)
+        deleteImage.setTitle(NSLocalizedString("deleteImage", comment: ""), for: .normal)
+        
         getUserThatIFollowCounter()
         followerButton.backgroundColor = followUserBtn
         unfollowingButton.backgroundColor = unfollowUserBtn
@@ -91,7 +101,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subview.isHidden = false
         commentsTextField.delegate = self
         settingsOverlayView.isHidden = true
-        deleteImage.setTitle(removeImage,for: .normal)
         
         let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         clickUITapGestureRecognizer.delegate = self

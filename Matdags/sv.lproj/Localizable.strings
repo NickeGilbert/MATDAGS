@@ -34,3 +34,13 @@
 "DeleteAccountText" = "Är du säker på att du vill ta bort ditt konto?";
 "deleteAccountYES" = "JA";
 "deleteAccountNO" = "NEJ";
+
+//FOLLOWERSVC
+"zeroImagesTextMessage" = "Foton du tagit och foton från människor du följer visas här!";
+
+//IMAGEPAGE VC
+"followButton" = "FOLLOW";
+"followingButton" = "FOLLOWING";
+"deleteImage" = "Radera bild";
+"blockUser" = "Blockera användare";
+"reportImage" = "Anmäl bild";

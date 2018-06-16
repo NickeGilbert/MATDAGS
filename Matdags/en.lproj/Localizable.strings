@@ -34,3 +34,13 @@
 "DeleteAccountText" = "Are you sure u wanna delete your account?";
 "deleteAccountYES" = "YES";
 "deleteAccountNO" = "NO";
+
+//FOLLOWERS VC
+"zeroImagesTextMessage" = "Pictures you have taken and pictures from people you are following will be displayed here!";
+
+//IMAGEPAGE VC
+"followButton" = "FOLLOW";
+"followingButton" = "FOLLOWING";
+"deleteImage" = "Delete image";
+"blockUser" = "Block user";
+"reportImage" = "Report image";
