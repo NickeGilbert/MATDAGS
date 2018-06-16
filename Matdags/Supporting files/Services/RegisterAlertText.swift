@@ -9,30 +9,30 @@
 import UIKit
 
 //Empty mail adress
-var emptyMail = "Mailadress"
-var emptyMailMessage = "Du måste ange en mailadress"
+var emptyMail = NSLocalizedString("emptyMail", comment: "")
+var emptyMailMessage = NSLocalizedString("emptyMailMessage", comment: "")
 
 //Empty password
-var passwordTitle = "Stämmer inte överrens"
-var passwordMessage = "Lösenorden måste vara identiska"
+var passwordTitle = NSLocalizedString("passwordTitle", comment: "")
+var passwordMessage = NSLocalizedString("passwordMessage", comment: "")
 
 //Empty username
-var username = "Användarnamn"
-var usernameMessage = "Ditt användarnamn får inte vara tomt"
+var username = NSLocalizedString("username", comment: "")
+var usernameMessage = NSLocalizedString("usernameMessage", comment: "")
 
 //Error message
-var errorTitle = "Problem"
-var errorMessage = "Något problem uppstod, vänligen försök igen"
+var errorTitle = NSLocalizedString("errorTitle", comment: "")
+var errorMessage = NSLocalizedString("errorMessage", comment: "")
 
 //Password lenght
-var passwordLenghtTitle = "Lösenordslängd"
-var passwordLenghtMessage = "Lösenordet måste vara längre än 5 tecken, vänligen försök igen"
+var passwordLenghtTitle = NSLocalizedString("passwordLenghtTitle", comment: "")
+var passwordLenghtMessage = NSLocalizedString("passwordLenghtMessage", comment: "")
 
 //Validate user
-var validateTitle = "Okay"
-var validateMessage = "Du måste gå och Validera ditt konto på din mail!"
+var validateTitle = NSLocalizedString("validateTitle", comment: "")
+var validateMessage = NSLocalizedString("validateMessage", comment: "")
 
 
 //InfoClick
-var infoTitle = "Användardata"
-var infoMessage = "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter. "
+var infoTitle = NSLocalizedString("infoTitle", comment: "")
+var infoMessage = NSLocalizedString("infoMessage", comment: "")

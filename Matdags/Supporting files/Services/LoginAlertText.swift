@@ -9,17 +9,17 @@
 import UIKit
 
 //Facebook login error
-var facebookLoginTitle = "Problem"
-var facebookLoginMessage = "Något inloggningsproblem uppstod, vänligen försök igen"
+var facebookLoginTitle = NSLocalizedString("facebookLoginErrorTitle", comment: "")
+var facebookLoginMessage = NSLocalizedString("facebookLoginErrorMessage", comment: "")
 
 //Mail login error
-var mailLoginErrorTitle = "Error"
-var mailLoginErrorMessage = "Något blev fel. Försök igen!"
+var mailLoginErrorTitle = NSLocalizedString("mailLoginErrorTitle", comment: "")
+var mailLoginErrorMessage = NSLocalizedString("mailLoginErrorMessage", comment: "")
 
 //Mail Login Problem
-var mailLoginProblemTitle = "Problem"
-var mailLoginProblemMessage = "Något inloggningsproblem uppstod, vänligen försök igen"
+var mailLoginProblemTitle = NSLocalizedString("mailLoginErrorTitle", comment: "")
+var mailLoginProblemMessage = NSLocalizedString("mailLoginErrorMessage", comment: "")
 
 //Verifying user
-var verifyTitle = "Verifiering"
-var verifyMessage = "Vänligen godkänn ditt konto i din mail"
+var verifyTitle = NSLocalizedString("verifyTitle", comment: "")
+var verifyMessage = NSLocalizedString("verifyMessage", comment: "")

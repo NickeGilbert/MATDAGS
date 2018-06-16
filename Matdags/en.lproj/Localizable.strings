@@ -13,6 +13,14 @@
 "LoginButton" = "Sign in";
 "orLabel" = "Or";
 "RegisterButton" = "Register";
+"mailLoginErrorTitle" = "Error";
+"mailLoginErrorMessage" = "Something went wrong. Please try again!";
+"facebookLoginErrorTitle" = "Problem";
+"facebookLoginErrorMessage" = "Something went wrong. Please try again!";
+"verifyTitle" = "Verify";
+"verifyMessage" = "Please confirm your account at your mail";
+
+
 
 //REGISTER VC
 "emailPlaceholder" = "Email";
@@ -22,6 +30,22 @@
 "showPasswordPlaceholder" = "Show Password";
 "registerButton" = "register";
 "infoButton" = "Info";
+
+"emptyMail" = "Mailadress";
+"emptyMailMessage" = "You have to type your mail adress";
+"passwordTitle" = "Does not agree";
+"passwordMessage" = "The passwords must be identical";
+"username" = "Username";
+"usernameMessage" = "Your username may not be empty";
+"errorTitle" = "Problem";
+"errorMessage" = "Any problem occurred, please try again";
+"passwordLenghtTitle" = "Passwordlength";
+"passwordLenghtMessage" = "The password must be longer than 5 characters, please try again";
+"validateTitle" = "Okay";
+"validateMessage" = "You must go and validate your account on your mail!";
+"infoTitle" = "Userdata";
+"infoMessage" = "The information you provide from you by creating an account with your email address, alias and password is neither shared with others nor used by ourselves except for enabling multi-device history login.";
+
 
 //SEARCH VC
 "followButton" = "FOLLOW";

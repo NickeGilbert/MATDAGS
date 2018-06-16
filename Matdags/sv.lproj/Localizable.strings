@@ -13,6 +13,12 @@
 "LoginButton" = "Logga in";
 "orLabel" = "Eller";
 "RegisterButton" = "Registrera";
+"mailLoginErrorTitle" = "Error";
+"mailLoginErrorMessage" = "Någonting gick fel. Pröva igen!";
+"facebookLoginErrorTitle" = "Problem";
+"facebookLoginErrorMessage" = "Någonting gick fel. Pröva igen!";
+"verifyTitle" = "Verifiera";
+"verifyMessage" = "Var vänlig och godkänn dit konta på din mail";
 
 //REGISTER VC
 "emailPlaceholder" = "Email";
@@ -22,6 +28,22 @@
 "showPasswordPlaceholder" = "Visa Lösenord";
 "registerButton" = "Registrera";
 "infoButton" = "Info";
+"emptyMail" = "Mailadress";
+"emptyMailMessage" = "Du måste ange en mailadress";
+"passwordTitle" = "Stämmer inte överens";
+"passwordMessage" = "Lösenorden måste vara identiska";
+"username" = "Användarnamn";
+"usernameMessage" = "Ditt användarnamn får inte vara tomt";
+"errorTitle" = "Problem";
+"errorMessage" = "Något problem uppstod, vänligen försök igen";
+"passwordLenghtTitle" = "Lösenordslängd";
+"passwordLenghtMessage" = "Lösenordet måste vara längre än 5 tecken, vänligen försök igen";
+"validateTitle" = "Okay";
+"validateMessage" = "Du måste gå och Validera ditt konto på din mail!";
+"infoTitle" = "Användardata";
+"infoMessage" = "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter.";
+
+
 
 //SEARCH VC
 "followButton" = "FÖLJ";
