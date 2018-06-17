@@ -15,17 +15,19 @@ extension ImagePageVC {
         if reports <= 4 {
             let ref = Database.database().reference().child("Posts").child(seguePostID)
             if self.posts[0] != nil {
-            
+                
                 
                 reports = reports+1
                 let myReports = ["Reports" : reports ] as [String : Int]
                 ref.updateChildValues(myReports)
+                addUserToPostIdReportUnderPOST()
             } else {
                 print("Did not work")
             }
         } else {
             self.deletePosts()
         }
+        
     }
     
     func reportPostSecond() {
@@ -37,6 +39,7 @@ extension ImagePageVC {
                 reportsOnUsers = reportsOnUsers+1
                 let myReports = ["Reports" : reportsOnUsers ] as [String : Int]
                 ref.updateChildValues(myReports)
+                addUserIdToReportUnderUSER()
             } else {
                 print("Did not work")
             }
@@ -62,5 +65,49 @@ extension ImagePageVC {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    func addUserToPostIdReportUnderPOST() {
+        let ref = Database.database().reference().child("Posts").child(seguePostID).child("UsersThatHaveReportedThisImage")
+        let userThatReportedYou = [ alias! : uid ] as [String : AnyObject]
+        ref.updateChildValues(userThatReportedYou)
+   
+    }
+    
+    func addUserIdToReportUnderUSER() {
+        let userPostUID = self.posts[0].userID
+        let ref = Database.database().reference().child("Users").child(userPostUID!).child("Posts").child(seguePostID).child("UsersThatHaveReportedThisImage")
+        let userThatReportedYou = [ alias! : uid ] as [String : AnyObject]
+        ref.updateChildValues(userThatReportedYou)
+        
+    }
+    
+    func checkIfUserAlreadyHaveReportedThisImage() {
+        
+        _ = Database.database().reference().child("Posts").child(seguePostID).child("UsersThatHaveReportedThisImage").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if (snapshot.value as? NSDictionary) != nil {
+                let value = snapshot.value as! NSDictionary
+                for uidValue in value {
+                    let appendUser = User()
+                    appendUser.uid = uidValue.value as? String
+                    self.myReportsTestArray.append(appendUser.uid)
+                    
+                }
+            } else {
+                return
+            }
+        })
+    }
+    
+    func checkForUIDInReportedImage() {
+        for user in myReportsTestArray {
+            if uid == user {
+                return
+            } else {
+            }
+        }
+        reportPost()
+        reportPostSecond()
     }
 }

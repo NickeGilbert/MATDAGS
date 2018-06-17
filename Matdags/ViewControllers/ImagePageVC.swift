@@ -74,6 +74,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     //test daniel
     var commentsCell = [CommentsCell]()
     
+    var myReportsTestArray = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,6 +161,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.getUserFollowing()
             self.getUserThatFollowMeCounter()
             self.checkHowManyReportsPostHave()
+            
+            self.checkIfUserAlreadyHaveReportedThisImage()
         }
         
         observeComments()
@@ -388,8 +392,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             
             let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""), message: NSLocalizedString("reportSentMessage", comment: ""), preferredStyle: .alert)
-            self.reportPost()
-            self.reportPostSecond()
+            
+            self.checkForUIDInReportedImage()
             
             alert2.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""), style: .cancel, handler: nil))
             self.present(alert2, animated: true)
