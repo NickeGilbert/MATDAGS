@@ -32,6 +32,7 @@
 		0AF08DB61FE9096A00BCBD43 /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF08DB51FE9096A00BCBD43 /* Follow.swift */; };
 		26CAF535201219C900011A6E /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF534201219C900011A6E /* CommentsCell.swift */; };
 		4C955652EF8466CC09E7D7A9 /* Pods_Matdags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */; };
+		A40E166520D654680061176B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A40E166720D654680061176B /* InfoPlist.strings */; };
 		A41F16871FBDF86900500EF8 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41F16861FBDF86900500EF8 /* ProfileCell.swift */; };
 		A423EA2F201151D500F32C46 /* FollowerVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423EA2E201151D500F32C46 /* FollowerVCExt.swift */; };
 		A423EA322011538400F32C46 /* ImageFeedVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A423EA312011538400F32C46 /* ImageFeedVCExt.swift */; };
@@ -94,6 +95,8 @@
 		26CAF534201219C900011A6E /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		7886DCB61613D223556416E4 /* Pods-Matdags.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.release.xcconfig"; sourceTree = "<group>"; };
 		A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matdags.entitlements; sourceTree = "<group>"; };
+		A40E166620D654680061176B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A40E166820D6546D0061176B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A41F16861FBDF86900500EF8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		A423EA2E201151D500F32C46 /* FollowerVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVCExt.swift; sourceTree = "<group>"; };
 		A423EA312011538400F32C46 /* ImageFeedVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedVCExt.swift; sourceTree = "<group>"; };
@@ -230,6 +233,7 @@
 				A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */,
 				0A706CC71F73B70800B0345C /* Info.plist */,
 				A4B4D86420D4285D00F3A4B8 /* Localizable.strings */,
+				A40E166720D654680061176B /* InfoPlist.strings */,
 			);
 			path = Matdags;
 			sourceTree = "<group>";
@@ -378,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A706CC61F73B70800B0345C /* LaunchScreen.storyboard in Resources */,
+				A40E166520D654680061176B /* InfoPlist.strings in Resources */,
 				0AA373191F86450400E6FE92 /* FacebookSDKStrings.bundle in Resources */,
 				0A706CC31F73B70800B0345C /* Assets.xcassets in Resources */,
 				A4B4D86220D4285D00F3A4B8 /* Localizable.strings in Resources */,
@@ -527,6 +532,15 @@
 				A4B4D85B20D4248200F3A4B8 /* sv */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A40E166720D654680061176B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A40E166620D654680061176B /* sv */,
+				A40E166820D6546D0061176B /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		A4B4D86420D4285D00F3A4B8 /* Localizable.strings */ = {

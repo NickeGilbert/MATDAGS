@@ -30,7 +30,6 @@
 "showPasswordPlaceholder" = "Show Password";
 "registerButton" = "register";
 "infoButton" = "Info";
-
 "emptyMail" = "Mailadress";
 "emptyMailMessage" = "You have to type your mail adress";
 "passwordTitle" = "Does not agree";
@@ -68,6 +67,24 @@
 "deleteImage" = "Delete image";
 "blockUser" = "Block user";
 "reportImage" = "Report image";
+"reportImageTitle" = "Would you like to report this image?";
+"reportImageMessage" = "Keep in mind that to not abuse this service, it might lead to you getting blocked from this app";
+"reportTitle" = "Report";
+"reportSent" = "A report has been sent";
+"reportSentMessage" = "We will take a look at the picture";
+"closeReport" = "Close";
+"deleteImageTitle" = "Would you like to delete this image?";
+"deleteImageMessage" = "This cannot be undone";
+"delete" = "Remove";
+"blockUserTitle" = "Would you like to block this user?";
+"blockUserMessage" = "Keep in mind that to not abuse this service, it might lead to you getting blocked from this app";
+"blockUser" = "Block";
+"userIsBlockedTitle" = "The user has been blocked";
+"userIsBlockedMessage" = "You will no longer be able to see images from this user";
+"userClose" = "Close";
+
+
+
 
 //IMAGEPRE VC
 "saveImageTitle" = "Hurray!";
@@ -79,3 +96,4 @@
 "logOut" = "Log out";
 "closeTitle" = "Close";
 "logoutButton" = "Log out";
+

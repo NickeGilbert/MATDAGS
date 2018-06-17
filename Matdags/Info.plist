@@ -48,11 +48,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Ta en bild!</string>
+	<string>NSCameraUsageDescription</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Spara en bild!</string>
+	<string>NSPhotoLibraryAdditionsUsageDescription</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Välj en bild!</string>
+	<string>NSPhotoLibraryUsageDescription</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

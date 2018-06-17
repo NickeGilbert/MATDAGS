@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Matdags
+
+  Created by Nicklas Gilbertson on 2018-06-17.
+  Copyright © 2018 Matdags. All rights reserved.
+*/
+
+NSCameraUsageDescription = "Take a picture!";
+NSPhotoLibraryAdditionsUsageDescription = "Save an image!";
+NSPhotoLibraryUsageDescription = "Choose an image!";

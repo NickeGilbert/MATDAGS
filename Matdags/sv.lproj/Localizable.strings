@@ -66,6 +66,24 @@
 "deleteImage" = "Radera bild";
 "blockUser" = "Blockera användare";
 "reportImage" = "Anmäl bild";
+"reportImageTitle" = "Vill du anmäla denna bilden?";
+"reportImageMessage" = "Tänk på att inte missbruka denna tjäst då du själv kan bli avstängd";
+"reportTitle" = "Anmäl";
+"reportSent" = "En anmälan har blivit skickad";
+"reportSentMessage" = "Vi kommer att ta en titt på bilden";
+"closeReport" = "Stäng";
+"deleteImageTitle" = "Vill du radera bilden?";
+"deleteImageMessage" = "Detta kan inte bli ogjort!";
+"delete" = "Ta bort";
+"blockUserTitle" = "Vill du blockera användaren?";
+"blockUserMessage" = "Tänk på att inte missbruka denna tjänst då du själv kan bli avstäng";
+"blockUser" = "Blockera";
+"userIsBlockedTitle" = "Användaren är blockerad";
+"userIsBlockedMessage" = "Du kan inte längre sen bilder från denna användaren";
+"userClose" = "Stäng";
+
+
+
 
 //IMAGEPRE VC
 "saveImageTitle" = "Hurra!";
