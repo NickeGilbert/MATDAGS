@@ -89,7 +89,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         tabBarController?.selectedIndex = 2
     }
     
-    func getUserFollowing() {
+    func getUserFollowing(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         self.userFollowing = []
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
@@ -102,6 +102,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
                     self.userFollowing.append(appendUser.uid)
                     print("IM FOLLOWING",  self.userFollowing)
                 }
+                completionHandler(true)
             } else {
                 return
             }
@@ -143,7 +144,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.searchController.searchBar.endEditing(true)
         self.searchController.searchBar.isHidden = true
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
-        getUserFollowing()
         let username = users[indexPath.row]
         let ownUserID = username.uid
         
@@ -155,9 +155,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
 
-        
-        let delayInSeconds = 0.01
-        DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
+        getUserFollowing { (true) in
             if self.uid! == ownUserID! {
                 self.subviewFollowButton.isHidden = true
                 self.subviewUnfollowBtn.isHidden = true
@@ -166,7 +164,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
                     if userId == user {
                         self.subviewUnfollowBtn.isHidden = false
                         self.subviewFollowButton.isHidden = true
-                         break
+                        break
                     } else {
                         self.subviewUnfollowBtn.isHidden = true
                         self.subviewFollowButton.isHidden = false
