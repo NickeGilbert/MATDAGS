@@ -1774,12 +1774,6 @@
                             <constraint firstItem="3ws-by-1OO" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="z2W-0u-Y4F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="XQz-Jm-hsB"/>
-                                <exclude reference="uJr-hq-MOK"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="blockUser" destination="kLe-wf-Imq" id="H2P-bo-Ho6"/>
