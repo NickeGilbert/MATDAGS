@@ -29,10 +29,7 @@ extension ImagePageVC {
         unfollowUser()
     }
     
-    
-    
-    
-    
+
     func getUserProfileImage(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         if subviews.count == 0 {
             let getInfo = User()

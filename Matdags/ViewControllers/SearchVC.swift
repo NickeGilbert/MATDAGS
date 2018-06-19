@@ -154,6 +154,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
+        
+        getUserThatFollowMeCounter()
 
         getUserFollowing { (true) in
             if self.uid! == ownUserID! {

@@ -54,34 +54,6 @@ extension SearchVC {
         }
     }
     
-    func getUserThatIFollowCounter() {
-        let ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            
-            let value = snapshot.value as? NSDictionary
-            self.peoplelIFollowCount = value?["followingCounter"] as? Int ?? -1
-            print("PEOPLE IM FOLLOWING", self.peoplelIFollowCount)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    func getUserThatFollowMeCounter() {
-        let ref = Database.database().reference()
-        let followerid = userId!
-        ref.child("Users").child(followerid).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
-            print("PEOPLE THAT FOLLOW ME", self.countPeopleThatFollowMe)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    
     func getFollower() {
         let db = Database.database()
         let uid = Auth.auth().currentUser!.uid
@@ -136,6 +108,33 @@ extension SearchVC {
                 print("DIDN'T GO THROUGH")
                 return
             }
+        }
+    }
+    
+    func getUserThatIFollowCounter() {
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            
+            let value = snapshot.value as? NSDictionary
+            self.peoplelIFollowCount = value?["followingCounter"] as? Int ?? -1
+            print("PEOPLE IM FOLLOWING", self.peoplelIFollowCount)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getUserThatFollowMeCounter() {
+        let ref = Database.database().reference()
+        let followerid = userId!
+        ref.child("Users").child(followerid).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
+            print("PEOPLE THAT FOLLOW ME", self.countPeopleThatFollowMe)
+        }) { (error) in
+            print(error.localizedDescription)
         }
     }
     
