@@ -17,6 +17,7 @@ extension SearchVC {
         self.subviewCollectionFeed.reloadData()
         self.subviewProfileImage.image = nil
         self.subviewUsername.text = nil
+        self.searchController.searchBar.isHidden = false
     }
     
     @IBAction func subviewFollowUser(_ sender: Any) {

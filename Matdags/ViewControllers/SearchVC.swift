@@ -82,8 +82,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchController.searchBar.becomeFirstResponder()
-        topSubView.layer.zPosition = 2
-        searchController.searchBar.layer.zPosition = 1
+        
     }
 
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -142,6 +141,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.searchController.searchBar.endEditing(true)
+        self.searchController.searchBar.isHidden = true
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         getUserFollowing()
         let username = users[indexPath.row]
