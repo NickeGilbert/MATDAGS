@@ -27,11 +27,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
         self.zeroImagesMessage.isHidden = true
         
-        if posts.isEmpty == true {
-            
-            zeroImagesMessage.isHidden = false
-            zeroImagesMessage.text = zeroImages
-        }
+        zeroImagesMessage.text = zeroImages
         
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
@@ -47,7 +43,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidAppear(_ animated: Bool) {
         if posts.isEmpty {
             loadData()
-            zeroImagesMessage.isHidden = true
+            zeroImagesMessage.isHidden = false
         }else{
             self.posts.removeAll()
             loadData()
