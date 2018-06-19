@@ -148,7 +148,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let ownUserID = username.uid
         
         downloadImages(uid: username.uid)
-        
 
         self.userId = users[indexPath.row].uid
         self.topSubView.isHidden = false

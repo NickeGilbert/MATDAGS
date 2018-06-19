@@ -160,7 +160,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.getStars()
             self.getUserFollowing()
             self.getUserThatFollowMeCounter()
-            self.checkHowManyReportsPostHave()
+            self.checkHowManyReportsUserpostHave()
             
             self.checkIfUserAlreadyHaveReportedThisImage()
         }
@@ -297,6 +297,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBAction func followUser(_ sender: Any) {
         followerButton.isHidden = true
+        subviewFollowButton.isHidden = true
+        subviewUnfollowButton.isHidden = false
         unfollowingButton.isHidden = false
         getFollower()
         addFollower()
@@ -385,7 +387,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func openContainerView(_ sender: Any) {
         settingsOverlayView.isHidden = false
     }
-
+    
+   
     @IBAction func reportImage(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("reportImageTitle", comment: ""), message: NSLocalizedString("reportImageMessage", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("reportTitle", comment: ""), style: .destructive, handler: { action in
@@ -412,9 +415,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.present(alert, animated: true)
     }
     
-    @IBAction func unfollowUser(_ sender: Any) {
+    @IBAction func unfollowUserButton(_ sender: Any) {
         self.unfollowingButton.isHidden = true
+        self.subviewUnfollowButton.isHidden = true
         self.followerButton.isHidden = false
+        self.subviewFollowButton.isHidden = false
         unfollowUser()
     }
  

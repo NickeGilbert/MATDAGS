@@ -13,10 +13,25 @@ extension ImagePageVC {
     
     @IBAction func subviewFollowBtn(_ sender: Any) {
         subviewFollowButton.isHidden = true
+        followerButton.isHidden = true
+        unfollowingButton.isHidden = false
         subviewUnfollowButton.isHidden = false
         getFollower()
         addFollower()
     }
+    
+    
+    @IBAction func subviewUnfollowUser(_ sender: Any) {
+        subviewFollowButton.isHidden = false
+        followerButton.isHidden = false
+        unfollowingButton.isHidden = true
+        subviewUnfollowButton.isHidden = true
+        unfollowUser()
+    }
+    
+    
+    
+    
     
     func getUserProfileImage(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         if subviews.count == 0 {

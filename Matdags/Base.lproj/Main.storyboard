@@ -1524,7 +1524,7 @@
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="unfollowUser:" destination="As2-HR-siM" eventType="touchUpInside" id="cEp-Yf-up8"/>
+                                            <action selector="unfollowUserButton:" destination="As2-HR-siM" eventType="touchUpInside" id="cEp-Yf-up8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1638,6 +1638,9 @@
                                                 <state key="normal" title="FÖLJER">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="subviewUnfollowUser:" destination="As2-HR-siM" eventType="touchUpInside" id="Afg-Hq-rlI"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSK-Fo-yrz" userLabel="Subview Username">
                                                 <rect key="frame" x="151" y="49" width="204" height="40"/>
