@@ -9,6 +9,7 @@ import FirebaseAuth
 import FBSDKLoginKit
 import FBSDKCoreKit
 import AVFoundation
+import FirebaseDatabase
 
 class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
@@ -23,6 +24,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var following: UILabel!
     
     
+    var usersPostsInPOSTS = [String]()
     var ref: DatabaseReference!
     var FBdata : Any?
     var titleName = ""
@@ -34,8 +36,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var user = User()
     var users = [User]()
     var fromSearch = false
+    let uid = Auth.auth().currentUser?.uid
+    var seguePostID : String!
 
     override func viewDidLoad() {
+        
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
         resizeImage()
@@ -61,6 +66,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             self.getFollwersCounting()
             self.profileCollectionFeed.reloadData()
             print(self.posts.count)
+            
+            self.allOfMyPosts()
         }
     }
     
@@ -279,10 +286,47 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     @IBAction func deleteaccountBtn(_ sender: Any) {
-      
-        self.deleteAccountAlert(title: NSLocalizedString("DeleteAccountHeader", comment: ""), message: NSLocalizedString("DeleteAccountText", comment: ""))
-        //Resten av funktion ligger i Extensions/CreateAlertExt.swift
+
+        let alert = UIAlertController(title: NSLocalizedString("DeleteAccountHeader", comment: ""), message: NSLocalizedString("DeleteAccountText", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountYES", comment: ""), style: .destructive, handler: { action in
+            
+            
+            let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""), message: NSLocalizedString("reportSentMessage", comment: ""), preferredStyle: .alert)
+            
+            self.deleteUser()
+    
+            
+            alert2.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
+            self.present(alert2, animated: true)
+            
+            
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+
+    }
+ 
+    func allOfMyPosts() {
         
+//        let dbref = Database.database().reference().child("Users/\(String(describing: uid!))/Posts")
+//        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+//            print("VAFAN HÄNTER", dbref)
+//            if (snapshot.value as? NSDictionary) != nil {
+//                print("HEJSAN", self.usersPostsInPOSTS)
+//
+//                let value = snapshot.value as! NSDictionary
+//                print("VALUE US", value)
+//
+//                for postValue in value {
+//                    let appendPosts = User()
+//                    appendPosts.postID = postValue.value as? String
+//                    print("HUR BLIR DETTA? ", postValue.value)
+//                    print("HEJSAN2", appendPosts.postID)
+//                    //self.usersPostsInPOSTS.append(appendPosts.postID)
+//                    print("ANVÄNDARENS POSTS ÄR", self.usersPostsInPOSTS)
+//                }
+//            }
+//        })
     }
 }
 

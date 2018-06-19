@@ -25,6 +25,14 @@ extension SearchVC {
         self.subviewUnfollowBtn.isHidden = false
         addFollower()
         getFollower()
+        print("PRESSED FOLLOW")
+    }
+    
+    
+    @IBAction func unfollowUserButton(_ sender: Any) {
+        self.subviewUnfollowBtn.isHidden = true
+        self.subviewFollowButton.isHidden = false
+        unfollowUser()
     }
     
     func addFollower() {
@@ -39,6 +47,8 @@ extension SearchVC {
             let counter = ["followingCounter" : peoplelIFollowCount ] as [String : Int]
             uref.updateChildValues(counter)
             dbref.updateChildValues(following)
+            print("4", peoplelIFollowCount)
+            print("HEJSAN HEJSAN")
         } else {
             print("\n userID not found when adding follower \n")
         }
@@ -60,11 +70,12 @@ extension SearchVC {
     
     func getUserThatFollowMeCounter() {
         let ref = Database.database().reference()
-        let followerid = posts[0].userID
-        ref.child("Users").child(followerid!).observeSingleEvent(of: .value, with: { (snapshot) in
+        let followerid = userId!
+        ref.child("Users").child(followerid).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
             self.countPeopleThatFollowMe = value?["followerCounter"] as? Int ?? -1
+            print("PEOPLE THAT FOLLOW ME", self.countPeopleThatFollowMe)
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -92,6 +103,7 @@ extension SearchVC {
     }
     
     func unfollowUser() {
+        print("PRESSED UNFOLLOW")
         let uid = Auth.auth().currentUser!.uid
         let uref = db.reference(withPath: "Users/\(uid)")
         let followingUsername = self.subviewUsername.text!

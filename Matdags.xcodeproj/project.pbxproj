@@ -46,6 +46,7 @@
 		A44A12172035C7EA00F6EAEE /* SearchSubViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */; };
 		A44A12192035C87B00F6EAEE /* ImagePageSubViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */; };
 		A44A121B2035C8F000F6EAEE /* ImagePageVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */; };
+		A455F1AD20D91820000ABC05 /* ProfileVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A455F1AC20D91820000ABC05 /* ProfileVCExt.swift */; };
 		A45ABBA61FE01F780052E6A7 /* SearchSubViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */; };
 		A460CC7820A35F5300DBDE23 /* ImagePageText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A460CC7720A35F5300DBDE23 /* ImagePageText.swift */; };
 		A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4650B001FB368FC00BC618E /* SearchVC.swift */; };
@@ -111,6 +112,7 @@
 		A44A12162035C7EA00F6EAEE /* SearchSubViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewExt.swift; sourceTree = "<group>"; };
 		A44A12182035C87B00F6EAEE /* ImagePageSubViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSubViewExt.swift; sourceTree = "<group>"; };
 		A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageVCExt.swift; sourceTree = "<group>"; };
+		A455F1AC20D91820000ABC05 /* ProfileVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCExt.swift; sourceTree = "<group>"; };
 		A45ABBA51FE01F780052E6A7 /* SearchSubViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubViewCell.swift; sourceTree = "<group>"; };
 		A460CC7720A35F5300DBDE23 /* ImagePageText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageText.swift; sourceTree = "<group>"; };
 		A4650B001FB368FC00BC618E /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				A44A121A2035C8F000F6EAEE /* ImagePageVCExt.swift */,
 				A4DA9FB720B89FC9006FED91 /* reportUserPosts.swift */,
 				A42E9FAF20D2530100702A0A /* BlockUser.swift */,
+				A455F1AC20D91820000ABC05 /* ProfileVCExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				0A4CD1C41FAE5F880006986A /* Post.swift in Sources */,
 				0AF001D11FC44F47005E6CBE /* User.swift in Sources */,
 				A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */,
+				A455F1AD20D91820000ABC05 /* ProfileVCExt.swift in Sources */,
 				A423EA2F201151D500F32C46 /* FollowerVCExt.swift in Sources */,
 				A4650B011FB368FC00BC618E /* SearchVC.swift in Sources */,
 				A48BAC132006A54100D2D185 /* ImagePageSubViewCell.swift in Sources */,
@@ -673,7 +677,6 @@
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87587NY5AL;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -708,7 +711,6 @@
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87587NY5AL;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

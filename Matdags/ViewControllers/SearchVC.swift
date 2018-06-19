@@ -41,7 +41,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         //DB Refs
         searchRef = searchRef.child("Users")
-        
+        getUserThatIFollowCounter()
         //Get Data
         
         //TableView
@@ -146,7 +146,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = users[indexPath.row]
         let ownUserID = username.uid
-        
+        self.subviewFollowButton.isHidden = false
         downloadImages(uid: username.uid)
 
         self.userId = users[indexPath.row].uid
@@ -230,11 +230,5 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             
             filterUsers()
         }
-    }
-    
-    @IBAction func unfollowUser(_ sender: Any) {
-        self.subviewUnfollowBtn.isHidden = true
-        self.subviewFollowButton.isHidden = false
-        unfollowUser()
     }
 }
