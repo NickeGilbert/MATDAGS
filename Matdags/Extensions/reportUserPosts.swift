@@ -89,7 +89,7 @@ extension ImagePageVC {
                 for uidValue in value {
                     let appendUser = User()
                     appendUser.uid = uidValue.value as? String
-                    self.myReportsTestArray.append(appendUser.uid)
+                    self.arrayOfUsersThatHaveReportedAnImage.append(appendUser.uid)
                     
                 }
             } else {
@@ -99,7 +99,7 @@ extension ImagePageVC {
     }
     
     func checkForUIDInReportedImage() {
-        for user in myReportsTestArray {
+        for user in arrayOfUsersThatHaveReportedAnImage {
             if uid == user {
                 return
             } else {

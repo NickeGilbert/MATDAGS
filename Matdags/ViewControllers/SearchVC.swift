@@ -43,7 +43,6 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchRef = searchRef.child("Users")
         
         //Get Data
-        getUserFollowing()
         
         //TableView
         searchUsersTableView.delegate = self
@@ -92,17 +91,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     }
     
     func getUserFollowing() {
-
+        self.userFollowing = []
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
-            
             if (snapshot.value as? NSDictionary) != nil {
                 let value = snapshot.value as! NSDictionary
                 for uidValue in value {
                     let appendUser = User()
                     appendUser.uid = uidValue.value as? String
                     self.userFollowing.append(appendUser.uid)
+                    print("IM FOLLOWING",  self.userFollowing)
                 }
             } else {
                 return
@@ -144,6 +143,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.searchController.searchBar.endEditing(true)
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
+        getUserFollowing()
         let username = users[indexPath.row]
         let ownUserID = username.uid
         
@@ -154,38 +154,26 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         let userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
-        
-       self.subviewUnfollowBtn.isHidden = true
-        self.subviewFollowButton.isHidden = true
- 
 
-        if self.uid! == ownUserID! {
-            self.subviewFollowButton.isHidden = true
-            self.subviewUnfollowBtn.isHidden = true
-        } else {
-            print("THE USER IS CLICKED ON UID! : ", ownUserID!)
-            print("USERS IM FOLLOWING :", self.userFollowing)
-            for user in self.userFollowing {
-                print("\nUSER IS: ", user)
-                print("YOUR ARE FOLLOWING: ", self.userFollowing)
-                
-                if userId == user {
-                    print("SUCCESS CHECK:", user, self.userFollowing)
-                    print("\nYou are following this user.", userId!)
-                    self.subviewUnfollowBtn.isHidden = false
-                    self.subviewFollowButton.isHidden = true
-                   // break
-                } else {
-                    print("FAILED CHECK:", user, self.userFollowing)
-                    print("\nYou are not following this user.", userId!)
-                    self.subviewUnfollowBtn.isHidden = true
-                    self.subviewFollowButton.isHidden = false
-                 //   break
+        
+        let delayInSeconds = 0.01
+        DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
+            if self.uid! == ownUserID! {
+                self.subviewFollowButton.isHidden = true
+                self.subviewUnfollowBtn.isHidden = true
+            } else {
+                for user in self.userFollowing {
+                    if userId == user {
+                        self.subviewUnfollowBtn.isHidden = false
+                        self.subviewFollowButton.isHidden = true
+                         break
+                    } else {
+                        self.subviewUnfollowBtn.isHidden = true
+                        self.subviewFollowButton.isHidden = false
+                    }
                 }
             }
-            print("after user loop")
         }
-        
         
         if username.profileImageURL != "" {
             self.subviewProfileImage.image = cell.pictureOutlet.image

@@ -112,24 +112,22 @@ extension ImagePageVC {
         let size = CGSize(width: view.frame.width/3.5, height: view.frame.width/3.5)
         return size
     }
-    
-    //INTE GJORT SEGUE ÄN!
-    /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-     self.performSegue(withIdentifier: "imagePageSegSub", sender: indexPath)
-     }
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if(segue.identifier == "imagePageSegSub")
-     {
-     let selectedCell = sender as! NSIndexPath
-     let selectedRow = selectedCell.row
-     let imagePage = segue.destination as! ImagePageVC
-     imagePage.seguePostID = self.posts[selectedRow].postID
-     } else {
-     print("\n Segue with identifier (imagePage) not found. \n")
-     }
-     }*/
-    ///////////
+
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "imagePageSubviewSegue", sender: indexPath)
+//    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if(segue.identifier == "imagePageSubviewSegue")
+//        {
+//            let selectedCell = sender as! NSIndexPath
+//            let selectedRow = selectedCell.row
+//            let imagePage = segue.destination as! ImagePageVC
+//            imagePage.seguePostID = self.posts[selectedRow].postID
+//        } else {
+//            print("\n Segue with identifier (imagePage) not found. \n")
+//        }
+//    }
     
     @IBAction func closeCommentButton(_ sender: UIButton) {
         commentsView.isHidden = true

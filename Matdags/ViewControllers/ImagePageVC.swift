@@ -73,8 +73,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     //test daniel
     var commentsCell = [CommentsCell]()
-    
-    var myReportsTestArray = [String]()
+    var arrayOfUsersThatHaveReportedAnImage = [String]()
     
     
     override func viewDidLoad() {
