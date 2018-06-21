@@ -67,7 +67,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             self.profileCollectionFeed.reloadData()
             print(self.posts.count)
             
-            self.allOfMyPosts()
+            self.IdOfAllOfMyPosts()
         }
     }
     
@@ -306,24 +306,16 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
 
     }
  
-    func allOfMyPosts() {
-        
+    func IdOfAllOfMyPosts() {
         let dbref = Database.database().reference().child("Users/\(String(describing: uid!))/Posts")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            print("VAFAN HÄNTER", dbref)
             if (snapshot.value as? NSDictionary) != nil {
-                print("HEJSAN", self.usersPostsInPOSTS)
-
                 let value = snapshot.value as! NSDictionary
-                print("VALUE US", value)
-
                 for postValue in value {
                     let appendPosts = User()
-                    appendPosts.postID = postValue.value as? String
-                    print("HUR BLIR DETTA? ", postValue.value)
-                    print("HEJSAN2", appendPosts.postID)
-                    //self.usersPostsInPOSTS.append(appendPosts.postID)
-                    print("ANVÄNDARENS POSTS ÄR", self.usersPostsInPOSTS)
+                    appendPosts.postID = postValue.key as? String
+                    self.usersPostsInPOSTS.append(appendPosts.postID)
+                    print("YOUR POSTS ARE", self.usersPostsInPOSTS)
                 }
             }
         })

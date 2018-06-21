@@ -35,7 +35,7 @@ extension ProfileVC {
             ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
                     self.deleteFbAuthFromFirebase()
-                    self.allOfMyPosts()
+                    self.IdOfAllOfMyPosts()
                     print(ref)
                 } else{
                 }
@@ -74,7 +74,7 @@ extension ProfileVC {
             ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
                     self.deleteFbAuthFromFirebase()
-                    self.allOfMyPosts()
+                    self.IdOfAllOfMyPosts()
                     print(ref)
                 }else{
                 }
@@ -82,7 +82,7 @@ extension ProfileVC {
             //key är inte rätt
             ref.child("Posts/\(key)/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
-                    self.allOfMyPosts()
+                    self.IdOfAllOfMyPosts()
                     print(ref, "TA BORT ANVÄNDARENS POSTS")
                 }else{
                     
