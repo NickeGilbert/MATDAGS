@@ -23,8 +23,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var followers: UILabel!
     @IBOutlet weak var following: UILabel!
     
-    
-    var usersPostsInPOSTS = [String]()
+    var yourPostsId = [String]()
+    var everyPostsInPOST = [String]()
     var ref: DatabaseReference!
     var FBdata : Any?
     var titleName = ""
@@ -68,6 +68,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             print(self.posts.count)
             
             self.IdOfAllOfMyPosts()
+            self.findEveryPostInPOST()
         }
     }
     
@@ -314,11 +315,30 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 for postValue in value {
                     let appendPosts = User()
                     appendPosts.postID = postValue.key as? String
-                    self.usersPostsInPOSTS.append(appendPosts.postID)
-                    print("YOUR POSTS ARE", self.usersPostsInPOSTS)
+                    self.yourPostsId.append(appendPosts.postID)
+                    print("YOUR POSTS ARE", self.yourPostsId)
                 }
             }
         })
+    }
+    
+    func findEveryPostInPOST() {
+        let dbref = Database.database().reference().child("Posts")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if (snapshot.value as? NSDictionary) != nil {
+                let value = snapshot.value as! NSDictionary
+                for postValue in value {
+                    let appendPosts = Post()
+                    appendPosts.postID = postValue.key as? String
+                    self.everyPostsInPOST.append(appendPosts.postID)
+                    print("EVERY POSTS ARE", self.everyPostsInPOST)
+                }
+            }
+        })
+    }
+    
+    func compareUserPostInPOSTAndDelete() {
+        
     }
 }
 
