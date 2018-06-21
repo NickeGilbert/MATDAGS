@@ -157,7 +157,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.postRating = self.posts[0].rating
             self.sortFirebaseInfo()
             self.getStars()
-            self.getUserFollowing()
+            self.checkUserYouAreFollowing()
             self.getUserThatFollowMeCounter()
             self.checkHowManyReportsUserpostHave()
             
@@ -442,7 +442,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
     }
     
-    func getUserFollowing() {
+    func checkUserYouAreFollowing() {
         //Används för Subviewn
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
