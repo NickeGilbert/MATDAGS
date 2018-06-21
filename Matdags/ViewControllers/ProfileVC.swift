@@ -296,6 +296,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             
             self.deleteUser()
     
+            //self.compareUserPostInPOSTAndDelete()
             
             alert2.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
             self.present(alert2, animated: true)
@@ -339,6 +340,21 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     func compareUserPostInPOSTAndDelete() {
         
+        for postes in self.everyPostsInPOST {
+            if self.yourPostsId.contains(postes) {
+                print("THEY ARE EQUAL")
+                ref.child("Posts/\(postes)").removeValue(completionBlock: { (error, ref) -> Void in
+                    if error == nil {
+                        //    self.IdOfAllOfMyPosts()
+                        print(ref, "TA BORT ANVÄNDARENS POSTS")
+                    }else{
+                        
+                    }
+                })
+            } else {
+                print("NAH")
+            }
+        }
     }
 }
 

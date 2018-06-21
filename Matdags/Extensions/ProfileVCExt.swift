@@ -17,29 +17,32 @@ import AVFoundation
 extension ProfileVC {
     func deleteUser() {
         let database = Database.database().reference(withPath: "Posts")
-    //    let usrdatabase = Database.database().reference(withPath: "Users")
+        let usrdatabase = Database.database().reference(withPath: "Users")
         let storage = Storage.storage().reference().child("images").child(uid!)
         let key = database.childByAutoId().key
-      //  let imageRef = storage.child("\(key)")
+        let imageRef = storage.child("\(key)")
         
         if(FBSDKAccessToken.current() == nil) {
             
-          //  var ref = DatabaseReference()
+            var ref = DatabaseReference()
             let user = Auth.auth().currentUser
             guard let uid = Auth.auth().currentUser?.uid else {
                 return
             }
             
-            //ref = Database.database().reference()
+            ref = Database.database().reference()
             
             ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
                     self.deleteFbAuthFromFirebase()
-                    self.IdOfAllOfMyPosts()
+                  //  self.IdOfAllOfMyPosts()
                     print(ref)
                 } else{
                 }
             })
+            
+            //Deletes Users Posts in POSTS
+            self.compareUserPostInPOSTAndDelete()
             
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if let error = error {
@@ -62,33 +65,27 @@ extension ProfileVC {
             
         } else {
             //FÖR FACEBOOK
-          //  var Useruid = Auth.auth().currentUser?.uid
+            var Useruid = Auth.auth().currentUser?.uid
             var ref = DatabaseReference()
-           // let user = Auth.auth().currentUser
+            let user = Auth.auth().currentUser
             guard let uid = Auth.auth().currentUser?.uid else {
                 return
             }
             
-          //  ref = Database.database().reference()
+            ref = Database.database().reference()
             
             ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
                     self.deleteFbAuthFromFirebase()
-                    self.IdOfAllOfMyPosts()
+                   // self.IdOfAllOfMyPosts()
                     print(ref)
                 }else{
                 }
             })
-            //key är inte rätt
-            ref.child("Posts/\(key)/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
-                if error == nil {
-                    self.IdOfAllOfMyPosts()
-                    print(ref, "TA BORT ANVÄNDARENS POSTS")
-                }else{
-                    
-                }
-            })
+            //Deletes Users Posts in POSTS
+            self.compareUserPostInPOSTAndDelete()
         }
+            
         Auth.auth().currentUser?.delete(completion: { (error) in
             if let error = error {
                 
@@ -100,7 +97,7 @@ extension ProfileVC {
     
     func deleteFbAuthFromFirebase(){
         let user = Auth.auth().currentUser
-       // let id = user?.uid
+        let id = user?.uid
         user?.delete { error in
             if let error = error {
                 print(error)
