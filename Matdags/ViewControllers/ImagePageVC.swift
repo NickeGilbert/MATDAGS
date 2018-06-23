@@ -273,6 +273,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    
+    //HÄR BEHÖVER VI EN ELSE IF SATS. JAG TESTADE ATT LADDA UPP EN BILD OCH SIMULEDARE DÅLIGT INTERNET, DÅ KRASCHADE ALLT PÅ "pathToImnage"
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in

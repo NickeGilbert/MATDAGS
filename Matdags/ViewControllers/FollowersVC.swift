@@ -172,7 +172,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 cell.vegiIcon.isHidden = false
             }
             
-            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+            //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
             return cell
     
     }
