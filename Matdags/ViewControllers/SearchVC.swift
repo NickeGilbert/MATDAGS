@@ -81,12 +81,25 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        searchController.searchBar.becomeFirstResponder()
+
+        
+        
+        
+        if topSubView.isHidden == false {
+            
+        }else{
+            searchController.searchBar.becomeFirstResponder()
+            self.searchController.searchBar.isHidden = false
+        }
+        
         
     }
 
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        tabBarController?.selectedIndex = 2
+//        searchController.searchBar.resignFirstResponder()
+//        searchController.searchBar.text = ""
+//        tabBarController?.selectedIndex = 2
+//        print("SWIPE")
     }
     
     func getUserFollowing(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
@@ -233,4 +246,19 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             filterUsers()
         }
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//        if topSubView.isHidden == false {
+//            topSubView.isHidden = true
+//            posts.removeAll()
+//            self.subviewCollectionFeed.reloadData()
+//            self.subviewProfileImage.image = nil
+//            self.subviewUsername.text = nil
+//            print("AWAY SEARCH 1")
+//        }else{
+//            print("AWAY SEARCH 2")
+//        }
+//
+//    }
 }
