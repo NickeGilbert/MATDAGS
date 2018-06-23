@@ -17,9 +17,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var showPass: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         

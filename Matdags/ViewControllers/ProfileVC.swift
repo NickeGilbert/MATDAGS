@@ -23,8 +23,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var followers: UILabel!
     @IBOutlet weak var following: UILabel!
     
-    
-    var usersPostsInPOSTS = [String]()
+    var yourPostsId = [String]()
+    var everyPostsInPOST = [String]()
     var ref: DatabaseReference!
     var FBdata : Any?
     var titleName = ""
@@ -67,7 +67,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             self.profileCollectionFeed.reloadData()
             print(self.posts.count)
             
-            self.allOfMyPosts()
+            self.IdOfAllOfMyPosts()
+            self.findEveryPostInPOST()
         }
     }
     
@@ -295,6 +296,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             
             self.deleteUser()
     
+            //self.compareUserPostInPOSTAndDelete()
             
             alert2.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
             self.present(alert2, animated: true)
@@ -306,27 +308,53 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
 
     }
  
-    func allOfMyPosts() {
+    func IdOfAllOfMyPosts() {
+        let dbref = Database.database().reference().child("Users/\(String(describing: uid!))/Posts")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if (snapshot.value as? NSDictionary) != nil {
+                let value = snapshot.value as! NSDictionary
+                for postValue in value {
+                    let appendPosts = User()
+                    appendPosts.postID = postValue.key as? String
+                    self.yourPostsId.append(appendPosts.postID)
+                    print("YOUR POSTS ARE", self.yourPostsId)
+                }
+            }
+        })
+    }
+    
+    func findEveryPostInPOST() {
+        let dbref = Database.database().reference().child("Posts")
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if (snapshot.value as? NSDictionary) != nil {
+                let value = snapshot.value as! NSDictionary
+                for postValue in value {
+                    let appendPosts = Post()
+                    appendPosts.postID = postValue.key as? String
+                    self.everyPostsInPOST.append(appendPosts.postID)
+                    print("EVERY POSTS ARE", self.everyPostsInPOST)
+                }
+            }
+        })
+    }
+    
+    func compareUserPostInPOSTAndDelete() {
         
-//        let dbref = Database.database().reference().child("Users/\(String(describing: uid!))/Posts")
-//        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-//            print("VAFAN HÄNTER", dbref)
-//            if (snapshot.value as? NSDictionary) != nil {
-//                print("HEJSAN", self.usersPostsInPOSTS)
-//
-//                let value = snapshot.value as! NSDictionary
-//                print("VALUE US", value)
-//
-//                for postValue in value {
-//                    let appendPosts = User()
-//                    appendPosts.postID = postValue.value as? String
-//                    print("HUR BLIR DETTA? ", postValue.value)
-//                    print("HEJSAN2", appendPosts.postID)
-//                    //self.usersPostsInPOSTS.append(appendPosts.postID)
-//                    print("ANVÄNDARENS POSTS ÄR", self.usersPostsInPOSTS)
-//                }
-//            }
-//        })
+        for postes in self.everyPostsInPOST {
+            if self.yourPostsId.contains(postes) {
+                print("THEY ARE EQUAL")
+                ref.child("Posts/\(postes)").removeValue(completionBlock: { (error, ref) -> Void in
+                    if error == nil {
+                        //    self.IdOfAllOfMyPosts()
+                        print(ref, "TA BORT ANVÄNDARENS POSTS")
+                    }else{
+                        
+                    }
+                })
+            } else {
+                print("NAH")
+            }
+        }
     }
 }
 

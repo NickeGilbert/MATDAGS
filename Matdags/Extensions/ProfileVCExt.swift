@@ -16,7 +16,6 @@ import AVFoundation
 
 extension ProfileVC {
     func deleteUser() {
-        let uid = Auth.auth().currentUser?.uid
         let database = Database.database().reference(withPath: "Posts")
         let usrdatabase = Database.database().reference(withPath: "Users")
         let storage = Storage.storage().reference().child("images").child(uid!)
@@ -36,11 +35,14 @@ extension ProfileVC {
             ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
                     self.deleteFbAuthFromFirebase()
-                    self.allOfMyPosts()
+                  //  self.IdOfAllOfMyPosts()
                     print(ref)
                 } else{
                 }
             })
+            
+            //Deletes Users Posts in POSTS
+            self.compareUserPostInPOSTAndDelete()
             
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if let error = error {
@@ -75,20 +77,15 @@ extension ProfileVC {
             ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
                 if error == nil {
                     self.deleteFbAuthFromFirebase()
-                    self.allOfMyPosts()
+                   // self.IdOfAllOfMyPosts()
                     print(ref)
                 }else{
                 }
             })
-            ref.child("Posts/\(key)/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
-                if error == nil {
-                    self.allOfMyPosts()
-                    print(ref, "TA BORT ANVÄNDARENS POSTS")
-                }else{
-                    
-                }
-            })
+            //Deletes Users Posts in POSTS
+            self.compareUserPostInPOSTAndDelete()
         }
+            
         Auth.auth().currentUser?.delete(completion: { (error) in
             if let error = error {
                 
