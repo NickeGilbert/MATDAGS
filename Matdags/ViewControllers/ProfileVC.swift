@@ -295,8 +295,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""), message: NSLocalizedString("reportSentMessage", comment: ""), preferredStyle: .alert)
             
             self.deleteUser()
-    
-            //self.compareUserPostInPOSTAndDelete()
             
             alert2.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
             self.present(alert2, animated: true)

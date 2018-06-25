@@ -60,6 +60,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadImages(completionHandler: { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
+            print("THE PAGE IS RELOADING")
             self.refresher.endRefreshing()
         }, in: self.dispatchGroup)
         
@@ -95,6 +96,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         appendPost.postID = post["postID"] as? String
                         appendPost.vegi = post["vegetarian"] as? Bool
                         appendPost.timestamp = post["timestamp"] as? String
+                                print("ALL POSTS", appendPost.postID!)
                         self.posts.append(appendPost)
                     }
                 }
