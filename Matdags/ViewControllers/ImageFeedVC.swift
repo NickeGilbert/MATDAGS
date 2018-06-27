@@ -22,14 +22,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var refresher : UIRefreshControl!
     var cellCounter : Int = 0
     var cellCounter2 : Int = 0
-    var vegiBool = false
+    var vegiBool : Bool = false
     var postsDuplicateArray = [Post]()
     var myBlockedUsers = [String]()
     var usersThatBlockedMe = [String]()
-    
-    //References
-    var db = Database.database()
-    var uid = Auth.auth().currentUser?.uid
+    let db = Database.database()
+    let uid = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +60,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         downloadImages(completionHandler: { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
+            print("THE PAGE IS RELOADING")
             self.refresher.endRefreshing()
         }, in: self.dispatchGroup)
+        
         cellCounter = 0
         cellCounter2 = 0
     }
@@ -74,6 +74,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if(Auth.auth().currentUser?.uid == nil) {
             performSegue(withIdentifier: "logout", sender: nil)
         }
+        posts.removeAll()
         loadData()
     }
     
@@ -81,8 +82,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         dispatchGroup.enter()
         URLCache.shared.removeAllCachedResponses()
         self.posts.removeAll()
+        let dbref = Database.database().reference(withPath: "Posts")
         //ToDo: Begränsa queryn till maxantal posts
-        db.reference(withPath: "Posts").observeSingleEvent(of: .value, with: { (snapshot) in
+        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
                     
@@ -95,13 +97,13 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         appendPost.postID = post["postID"] as? String
                         appendPost.vegi = post["vegetarian"] as? Bool
                         appendPost.timestamp = post["timestamp"] as? String
+                                print("ALL POSTS", appendPost.postID!)
                         self.posts.append(appendPost)
                     }
                 }
                 dispatchGroup.leave()
                 dispatchGroup.notify(queue: .main, execute: {
-                    print("dispatchGroup completed. \n")
-                    print("Posts Fetched: \(self.posts.count) \n")
+                    print("\n dispatchGroup completed. \n")
                     completionHandler(true)
                 })
             }
@@ -238,9 +240,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             right()
         }
         
-        //print("Cellcounter 1 : ", cellCounter)
-        //print("CellCounter 2 : ", cellCounter2)
-        //print("---------------")
+        print("Cellcounter 1 : ", cellCounter)
+        print("CellCounter 2 : ", cellCounter2)
+        print("---------------")
         
         return storleken
     }

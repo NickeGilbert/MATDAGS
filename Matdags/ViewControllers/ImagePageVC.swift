@@ -130,7 +130,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         commentsRef = commentsRef.child("Posts/\(seguePostID!)/comments")
         
         downloadInfo { (true) in
-            print(self.posts[0].userID!)
+            print(self.posts[0].userID)
             if self.posts[0].userID != self.uid {
                 self.deleteImage.isHidden = true // SOME DUDE
                 self.followerButton.isHidden = false
@@ -273,6 +273,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    
+    //HÄR BEHÖVER VI EN ELSE IF SATS. JAG TESTADE ATT LADDA UPP EN BILD OCH SIMULEDARE DÅLIGT INTERNET, DÅ KRASCHADE ALLT PÅ "pathToImnage"
     func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -287,6 +289,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 getInfo.vegi = dictionary["vegetarian"] as? Bool
                 getInfo.usersRated = dictionary["usersRated"] as? Double
                 self.posts.append(getInfo)
+                print("\n \(self.posts[0].userID) \n")
                 completionHandler(true)
             } else {
             }
