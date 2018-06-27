@@ -280,12 +280,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 let getInfo = Post()
-                getInfo.pathToImage = dictionary["pathToImage"] as! String
-                getInfo.rating = dictionary["rating"] as! Double
-                getInfo.userID = dictionary["userID"] as! String
-                getInfo.postID = dictionary["postID"] as! String
-                getInfo.alias = dictionary["alias"] as! String
-                getInfo.imgdescription = dictionary["imgdescription"] as! String
+                getInfo.pathToImage = dictionary["pathToImage"] as? String
+                getInfo.rating = dictionary["rating"] as? Double
+                getInfo.userID = dictionary["userID"] as? String
+                getInfo.postID = dictionary["postID"] as? String
+                getInfo.alias = dictionary["alias"] as? String
+                getInfo.imgdescription = dictionary["imgdescription"] as? String
                 getInfo.vegi = dictionary["vegetarian"] as? Bool
                 getInfo.usersRated = dictionary["usersRated"] as? Double
                 self.posts.append(getInfo)
