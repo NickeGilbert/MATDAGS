@@ -13,8 +13,8 @@ extension ImagePageVC {
     func reportUsers() {
       
         let userId = self.posts[0].userID!
-        let dbref = db.reference(withPath: "Users/\(uid)/MyBlockedUsers")
-        let ubref = db.reference(withPath: "Users/\(userId)/UsersThatBlockedMe")
+        let aRef = db.reference(withPath: "Users/\(uid)/MyBlockedUsers")
+        let bRef = db.reference(withPath: "Users/\(userId)/UsersThatBlockedMe")
         
      
         if self.posts[0].postID != nil {
@@ -22,8 +22,8 @@ extension ImagePageVC {
             
             let  blockedBy = ["\(String(describing: alias!))" : "\(uid)" ] as [String : Any]
             
-            ubref.updateChildValues(blockedBy)
-            dbref.updateChildValues(blockedUser)
+            aRef.updateChildValues(blockedBy)
+            bRef.updateChildValues(blockedUser)
         } else {
             return
         }
@@ -32,10 +32,8 @@ extension ImagePageVC {
 
 extension ImageFeedVC {
     func getMyBlockedUsers() {
-        
-        if Auth.auth().currentUser?.uid != nil {
-            var ref = Database.database().reference().child("Users").child(uid!).child("MyBlockedUsers").observeSingleEvent(of: .value) { (snapshot) in
-                
+        if uid != nil {
+            db.reference(withPath: "Users/\(uid!)/MyBlockedUsers").observeSingleEvent(of: .value) { (snapshot) in
                 if (snapshot.value as? NSDictionary) != nil {
                     let value = snapshot.value as! NSDictionary
                     for uidValue in value {
