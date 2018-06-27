@@ -92,13 +92,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                 if each == userID {
                                                     let appendPost = Post()
                                                     
-                                                    appendPost.date = post["date"] as? String
-                                                    appendPost.alias = post["alias"] as? String
-                                                    appendPost.rating = post["rating"] as? Double
-                                                    appendPost.pathToImage = post["pathToImage"] as? String
-                                                    appendPost.postID = post["postID"] as? String
-                                                    appendPost.vegi = post["vegetarian"] as? Bool
-                                                    appendPost.usersRated = post["usersRated"] as? Double
+                                                    appendPost.date = post["date"] as? String ?? ""
+                                                    appendPost.alias = post["alias"] as? String ?? ""
+                                                    appendPost.rating = post["rating"] as? Int ?? 0
+                                                    appendPost.pathToImage = post["pathToImage"] as? String ?? ""
+                                                    appendPost.postID = post["postID"] as? String ?? ""
+                                                    appendPost.vegi = post["vegetarian"] as? Bool ?? false
+                                                    appendPost.usersRated = post["usersRated"] as? Int ?? 0
                                                     
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true

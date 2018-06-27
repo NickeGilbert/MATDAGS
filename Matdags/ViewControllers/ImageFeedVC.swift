@@ -31,6 +31,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(uid == nil) {
+            performSegue(withIdentifier: "logout", sender: nil)
+        }
       
         logoutButton.setTitle(NSLocalizedString("logoutButton", comment: ""), for: .normal)
         self.refresher = UIRefreshControl()
@@ -45,6 +49,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let tapRecognizerSettings = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         tapRecognizerSettings.delegate = self
         settingsOverlayView?.addGestureRecognizer(tapRecognizerSettings)
+        
+        loadData()
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -57,56 +63,44 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @objc func loadData() {
         getMyBlockedUsers()
-        downloadImages(completionHandler: { (true) in
+        downloadImages(in: dispatchGroup, completionHandler: { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
-            print("THE PAGE IS RELOADING")
             self.refresher.endRefreshing()
-        }, in: self.dispatchGroup)
-        
+        })
         cellCounter = 0
         cellCounter2 = 0
     }
-
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if(Auth.auth().currentUser?.uid == nil) {
-            performSegue(withIdentifier: "logout", sender: nil)
-        }
-        posts.removeAll()
-        loadData()
-    }
-    
-    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void), in dispatchGroup: DispatchGroup) {
+    func downloadImages(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         dispatchGroup.enter()
-        URLCache.shared.removeAllCachedResponses()
         self.posts.removeAll()
         let dbref = Database.database().reference(withPath: "Posts")
         //ToDo: Begränsa queryn till maxantal posts
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 for (_, post) in dictionary {
-                    
-                    let filteredUid = post["userID"] as? String
-                    
-                    if !self.myBlockedUsers.contains(filteredUid!) {
+                    let filteredID = post["userID"] as? String ?? ""
+                    if !self.myBlockedUsers.contains(filteredID) {
                         let appendPost = Post()
-                        appendPost.date = post["date"] as? String
-                        appendPost.pathToImage256 = post["pathToImage256"] as? String
-                        appendPost.postID = post["postID"] as? String
-                        appendPost.vegi = post["vegetarian"] as? Bool
-                        appendPost.timestamp = post["timestamp"] as? String
-                                print("ALL POSTS", appendPost.postID!)
+                        appendPost.date = post["date"] as? String ?? ""
+                        appendPost.pathToImage256 = post["pathToImage256"] as? String ?? ""
+                        appendPost.postID = post["postID"] as? String ?? ""
+                        appendPost.vegi = post["vegetarian"] as? Bool ?? false
+                        appendPost.timestamp = post["timestamp"] as? String ?? ""
                         self.posts.append(appendPost)
                     }
                 }
+            } else {
+                print("Snapshot could not be converted to NSDictionary\n")
                 dispatchGroup.leave()
-                dispatchGroup.notify(queue: .main, execute: {
-                    print("\n dispatchGroup completed. \n")
-                    completionHandler(true)
-                })
+                completionHandler(false)
             }
+            dispatchGroup.leave()
+            dispatchGroup.notify(queue: .main, execute: {
+                print("dispatchGroup completed.\n")
+                completionHandler(true)
+            })
         })
     }
     
@@ -169,10 +163,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.myImage.image = nil
         cell.layer.cornerRadius = 5
         
-        if self.posts[indexPath.row].vegi == false || self.posts[indexPath.row].vegi == nil {
-            cell.vegiIcon.isHidden = true
-        } else {
+        if self.posts[indexPath.row].vegi != false {
             cell.vegiIcon.isHidden = false
+        } else {
+            cell.vegiIcon.isHidden = true
         }
         
         if self.posts[indexPath.row].pathToImage256 != nil {
@@ -240,9 +234,9 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             right()
         }
         
-        print("Cellcounter 1 : ", cellCounter)
-        print("CellCounter 2 : ", cellCounter2)
-        print("---------------")
+        //print("Cellcounter 1 : ", cellCounter)
+        //print("CellCounter 2 : ", cellCounter2)
+        //print("---------------")
         
         return storleken
     }

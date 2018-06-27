@@ -18,31 +18,24 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subviewUnfollowButton: UIButton!
-    
-    
     @IBOutlet weak var settingsOverlayView: UIView!
     @IBOutlet weak var imagePageSettingsView: UIView!
     @IBOutlet weak var deleteImage: UIButton!
     @IBOutlet weak var reportImage: UIButton!
     @IBOutlet weak var blockUser: UIButton!
-    
-//    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
-    
-    //test daniel
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsTextField: UITextField!
-    
-    
     @IBOutlet weak var topSubView: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     
     let dispatchGroup = DispatchGroup()
@@ -59,19 +52,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var posts = [Post]()
     var subviews = [Subview]()
     var userFollowing = [String]()
-    
     var commentsRef = Database.database().reference()
     var comments: Array<DataSnapshot> = []
-    
-    //Rating System
-    var starsHighlighted = 0.0
-    var fetchedStars = 0.0
-    var usersRated = 0.0
-    var postRating = 0.0
-    
+    var starsHighlighted = 0
+    var fetchedStars = 0
+    var usersRated = 0
+    var postRating = 0
     var commentConter: Int = 0
-    
-    //test daniel
     var commentsCell = [CommentsCell]()
     var arrayOfUsersThatHaveReportedAnImage = [String]()
     
@@ -79,119 +66,38 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        followerButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
-        unfollowingButton.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
-        subviewFollowButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
-        subviewUnfollowButton.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
-        
-        reportImage.setTitle(NSLocalizedString("reportImage", comment: ""), for: .normal)
-        blockUser.setTitle(NSLocalizedString("blockUser", comment: ""), for: .normal)
-        deleteImage.setTitle(NSLocalizedString("deleteImage", comment: ""), for: .normal)
-        
-        getUserThatIFollowCounter()
-        followerButton.backgroundColor = followUserBtn
-        unfollowingButton.backgroundColor = unfollowUserBtn
-        subviewFollowButton.backgroundColor = followUserBtn
-        subviewUnfollowButton.backgroundColor = unfollowUserBtn
-        followerButton.isHidden = true
-        unfollowingButton.isHidden = true
-        subviewFollowButton.isHidden = true
-        subviewUnfollowButton.isHidden = true
-        vegiIcon.isHidden = true
-        topSubView.isHidden = true
-        subview.isHidden = false
-        commentsTextField.delegate = self
-        settingsOverlayView.isHidden = true
-        
         let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         clickUITapGestureRecognizer.delegate = self
         settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return true
-    }
-    
-    @IBAction func onSelect(_ sender: Any) {
-        settingsOverlayView.isHidden = true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-
-    @IBOutlet weak var deleteToUBlockUserConstraint: NSLayoutConstraint!
-    @IBOutlet weak var blockToReportConstraint: NSLayoutConstraint!
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //Clear and start observing comments.
         comments.removeAll()
         commentsRef = commentsRef.child("Posts/\(seguePostID!)/comments")
+        observeComments()
         
-        downloadInfo { (true) in
-            print(self.posts[0].userID)
-            if self.posts[0].userID != self.uid {
-                self.deleteImage.isHidden = true // SOME DUDE
-                self.followerButton.isHidden = false
-                self.subviewFollowButton.isHidden = false
-                self.imagePageSettingsViewHeightConstraint.constant = 100
-//                self.blockToReportConstraint.constant = 20
-//                self.imagePageSettingsView.layoutIfNeeded()
-            } else {
-                self.deleteImage.isHidden = false // MYSELF
-                self.reportImage.isHidden = true
-                self.blockUser.isHidden = true
-                self.followerButton.isHidden = true
-                self.unfollowingButton.isHidden = true
-                self.subviewFollowButton.isHidden = true
-                self.imagePageSettingsViewHeightConstraint.constant = 50
-//                self.deleteToUBlockUserConstraint.constant = -45
-//                self.imagePageSettingsView.layoutIfNeeded()
-            }
-            if self.posts[0].usersRated != nil {
-                self.usersRated = self.posts[0].usersRated
-            } else {
-                self.usersRated = 0
-            }
-            self.postRating = self.posts[0].rating
-            self.sortFirebaseInfo()
+        //Sort UI before fetching data.
+        sortBeforeFetch()
+        
+        downloadInfo(in: dispatchGroup, completionHandler: { (true) in
+            //self.sortFirebaseInfo()
             self.getStars()
             self.checkUserYouAreFollowing()
             self.getUserThatFollowMeCounter()
             self.checkHowManyReportsUserpostHave()
-            
             self.checkIfUserAlreadyHaveReportedThisImage()
-        }
-        
-        observeComments()
-        
-        commentsTableView.isScrollEnabled = false
-        commentsTableView.separatorStyle = .none
-        subview.layer.cornerRadius = 10
-        subview.clipsToBounds = true
-        followerButton.layer.cornerRadius = 5
-        followerButton.clipsToBounds = true
-        unfollowingButton.layer.cornerRadius = 5
-        unfollowingButton.clipsToBounds = true
-        subviewFollowButton.layer.cornerRadius = 5
-        subviewFollowButton.clipsToBounds = true
-        subviewUnfollowButton.layer.cornerRadius = 5
-        subviewUnfollowButton.clipsToBounds = true
-        
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
-        
-        //myImageView.dropShadow()
-        imagePageSettingsView.layer.cornerRadius = 5
+            self.getUserThatIFollowCounter()
+            
+            //Sort UI after fetching data.
+            self.sortAfterFetch()
+        })
     }
     
-    
-    
-    func customWillDisappear(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+    func customWillDisappear(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        dispatchGroup.enter()
         getInfoForIncremation { (true) in
             if self.posts[0].usersRated == nil || self.posts[0].usersRated == 0 {
                 self.usersRated = 0
@@ -204,33 +110,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.postRating = self.posts[0].rating
             }
             self.postStars { (true) in
-                completionHandler(true)
+                dispatchGroup.leave()
+                dispatchGroup.notify(queue: .main, execute: {
+                    completionHandler(true)
+                })
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.comments.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
-        
-        let cellHeight = cell.frame.height
-        let tableHeight = tableView.frame.height
-        
-        self.tableViewConstraintH.constant = tableHeight + cellHeight
-        
-        if let commentDict = comments[indexPath.row].value as? [String : AnyObject] {
-            cell.commentsTextLabel.text = commentDict["comment"] as? String
-            cell.commentsNameLabel.text  = commentDict["alias"] as? String
-        }
-        return cell
-    }
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     func observeComments() {
@@ -265,34 +150,38 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let dbref = db.reference(withPath: "Posts/\(self.posts[0].postID)")
         dbref.observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
-                getInfo.rating = dict["rating"] as? Double
-                getInfo.usersRated = dict["usersRated"] as? Double
-        
+                getInfo.rating = dict["rating"] as? Int ?? 0
+                getInfo.usersRated = dict["usersRated"] as? Int ?? 0
             }
             completionHandler(true)
         }
     }
     
-    
-    //HÄR BEHÖVER VI EN ELSE IF SATS. JAG TESTADE ATT LADDA UPP EN BILD OCH SIMULEDARE DÅLIGT INTERNET, DÅ KRASCHADE ALLT PÅ "pathToImnage"
-    func downloadInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        let dbref = Database.database().reference().child("Posts").child("\(seguePostID!)")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
+    func downloadInfo(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        dispatchGroup.enter()
+        db.reference(withPath: "Posts/\(seguePostID!)").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 let getInfo = Post()
-                getInfo.pathToImage = dictionary["pathToImage"] as? String
-                getInfo.rating = dictionary["rating"] as? Double
-                getInfo.userID = dictionary["userID"] as? String
-                getInfo.postID = dictionary["postID"] as? String
-                getInfo.alias = dictionary["alias"] as? String
-                getInfo.imgdescription = dictionary["imgdescription"] as? String
-                getInfo.vegi = dictionary["vegetarian"] as? Bool
-                getInfo.usersRated = dictionary["usersRated"] as? Double
+                self.myImageView.downloadImage(from: dictionary["pathToImage"] as? String ?? "")
+                self.toSubViewButton.setTitle(dictionary["alias"] as? String ?? "", for: .normal)
+                self.descriptionLabel.text = dictionary["imgdescription"] as? String ?? ""
+                getInfo.pathToImage = dictionary["pathToImage"] as? String ?? ""
+                getInfo.rating = dictionary["rating"] as? Int ?? 0
+                getInfo.userID = dictionary["userID"] as? String ?? ""
+                getInfo.postID = dictionary["postID"] as? String ?? ""
+                getInfo.alias = dictionary["alias"] as? String ?? ""
+                getInfo.imgdescription = dictionary["imgdescription"] as? String ?? ""
+                getInfo.vegi = dictionary["vegetarian"] as? Bool ?? false
+                getInfo.usersRated = dictionary["usersRated"] as? Int ?? 0
                 self.posts.append(getInfo)
-                print("\n \(self.posts[0].userID) \n")
-                completionHandler(true)
             } else {
+                dispatchGroup.leave()
+                completionHandler(false)
             }
+            dispatchGroup.leave()
+            dispatchGroup.notify(queue: .main, execute: {
+                completionHandler(true)
+            })
         })
     }
     
@@ -333,7 +222,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.commentsView.isHidden = true
             return true
             
-        }else{
+        } else {
             commentsTextField.resignFirstResponder()
             self.view.endEditing(true)
             commentsView.isHidden = true
@@ -342,36 +231,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func sortFirebaseInfo() {
-        if self.posts[0].pathToImage != nil {
-            myImageView.downloadImage(from: self.posts[0].pathToImage)
-        } else {
-        }
-
-        if posts[0].alias != nil{
-            toSubViewButton.setTitle(self.posts[0].alias, for: .normal)
-        } else {
-            toSubViewButton.setTitle(self.posts[0].userID, for: .normal)
-        }
-        if self.posts[0].imgdescription != nil {
-            descriptionLabel.text = self.posts[0].imgdescription
-        } else {
-            descriptionLabel.text = "Ingen beskrivning."
-        }
-        
-        if self.posts[0].vegi == nil || self.posts[0].vegi == false {
-            vegiIcon.isHidden = true
-        } else {
-            vegiIcon.isHidden = false
-        }
+        myImageView.downloadImage(from: self.posts[0].pathToImage)
+        toSubViewButton.setTitle(self.posts[0].alias, for: .normal)
+        descriptionLabel.text = self.posts[0].imgdescription
     }
     
     @IBAction func imagePageBack(_ sender: Any) {
-        customWillDisappear { (true) in
+        customWillDisappear(in: dispatchGroup, completionHandler: { (true) in
             self.posts.removeAll()
             self.subviews.removeAll()
             self.commentsRef.removeAllObservers()
             self.dismiss(animated: true, completion: nil)
-        }
+        })
         
     }
   
@@ -391,28 +262,45 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
    
     @IBAction func reportImage(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("reportImageTitle", comment: ""), message: NSLocalizedString("reportImageMessage", comment: ""), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("reportTitle", comment: ""), style: .destructive, handler: { action in
-            
-            
-            let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""), message: NSLocalizedString("reportSentMessage", comment: ""), preferredStyle: .alert)
-            
+        let alert = UIAlertController(title: NSLocalizedString("reportImageTitle", comment: ""),
+                                      message: NSLocalizedString("reportImageMessage", comment: ""),
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("reportTitle", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in
+                                        
+            let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""),
+                                           message: NSLocalizedString("reportSentMessage", comment: ""),
+                                           preferredStyle: .alert)
+                                        
             self.checkForUIDInReportedImage()
-            
-            alert2.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""), style: .cancel, handler: nil))
+                                        
+            alert2.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""),
+                                           style: .cancel,
+                                           handler: nil))
+                                        
             self.present(alert2, animated: true)
-            
-            
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""), style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
+        
         self.present(alert, animated: true)
     }
+    
     @IBAction func deleteImage(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("deleteImageTitle", comment: ""), message: NSLocalizedString("deleteImageMessage", comment: ""), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("delete", comment: ""), style: .destructive, handler: { action in
-            self.deletePosts()
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""), style: .cancel, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("deleteImageTitle", comment: ""),
+                                      message: NSLocalizedString("deleteImageMessage", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("delete", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in self.deletePosts() }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
         self.present(alert, animated: true)
     }
     
@@ -425,42 +313,24 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
  
     func deletePosts() {
-        //Tas bort från ImagePageVC
-        let ref = Database.database().reference().child("Posts").child(seguePostID)
-            ref.removeValue { (error, ref) in
-            if error != nil {
-                return
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
-
-        //Tas bort från ProfileVC
-        let myRef = Database.database().reference().child("Users").child(uid).child("Posts").child(seguePostID)
-        myRef.removeValue { (error, ref) in
-            if error != nil {
-                return
+        db.reference(withPath: "Users/\(uid)/Posts/\(seguePostID)").removeValue { (error, ref) in }
+        db.reference(withPath: "Posts/\(seguePostID)").removeValue { (error, ref) in
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
             }
         }
-        
     }
     
     func checkUserYouAreFollowing() {
-        //Används för Subviewn
-        let ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("Users").child(userID!).child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if (snapshot.value as? NSDictionary) != nil {
-                let value = snapshot.value as! NSDictionary
-                for uidValue in value {
+        //Used by Subview
+        db.reference(withPath: "Users/\(uid)/Following").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? [String : AnyObject] {
+                for uid in dict {
                     let appendUser = User()
-                    appendUser.uid = uidValue.value as? String
+                    appendUser.uid = uid.value as? String ?? ""
                     self.userFollowing.append(appendUser.uid)
-                    
                     self.checkUserUid()
                 }
-            } else {
-                return
             }
         })
     }
@@ -490,27 +360,146 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func blockUser(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""), message: NSLocalizedString("blockUserMessage", comment: ""), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("blockUser", comment: ""), style: .destructive, handler: { action in
-            
-            
-            
-            let alert2 = UIAlertController(title: NSLocalizedString("userIsBlockedTitle", comment: ""), message: NSLocalizedString("userIsBlockedMessage", comment: ""), preferredStyle: .alert)
-           self.reportUsers()
-            
-            alert2.addAction(UIAlertAction(title: NSLocalizedString("userClose", comment: ""), style: .cancel, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""),
+                                      message: NSLocalizedString("blockUserMessage", comment: ""),
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("blockUser", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in
+                                        
+            let alert2 = UIAlertController(title: NSLocalizedString("userIsBlockedTitle", comment: ""),
+                                           message: NSLocalizedString("userIsBlockedMessage", comment: ""),
+                                           preferredStyle: .alert)
+            self.reportUsers()
+                                        
+            alert2.addAction(UIAlertAction(title: NSLocalizedString("userClose", comment: ""),
+                                           style: .cancel, handler: nil))
             self.present(alert2, animated: true)
-            
-            
-        }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("userClose", comment: ""), style: .cancel, handler: nil))
+            }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("userClose", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
         self.present(alert, animated: true)
    
     }
     
     @IBAction func reportUserPost(_ sender: Any) {
-        //Denna får inte tas bort, är kopplad till att Post anmäls.
+        //Do not remove
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
+        
+        let cellHeight = cell.frame.height
+        let tableHeight = tableView.frame.height
+        
+        self.tableViewConstraintH.constant = tableHeight + cellHeight
+        
+        if let commentDict = comments[indexPath.row].value as? [String : AnyObject] {
+            cell.commentsTextLabel.text = commentDict["comment"] as? String
+            cell.commentsNameLabel.text  = commentDict["alias"] as? String
+        }
+        return cell
+    }
+    
+    //UI
+    func sortBeforeFetch() {
+        toSubViewButton.setTitle("", for: .normal)
+        descriptionLabel.text = ""
+        commentsTableView.isScrollEnabled = false
+        commentsTableView.separatorStyle = .none
+        subview.layer.cornerRadius = 10
+        subview.clipsToBounds = true
+        followerButton.layer.cornerRadius = 5
+        followerButton.clipsToBounds = true
+        unfollowingButton.layer.cornerRadius = 5
+        unfollowingButton.clipsToBounds = true
+        subviewFollowButton.layer.cornerRadius = 5
+        subviewFollowButton.clipsToBounds = true
+        subviewUnfollowButton.layer.cornerRadius = 5
+        subviewUnfollowButton.clipsToBounds = true
+        
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        
+        imagePageSettingsView.layer.cornerRadius = 5
+        followerButton.backgroundColor = followUserBtn
+        unfollowingButton.backgroundColor = unfollowUserBtn
+        subviewFollowButton.backgroundColor = followUserBtn
+        subviewUnfollowButton.backgroundColor = unfollowUserBtn
+        followerButton.isHidden = true
+        unfollowingButton.isHidden = true
+        subviewFollowButton.isHidden = true
+        subviewUnfollowButton.isHidden = true
+        vegiIcon.isHidden = true
+        topSubView.isHidden = true
+        subview.isHidden = false
+        commentsTextField.delegate = self
+        settingsOverlayView.isHidden = true
+        closeButton.isHidden = true
+        
+        followerButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
+        unfollowingButton.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
+        subviewFollowButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
+        subviewUnfollowButton.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
+        
+        reportImage.setTitle(NSLocalizedString("reportImage", comment: ""), for: .normal)
+        blockUser.setTitle(NSLocalizedString("blockUser", comment: ""), for: .normal)
+        deleteImage.setTitle(NSLocalizedString("deleteImage", comment: ""), for: .normal)
+    }
+    
+    func sortAfterFetch() {
+        if self.posts[0].vegi == false {
+            vegiIcon.isHidden = true
+        } else {
+            vegiIcon.isHidden = false
+        }
+        
+        self.usersRated = self.posts[0].usersRated
+        self.postRating = self.posts[0].rating
+        
+        if self.posts[0].userID != self.uid {
+            self.deleteImage.isHidden = true // SOME DUDE
+            self.followerButton.isHidden = false
+            self.subviewFollowButton.isHidden = false
+            self.imagePageSettingsViewHeightConstraint.constant = 100
+        } else {
+            self.deleteImage.isHidden = false // MYSELF
+            self.reportImage.isHidden = true
+            self.blockUser.isHidden = true
+            self.followerButton.isHidden = true
+            self.unfollowingButton.isHidden = true
+            self.subviewFollowButton.isHidden = true
+            self.imagePageSettingsViewHeightConstraint.constant = 50
+        }
+        closeButton.isHidden = false
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
+    
+    @IBAction func onSelect(_ sender: Any) {
+        settingsOverlayView.isHidden = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
 }
     

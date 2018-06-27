@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LgI-ON-4hY">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1875,6 +1875,7 @@
                     </view>
                     <connections>
                         <outlet property="blockUser" destination="kLe-wf-Imq" id="H2P-bo-Ho6"/>
+                        <outlet property="closeButton" destination="yFD-xP-oGg" id="oTk-FD-d4S"/>
                         <outlet property="commentButton" destination="jx8-5r-HBK" id="QDa-jU-X4k"/>
                         <outlet property="commentsTableView" destination="f17-TZ-hP6" id="KZW-q5-41C"/>
                         <outlet property="commentsTextField" destination="zS1-9L-eK1" id="YUB-Ie-FPD"/>
@@ -2177,7 +2178,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="jqz-7P-XQE"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>

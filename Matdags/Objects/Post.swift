@@ -9,14 +9,14 @@ class Post: NSObject {
     var postID : String!
     var pathToImage : String!
     var pathToImage256 : String!
-    var rating : Double!
+    var rating : Int!
     var userID : String!
     var imgdescription : String!
     var alias : String!
     var vegi : Bool?
     var commenter : String?
     var comment : String?
-    var usersRated : Double!
+    var usersRated : Int!
     var date : String!
     var timestamp : String!
 }
