@@ -123,19 +123,22 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func logOut(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("logoutTitle", comment: ""), message: NSLocalizedString("logoutMessage", comment: ""), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("logOut", comment: ""), style: .destructive, handler: { action in
-            let firebaseAuth = Auth.auth()
+        let alert = UIAlertController(title: NSLocalizedString("logoutTitle", comment: ""),
+                                      message: NSLocalizedString("logoutMessage", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("logOut", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in
             do {
-                try firebaseAuth.signOut()
+                try Auth.auth().signOut()
                 let loginManager = FBSDKLoginManager()
-                loginManager.logOut() // this is an instance function
+                loginManager.logOut()
                 self.performSegue(withIdentifier: "logout", sender: nil)
-                print(" \n DU HAR PRECIS LOGGAT UT \n")
             } catch {
-                print("\n ERROR NÄR DU LOGGADE UT \n")
+                print("\nCould not log out succesfully.\n")
             }
         }))
+        
         alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
