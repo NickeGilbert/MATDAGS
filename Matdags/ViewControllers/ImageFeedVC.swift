@@ -22,7 +22,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var refresher : UIRefreshControl!
     var cellCounter : Int = 0
     var cellCounter2 : Int = 0
-    var vegiBool : Bool = false
+    var vegiBool = false
     var postsDuplicateArray = [Post]()
     var myBlockedUsers = [String]()
     var usersThatBlockedMe = [String]()
@@ -37,12 +37,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
       
         logoutButton.setTitle(NSLocalizedString("logoutButton", comment: ""), for: .normal)
-        self.refresher = UIRefreshControl()
-        self.collectionFeed!.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.lightGray
-        self.refresher.attributedTitle = NSAttributedString(string: "Hello")
-        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
-        self.collectionFeed!.addSubview(refresher)
+        refresher = UIRefreshControl()
+        collectionFeed!.alwaysBounceVertical = true
+        refresher.tintColor = UIColor.lightGray
+        refresher.attributedTitle = NSAttributedString(string: "Hello")
+        refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        collectionFeed!.addSubview(refresher)
         settingsOverlayView.isHidden = true
         settingsView.layer.cornerRadius = 5
         
@@ -62,19 +62,19 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
+        //För att undvika problem bör vi begränsa så man inte kan reloada hur ofta som helst.
+        self.posts.removeAll()
         getMyBlockedUsers()
-        downloadImages(in: dispatchGroup, completionHandler: { (true) in
+        cellCounter = 0
+        cellCounter2 = 0
+        downloadImages { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
-        })
-        cellCounter = 0
-        cellCounter2 = 0
+        }
     }
     
-    func downloadImages(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        dispatchGroup.enter()
-        self.posts.removeAll()
+    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference(withPath: "Posts")
         //ToDo: Begränsa queryn till maxantal posts
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -91,16 +91,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.posts.append(appendPost)
                     }
                 }
+                completionHandler(true)
             } else {
                 print("Snapshot could not be converted to NSDictionary\n")
-                dispatchGroup.leave()
                 completionHandler(false)
             }
-            dispatchGroup.leave()
-            dispatchGroup.notify(queue: .main, execute: {
-                print("dispatchGroup completed.\n")
-                completionHandler(true)
-            })
         })
     }
     
@@ -163,16 +158,20 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.myImage.image = nil
         cell.layer.cornerRadius = 5
         
-        if self.posts[indexPath.row].vegi != false {
-            cell.vegiIcon.isHidden = false
+        if !self.posts.isEmpty {
+            if self.posts[indexPath.row].vegi != false {
+                cell.vegiIcon.isHidden = false
+            } else {
+                cell.vegiIcon.isHidden = true
+            }
+            
+            if self.posts[indexPath.row].pathToImage256 != nil {
+                cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
+            } else {
+                print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            }
         } else {
-            cell.vegiIcon.isHidden = true
-        }
-        
-        if self.posts[indexPath.row].pathToImage256 != nil {
-            cell.myImage.downloadImage(from: self.posts[indexPath.row].pathToImage256)
-        } else {
-            print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
+            print("posts array is empty?")
         }
 
         //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
