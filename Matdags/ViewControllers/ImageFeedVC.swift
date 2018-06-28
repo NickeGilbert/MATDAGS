@@ -171,7 +171,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
             }
         } else {
-            print("posts array is empty?")
+            print("collectionFeed was not able to sort all information between reloads.")
         }
 
         //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
