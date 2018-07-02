@@ -8,7 +8,7 @@ import AVFoundation
 import Firebase
 import CoreImage
 
-class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIToolbarDelegate {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var vegFood: UIButton!
@@ -46,6 +46,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         
         descriptionFieldLines.delegate = self
         descriptionFieldLines.isHidden = true
+        descriptionFieldLines.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
 
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -159,7 +160,38 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         }
     }
     
+    func showProperShit() {
+
+        let numberToolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        numberToolbar.barStyle = .default
+        numberToolbar.items = [
+            UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(self.ImagePreVCClearText)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.ImagePreVCDoneEditing)),]
+
+        numberToolbar.sizeToFit()
+        descriptionFieldLines.inputAccessoryView = numberToolbar
+    }
+    
+    @objc func ImagePreVCClearText() {
+        descriptionFieldLines.text = ""
+        descriptionFieldLines.layoutIfNeeded()
+    }
+    @objc func ImagePreVCDoneEditing() {
+        self.view.endEditing(true)
+        
+        descriptionFieldLines.isHidden = true
+        filterScrollView.isHidden = true
+        filterButton.setImage(UIImage(named: "filter"), for: .normal)
+        if descriptionFieldLines.text == "" {
+            commentBtn.setImage(UIImage(named: "commentUse2Final"), for: .normal)
+        } else {
+            return
+        }
+    }
+    
     @IBAction func commentClick(_ sender: UIButton) {
+        showProperShit()
         commentBtn.setImage(UIImage(named: "commentButton50orange"), for: .normal)
         if descriptionFieldLines.isHidden == true {
             descriptionFieldLines.isHidden = false
@@ -275,4 +307,3 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         }
     }
 }
-
