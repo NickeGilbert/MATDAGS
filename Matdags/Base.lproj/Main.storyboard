@@ -1825,22 +1825,27 @@
                                             <action selector="closeCommentButton:" destination="As2-HR-siM" eventType="touchUpInside" id="cIA-nM-S91"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zS1-9L-eK1" userLabel="commentTextField">
-                                        <rect key="frame" x="0.0" y="300" width="375" height="512"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qdb-xA-JO3">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.74766175176056338" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="0.99998790029999995" blue="0.9999920726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="zS1-9L-eK1" firstAttribute="top" secondItem="uJr-hq-MOK" secondAttribute="top" constant="300" id="0La-5s-IIZ"/>
-                                    <constraint firstItem="zS1-9L-eK1" firstAttribute="leading" secondItem="uJr-hq-MOK" secondAttribute="leading" id="3GL-v2-Zdg"/>
+                                    <constraint firstItem="qdb-xA-JO3" firstAttribute="leading" secondItem="uJr-hq-MOK" secondAttribute="leading" id="7lb-U5-NZr"/>
                                     <constraint firstItem="5fD-VC-Dol" firstAttribute="top" secondItem="uJr-hq-MOK" secondAttribute="top" constant="42" id="9bQ-02-pPf"/>
-                                    <constraint firstAttribute="trailing" secondItem="zS1-9L-eK1" secondAttribute="trailing" id="ebq-C3-xTU"/>
+                                    <constraint firstAttribute="bottom" secondItem="qdb-xA-JO3" secondAttribute="bottom" id="Lc4-ku-uAk"/>
+                                    <constraint firstItem="qdb-xA-JO3" firstAttribute="top" secondItem="uJr-hq-MOK" secondAttribute="top" id="YFT-J0-C9x"/>
                                     <constraint firstItem="5fD-VC-Dol" firstAttribute="leading" secondItem="uJr-hq-MOK" secondAttribute="leading" constant="15" id="iCm-gb-bp0"/>
-                                    <constraint firstAttribute="bottom" secondItem="zS1-9L-eK1" secondAttribute="bottom" id="zOZ-aF-JWG"/>
+                                    <constraint firstAttribute="trailing" secondItem="qdb-xA-JO3" secondAttribute="trailing" id="ziV-r0-wlo"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="5fD-VC-Dol"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1863,13 +1868,19 @@
                             <constraint firstItem="3ws-by-1OO" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="z2W-0u-Y4F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3ws-by-1OO"/>
+                                <exclude reference="XQz-Jm-hsB"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="blockUser" destination="kLe-wf-Imq" id="H2P-bo-Ho6"/>
                         <outlet property="closeButton" destination="yFD-xP-oGg" id="oTk-FD-d4S"/>
                         <outlet property="commentButton" destination="jx8-5r-HBK" id="QDa-jU-X4k"/>
                         <outlet property="commentsTableView" destination="f17-TZ-hP6" id="KZW-q5-41C"/>
-                        <outlet property="commentsTextField" destination="zS1-9L-eK1" id="YUB-Ie-FPD"/>
+                        <outlet property="commentsTextView" destination="qdb-xA-JO3" id="hvx-fg-Skb"/>
                         <outlet property="commentsView" destination="uJr-hq-MOK" id="RE5-f0-QCW"/>
                         <outlet property="deleteImage" destination="HBR-Dt-sIw" id="UGB-gd-ns5"/>
                         <outlet property="descriptionLabel" destination="YFQ-ed-rU3" id="elu-aL-dd1"/>

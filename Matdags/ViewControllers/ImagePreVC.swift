@@ -160,7 +160,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         }
     }
     
-    func showProperShit() {
+    func addToolbar() {
 
         let numberToolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         numberToolbar.barStyle = .default
@@ -191,7 +191,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     }
     
     @IBAction func commentClick(_ sender: UIButton) {
-        showProperShit()
+        addToolbar()
         commentBtn.setImage(UIImage(named: "commentButton50orange"), for: .normal)
         if descriptionFieldLines.isHidden == true {
             descriptionFieldLines.isHidden = false

@@ -28,7 +28,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var commentsView: UIView!
-    @IBOutlet weak var commentsTextField: UITextField!
+    @IBOutlet weak var commentsTextView: UITextView!
     @IBOutlet weak var topSubView: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
@@ -69,6 +69,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         clickUITapGestureRecognizer.delegate = self
         settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
+        commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -195,18 +196,42 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func commentButtonClick(_ sender: UIButton) {
+        addToolbar()
         settingsOverlayView.isHidden = true
-        commentsTextField.text = ""
+        commentsTextView.text = ""
         commentsView.isHidden = false
-        commentsTextField.becomeFirstResponder()
+        commentsTextView.becomeFirstResponder()
+    }
+    
+    func addToolbar() {
+        
+        let numberToolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        numberToolbar.barStyle = .default
+        numberToolbar.items = [
+            UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(self.ImagePageVCClearText)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(self.ImagePageVCDoneEditing)),]
+        
+        numberToolbar.sizeToFit()
+        commentsTextView.inputAccessoryView = numberToolbar
+    }
+    
+    @objc func ImagePageVCClearText() {
+        commentsTextView.text = ""
+        commentsTextView.layoutIfNeeded()
+    }
+    @objc func ImagePageVCDoneEditing() {
+        self.view.endEditing(true)
+        settingsOverlayView.isHidden = true
+        commentsView.isHidden = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if commentsTextField.text != "" {
+        if commentsTextView.text != "" {
             let postID = self.posts[0].postID
             let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
             let key = postRef.childByAutoId().key
-            let commentSend = commentsTextField.text
+            let commentSend = commentsTextView.text
             
             print("Post refferens : \(postRef)")
             print("Mitt UID: \(uid)")
@@ -217,13 +242,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             postRef.child(key).updateChildValues(["alias" : alias!] as [String : Any])
             postRef.child(key).updateChildValues(["comment" : commentSend!] as [String : Any])
             
-            self.commentsTextField.resignFirstResponder()
+            self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
             self.commentsView.isHidden = true
             return true
             
         } else {
-            commentsTextField.resignFirstResponder()
+            commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
             commentsView.isHidden = true
             return true
@@ -443,7 +468,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         vegiIcon.isHidden = true
         topSubView.isHidden = true
         subview.isHidden = false
-        commentsTextField.delegate = self
+//        commentsTextView.delegate = self
         settingsOverlayView.isHidden = true
         closeButton.isHidden = true
         
