@@ -1997,12 +1997,12 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superfoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qva-js-xUC">
-                                <rect key="frame" x="112" y="49" width="150" height="30"/>
+                                <rect key="frame" x="112" y="51" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="XNL-ww-xbu"/>
                                     <constraint firstAttribute="width" constant="150" id="i7U-h2-h28"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2087,7 +2087,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Qva-js-xUC" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" constant="5" id="6ql-Ug-fO9"/>
+                            <constraint firstItem="Qva-js-xUC" firstAttribute="top" secondItem="5bJ-SZ-EuZ" secondAttribute="top" constant="7" id="6ql-Ug-fO9"/>
                             <constraint firstItem="Qva-js-xUC" firstAttribute="centerX" secondItem="udC-lS-VJ9" secondAttribute="centerX" id="6sM-dy-poA"/>
                             <constraint firstItem="MVV-vv-GTK" firstAttribute="top" secondItem="udC-lS-VJ9" secondAttribute="top" id="NCC-s9-Jhq"/>
                             <constraint firstItem="MVV-vv-GTK" firstAttribute="trailing" secondItem="5bJ-SZ-EuZ" secondAttribute="trailing" id="TRD-kR-eR5"/>
@@ -2102,6 +2102,11 @@
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="width" secondItem="udC-lS-VJ9" secondAttribute="width" id="uVZ-AC-6Ab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-SZ-EuZ"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="MVV-vv-GTK"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Vbc-XZ-9NL" appends="YES" id="EPA-Vl-31c"/>
                         </connections>
