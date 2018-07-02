@@ -1863,13 +1863,6 @@
                             <constraint firstItem="3ws-by-1OO" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="z2W-0u-Y4F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="3ws-by-1OO"/>
-                                <exclude reference="XQz-Jm-hsB"/>
-                                <exclude reference="uJr-hq-MOK"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="blockUser" destination="kLe-wf-Imq" id="H2P-bo-Ho6"/>
@@ -2003,10 +1996,6 @@
                                     <outlet property="prefetchDataSource" destination="ypM-Uw-J9l" id="1vv-ED-D40"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matdagsLogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="Ax4-pq-3kr">
-                                <rect key="frame" x="150" y="57" width="75" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superfoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qva-js-xUC">
                                 <rect key="frame" x="112" y="49" width="150" height="30"/>
                                 <constraints>
@@ -2113,12 +2102,6 @@
                             <constraint firstItem="bsR-Dv-XLS" firstAttribute="width" secondItem="udC-lS-VJ9" secondAttribute="width" id="uVZ-AC-6Ab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bJ-SZ-EuZ"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Ax4-pq-3kr"/>
-                                <exclude reference="MVV-vv-GTK"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Vbc-XZ-9NL" appends="YES" id="EPA-Vl-31c"/>
                         </connections>
@@ -2165,7 +2148,6 @@
         <image name="filterUse2Final" width="45" height="45"/>
         <image name="homeButton2Final" width="45" height="45"/>
         <image name="logoMatdags" width="100" height="30"/>
-        <image name="matdagsLogoFinal" width="100" height="30"/>
         <image name="moreUse2Final" width="45" height="45"/>
         <image name="moreUseSettings2Final2" width="45" height="45"/>
         <image name="profileButton2Final" width="45" height="45"/>
