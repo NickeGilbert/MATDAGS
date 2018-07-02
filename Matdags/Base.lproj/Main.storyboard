@@ -1169,10 +1169,10 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho1-wZ-bVz" userLabel="post">
-                                <rect key="frame" x="150" y="698" width="75" height="75"/>
+                                <rect key="frame" x="155.33333333333334" y="708" width="65" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="E36-U2-QQb"/>
-                                    <constraint firstAttribute="height" constant="75" id="hbB-bY-kvf"/>
+                                    <constraint firstAttribute="width" constant="65" id="E36-U2-QQb"/>
+                                    <constraint firstAttribute="height" constant="65" id="hbB-bY-kvf"/>
                                 </constraints>
                                 <state key="normal" image="shareButton"/>
                                 <connections>
@@ -1180,7 +1180,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQc-0R-Jpu">
-                                <rect key="frame" x="0.0" y="518" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="528" width="375" height="150"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="gJK-32-YhO"/>
@@ -1242,13 +1242,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-TD-su1" userLabel="capturePicture">
-                                <rect key="frame" x="157.66666666666666" y="698" width="60" height="60"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-TD-su1" userLabel="capturePicture">
+                                <rect key="frame" x="155" y="708" width="65" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="G5o-bi-X4j"/>
-                                    <constraint firstAttribute="height" constant="60" id="N6u-oa-tOM"/>
+                                    <constraint firstAttribute="width" constant="65" id="G5o-bi-X4j"/>
+                                    <constraint firstAttribute="height" constant="65" id="N6u-oa-tOM"/>
                                 </constraints>
+                                <state key="normal" image="CameraVCTakePicture"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="30"/>
@@ -1270,24 +1270,24 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3X-T1-qJR" userLabel="choosePicture">
-                                <rect key="frame" x="46.666666666666657" y="712" width="36" height="36"/>
+                                <rect key="frame" x="40" y="727" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="FI1-e7-9hf"/>
                                     <constraint firstAttribute="width" constant="36" id="XeL-HY-H7s"/>
                                 </constraints>
-                                <state key="normal" image="image"/>
+                                <state key="normal" image="CameraVCStorage"/>
                                 <connections>
                                     <action selector="openPhotoLibraryButtonWithSender:" destination="wvw-nt-nff" eventType="touchUpInside" id="hwl-DZ-33w"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSd-Hz-bjG" userLabel="flashBtn">
-                                <rect key="frame" x="292.66666666666669" y="712" width="26" height="36"/>
+                                <rect key="frame" x="299" y="727" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="GgY-yz-7EB"/>
-                                    <constraint firstAttribute="width" constant="26" id="Xkn-qq-lEV"/>
+                                    <constraint firstAttribute="width" constant="36" id="Xkn-qq-lEV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                <state key="normal" backgroundImage="flashOff">
+                                <state key="normal" backgroundImage="CameraVCFlashOff">
                                     <color key="titleColor" red="1" green="0.76450090270000004" blue="0.24473445699999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -1297,14 +1297,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="mD4-1X-hTS" firstAttribute="trailing" secondItem="iSd-Hz-bjG" secondAttribute="trailing" constant="40" id="8XQ-Sh-u7R"/>
                             <constraint firstItem="p8l-NS-oP7" firstAttribute="leading" secondItem="mD4-1X-hTS" secondAttribute="leading" constant="15" id="DVg-8d-HeF"/>
-                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="G3X-T1-qJR" secondAttribute="bottom" constant="30" id="MQG-SE-SrU"/>
+                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="G3X-T1-qJR" secondAttribute="bottom" constant="15" id="MQG-SE-SrU"/>
+                            <constraint firstItem="G3X-T1-qJR" firstAttribute="leading" secondItem="mD4-1X-hTS" secondAttribute="leading" constant="40" id="NuE-gk-mEx"/>
                             <constraint firstItem="pul-TD-su1" firstAttribute="centerX" secondItem="heI-6Q-TLX" secondAttribute="centerX" id="OER-pZ-Vsu"/>
-                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="pul-TD-su1" secondAttribute="bottom" constant="20" id="TNj-yO-ggE"/>
-                            <constraint firstItem="pul-TD-su1" firstAttribute="leading" secondItem="G3X-T1-qJR" secondAttribute="trailing" constant="75" id="bCf-4d-H0O"/>
-                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="iSd-Hz-bjG" secondAttribute="bottom" constant="30" id="d4I-KI-AzD"/>
+                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="pul-TD-su1" secondAttribute="bottom" constant="5" id="TNj-yO-ggE"/>
+                            <constraint firstItem="mD4-1X-hTS" firstAttribute="bottom" secondItem="iSd-Hz-bjG" secondAttribute="bottom" constant="15" id="d4I-KI-AzD"/>
                             <constraint firstItem="p8l-NS-oP7" firstAttribute="top" secondItem="heI-6Q-TLX" secondAttribute="top" constant="35" id="r7M-MG-yIL"/>
-                            <constraint firstItem="iSd-Hz-bjG" firstAttribute="leading" secondItem="pul-TD-su1" secondAttribute="trailing" constant="75" id="yM5-wA-Zoe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mD4-1X-hTS"/>
                     </view>
@@ -1930,7 +1930,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F54-yf-Cez" userLabel="camera">
                                                 <rect key="frame" x="16" y="0.0" width="45" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="cameraBtnFinal"/>
+                                                <state key="normal" image="cameraBtnFinal2"/>
                                                 <connections>
                                                     <segue destination="wvw-nt-nff" kind="presentation" identifier="cameraSeg" id="6VM-3Q-lAN"/>
                                                 </connections>
@@ -1944,7 +1944,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5I5-G1-GnB" userLabel="more">
                                                 <rect key="frame" x="314" y="0.0" width="45" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="moreUseSettings2Final"/>
+                                                <state key="normal" image="moreUseSettings2Final2"/>
                                                 <connections>
                                                     <action selector="moreClick:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="I44-CM-Eyr"/>
                                                 </connections>
@@ -2151,22 +2151,23 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CameraVCFlashOff" width="70" height="70"/>
+        <image name="CameraVCStorage" width="70" height="70"/>
+        <image name="CameraVCTakePicture" width="70" height="70"/>
         <image name="SaveButtonUse2Final" width="45" height="45"/>
         <image name="bakgrund1" width="611" height="1086"/>
-        <image name="cameraBtnFinal" width="45" height="45"/>
+        <image name="cameraBtnFinal2" width="45" height="45"/>
         <image name="closeUse2Final" width="45" height="45"/>
         <image name="cog1" width="37" height="36"/>
         <image name="commentUse2Final" width="45" height="45"/>
         <image name="emptystar30" width="30" height="30"/>
         <image name="favoriterButton2Final" width="45" height="45"/>
         <image name="filterUse2Final" width="45" height="45"/>
-        <image name="flashOff" width="80" height="108"/>
         <image name="homeButton2Final" width="45" height="45"/>
-        <image name="image" width="100" height="100"/>
         <image name="logoMatdags" width="100" height="30"/>
         <image name="matdagsLogoFinal" width="100" height="30"/>
         <image name="moreUse2Final" width="45" height="45"/>
-        <image name="moreUseSettings2Final" width="45" height="45"/>
+        <image name="moreUseSettings2Final2" width="45" height="45"/>
         <image name="profileButton2Final" width="45" height="45"/>
         <image name="profileImagePlaceholder" width="240" height="240"/>
         <image name="searchButton2Final" width="45" height="45"/>
@@ -2176,7 +2177,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jqz-7P-XQE"/>
+        <segue reference="lIt-D9-Es6"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
