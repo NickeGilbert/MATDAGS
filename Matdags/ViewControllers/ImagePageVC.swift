@@ -208,7 +208,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let numberToolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         numberToolbar.barStyle = .default
         numberToolbar.items = [
-            UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(self.ImagePageVCClearText)),
+            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.ImagePageVCClose)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(self.ImagePageVCDoneEditing)),]
         
@@ -216,14 +216,37 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         commentsTextView.inputAccessoryView = numberToolbar
     }
     
-    @objc func ImagePageVCClearText() {
+    @objc func ImagePageVCClose() {
         commentsTextView.text = ""
-        commentsTextView.layoutIfNeeded()
-    }
-    @objc func ImagePageVCDoneEditing() {
         self.view.endEditing(true)
         settingsOverlayView.isHidden = true
         commentsView.isHidden = true
+    }
+    @objc func ImagePageVCDoneEditing() {
+        if commentsTextView.text != "" {
+            let postID = self.posts[0].postID
+            let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
+            let key = postRef.childByAutoId().key
+            let commentSend = commentsTextView.text
+            
+            print("Post refferens : \(postRef)")
+            print("Mitt UID: \(uid)")
+            print("Kommentaren : \(commentSend!)")
+            print("User alias : \(alias!)")
+            
+            postRef.child(key).updateChildValues(["uid" : uid] as [String: Any])
+            postRef.child(key).updateChildValues(["alias" : alias!] as [String : Any])
+            postRef.child(key).updateChildValues(["comment" : commentSend!] as [String : Any])
+            
+            self.commentsTextView.resignFirstResponder()
+            self.view.endEditing(true)
+            self.commentsView.isHidden = true
+            
+        } else {
+            commentsTextView.resignFirstResponder()
+            self.view.endEditing(true)
+            commentsView.isHidden = true
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
