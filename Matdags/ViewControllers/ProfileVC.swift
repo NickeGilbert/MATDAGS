@@ -18,6 +18,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
     
+    @IBOutlet weak var bendView: UIView!
+    
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followers: UILabel!
@@ -53,6 +55,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         
         followingLabel.text = NSLocalizedString("followingLabel", comment: "")
         followersLabel.text = NSLocalizedString("followerLabel", comment: "")
+        
+        bendView.layer.cornerRadius = 10
+        bendView.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

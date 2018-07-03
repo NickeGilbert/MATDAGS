@@ -37,6 +37,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewFollowButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet weak var bendView: UIView!
     
     let dispatchGroup = DispatchGroup()
     let uid = Auth.auth().currentUser!.uid
@@ -70,6 +71,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         clickUITapGestureRecognizer.delegate = self
         settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
+        bendView.layer.cornerRadius = 10
+        bendView.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

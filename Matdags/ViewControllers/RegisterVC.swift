@@ -17,7 +17,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var showPass: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
-  
+    @IBOutlet weak var bendView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +34,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         showPass.setTitle(NSLocalizedString("showPasswordPlaceholder", comment: ""), for: .normal)
         registerButton.setTitle(NSLocalizedString("registerButton", comment: ""), for: .normal)
         infoButton.setTitle(NSLocalizedString("infoButton", comment: ""), for: .normal)
-        
+        bendView.layer.cornerRadius = 10
+        bendView.clipsToBounds = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
