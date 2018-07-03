@@ -163,7 +163,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             cell.backgroundColor = UIColor.white
             cell.vegiIcon.isHidden = true
         
-            cell.bottomView.layer.cornerRadius = 10
+            cell.bottomView.layer.cornerRadius = 7
             cell.bottomView.clipsToBounds = true
             
             cell.layer.cornerRadius = 10
