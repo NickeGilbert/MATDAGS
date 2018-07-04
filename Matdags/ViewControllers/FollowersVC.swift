@@ -26,7 +26,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
         self.zeroImagesMessage.isHidden = true
-        
         zeroImagesMessage.text = zeroImages
         
         self.refresher = UIRefreshControl()
@@ -44,10 +43,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if posts.isEmpty {
             loadData()
             zeroImagesMessage.isHidden = false
-        }else{
-            self.posts.removeAll()
-            loadData()
-            self.refresher.beginRefreshing()
         }
     }
     
@@ -130,16 +125,24 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
             
-            let cachedImages = cell.viewWithTag(1) as? UIImageView
-            
-            cell.imageFeedView.image = nil
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+        
+        cell.imageFeedView.image = nil
+        
+        if !self.posts.isEmpty {
             if self.posts[indexPath.row].pathToImage != nil {
                 cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
             }
             
-            //Visa stjärnor i varje cell
+            if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+                cell.vegiIcon.isHidden = true
+            } else {
+                cell.vegiIcon.isHidden = false
+            }
+            
+            //Display stars of each cell
             let rating = self.posts[indexPath.row].rating
             let usersrated = self.posts[indexPath.row].usersRated
             if rating != nil {
@@ -157,26 +160,17 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     }
                 }
             }
-        
             cell.usernameLabel.text = self.posts[indexPath.row].alias
-            
-            cell.backgroundColor = UIColor.white
-            cell.vegiIcon.isHidden = true
+        }
+        cell.backgroundColor = UIColor.white
+        cell.vegiIcon.isHidden = true
+        cell.bottomView.layer.cornerRadius = 7
+        cell.bottomView.clipsToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.clipsToBounds = true
         
-            cell.bottomView.layer.cornerRadius = 7
-            cell.bottomView.clipsToBounds = true
-            
-            cell.layer.cornerRadius = 10
-            cell.clipsToBounds = true
-            
-            if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
-                cell.vegiIcon.isHidden = true
-            } else {
-                cell.vegiIcon.isHidden = false
-            }
-            
-            //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
-            return cell
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+        return cell
     
     }
         

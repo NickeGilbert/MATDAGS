@@ -217,7 +217,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
        
-        //let cachedImages = cell.viewWithTag(1) as? UIImageView
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
        
         cell.vegiIcon.isHidden = true
         cell.myImage.image = nil
@@ -239,7 +239,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("\(indexPath.row) could not reload properly.")
         }
 
-        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         return cell
     }
     

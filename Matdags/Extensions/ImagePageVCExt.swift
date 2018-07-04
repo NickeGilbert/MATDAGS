@@ -132,7 +132,7 @@ extension ImagePageVC {
     func getStars() {
         //Get number of stars
         let getInfo = User()
-        let uref = Database.database().reference(withPath: "Users/\(uid)/RatedPosts/\(self.posts[0].postID!)")
+        let uref = Database.database().reference(withPath: "Users/\(uid)/RatedPosts/\(seguePostID!)")
         uref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dict = snapshot.value as? [String : AnyObject] {
                 getInfo.stars = dict["Stars"] as? Int ?? 1

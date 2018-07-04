@@ -61,8 +61,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        posts.removeAll()
-        loadData()
+        if posts.isEmpty {
+            loadData()
+        }
     }
     
     @objc func loadData() {
@@ -140,7 +141,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
         
-       //let cachedImages = cell.viewWithTag(1) as? UIImageView
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+        
         cell.myProfileImageCollection.image = nil
         cell.vegiIcon.isHidden = true
         cell.layer.cornerRadius = 5
@@ -157,7 +159,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             
         }
         
-        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
+        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         
         return cell
     }
