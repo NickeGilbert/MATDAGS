@@ -20,17 +20,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewUnfollowButton: UIButton!
     @IBOutlet weak var settingsOverlayView: UIView!
     @IBOutlet weak var imagePageSettingsView: UIView!
-    
     @IBOutlet weak var deleteImage: UIButton!
     @IBOutlet weak var deleteThisImageButton: UIButton!
-    
     @IBOutlet weak var reportImage: UIButton!
     @IBOutlet weak var reportThisImageButton: UIButton!
-    
     @IBOutlet weak var blockUser: UIButton!
     @IBOutlet weak var blockThisUserButton: UIButton!
-    
-    
     @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
@@ -71,8 +66,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var commentConter: Int = 0
     var commentsCell = [CommentsCell]()
     var arrayOfUsersThatHaveReportedAnImage = [String]()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,9 +201,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                       handler: nil))
         self.present(alert, animated: true)
     }
-    
-    
-    
     
     func customWillDisappear(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         dispatchGroup.enter()
@@ -476,11 +466,21 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
  
     func deletePosts() {
-        db.reference(withPath: "Users/\(uid)/Posts/\(seguePostID)").removeValue { (error, ref) in }
-        db.reference(withPath: "Posts/\(seguePostID)").removeValue { (error, ref) in
-            if error == nil {
-                self.dismiss(animated: true, completion: nil)
+        db.reference(withPath: "Users/\(uid)/Posts/\(seguePostID!)").removeValue { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
             }
+            print("\nSuccessfully removed: \(ref)\n")
+        }
+        
+        db.reference(withPath: "Posts/\(seguePostID!)").removeValue { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            print("\nSuccessfully removed: \(ref)\n")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
