@@ -133,14 +133,15 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         getMyBlockedUsers()
         cellCounter = 0
         cellCounter2 = 0
-        downloadImages { (true) in
+        downloadImages (in: dispatchGroup, completionHandler: { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
-        }
+        })
     }
     
-    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+    func downloadImages(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        dispatchGroup.enter()
         let dbref = Database.database().reference(withPath: "Posts")
         //ToDo: Begränsa queryn till maxantal posts
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -157,11 +158,16 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.posts.append(appendPost)
                     }
                 }
-                completionHandler(true)
             } else {
+                dispatchGroup.leave()
+                completionHandler(true)
                 print("Snapshot could not be converted to NSDictionary\n")
-                completionHandler(false)
             }
+            dispatchGroup.leave()
+            dispatchGroup.notify(queue: .main, execute: {
+                completionHandler(true)
+                print("Successfully reloaded ImageFeedVC!")
+            })
         })
     }
     
@@ -217,7 +223,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! ImageFeedCell
        
-        //let cachedImages = cell.viewWithTag(1) as? UIImageView
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
        
         cell.vegiIcon.isHidden = true
         cell.myImage.image = nil
@@ -235,11 +241,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             } else {
                 print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
             }
+            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         } else {
             print("\(indexPath.row) could not reload properly.")
         }
 
-        //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         return cell
     }
     

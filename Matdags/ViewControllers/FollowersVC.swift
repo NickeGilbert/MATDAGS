@@ -17,6 +17,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var following = [String]()
     var refresher : UIRefreshControl!
     
+    let dispatchGroup = DispatchGroup()
+    
     let uid = Auth.auth().currentUser?.uid
     let db = Database.database()
     let alias = Auth.auth().currentUser?.displayName
@@ -26,7 +28,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
         self.zeroImagesMessage.isHidden = true
-        
         zeroImagesMessage.text = zeroImages
         
         self.refresher = UIRefreshControl()
@@ -44,28 +45,25 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if posts.isEmpty {
             loadData()
             zeroImagesMessage.isHidden = false
-        }else{
-            self.posts.removeAll()
-            loadData()
-            self.refresher.beginRefreshing()
         }
     }
     
     @objc func loadData() {
-        fetchPosts { (true) in
+        fetchPosts (in: dispatchGroup, completionHandler: { (true) in
             self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
 
             self.stopRefresher()
             print(self.posts.count)
-        }
+        })
     }
     
     func stopRefresher() {
         self.refresher.endRefreshing()
     }
     
-    func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+    func fetchPosts(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        dispatchGroup.enter()
         self.posts.removeAll()
         self.following.removeAll()
         
@@ -109,14 +107,20 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                         }
                                     }
                                 } else {
+                                    dispatchGroup.leave()
+                                    completionHandler(true)
                                     print("\nNo Posts found in db.")
                                 }
-                                completionHandler(true)
+                                dispatchGroup.leave()
+                                dispatchGroup.notify(queue: .main, execute: {
+                                    completionHandler(true)
+                                })
                             })
                         }
                     }
                 }
             } else {
+                dispatchGroup.leave()
                 completionHandler(true)
                 print("\nCouldnt fetch Posts in FollowerVC.")
             }
@@ -130,16 +134,24 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
+        let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: "followersCell", for: indexPath) as! FollowersCell
             
-            let cachedImages = cell.viewWithTag(1) as? UIImageView
-            
-            cell.imageFeedView.image = nil
+        let cachedImages = cell.viewWithTag(1) as? UIImageView
+        
+        cell.imageFeedView.image = nil
+        
+        if !self.posts.isEmpty {
             if self.posts[indexPath.row].pathToImage != nil {
                 cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
             }
             
-            //Visa stjärnor i varje cell
+            if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+                cell.vegiIcon.isHidden = true
+            } else {
+                cell.vegiIcon.isHidden = false
+            }
+            
+            //Display stars of each cell
             let rating = self.posts[indexPath.row].rating
             let usersrated = self.posts[indexPath.row].usersRated
             if rating != nil {
@@ -157,26 +169,18 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     }
                 }
             }
-        
             cell.usernameLabel.text = self.posts[indexPath.row].alias
-            
-            cell.backgroundColor = UIColor.white
-            cell.vegiIcon.isHidden = true
+            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+        }
         
-            cell.bottomView.layer.cornerRadius = 7
-            cell.bottomView.clipsToBounds = true
-            
-            cell.layer.cornerRadius = 10
-            cell.clipsToBounds = true
-            
-            if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
-                cell.vegiIcon.isHidden = true
-            } else {
-                cell.vegiIcon.isHidden = false
-            }
-            
-            //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
-            return cell
+        cell.backgroundColor = UIColor.white
+        cell.vegiIcon.isHidden = true
+        cell.bottomView.layer.cornerRadius = 7
+        cell.bottomView.clipsToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.clipsToBounds = true
+        
+        return cell
     
     }
         
