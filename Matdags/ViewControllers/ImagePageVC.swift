@@ -66,6 +66,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var commentConter: Int = 0
     var commentsCell = [CommentsCell]()
     var arrayOfUsersThatHaveReportedAnImage = [String]()
+    var checkBlockedUsers = [String]()
+    var myBlockedUsers = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,7 +129,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
 
     @IBAction func blockUserAction(_ sender: Any) {
-        blockThisUser()
+        reportUsers()
     }
  
     @IBAction func eraseImageAction(_ sender: Any) {
@@ -163,7 +165,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.present(alert, animated: true)
     }
     
-    func blockThisUser() {
+    func sdfjshdfjshdfjhs() {
         let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""),
                                       message: NSLocalizedString("blockUserMessage", comment: ""),
                                       preferredStyle: .alert)
