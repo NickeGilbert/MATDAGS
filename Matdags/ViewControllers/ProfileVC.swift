@@ -25,6 +25,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var followers: UILabel!
     @IBOutlet weak var following: UILabel!
     
+    @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsViewInner: UIView!
+    
+    
     var yourPostsId = [String]()
     var everyPostsInPOST = [String]()
     var ref: DatabaseReference!
@@ -58,12 +62,21 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         
         bendView.layer.cornerRadius = 10
         bendView.clipsToBounds = true
+        
+        settingsViewTopConstraint.constant = view.bounds.size.height
+        settingsViewInner.layer.cornerRadius = 10
+        settingsViewInner.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         posts.removeAll()
         loadData()
     }
+    
+    @IBAction func closeButtonAction(_ sender: Any) {
+        
+    }
+    
     
     @objc func loadData() {
         getPostInfo{ (true) in

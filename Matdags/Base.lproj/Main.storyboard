@@ -971,11 +971,39 @@
                                     <action selector="profileImageAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="l8k-P9-UVM"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xC-Jy-NIf" userLabel="settingsView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-Ki-5G3" userLabel="closeButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="J5Y-Mh-sfP"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="closeButtonAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Ky8-rS-lib"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlV-6K-DSz" userLabel="settingsViewInner">
+                                        <rect key="frame" x="0.0" y="150" width="375" height="579"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IlV-6K-DSz" secondAttribute="trailing" id="04u-Ni-4dB"/>
+                                    <constraint firstItem="IlV-6K-DSz" firstAttribute="top" secondItem="CyX-Ki-5G3" secondAttribute="bottom" id="O4F-V6-ff3"/>
+                                    <constraint firstItem="IlV-6K-DSz" firstAttribute="leading" secondItem="7xC-Jy-NIf" secondAttribute="leading" id="WeC-hG-cBL"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlV-6K-DSz" secondAttribute="bottom" id="fgy-hD-our"/>
+                                    <constraint firstItem="CyX-Ki-5G3" firstAttribute="top" secondItem="7xC-Jy-NIf" secondAttribute="top" id="rJP-e2-x6U"/>
+                                    <constraint firstAttribute="trailing" secondItem="CyX-Ki-5G3" secondAttribute="trailing" id="vlh-Sk-Eas"/>
+                                    <constraint firstItem="CyX-Ki-5G3" firstAttribute="leading" secondItem="7xC-Jy-NIf" secondAttribute="leading" id="y1x-ld-rz6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IWr-3y-d8T" secondAttribute="trailing" constant="55" id="0fr-uI-71O"/>
                             <constraint firstItem="IT0-iQ-MLx" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="4Lx-xx-g1c"/>
+                            <constraint firstItem="7xC-Jy-NIf" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="5IU-Qz-dse"/>
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" constant="55" id="5jV-5q-iBW"/>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="eVr-3d-fSh" secondAttribute="trailing" id="BFn-hz-XnN"/>
                             <constraint firstItem="eVr-3d-fSh" firstAttribute="top" secondItem="YeT-Gu-iAA" secondAttribute="top" id="CUD-9K-SjA"/>
@@ -983,10 +1011,12 @@
                             <constraint firstAttribute="bottomMargin" secondItem="eVr-3d-fSh" secondAttribute="bottom" id="J4q-ew-KiZ"/>
                             <constraint firstItem="cGd-Q5-HSB" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="O78-jx-CkU"/>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IT0-iQ-MLx" secondAttribute="trailing" constant="137" id="QbH-hH-oqG"/>
+                            <constraint firstAttribute="bottom" secondItem="7xC-Jy-NIf" secondAttribute="bottom" id="QlA-d1-uLm"/>
                             <constraint firstItem="Zv7-sa-0uO" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="Vil-6O-7Bu"/>
                             <constraint firstItem="5bs-t6-os4" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="5" id="WlK-HQ-QaV"/>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="cGd-Q5-HSB" secondAttribute="trailing" id="ZOz-W6-t65"/>
                             <constraint firstItem="cGd-Q5-HSB" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="97" id="e9O-Vu-guv"/>
+                            <constraint firstItem="7xC-Jy-NIf" firstAttribute="top" secondItem="YeT-Gu-iAA" secondAttribute="top" id="eO0-KZ-oxt"/>
                             <constraint firstItem="5bs-t6-os4" firstAttribute="leading" secondItem="Zv7-sa-0uO" secondAttribute="trailing" constant="70" id="fbO-Ao-rrE"/>
                             <constraint firstItem="eVr-3d-fSh" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="hmA-9M-QE2"/>
                             <constraint firstAttribute="bottom" secondItem="6qx-4q-1Tl" secondAttribute="bottom" id="j6g-9G-rq4"/>
@@ -994,6 +1024,7 @@
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="liH-j5-0D8"/>
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="110" id="n92-pX-CeP"/>
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="5" id="pTm-ab-CqX"/>
+                            <constraint firstItem="7xC-Jy-NIf" firstAttribute="trailing" secondItem="zwZ-zg-AZ4" secondAttribute="trailing" id="q0m-Wg-BgV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
                         <connections>
@@ -1014,6 +1045,8 @@
                         <outlet property="profileNameLabel" destination="IWr-3y-d8T" id="toA-cT-qS1"/>
                         <outlet property="profilePictureOutlet" destination="Zv7-sa-0uO" id="G9z-ds-Cn4"/>
                         <outlet property="profileSettingsButtonOutlet" destination="5bs-t6-os4" id="huf-iI-9aL"/>
+                        <outlet property="settingsViewInner" destination="IlV-6K-DSz" id="vLA-sD-Q00"/>
+                        <outlet property="settingsViewTopConstraint" destination="eO0-KZ-oxt" id="twd-4n-ZYL"/>
                         <segue destination="As2-HR-siM" kind="show" identifier="imagePageSegProfile" id="l83-R4-lZS"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="profileLogout" id="1uw-Wz-lgf"/>
                     </connections>
@@ -1622,7 +1655,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z86-Oj-koP" userLabel="settingsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-se-Cek">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-se-Cek" userLabel="closeButton">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="9XN-5f-Rf5"/>
@@ -2410,8 +2443,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
-        <segue reference="Xnk-uj-Z3I"/>
+        <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
 </document>
