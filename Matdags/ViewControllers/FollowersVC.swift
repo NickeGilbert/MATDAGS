@@ -120,6 +120,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     }
                 }
             } else {
+                dispatchGroup.leave()
                 completionHandler(true)
                 print("\nCouldnt fetch Posts in FollowerVC.")
             }
@@ -169,7 +170,9 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 }
             }
             cell.usernameLabel.text = self.posts[indexPath.row].alias
+            cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         }
+        
         cell.backgroundColor = UIColor.white
         cell.vegiIcon.isHidden = true
         cell.bottomView.layer.cornerRadius = 7
@@ -177,7 +180,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         
-        cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         return cell
     
     }
