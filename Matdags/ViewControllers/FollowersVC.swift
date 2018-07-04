@@ -17,6 +17,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var following = [String]()
     var refresher : UIRefreshControl!
     
+    let dispatchGroup = DispatchGroup()
+    
     let uid = Auth.auth().currentUser?.uid
     let db = Database.database()
     let alias = Auth.auth().currentUser?.displayName
@@ -47,20 +49,21 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
-        fetchPosts { (true) in
+        fetchPosts (in: dispatchGroup, completionHandler: { (true) in
             self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
 
             self.stopRefresher()
             print(self.posts.count)
-        }
+        })
     }
     
     func stopRefresher() {
         self.refresher.endRefreshing()
     }
     
-    func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+    func fetchPosts(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        dispatchGroup.enter()
         self.posts.removeAll()
         self.following.removeAll()
         
@@ -104,9 +107,14 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                         }
                                     }
                                 } else {
+                                    dispatchGroup.leave()
+                                    completionHandler(true)
                                     print("\nNo Posts found in db.")
                                 }
-                                completionHandler(true)
+                                dispatchGroup.leave()
+                                dispatchGroup.notify(queue: .main, execute: {
+                                    completionHandler(true)
+                                })
                             })
                         }
                     }
