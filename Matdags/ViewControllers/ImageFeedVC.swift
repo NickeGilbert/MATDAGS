@@ -78,6 +78,54 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
+    
+    @IBAction func vegiAction(_ sender: Any) {
+        vegiClickfunction()
+    }
+    
+    
+    @IBAction func logOutAction(_ sender: Any) {
+        logOutFunction()
+    }
+    
+    func vegiClickfunction() {
+        if vegiBool == false {
+            vegiClickImage.image = UIImage(named: "vegButton50SettingsFinal")
+            loadViewIfNeeded()
+            vegiBool = true
+            postsDuplicateArray = posts
+            posts = posts.filter { ($0.vegi == true) }
+            collectionFeed.reloadData()
+        } else {
+            vegiClickImage.image = UIImage(named: "vegButtonUseSettings2Final")
+            vegiBool = false
+            posts = postsDuplicateArray
+            collectionFeed.reloadData()
+        }
+    }
+    
+    func logOutFunction() {
+        let alert = UIAlertController(title: NSLocalizedString("logoutTitle", comment: ""),
+                                      message: NSLocalizedString("logoutMessage", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("logOut", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in
+                                        do {
+                                            try Auth.auth().signOut()
+                                            let loginManager = FBSDKLoginManager()
+                                            loginManager.logOut()
+                                            self.performSegue(withIdentifier: "logout", sender: nil)
+                                        } catch {
+                                            print("\nCould not log out succesfully.\n")
+                                        }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    
     @IBAction func onSelect(_ sender: Any) {
         settingsOverlayView.isHidden = true
         
@@ -141,6 +189,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             collectionFeed.reloadData()
         }
     }
+    
+    
     
     @IBAction func logOut(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("logoutTitle", comment: ""),
