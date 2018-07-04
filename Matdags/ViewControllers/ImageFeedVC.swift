@@ -15,6 +15,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var settingsOverlayView: UIView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsViewInner: UIView!
     
     
     let dispatchGroup = DispatchGroup()
@@ -48,7 +50,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         let tapRecognizerSettings = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         tapRecognizerSettings.delegate = self
+        
         settingsOverlayView?.addGestureRecognizer(tapRecognizerSettings)
+        settingsViewTopConstraint.constant = view.bounds.size.height
+        settingsViewInner.layer.cornerRadius = 10
+        settingsViewInner.clipsToBounds = true
         
         loadData()
     }
@@ -57,8 +63,24 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return true
     }
     
+    @IBAction func openSettingsAction(_ sender: Any) {
+        tabBarController?.tabBar.isHidden = true
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+            self.settingsViewTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
+    }
+    @IBAction func closeSettingsAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+            self.settingsViewTopConstraint.constant = self.view.bounds.size.height
+            self.tabBarController?.tabBar.isHidden = false
+            self.view.layoutIfNeeded()
+        })
+    }
+    
     @IBAction func onSelect(_ sender: Any) {
         settingsOverlayView.isHidden = true
+        
     }
     
     @objc func loadData() {
@@ -99,9 +121,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
-    @IBAction func moreClick(_ sender: Any) {
-        settingsOverlayView.isHidden = false
-    }
+
     
     @IBOutlet weak var vegiClickImage: UIImageView!
     @IBOutlet weak var vegiClickButton: UIButton!

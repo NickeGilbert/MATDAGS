@@ -20,9 +20,17 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewUnfollowButton: UIButton!
     @IBOutlet weak var settingsOverlayView: UIView!
     @IBOutlet weak var imagePageSettingsView: UIView!
+    
     @IBOutlet weak var deleteImage: UIButton!
+    @IBOutlet weak var deleteThisImageButton: UIButton!
+    
     @IBOutlet weak var reportImage: UIButton!
+    @IBOutlet weak var reportThisImageButton: UIButton!
+    
     @IBOutlet weak var blockUser: UIButton!
+    @IBOutlet weak var blockThisUserButton: UIButton!
+    
+    
     @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
@@ -36,7 +44,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
-    
+    @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var bendView: UIView!
     
     let dispatchGroup = DispatchGroup()
@@ -64,15 +73,21 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var arrayOfUsersThatHaveReportedAnImage = [String]()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         clickUITapGestureRecognizer.delegate = self
         settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
+        
+        
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
         bendView.layer.cornerRadius = 10
         bendView.clipsToBounds = true
+        settingsViewTopConstraint.constant = view.bounds.size.height
+        settingsViewInner.layer.cornerRadius = 10
+        settingsViewInner.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +114,103 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortAfterFetch()
         })
     }
+    
+    @IBAction func openSettingsAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+            self.settingsViewTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @IBAction func closeSettingsAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+            self.settingsViewTopConstraint.constant = self.view.bounds.size.height
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @IBAction func reportImageAction(_ sender: Any) {
+        reportThisImage()
+    }
+
+    @IBAction func blockUserAction(_ sender: Any) {
+        blockThisUser()
+    }
+ 
+    @IBAction func eraseImageAction(_ sender: Any) {
+        deleteThisImage()
+    }
+    
+    func reportThisImage() {
+        let alert = UIAlertController(title: NSLocalizedString("reportImageTitle", comment: ""),
+                                      message: NSLocalizedString("reportImageMessage", comment: ""),
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("reportTitle", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in
+                                        
+                                        let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""),
+                                                                       message: NSLocalizedString("reportSentMessage", comment: ""),
+                                                                       preferredStyle: .alert)
+                                        
+                                        self.checkForUIDInReportedImage()
+                                        
+                                        alert2.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""),
+                                                                       style: .cancel,
+                                                                       handler: nil))
+                                        
+                                        self.present(alert2, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func blockThisUser() {
+        let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""),
+                                      message: NSLocalizedString("blockUserMessage", comment: ""),
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("blockUser", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in
+                                        
+                                        let alert2 = UIAlertController(title: NSLocalizedString("userIsBlockedTitle", comment: ""),
+                                                                       message: NSLocalizedString("userIsBlockedMessage", comment: ""),
+                                                                       preferredStyle: .alert)
+                                        self.reportUsers()
+                                        
+                                        alert2.addAction(UIAlertAction(title: NSLocalizedString("userClose", comment: ""),
+                                                                       style: .cancel, handler: nil))
+                                        self.present(alert2, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("userClose", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func deleteThisImage(){
+        let alert = UIAlertController(title: NSLocalizedString("deleteImageTitle", comment: ""),
+                                      message: NSLocalizedString("deleteImageMessage", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("delete", comment: ""),
+                                      style: .destructive,
+                                      handler: { action in self.deletePosts() }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("closeReport", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    
+    
     
     func customWillDisappear(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         dispatchGroup.enter()
@@ -307,10 +419,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    @IBAction func openContainerView(_ sender: Any) {
-        settingsOverlayView.isHidden = false
-    }
     
+
    
     @IBAction func reportImage(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("reportImageTitle", comment: ""),
@@ -340,6 +450,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.present(alert, animated: true)
     }
+    
+    
     
     @IBAction func deleteImage(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("deleteImageTitle", comment: ""),
@@ -409,6 +521,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         }
     }
+    
+    
     
     @IBAction func blockUser(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""),
@@ -520,13 +634,20 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         if self.posts[0].userID != self.uid {
             self.deleteImage.isHidden = true // SOME DUDE
+            self.deleteThisImageButton.isEnabled = false
+            self.deleteThisImageButton.alpha = 0.2
             self.followerButton.isHidden = false
             self.subviewFollowButton.isHidden = false
             self.imagePageSettingsViewHeightConstraint.constant = 100
         } else {
             self.deleteImage.isHidden = false // MYSELF
+            self.deleteThisImageButton.isEnabled = true
             self.reportImage.isHidden = true
+            self.reportThisImageButton.isEnabled = false
+            self.reportThisImageButton.alpha = 0.2
             self.blockUser.isHidden = true
+            self.blockThisUserButton.isEnabled = false
+            self.blockThisUserButton.alpha = 0.2
             self.followerButton.isHidden = true
             self.unfollowingButton.isHidden = true
             self.subviewFollowButton.isHidden = true
