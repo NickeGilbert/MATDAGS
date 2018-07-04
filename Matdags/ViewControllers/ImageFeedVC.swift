@@ -18,7 +18,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
     
-    
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
     var refresher : UIRefreshControl!
@@ -77,8 +76,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.view.layoutIfNeeded()
         })
     }
-    
-    
+
     @IBAction func vegiAction(_ sender: Any) {
         vegiClickfunction()
     }
@@ -125,10 +123,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.present(alert, animated: true)
     }
     
-    
     @IBAction func onSelect(_ sender: Any) {
         settingsOverlayView.isHidden = true
-        
     }
     
     @objc func loadData() {
@@ -169,8 +165,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
-
-    
     @IBOutlet weak var vegiClickImage: UIImageView!
     @IBOutlet weak var vegiClickButton: UIButton!
     
@@ -189,8 +183,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             collectionFeed.reloadData()
         }
     }
-    
-    
     
     @IBAction func logOut(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("logoutTitle", comment: ""),
@@ -244,14 +236,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
             }
         } else {
-            print("collectionFeed was not able to sort all information between reloads.")
+            print("\(indexPath.row) could not reload properly.")
         }
 
         //cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage256))
         return cell
     }
-    
-
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
