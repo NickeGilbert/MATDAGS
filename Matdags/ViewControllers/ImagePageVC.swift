@@ -557,11 +557,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !comments.isEmpty {
-            return self.comments.count
-        } else {
-            return 1
+        if self.comments.count < 1 {
+            commentsTableView.isHidden = true
+        }else{
+            commentsTableView.isHidden = false
         }
+        return self.comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -572,19 +573,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.tableViewConstraintH.constant = tableHeight + cellHeight
         
-        if comments.isEmpty {
-            cell.commentsTextLabel.isHidden = true
-            cell.commentsNameLabel.isHidden = true
-            cell.textLabel!.text = "Inga kommentarer än. Skriv den första!"
-            cell.textLabel?.textColor = .black
-        } else {
-            if let commentDict = comments[indexPath.row].value as? [String : AnyObject] {
-                cell.commentsTextLabel.isHidden = false
-                cell.commentsNameLabel.isHidden = false
-                cell.commentsTextLabel.text = commentDict["comment"] as? String
-                cell.commentsNameLabel.text  = commentDict["alias"] as? String
-            }
+        if let commentDict = comments[indexPath.row].value as? [String : AnyObject] {
+            cell.commentsTextLabel.isHidden = false
+            cell.commentsNameLabel.isHidden = false
+            cell.commentsTextLabel.text = commentDict["comment"] as? String
+            cell.commentsNameLabel.text  = commentDict["alias"] as? String
         }
+        
         
         return cell
     }
