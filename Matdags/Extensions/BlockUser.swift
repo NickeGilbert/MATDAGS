@@ -56,7 +56,7 @@ extension ImagePageVC {
             }
         }
     }
-}//
+}
 
 extension ImageFeedVC {
     func getMyBlockedUsers() {
