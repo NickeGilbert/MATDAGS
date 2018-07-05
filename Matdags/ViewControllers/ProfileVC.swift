@@ -227,6 +227,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.posts.count < 1 {
+            profileCollectionFeed.isHidden = true
+        }else{
+            profileCollectionFeed.isHidden = false
+        }
         return self.posts.count
     }
     

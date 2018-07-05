@@ -845,6 +845,15 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inga bilder att visa än, när du lägger upp bilder kommer de visas här!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk5-OK-FjE">
+                                        <rect key="frame" x="50" y="150" width="275" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="wuQ-3H-IJA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pZ-IM-U5X">
                                         <rect key="frame" x="20" y="40" width="100" height="25"/>
                                         <constraints>
@@ -917,12 +926,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Xk5-OK-FjE" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="150" id="1Es-Gn-M3L"/>
+                                    <constraint firstItem="Xk5-OK-FjE" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" constant="50" id="1Hm-t1-c5V"/>
                                     <constraint firstItem="LgR-jC-Tpn" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="10" id="865-To-kwE"/>
                                     <constraint firstItem="R2M-1M-qIm" firstAttribute="top" secondItem="BWv-pV-Ovt" secondAttribute="bottom" constant="5" id="8mL-MP-Yd3"/>
                                     <constraint firstAttribute="trailing" secondItem="R2M-1M-qIm" secondAttribute="trailing" constant="20" id="97h-qy-AAy"/>
                                     <constraint firstItem="ACP-Vh-ap7" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" id="HFI-Gb-zqE"/>
                                     <constraint firstItem="BWv-pV-Ovt" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="10" id="LcJ-jZ-jua"/>
                                     <constraint firstAttribute="bottom" secondItem="ACP-Vh-ap7" secondAttribute="bottom" id="OjO-xm-wLO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xk5-OK-FjE" secondAttribute="trailing" constant="50" id="Rn9-WG-dkO"/>
                                     <constraint firstItem="LgR-jC-Tpn" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" constant="20" id="XUb-4c-q08"/>
                                     <constraint firstAttribute="trailing" secondItem="ACP-Vh-ap7" secondAttribute="trailing" id="a3S-m8-bkh"/>
                                     <constraint firstAttribute="trailing" secondItem="BWv-pV-Ovt" secondAttribute="trailing" constant="20" id="b6T-Uk-AUv"/>
@@ -1071,6 +1083,11 @@
                             <constraint firstItem="7xC-Jy-NIf" firstAttribute="trailing" secondItem="zwZ-zg-AZ4" secondAttribute="trailing" id="q0m-Wg-BgV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="7xC-Jy-NIf"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -2094,10 +2111,7 @@
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Z86-Oj-koP"/>
-                                <exclude reference="uJr-hq-MOK"/>
                                 <exclude reference="3ws-by-1OO"/>
-                                <exclude reference="XQz-Jm-hsB"/>
                             </mask>
                         </variation>
                     </view>
