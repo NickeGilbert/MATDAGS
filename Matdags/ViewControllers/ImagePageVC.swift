@@ -231,17 +231,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func observeComments() {
         commentsRef.observe(.childAdded, with: { (snapshot) -> Void in
+            print(snapshot.value!)
             self.comments.append(snapshot)
-            self.commentsTableView.beginUpdates()
-            self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
-            self.commentsTableView.endUpdates()
+            self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: .automatic)
         })
         commentsRef.observe(.childRemoved, with: { (snapshot) -> Void in
             let index = self.indexOfMessage(snapshot)
             self.comments.remove(at: index)
-            self.commentsTableView.beginUpdates()
-            self.commentsTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.automatic)
-            self.commentsTableView.endUpdates()
+            self.commentsTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         })
     }
     
@@ -364,16 +361,16 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let postID = self.posts[0].postID
             let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
             let key = postRef.childByAutoId().key
-            let commentSend = commentsTextView.text
+            let commentToSend = commentsTextView.text
             
             print("Post refferens : \(postRef)")
             print("Mitt UID: \(uid)")
-            print("Kommentaren : \(commentSend!)")
+            print("Kommentaren : \(commentToSend!)")
             print("User alias : \(alias!)")
         
-            postRef.child(key).updateChildValues(["uid" : uid] as [String: Any])
-            postRef.child(key).updateChildValues(["alias" : alias!] as [String : Any])
-            postRef.child(key).updateChildValues(["comment" : commentSend!] as [String : Any])
+            postRef.child(key).updateChildValues(["uid" : uid,
+                                                  "alias" : alias!,
+                                                  "comment" : commentToSend!] as [String: Any])
             
             self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
