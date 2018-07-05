@@ -807,9 +807,9 @@
         <!--ProfileVC-->
         <scene sceneID="GHa-Su-05S">
             <objects>
-                <viewController id="1IS-aF-BiB" userLabel="ProfileVC" customClass="ProfileVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="1IS-aF-BiB" userLabel="ProfileVC" customClass="ProfileVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YeT-Gu-iAA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakgrund1" translatesAutoresizingMaskIntoConstraints="NO" id="eVr-3d-fSh">
@@ -823,7 +823,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qx-4q-1Tl" userLabel="wrapperView">
-                                <rect key="frame" x="0.0" y="154" width="375" height="575"/>
+                                <rect key="frame" x="0.0" y="154" width="375" height="658"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Följer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgR-jC-Tpn">
                                         <rect key="frame" x="20" y="10" width="100" height="25"/>
@@ -856,7 +856,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ACP-Vh-ap7">
-                                        <rect key="frame" x="0.0" y="90" width="375" height="485"/>
+                                        <rect key="frame" x="0.0" y="90" width="375" height="568"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="iEA-86-vgJ">
                                             <size key="itemSize" width="105" height="105"/>
@@ -947,32 +947,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bs-t6-os4">
-                                <rect key="frame" x="327.66666666666669" y="49" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bs-t6-os4" userLabel="SettingsButton">
+                                <rect key="frame" x="327.66666666666669" y="49" width="40" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.92728278878463211" blue="0.65998681675776982" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="5Kc-3t-uz3"/>
-                                    <constraint firstAttribute="height" constant="30" id="MEH-VM-i7t"/>
+                                    <constraint firstAttribute="width" constant="40" id="5Kc-3t-uz3"/>
+                                    <constraint firstAttribute="height" constant="40" id="MEH-VM-i7t"/>
                                 </constraints>
-                                <state key="normal" image="cog1">
+                                <state key="normal" image="profileVCSettingsWhite">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="deleteaccountBtn:" destination="1IS-aF-BiB" eventType="touchUpInside" id="YJz-bt-TLw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IT0-iQ-MLx">
-                                <rect key="frame" x="98" y="84" width="140" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="Fru-pu-x7X"/>
-                                    <constraint firstAttribute="width" constant="140" id="dhb-KQ-TNc"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="profileImageAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="l8k-P9-UVM"/>
+                                    <action selector="openSettingsAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="YJz-bt-TLw"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xC-Jy-NIf" userLabel="settingsView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-Ki-5G3" userLabel="closeButton">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -980,12 +970,70 @@
                                             <constraint firstAttribute="height" constant="150" id="J5Y-Mh-sfP"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="closeButtonAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Ky8-rS-lib"/>
+                                            <action selector="closeSettingsAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Ky8-rS-lib"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlV-6K-DSz" userLabel="settingsViewInner">
-                                        <rect key="frame" x="0.0" y="150" width="375" height="579"/>
+                                        <rect key="frame" x="0.0" y="150" width="375" height="662"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXM-ab-8in">
+                                                <rect key="frame" x="0.0" y="25" width="375" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="j12-fr-qsL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gck-JG-M5b" userLabel="devider">
+                                                <rect key="frame" x="100" y="71" width="175" height="1"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="3ru-Oi-xeH"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hu-cX-Gev">
+                                                <rect key="frame" x="112" y="152" width="150" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="es3-9c-FFl"/>
+                                                    <constraint firstAttribute="height" constant="30" id="p7X-8n-VGM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <state key="normal" title="Delete Accout">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteAccountAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Pa8-Aa-wNe"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjv-fa-C6m">
+                                                <rect key="frame" x="99.666666666666686" y="97" width="175" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Dc2-KL-LLA"/>
+                                                    <constraint firstAttribute="width" constant="175" id="XR1-hK-gE3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <state key="normal" title="Change profile picture">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="changeProfilePictureAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="2zH-gk-Urt"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="HXM-ab-8in" firstAttribute="top" secondItem="IlV-6K-DSz" secondAttribute="top" constant="25" id="48z-V8-WMc"/>
+                                            <constraint firstItem="Gck-JG-M5b" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" constant="100" id="CQD-M6-5RH"/>
+                                            <constraint firstItem="HXM-ab-8in" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" id="NVx-NU-P7s"/>
+                                            <constraint firstItem="Gck-JG-M5b" firstAttribute="top" secondItem="HXM-ab-8in" secondAttribute="bottom" constant="25" id="YnO-wl-2YE"/>
+                                            <constraint firstItem="hjv-fa-C6m" firstAttribute="top" secondItem="Gck-JG-M5b" secondAttribute="bottom" constant="25" id="YpY-3L-Xyq"/>
+                                            <constraint firstAttribute="trailing" secondItem="HXM-ab-8in" secondAttribute="trailing" id="coe-xe-twr"/>
+                                            <constraint firstItem="0hu-cX-Gev" firstAttribute="top" secondItem="hjv-fa-C6m" secondAttribute="bottom" constant="25" id="fHD-Qf-stv"/>
+                                            <constraint firstItem="hjv-fa-C6m" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="feT-nB-CwU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gck-JG-M5b" secondAttribute="trailing" constant="100" id="rJh-oA-6e6"/>
+                                            <constraint firstItem="0hu-cX-Gev" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="sEd-tD-sbi"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1002,7 +1050,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IWr-3y-d8T" secondAttribute="trailing" constant="55" id="0fr-uI-71O"/>
-                            <constraint firstItem="IT0-iQ-MLx" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="4Lx-xx-g1c"/>
                             <constraint firstItem="7xC-Jy-NIf" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="5IU-Qz-dse"/>
                             <constraint firstItem="IWr-3y-d8T" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" constant="55" id="5jV-5q-iBW"/>
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="eVr-3d-fSh" secondAttribute="trailing" id="BFn-hz-XnN"/>
@@ -1010,7 +1057,6 @@
                             <constraint firstItem="6qx-4q-1Tl" firstAttribute="trailing" secondItem="zwZ-zg-AZ4" secondAttribute="trailing" id="DCn-Ct-lQq"/>
                             <constraint firstAttribute="bottomMargin" secondItem="eVr-3d-fSh" secondAttribute="bottom" id="J4q-ew-KiZ"/>
                             <constraint firstItem="cGd-Q5-HSB" firstAttribute="leading" secondItem="zwZ-zg-AZ4" secondAttribute="leading" id="O78-jx-CkU"/>
-                            <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="IT0-iQ-MLx" secondAttribute="trailing" constant="137" id="QbH-hH-oqG"/>
                             <constraint firstAttribute="bottom" secondItem="7xC-Jy-NIf" secondAttribute="bottom" id="QlA-d1-uLm"/>
                             <constraint firstItem="Zv7-sa-0uO" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="40" id="Vil-6O-7Bu"/>
                             <constraint firstItem="5bs-t6-os4" firstAttribute="top" secondItem="zwZ-zg-AZ4" secondAttribute="top" constant="5" id="WlK-HQ-QaV"/>
@@ -2425,7 +2471,6 @@
         <image name="bakgrund1" width="611" height="1086"/>
         <image name="cameraBtnFinal2" width="45" height="45"/>
         <image name="closeUse2Final" width="45" height="45"/>
-        <image name="cog1" width="37" height="36"/>
         <image name="commentUse2Final" width="45" height="45"/>
         <image name="emptystar30" width="30" height="30"/>
         <image name="favoriterButton2Final" width="45" height="45"/>
@@ -2436,6 +2481,7 @@
         <image name="moreUseSettings2Final2" width="45" height="45"/>
         <image name="profileButton2Final" width="45" height="45"/>
         <image name="profileImagePlaceholder" width="240" height="240"/>
+        <image name="profileVCSettingsWhite" width="45" height="45"/>
         <image name="searchButton2Final" width="45" height="45"/>
         <image name="shareButton" width="150" height="150"/>
         <image name="vegButton50" width="50" height="50"/>

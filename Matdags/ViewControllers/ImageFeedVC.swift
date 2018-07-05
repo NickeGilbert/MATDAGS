@@ -33,10 +33,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(uid == nil) {
-            performSegue(withIdentifier: "logout", sender: nil)
-        }
-      
         logoutButton.setTitle(NSLocalizedString("logoutButton", comment: ""), for: .normal)
         refresher = UIRefreshControl()
         collectionFeed!.alwaysBounceVertical = true
@@ -56,6 +52,12 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         settingsViewInner.clipsToBounds = true
         
         loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(uid == nil) {
+            performSegue(withIdentifier: "logout", sender: nil)
+        }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

@@ -74,8 +74,31 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
-    @IBAction func closeButtonAction(_ sender: Any) {
+    @IBAction func openSettingsAction(_ sender: Any) {
+        tabBarController?.tabBar.isHidden = true
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+            self.settingsViewTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
         
+    }
+    
+    @IBAction func closeSettingsAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+            self.settingsViewTopConstraint.constant = self.view.bounds.size.height
+            self.tabBarController?.tabBar.isHidden = false
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    
+    @IBAction func changeProfilePictureAction(_ sender: Any) {
+        changeProfilePicture()
+    }
+    
+    
+    @IBAction func deleteAccountAction(_ sender: Any) {
+        deleteAccount()
     }
     
     
@@ -212,7 +235,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         return size
     }
     
-    @IBAction func profileImageAction(_ sender: UIButton) {
+    func changeProfilePicture() {
         print(newPic)
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.delegate = self
@@ -306,8 +329,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         URLCache.shared.removeAllCachedResponses()
     }
     
-    @IBAction func deleteaccountBtn(_ sender: Any) {
-
+    
+    
+    func deleteAccount() {
         let alert = UIAlertController(title: NSLocalizedString("DeleteAccountHeader", comment: ""), message: NSLocalizedString("DeleteAccountText", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountYES", comment: ""), style: .destructive, handler: { action in
             
@@ -323,7 +347,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
         self.present(alert, animated: true)
-
     }
  
     func IdOfAllOfMyPosts() {
