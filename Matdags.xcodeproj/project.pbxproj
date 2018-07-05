@@ -677,7 +677,6 @@
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87587NY5AL;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -712,7 +711,6 @@
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87587NY5AL;
-				DEVELOPMENT_TEAM = X9LPQ34G56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
