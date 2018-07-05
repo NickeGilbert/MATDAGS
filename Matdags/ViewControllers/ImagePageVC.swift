@@ -372,7 +372,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                 "alias" : alias!,
                                 "comment" : commentToSend] as [String : AnyObject]
         
-            postRef.child(key).updateChildValues(valuesToSend)
+            postRef.child(key).setValue(valuesToSend)
             
             self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
