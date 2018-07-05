@@ -48,27 +48,15 @@ extension ImagePageVC {
         }
     }
     
-    
-    
     func unfollowBlockedUser() {
-        
         for user in self.userFollowing {
-            
             if self.myBlockedUsers.contains(user) {
-                
                 unfollowUser()
-                
             } else {
-                
-                
-                
             }
-            
         }
-        
     }
-    
-}
+}//
 
 extension ImageFeedVC {
     func getMyBlockedUsers() {
