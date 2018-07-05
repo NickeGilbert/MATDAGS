@@ -143,17 +143,25 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.imageFeedView.image = nil
         cell.faceImageView.layer.cornerRadius = cell.faceImageView.frame.height / 2
         cell.faceImageView.clipsToBounds = true
+        cell.faceImageView.isHidden = true
         
         if !self.posts.isEmpty {
             if self.posts[indexPath.row].pathToImage != nil {
                 cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
             }
+           let count = self.posts[indexPath.row].pathProfileImage.count
             
-            if self.posts[indexPath.row].pathProfileImage != nil {
+            if self.posts[indexPath.row].pathProfileImage == nil || count < 10 {
+                
+            }else{
+                cell.faceImageView.isHidden = false
                 cell.faceImageView.downloadImage(from: self.posts[indexPath.row].pathProfileImage)
+                cell.faceImageView.layer.borderWidth = 2
+                cell.faceImageView.layer.borderColor = UIColor.white.cgColor
             }
-            
-            if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {
+            let vegi = self.posts[indexPath.row].vegi!
+            print("VEGI ELLER?! ",vegi)
+            if vegi == false {
                 cell.vegiIcon.isHidden = true
             } else {
                 cell.vegiIcon.isHidden = false
@@ -182,7 +190,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         cell.backgroundColor = UIColor.white
-        cell.vegiIcon.isHidden = true
         cell.bottomView.layer.cornerRadius = 7
         cell.bottomView.clipsToBounds = true
         cell.layer.cornerRadius = 10
