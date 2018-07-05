@@ -16,6 +16,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     @IBOutlet weak var descriptionFieldLines: UITextView!
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var menuView: UIView!
     
     var CIFilterNames = ["CIPhotoEffectChrome",
                          "CIPhotoEffectFade",
@@ -47,6 +48,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         descriptionFieldLines.delegate = self
         descriptionFieldLines.isHidden = true
         descriptionFieldLines.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
+        
+        menuView.layer.cornerRadius = 10
+        menuView.clipsToBounds = true
 
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
