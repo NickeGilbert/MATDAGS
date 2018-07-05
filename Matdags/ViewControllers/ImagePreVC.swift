@@ -272,6 +272,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         
         usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(usrPostFeed)
         
+        
         //Bild i full storlek
         if let imageData = UIImageJPEGRepresentation(fullImage, 0.8) {
             dispatchGroup.enter()
