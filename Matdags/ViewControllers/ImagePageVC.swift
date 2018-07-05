@@ -367,10 +367,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("Mitt UID: \(uid)")
             print("Kommentaren : \(commentToSend!)")
             print("User alias : \(alias!)")
+            
+            let valuesToSend = ["uid" : uid,
+                                "alias" : alias!,
+                                "comment" : commentToSend] as [String : AnyObject]
         
-            postRef.child(key).updateChildValues(["uid" : uid,
-                                                  "alias" : alias!,
-                                                  "comment" : commentToSend!] as [String: Any])
+            postRef.child(key).updateChildValues(valuesToSend)
             
             self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
