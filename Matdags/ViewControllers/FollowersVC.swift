@@ -24,6 +24,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     let alias = Auth.auth().currentUser?.displayName
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
@@ -97,7 +98,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     appendPost.postID = post["postID"] as? String ?? ""
                                                     appendPost.vegi = post["vegetarian"] as? Bool ?? false
                                                     appendPost.usersRated = post["usersRated"] as? Int ?? 0
-                                                    
+                                                    appendPost.pathProfileImage = post["profileImageURL"] as? String ?? ""
+                                                        
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true
                                                     print("POSTS: ", self.posts)
@@ -139,10 +141,16 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cachedImages = cell.viewWithTag(1) as? UIImageView
         
         cell.imageFeedView.image = nil
+        cell.faceImageView.layer.cornerRadius = cell.faceImageView.frame.height / 2
+        cell.faceImageView.clipsToBounds = true
         
         if !self.posts.isEmpty {
             if self.posts[indexPath.row].pathToImage != nil {
                 cell.imageFeedView.downloadImage(from: self.posts[indexPath.row].pathToImage)
+            }
+            
+            if self.posts[indexPath.row].pathProfileImage != nil {
+                cell.faceImageView.downloadImage(from: self.posts[indexPath.row].pathProfileImage)
             }
             
             if self.posts[indexPath.row].vegi == nil || self.posts[indexPath.row].vegi == false {

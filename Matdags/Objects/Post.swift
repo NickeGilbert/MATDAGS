@@ -19,4 +19,5 @@ class Post: NSObject {
     var usersRated : Int!
     var date : String!
     var timestamp : String!
+    var pathProfileImage : String!
 }
