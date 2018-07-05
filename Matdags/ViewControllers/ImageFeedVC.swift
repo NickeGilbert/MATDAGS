@@ -135,15 +135,14 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         getMyBlockedUsers()
         cellCounter = 0
         cellCounter2 = 0
-        downloadImages (in: dispatchGroup, completionHandler: { (true) in
+        downloadImages { (true) in
             self.posts.sort(by: {$0.timestamp > $1.timestamp})
             self.collectionFeed.reloadData()
             self.refresher.endRefreshing()
-        })
+        }
     }
     
-    func downloadImages(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        dispatchGroup.enter()
+    func downloadImages(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let dbref = Database.database().reference(withPath: "Posts")
         //ToDo: Begränsa queryn till maxantal posts
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -160,16 +159,8 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.posts.append(appendPost)
                     }
                 }
-            } else {
-                dispatchGroup.leave()
-                completionHandler(true)
-                print("Snapshot could not be converted to NSDictionary\n")
             }
-            dispatchGroup.leave()
-            dispatchGroup.notify(queue: .main, execute: {
-                completionHandler(true)
-                print("Successfully reloaded ImageFeedVC!")
-            })
+            completionHandler(true)
         })
     }
     
