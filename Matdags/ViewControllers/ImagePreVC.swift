@@ -237,16 +237,34 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         //Timestamp
         let timestamp = Date().timeIntervalSince1970
         
-        let postfeed = ["userID" : uid!,
-                    "timestamp": String(timestamp),
-                    "date": currentDate,
-                    "rating" : 0,
-                    "alias" : Auth.auth().currentUser!.displayName!,
-                    "imgdescription" : self.descriptionFieldLines.text!,
-                    "postID" : key,
-                    "usersRated" : 0,
-                    "vegetarian" : vegFoodBool] as [String : Any]
-        database.child("\(key)").updateChildValues(postfeed)
+        let prefs = UserDefaults.standard
+        let profileImagePhoto = prefs.string(forKey: "userProfilePhoto")
+        
+        if profileImagePhoto != nil {
+            let postfeed = ["userID" : uid!,
+                            "timestamp": String(timestamp),
+                            "date": currentDate,
+                            "rating" : 0,
+                            "alias" : Auth.auth().currentUser!.displayName!,
+                            "imgdescription" : self.descriptionFieldLines.text!,
+                            "postID" : key,
+                            "usersRated" : 0,
+                            "profileImageURL" : profileImagePhoto!,
+                            "vegetarian" : vegFoodBool] as [String : Any]
+            database.child("\(key)").updateChildValues(postfeed)
+        }else{
+            let postfeed = ["userID" : uid!,
+                            "timestamp": String(timestamp),
+                            "date": currentDate,
+                            "rating" : 0,
+                            "alias" : Auth.auth().currentUser!.displayName!,
+                            "imgdescription" : self.descriptionFieldLines.text!,
+                            "postID" : key,
+                            "usersRated" : 0,
+                            "vegetarian" : vegFoodBool] as [String : Any]
+            database.child("\(key)").updateChildValues(postfeed)
+        }
+        
         
         let usrPostFeed = ["date" : currentDate,
                            "postID" : key,
