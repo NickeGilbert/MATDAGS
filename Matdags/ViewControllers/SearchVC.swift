@@ -74,7 +74,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchController.searchBar.backgroundColor = UIColor.white
         searchController.searchBar.barTintColor = UIColor.white
         searchController.searchBar.tintColor = UIColor.darkGray
-//        searchController.searchBar.layer.borderColor = UIColor.white as! CGColor
+        let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        searchController.searchBar.layer.borderColor = white.cgColor
+        searchController.searchBar.layer.borderWidth = 0
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
