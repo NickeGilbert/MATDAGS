@@ -329,6 +329,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         settingsOverlayView.isHidden = true
         commentsView.isHidden = true
     }
+    
     @objc func ImagePageVCDoneEditing() {
         if commentsTextView.text != "" {
             let postID = self.posts[0].postID
@@ -336,14 +337,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let key = postRef.childByAutoId().key
             let commentSend = commentsTextView.text
             
-            print("Post refferens : \(postRef)")
-            print("Mitt UID: \(uid)")
-            print("Kommentaren : \(commentSend!)")
-            print("User alias : \(alias!)")
-            
-            postRef.child(key).updateChildValues(["uid" : uid] as [String: Any])
-            postRef.child(key).updateChildValues(["alias" : alias!] as [String : Any])
-            postRef.child(key).updateChildValues(["comment" : commentSend!] as [String : Any])
+            postRef.child(key).updateChildValues(["uid" : uid,
+                                                  "alias" : alias!,
+                                                  "comment" : commentSend!] as [String: Any])
             
             self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
@@ -353,37 +349,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
             commentsView.isHidden = true
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if commentsTextView.text != "" {
-            let postID = self.posts[0].postID
-            let postRef = db.reference(withPath: "Posts/\(postID!)/comments")
-            let key = postRef.childByAutoId().key
-            let commentToSend = commentsTextView.text
-            
-            print("Post refferens : \(postRef)")
-            print("Mitt UID: \(uid)")
-            print("Kommentaren : \(commentToSend!)")
-            print("User alias : \(alias!)")
-            
-            let valuesToSend = ["uid" : uid,
-                                "alias" : alias!,
-                                "comment" : commentToSend] as [String : AnyObject]
-        
-            postRef.child(key).setValue(valuesToSend)
-            
-            self.commentsTextView.resignFirstResponder()
-            self.view.endEditing(true)
-            self.commentsView.isHidden = true
-            return true
-            
-        } else {
-            commentsTextView.resignFirstResponder()
-            self.view.endEditing(true)
-            commentsView.isHidden = true
-            return true
         }
     }
     
