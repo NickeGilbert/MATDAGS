@@ -344,7 +344,7 @@
             </objects>
             <point key="canvasLocation" x="-983.20000000000005" y="1012.3152709359606"/>
         </scene>
-        <!--SearchVC-->
+        <!--Search-->
         <scene sceneID="wT8-AH-SsB">
             <objects>
                 <viewController id="daa-NH-ElQ" customClass="SearchVC" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
@@ -566,7 +566,7 @@
                             <outletCollection property="gestureRecognizers" destination="xUr-OM-bxF" appends="YES" id="fMt-Si-8iy"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="searchButton2Final" id="uN5-7r-vK9">
+                    <tabBarItem key="tabBarItem" title="Search" image="searchButton2Final" id="uN5-7r-vK9">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -755,7 +755,7 @@
                             <outletCollection property="gestureRecognizers" destination="ENx-1a-WRN" appends="YES" id="9hY-Ak-Ou8"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="favoriterButton2Final" id="1Um-M8-3VX" userLabel="Följare">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="favoriterButton2Final" id="1Um-M8-3VX" userLabel="Följare">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -1093,7 +1093,7 @@
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profileButton2Final" id="lP8-fs-3y6" userLabel="Item 3">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profileButton2Final" id="lP8-fs-3y6" userLabel="Item 3">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
@@ -2454,7 +2454,7 @@
                             <outletCollection property="gestureRecognizers" destination="Vbc-XZ-9NL" appends="YES" id="EPA-Vl-31c"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="homeButton2Final" id="e9t-XX-NrY">
+                    <tabBarItem key="tabBarItem" title="Home" image="homeButton2Final" id="e9t-XX-NrY">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="UXm-UH-lXh"/>

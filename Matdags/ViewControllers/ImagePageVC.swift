@@ -108,7 +108,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             //Sort UI after fetching data.
             self.sortAfterFetch()
         })
+        
+        
     }
+    
     
     @IBAction func openSettingsAction(_ sender: Any) {
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {

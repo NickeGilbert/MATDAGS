@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = false
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
     }
 
     var window: UIWindow?
