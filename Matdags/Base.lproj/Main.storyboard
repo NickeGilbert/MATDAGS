@@ -691,16 +691,29 @@
                                                                         <constraint firstAttribute="width" constant="150" id="o9K-5J-GLu"/>
                                                                     </constraints>
                                                                 </stackView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="followVCFaceMockup" translatesAutoresizingMaskIntoConstraints="NO" id="ajt-5P-Cp6">
+                                                                    <rect key="frame" x="310" y="5" width="40" height="40"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="OP5-Qc-aJZ"/>
+                                                                        <constraint firstAttribute="width" constant="40" id="aR6-UJ-37q"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="ajt-5P-Cp6" secondAttribute="trailing" constant="8" id="7lU-1d-aYF"/>
                                                                 <constraint firstItem="EEi-u7-Xpj" firstAttribute="leading" secondItem="3Zl-hu-3CA" secondAttribute="leading" constant="10" id="B4N-cR-XK2"/>
                                                                 <constraint firstAttribute="trailing" secondItem="h0R-Jk-APq" secondAttribute="trailing" constant="10" id="Egl-QF-VoN"/>
                                                                 <constraint firstItem="EEi-u7-Xpj" firstAttribute="top" secondItem="3Zl-hu-3CA" secondAttribute="top" constant="10" id="IrV-lt-0HC"/>
+                                                                <constraint firstItem="ajt-5P-Cp6" firstAttribute="top" secondItem="3Zl-hu-3CA" secondAttribute="top" constant="5" id="XQq-8H-KFW"/>
                                                                 <constraint firstItem="h0R-Jk-APq" firstAttribute="top" secondItem="3Zl-hu-3CA" secondAttribute="top" constant="10" id="Xdd-AW-jyS"/>
                                                                 <constraint firstAttribute="height" constant="50" id="dd3-x2-CzF"/>
                                                                 <constraint firstItem="h0R-Jk-APq" firstAttribute="leading" secondItem="EEi-u7-Xpj" secondAttribute="trailing" constant="5" id="zEC-0F-eUW"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="subviews">
+                                                                    <exclude reference="h0R-Jk-APq"/>
+                                                                </mask>
+                                                            </variation>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -726,6 +739,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="bottomView" destination="3Zl-hu-3CA" id="QyN-Nw-t8S"/>
+                                            <outlet property="faceImageView" destination="ajt-5P-Cp6" id="wFh-rU-45R"/>
                                             <outlet property="imageFeedView" destination="a0b-Qj-CIY" id="afh-xU-LHe"/>
                                             <outlet property="usernameLabel" destination="h0R-Jk-APq" id="gNi-L7-q1h"/>
                                             <outlet property="vegiIcon" destination="UZ6-VW-Cm7" id="gL1-Cq-qai"/>
@@ -1613,7 +1627,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaD-hG-VUU" userLabel="commentName">
-                                                            <rect key="frame" x="20" y="18" width="332" height="25"/>
+                                                            <rect key="frame" x="20" y="21" width="325" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="CnI-3i-712"/>
                                                             </constraints>
@@ -1622,7 +1636,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBN-gI-jgP" userLabel="commetsText">
-                                                            <rect key="frame" x="25" y="53.666666666666657" width="325" height="126"/>
+                                                            <rect key="frame" x="25" y="56.666666666666657" width="325" height="123"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -2501,6 +2515,7 @@
         <image name="emptystar30" width="30" height="30"/>
         <image name="favoriterButton2Final" width="45" height="45"/>
         <image name="filterUse2Final" width="45" height="45"/>
+        <image name="followVCFaceMockup" width="50" height="50"/>
         <image name="homeButton2Final" width="45" height="45"/>
         <image name="logoMatdags" width="100" height="30"/>
         <image name="moreUse2Final" width="45" height="45"/>
@@ -2515,7 +2530,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>

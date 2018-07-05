@@ -54,7 +54,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.feedCollectionView.reloadData()
 
             self.stopRefresher()
-            print(self.posts.count)
+            print("DETTA ÄR ANTALET",self.posts.count)
         })
     }
     

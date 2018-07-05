@@ -157,12 +157,15 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     func getUserInfo() {
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        let prefs = UserDefaults.standard
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let tempSnapshot = snapshot.value as? [String : Any] {
                 let appendInfo = User()
                 appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
                 if appendInfo.profileImageURL != ""  {
+                    prefs.set(appendInfo.profileImageURL!, forKey: "userProfilePhoto")
                     self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
+                    print("PPP ",prefs.string(forKey: "userProfilePhoto"))
                 } else {
                     return
                 }
@@ -208,6 +211,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func fetchProfile() {
+        print("Hämtar facebook profil")
         let parameters = ["fields": "email, name, first_name, last_name, picture.type(large) "]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             if error != nil {
@@ -270,8 +274,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
 
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {
+        
         AppDelegate.instance().showActivityIndicator()
         let uid = Auth.auth().currentUser?.uid
+        let prefs = UserDefaults.standard
         let database = Database.database().reference(withPath: "Users/\(uid!)")
         let storage = Storage.storage().reference().child("profileimages").child(uid!)
         let key = database.childByAutoId().key
@@ -290,6 +296,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 }
                 let imageURL = metadata?.downloadURL()?.absoluteString
                 if imageURL != nil {
+                    prefs.set(imageURL!, forKey: "userProfilePhoto")
                     let postURL = ["profileImageURL" : imageURL!] as [String : Any]
                     database.updateChildValues(postURL)
                 } else {

@@ -12,8 +12,8 @@ class FollowersCell: UICollectionViewCell {
     @IBOutlet weak var imageFeedView: UIImageView!
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var starButtonArray: [UIButton]!
-    
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var faceImageView: UIImageView!
     
     @IBOutlet weak var mySubviewCollectionFeed: UIImageView!
     
