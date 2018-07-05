@@ -43,6 +43,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var bendView: UIView!
     
+    // testar
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    
     let dispatchGroup = DispatchGroup()
     let uid = Auth.auth().currentUser!.uid
     let db = Database.database()
@@ -231,7 +236,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func observeComments() {
         commentsRef.observe(.childAdded, with: { (snapshot) -> Void in
-            print(snapshot.value!)
+//            print(snapshot.value!)
             self.comments.append(snapshot)
             self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: .automatic)
         })
@@ -270,9 +275,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         db.reference(withPath: "Posts/\(seguePostID!)").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 let getInfo = Post()
+                
+                self.profileImage.layer.cornerRadius = self.profileImage.frame.height / 2
+                self.profileImage.clipsToBounds = true
+                
                 self.myImageView.downloadImage(from: dictionary["pathToImage"] as? String ?? "")
                 self.toSubViewButton.setTitle(dictionary["alias"] as? String ?? "", for: .normal)
                 self.descriptionLabel.text = dictionary["imgdescription"] as? String ?? ""
+                self.profileImage.downloadImage(from: dictionary["profileImageURL"] as? String ?? "")
                 getInfo.pathToImage = dictionary["pathToImage"] as? String ?? ""
                 getInfo.rating = dictionary["rating"] as? Int ?? 0
                 getInfo.userID = dictionary["userID"] as? String ?? ""
@@ -541,6 +551,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.tableViewConstraintH.constant = tableHeight + cellHeight
         
         if let commentDict = comments[indexPath.row].value as? [String : AnyObject] {
+            print("Comment dicionery: ",commentDict)
             cell.commentsTextLabel.isHidden = false
             cell.commentsNameLabel.isHidden = false
             cell.commentsTextLabel.text = commentDict["comment"] as? String
