@@ -50,21 +50,18 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @objc func loadData() {
-        fetchPosts (in: dispatchGroup, completionHandler: { (true) in
+        fetchPosts { (true) in
             self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
-
             self.stopRefresher()
-            print("DETTA ÄR ANTALET",self.posts.count)
-        })
+        }
     }
     
     func stopRefresher() {
         self.refresher.endRefreshing()
     }
     
-    func fetchPosts(in dispatchGroup: DispatchGroup, completionHandler: @escaping ((_ exist : Bool) -> Void)) {
-        dispatchGroup.enter()
+    func fetchPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         self.posts.removeAll()
         self.following.removeAll()
         
@@ -108,21 +105,15 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                             }
                                         }
                                     }
+                                    completionHandler(true)
                                 } else {
-                                    dispatchGroup.leave()
                                     completionHandler(true)
-                                    print("\nNo Posts found in db.")
                                 }
-                                dispatchGroup.leave()
-                                dispatchGroup.notify(queue: .main, execute: {
-                                    completionHandler(true)
-                                })
                             })
                         }
                     }
                 }
             } else {
-                dispatchGroup.leave()
                 completionHandler(true)
                 print("\nCouldnt fetch Posts in FollowerVC.")
             }
