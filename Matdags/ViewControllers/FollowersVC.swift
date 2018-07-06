@@ -156,11 +156,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }else{
                 cell.faceImageView.isHidden = false
                 cell.faceImageView.downloadImage(from: self.posts[indexPath.row].pathProfileImage)
-                cell.faceImageView.layer.borderWidth = 2
-                cell.faceImageView.layer.borderColor = UIColor.white.cgColor
+//                cell.faceImageView.layer.borderWidth = 2
+//                cell.faceImageView.layer.borderColor = UIColor.white.cgColor
             }
             let vegi = self.posts[indexPath.row].vegi!
-            print("VEGI ELLER?! ",vegi)
             if vegi == false {
                 cell.vegiIcon.isHidden = true
             } else {
