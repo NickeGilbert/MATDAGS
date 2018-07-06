@@ -42,6 +42,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewInner: UIView!
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var bendView: UIView!
+    @IBOutlet weak var prankLabel: UILabel!
     
     // testar
     
@@ -88,6 +89,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         settingsViewTopConstraint.constant = view.bounds.size.height
         settingsViewInner.layer.cornerRadius = 10
         settingsViewInner.clipsToBounds = true
+        self.prankLabel.text = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +114,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             //Sort UI after fetching data.
             self.sortAfterFetch()
+            
         })
         
         
@@ -643,6 +646,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.imagePageSettingsViewHeightConstraint.constant = 50
         }
         closeButton.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.prankLabel.text = "Hola!"
+        }
+        
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
