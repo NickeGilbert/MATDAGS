@@ -11,6 +11,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
     @IBOutlet weak var vegiIcon: UIImageView!
     @IBOutlet var myImageView: UIImageView!
+    @IBOutlet weak var myImageViewBack: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var followerButton: UIButton!
@@ -42,12 +43,15 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewInner: UIView!
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var bendView: UIView!
+    @IBOutlet weak var bendView2: UIView!
+    
     @IBOutlet weak var prankLabel: UILabel!
     
     // testar
     
     @IBOutlet weak var profileImage: UIImageView!
     
+    @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
     
     let dispatchGroup = DispatchGroup()
     let uid = Auth.auth().currentUser!.uid
@@ -86,10 +90,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
         bendView.layer.cornerRadius = 10
         bendView.clipsToBounds = true
+        bendView2.layer.cornerRadius = 10
+        bendView2.clipsToBounds = true
         settingsViewTopConstraint.constant = view.bounds.size.height
         settingsViewInner.layer.cornerRadius = 10
         settingsViewInner.clipsToBounds = true
         self.prankLabel.text = ""
+        myImageView.isUserInteractionEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -282,7 +289,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.profileImage.layer.cornerRadius = self.profileImage.frame.height / 2
                 self.profileImage.clipsToBounds = true
                 
-                self.myImageView.downloadImage(from: dictionary["pathToImage"] as? String ?? "")
+                self.myImageViewBack.downloadImage(from: dictionary["pathToImage"] as? String ?? "")
                 self.toSubViewButton.setTitle(dictionary["alias"] as? String ?? "", for: .normal)
                 self.descriptionLabel.text = dictionary["imgdescription"] as? String ?? ""
                 self.profileImage.downloadImage(from: dictionary["profileImageURL"] as? String ?? "")
@@ -366,7 +373,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func sortFirebaseInfo() {
-        myImageView.downloadImage(from: self.posts[0].pathToImage)
+        myImageViewBack.downloadImage(from: self.posts[0].pathToImage)
         toSubViewButton.setTitle(self.posts[0].alias, for: .normal)
         descriptionLabel.text = self.posts[0].imgdescription
     }
