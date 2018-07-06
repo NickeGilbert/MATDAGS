@@ -30,8 +30,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     
     var yourPostsId = [String]()
-    var everyPostsInPOST = [String]()
-    var ref: DatabaseReference!
     var FBdata : Any?
     var titleName = ""
     let imagePicker = UIImagePickerController()
@@ -42,8 +40,13 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var user = User()
     var users = [User]()
     var fromSearch = false
-    let uid = Auth.auth().currentUser?.uid
     var seguePostID : String!
+    
+    //Database
+    let db = Database.database().reference()
+    let uid = Auth.auth().currentUser?.uid
+    let authedUser = Auth.auth().currentUser
+    let storage = Storage.storage().reference()
 
     override func viewDidLoad() {
         
@@ -107,17 +110,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             self.posts.sort(by: {$0.date > $1.date})
             self.getFollwersCounting()
             self.profileCollectionFeed.reloadData()
-            print(self.posts.count)
-            
-            self.IdOfAllOfMyPosts()
-            self.findEveryPostInPOST()
         }
     }
     
     func getFollwersCounting() {
-        ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+        db.child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as! NSDictionary
             let uAreFollowing = value["followingCounter"]
             if uAreFollowing != nil {
@@ -165,7 +162,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                 if appendInfo.profileImageURL != ""  {
                     prefs.set(appendInfo.profileImageURL!, forKey: "userProfilePhoto")
                     self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
-                    print("PPP ",prefs.string(forKey: "userProfilePhoto"))
                 } else {
                     return
                 }
@@ -211,7 +207,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     func fetchProfile() {
-        print("Hämtar facebook profil")
+        print("Fetching Facebook Profile...")
         let parameters = ["fields": "email, name, first_name, last_name, picture.type(large) "]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) -> Void in
             if error != nil {
@@ -341,73 +337,55 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         URLCache.shared.removeAllCachedResponses()
     }
     
-    
-    
     func deleteAccount() {
         let alert = UIAlertController(title: NSLocalizedString("DeleteAccountHeader", comment: ""), message: NSLocalizedString("DeleteAccountText", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountYES", comment: ""), style: .destructive, handler: { action in
-            
-            
-            let alert2 = UIAlertController(title: NSLocalizedString("reportSent", comment: ""), message: NSLocalizedString("reportSentMessage", comment: ""), preferredStyle: .alert)
-            
             self.deleteUser()
-            
-            alert2.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
-            self.present(alert2, animated: true)
-            
-            
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("deleteAccountNO", comment: ""), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
  
-    func IdOfAllOfMyPosts() {
-        let dbref = Database.database().reference().child("Users/\(String(describing: uid!))/Posts")
+    func fetchMyPosts(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        print("Fetching user Posts...")
+        yourPostsId.removeAll()
+        let dbref = db.child("Users/\(uid!)/Posts")
         dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if (snapshot.value as? NSDictionary) != nil {
-                let value = snapshot.value as! NSDictionary
-                for postValue in value {
-                    let appendPosts = User()
-                    appendPosts.postID = postValue.key as? String
-                    self.yourPostsId.append(appendPosts.postID)
-                    print("YOUR POSTS ARE", self.yourPostsId)
+            if let dict = snapshot.value as? [String : AnyObject] {
+                for (_, post) in dict {
+                    let appendInfo = User()
+                    appendInfo.postID = post["postID"] as? String ?? ""
+                    self.yourPostsId.append(appendInfo.postID)
                 }
+                completionHandler(true)
             }
         })
     }
     
-    func findEveryPostInPOST() {
-        let dbref = Database.database().reference().child("Posts")
-        dbref.observeSingleEvent(of: .value, with: { (snapshot) in
-            if (snapshot.value as? NSDictionary) != nil {
-                let value = snapshot.value as! NSDictionary
-                for postValue in value {
-                    let appendPosts = Post()
-                    appendPosts.postID = postValue.key as? String
-                    self.everyPostsInPOST.append(appendPosts.postID)
-                    print("EVERY POSTS ARE", self.everyPostsInPOST)
+    func deleteData(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+        for id in yourPostsId {
+            db.child("Posts/\(id)").removeValue { (error, ref) in
+                if error != nil {
+                    print(error!)
+                    return
                 }
             }
-        })
-    }
-    
-    func compareUserPostInPOSTAndDelete() {
-        
-        for postes in self.everyPostsInPOST {
-            if self.yourPostsId.contains(postes) {
-                print("THEY ARE EQUAL")
-                ref.child("Posts/\(postes)").removeValue(completionBlock: { (error, ref) -> Void in
-                    if error == nil {
-                        //    self.IdOfAllOfMyPosts()
-                        print(ref, "TA BORT ANVÄNDARENS POSTS")
-                    }else{
-                        
-                    }
-                })
-            } else {
-                print("NAH")
+            storage.child("images/\(uid!)/\(id)").delete { (error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+            }
+            storage.child("images/\(uid!)/\(id)256").delete { (error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
             }
         }
+        print("User Posts successfully deleted!")
+        print("User Images successfully deleted!")
+        completionHandler(true)
     }
 }
 

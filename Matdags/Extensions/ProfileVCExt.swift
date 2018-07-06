@@ -15,107 +15,33 @@ import FBSDKCoreKit
 import AVFoundation
 
 extension ProfileVC {
-    func deleteUser() {
-        let database = Database.database().reference(withPath: "Posts")
-        let usrdatabase = Database.database().reference(withPath: "Users")
-        let storage = Storage.storage().reference().child("images").child(uid!)
-        let key = database.childByAutoId().key
-        let imageRef = storage.child("\(key)")
-        
-        if(FBSDKAccessToken.current() == nil) {
-            
-            var ref = DatabaseReference()
-            let user = Auth.auth().currentUser
-            guard let uid = Auth.auth().currentUser?.uid else {
-                return
-            }
-            
-            ref = Database.database().reference()
-            
-            ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
-                if error == nil {
-                    self.deleteFbAuthFromFirebase()
-                  //  self.IdOfAllOfMyPosts()
-                    print(ref)
-                } else{
-                }
-            })
-            
-            //Deletes Users Posts in POSTS
-            self.compareUserPostInPOSTAndDelete()
-            
-            Auth.auth().currentUser?.delete(completion: { (error) in
-                if let error = error {
-                } else {
-                }
-            })
-            
-            user?.delete { error in
-                if let error = error {
-                } else {
-                }
-            }
-            
-            let userID = Auth.auth().currentUser?.uid
-            let currenUserRef = Database.database().reference().child("users/\(userID)").child(userID!)
-            currenUserRef.observe(.value, with: { (snapshot) in
-            })
-            
-            self.logOutFromApp()
-            
-        } else {
-            //FÖR FACEBOOK
-            var Useruid = Auth.auth().currentUser?.uid
-            var ref = DatabaseReference()
-            let user = Auth.auth().currentUser
-            guard let uid = Auth.auth().currentUser?.uid else {
-                return
-            }
-            
-            ref = Database.database().reference()
-            
-            ref.child("Users/\(uid)").removeValue(completionBlock: { (error, ref) -> Void in
-                if error == nil {
-                    self.deleteFbAuthFromFirebase()
-                   // self.IdOfAllOfMyPosts()
-                    print(ref)
-                }else{
-                }
-            })
-            //Deletes Users Posts in POSTS
-            self.compareUserPostInPOSTAndDelete()
-        }
-            
-        Auth.auth().currentUser?.delete(completion: { (error) in
-            if let error = error {
-                
-            } else {
-            }
-        })
-        self.logOutFromApp()
-    }
     
-    func deleteFbAuthFromFirebase(){
-        let user = Auth.auth().currentUser
-        let id = user?.uid
-        user?.delete { error in
-            if let error = error {
-                print(error)
-            } else {
+    func deleteUser() {
+        print("Deleting user...")
+    
+        let userRef = db.child("Users/\(uid!)")
+        
+        fetchMyPosts { (true) in
+            self.deleteData{ (true) in
+                userRef.removeValue()
+                print("User database successfully deleted!")
+                self.authedUser!.delete()
+                print("User authentication successfully deleted!")
+                self.logOutFromApp()
             }
         }
     }
     
     func logOutFromApp() {
-        let firebaseAuth = Auth.auth()
+        let auth = Auth.auth()
         do {
-            try firebaseAuth.signOut()
+            try auth.signOut()
             let loginManager = FBSDKLoginManager()
             loginManager.logOut() // this is an instance function
             self.performSegue(withIdentifier: "profileLogout", sender: nil)
-            print(" \n DU HAR PRECIS LOGGAT UT \n")
+            print("User successfully logged out!\n")
         } catch {
-            print("\n ERROR NÄR DU LOGGADE UT \n")
+            print("Error on logging out user!\n")
         }
     }
 }
