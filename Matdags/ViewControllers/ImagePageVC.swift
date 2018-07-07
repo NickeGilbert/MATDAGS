@@ -79,6 +79,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var checkBlockedUsers = [String]()
     var myBlockedUsers = [String]()
     
+    public var minimumVelocityToHide = 1500 as CGFloat
+    public var minimumScreenRatioToHide = 0.5 as CGFloat
+    public var animationDuration = 0.2 as TimeInterval
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,6 +101,25 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         settingsViewInner.clipsToBounds = true
         self.prankLabel.text = ""
         myImageView.isUserInteractionEnabled = false
+        
+        bendViewInnerTopConstraint.constant = myImageViewBack.frame.height - 13
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        self.view.addGestureRecognizer(panGesture)
+    }
+    
+    
+    // new test swipe down daniel
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
+        super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .overFullScreen;
+        self.modalTransitionStyle = .coverVertical;
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.modalPresentationStyle = .overFullScreen;
+        self.modalTransitionStyle = .coverVertical;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -387,6 +410,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         
     }
+
   
     @IBAction func clickedOnUsername(_ sender: Any) {
         getUserProfileImage { (true) in
