@@ -8,46 +8,55 @@ import Firebase
 
 class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
-
+    //Main view outlets
     @IBOutlet weak var vegiIcon: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet weak var myImageViewBack: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var unfollowingButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var subviewUnfollowButton: UIButton!
     @IBOutlet weak var settingsOverlayView: UIView!
-    @IBOutlet weak var imagePageSettingsView: UIView!
-    @IBOutlet weak var deleteImage: UIButton!
-    @IBOutlet weak var deleteThisImageButton: UIButton!
-    @IBOutlet weak var reportImage: UIButton!
-    @IBOutlet weak var reportThisImageButton: UIButton!
-    @IBOutlet weak var blockUser: UIButton!
-    @IBOutlet weak var blockThisUserButton: UIButton!
-    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
-    @IBOutlet weak var commentButton: UIButton!
+    
+    //Old settings view outlets - cleanup later
+    @IBOutlet weak var imagePageSettingsView: UIView!
+    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blockUser: UIButton!
+    @IBOutlet weak var reportImage: UIButton!
+    @IBOutlet weak var deleteImage: UIButton!
+    
+    //Comments view outlets
+    @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsTextView: UITextView!
+    
     @IBOutlet weak var topSubView: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var subviewUnfollowButton: UIButton!
+    
+    //Settings view outlets
+    @IBOutlet weak var deleteThisImageButton: UIButton!
+    @IBOutlet weak var reportThisImageButton: UIButton!
+    @IBOutlet weak var blockThisUserButton: UIButton!
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bendView: UIView!
-    @IBOutlet weak var bendView2: UIView!
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsViewInner: UIView!
     @IBOutlet weak var settingsView: UIView!
     
+    
+    //Fix views in diffrent views outlets
+    @IBOutlet weak var bendView: UIView!
+    @IBOutlet weak var bendView2: UIView!
+    @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
     
     
     let dispatchGroup = DispatchGroup()
@@ -122,6 +131,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.modalPresentationStyle = .overFullScreen;
         self.modalTransitionStyle = .coverVertical;
     }
+    
+    // --------------
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
