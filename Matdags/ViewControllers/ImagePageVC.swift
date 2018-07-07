@@ -46,6 +46,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var bendView2: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsView: UIView!
     
     
     
@@ -102,6 +103,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.view.addGestureRecognizer(panGesture)
         closeButton.layer.zPosition = 1
         scrollView.layer.zPosition = 2
+        topSubView.layer.zPosition = 3
+        commentsView.layer.zPosition = 3
+        settingsView.layer.zPosition = 3
     }
     
     // new test swipe down daniel
