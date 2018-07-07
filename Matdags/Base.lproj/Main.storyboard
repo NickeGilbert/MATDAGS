@@ -562,11 +562,6 @@
                             <constraint firstItem="03B-wQ-ZeK" firstAttribute="top" secondItem="TJZ-xb-2ql" secondAttribute="top" id="ryZ-67-TKp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TJZ-xb-2ql"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="AN4-3P-5Ap"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="xUr-OM-bxF" appends="YES" id="fMt-Si-8iy"/>
                         </connections>
@@ -2550,7 +2545,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jqz-7P-XQE"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
