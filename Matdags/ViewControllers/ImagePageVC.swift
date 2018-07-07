@@ -44,14 +44,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var bendView: UIView!
     @IBOutlet weak var bendView2: UIView!
-    
-    @IBOutlet weak var prankLabel: UILabel!
-    
-    // testar
-    
     @IBOutlet weak var profileImage: UIImageView!
-    
     @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
+    
+    
     
     let dispatchGroup = DispatchGroup()
     let uid = Auth.auth().currentUser!.uid
@@ -99,14 +95,14 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         settingsViewTopConstraint.constant = view.bounds.size.height
         settingsViewInner.layer.cornerRadius = 10
         settingsViewInner.clipsToBounds = true
-        self.prankLabel.text = ""
         myImageView.isUserInteractionEnabled = false
         
         bendViewInnerTopConstraint.constant = myImageViewBack.frame.height - 13
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         self.view.addGestureRecognizer(panGesture)
+        closeButton.layer.zPosition = 1
+        scrollView.layer.zPosition = 2
     }
-    
     
     // new test swipe down daniel
     
@@ -677,9 +673,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.imagePageSettingsViewHeightConstraint.constant = 50
         }
         closeButton.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.prankLabel.text = "Hola!"
-        }
         
     }
     
