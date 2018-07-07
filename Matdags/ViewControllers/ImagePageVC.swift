@@ -8,45 +8,55 @@ import Firebase
 
 class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
-
+    //Main view outlets
     @IBOutlet weak var vegiIcon: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var myImageView: UIImageView!
+    @IBOutlet weak var myImageViewBack: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var unfollowingButton: UIButton!
     @IBOutlet weak var toSubViewButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var subviewUnfollowButton: UIButton!
     @IBOutlet weak var settingsOverlayView: UIView!
-    @IBOutlet weak var imagePageSettingsView: UIView!
-    @IBOutlet weak var deleteImage: UIButton!
-    @IBOutlet weak var deleteThisImageButton: UIButton!
-    @IBOutlet weak var reportImage: UIButton!
-    @IBOutlet weak var reportThisImageButton: UIButton!
-    @IBOutlet weak var blockUser: UIButton!
-    @IBOutlet weak var blockThisUserButton: UIButton!
-    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
-    @IBOutlet weak var commentButton: UIButton!
+    
+    //Old settings view outlets - cleanup later
+    @IBOutlet weak var imagePageSettingsView: UIView!
+    @IBOutlet weak var imagePageSettingsViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blockUser: UIButton!
+    @IBOutlet weak var reportImage: UIButton!
+    @IBOutlet weak var deleteImage: UIButton!
+    
+    //Comments view outlets
+    @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsTextView: UITextView!
+    
     @IBOutlet weak var topSubView: UIView!
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var subviewUsername: UILabel!
     @IBOutlet weak var subviewProfileImage: UIImageView!
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var subviewUnfollowButton: UIButton!
+    
+    //Settings view outlets
+    @IBOutlet weak var deleteThisImageButton: UIButton!
+    @IBOutlet weak var reportThisImageButton: UIButton!
+    @IBOutlet weak var blockThisUserButton: UIButton!
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var settingsView: UIView!
+    
+    
+    //Fix views in diffrent views outlets
     @IBOutlet weak var bendView: UIView!
-    @IBOutlet weak var prankLabel: UILabel!
-    
-    // testar
-    
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var bendView2: UIView!
+    @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
     
     
     let dispatchGroup = DispatchGroup()
@@ -75,6 +85,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var checkBlockedUsers = [String]()
     var myBlockedUsers = [String]()
     
+    public var minimumVelocityToHide = 1500 as CGFloat
+    public var minimumScreenRatioToHide = 0.5 as CGFloat
+    public var animationDuration = 0.2 as TimeInterval
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,11 +100,39 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
         bendView.layer.cornerRadius = 10
         bendView.clipsToBounds = true
+        bendView2.layer.cornerRadius = 10
+        bendView2.clipsToBounds = true
         settingsViewTopConstraint.constant = view.bounds.size.height
         settingsViewInner.layer.cornerRadius = 10
         settingsViewInner.clipsToBounds = true
-        self.prankLabel.text = ""
+        myImageView.isUserInteractionEnabled = false
+        
+        bendViewInnerTopConstraint.constant = myImageViewBack.frame.height - 13
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        self.view.addGestureRecognizer(panGesture)
+        closeButton.layer.zPosition = 1
+        vegiIcon.layer.zPosition = 1
+        scrollView.layer.zPosition = 2
+        topSubView.layer.zPosition = 3
+        commentsView.layer.zPosition = 3
+        settingsView.layer.zPosition = 3
     }
+    
+    // new test swipe down daniel
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)   {
+        super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .overFullScreen;
+        self.modalTransitionStyle = .coverVertical;
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.modalPresentationStyle = .overFullScreen;
+        self.modalTransitionStyle = .coverVertical;
+    }
+    
+    // --------------
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -282,7 +324,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.profileImage.layer.cornerRadius = self.profileImage.frame.height / 2
                 self.profileImage.clipsToBounds = true
                 
-                self.myImageView.downloadImage(from: dictionary["pathToImage"] as? String ?? "")
+                self.myImageViewBack.downloadImage(from: dictionary["pathToImage"] as? String ?? "")
                 self.toSubViewButton.setTitle(dictionary["alias"] as? String ?? "", for: .normal)
                 self.descriptionLabel.text = dictionary["imgdescription"] as? String ?? ""
                 self.profileImage.downloadImage(from: dictionary["profileImageURL"] as? String ?? "")
@@ -366,7 +408,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func sortFirebaseInfo() {
-        myImageView.downloadImage(from: self.posts[0].pathToImage)
+        myImageViewBack.downloadImage(from: self.posts[0].pathToImage)
         toSubViewButton.setTitle(self.posts[0].alias, for: .normal)
         descriptionLabel.text = self.posts[0].imgdescription
     }
@@ -380,6 +422,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         
     }
+
   
     @IBAction func clickedOnUsername(_ sender: Any) {
         getUserProfileImage { (true) in
@@ -646,9 +689,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.imagePageSettingsViewHeightConstraint.constant = 50
         }
         closeButton.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.prankLabel.text = "Hola!"
-        }
         
     }
     
