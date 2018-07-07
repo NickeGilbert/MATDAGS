@@ -102,6 +102,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         self.view.addGestureRecognizer(panGesture)
         closeButton.layer.zPosition = 1
+        vegiIcon.layer.zPosition = 1
         scrollView.layer.zPosition = 2
         topSubView.layer.zPosition = 3
         commentsView.layer.zPosition = 3

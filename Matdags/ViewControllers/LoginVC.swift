@@ -17,7 +17,6 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var registerButton: UIButton!
     
-    
     var FBdata : Any?
     
     let loginButton: FBSDKLoginButton = {
