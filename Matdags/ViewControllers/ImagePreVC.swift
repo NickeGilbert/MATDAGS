@@ -159,7 +159,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
               
               let alert = UIAlertController(title: "Photo saved", message: "", preferredStyle: UIAlertControllerStyle.alert)
               
-              alert.addAction(UIAlertAction(title: "Oh yeah", style: UIAlertActionStyle.default, handler:{ action in
+              alert.addAction(UIAlertAction(title: "Oh Yeah", style: UIAlertActionStyle.default, handler:{ action in
                 alert.dismiss(animated: true, completion: nil)
               }))
               self.present(alert, animated: true, completion: nil)
@@ -169,7 +169,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                 
                 let alert = UIAlertController(title: "Can't save photo", message: "We dont have the permissions, go to Settings and add the rights for Superfoodie", preferredStyle: UIAlertControllerStyle.alert)
                 
-                alert.addAction(UIAlertAction(title: "Oh yeah", style: UIAlertActionStyle.default, handler:{ action in
+                alert.addAction(UIAlertAction(title: "Alright", style: UIAlertActionStyle.default, handler:{ action in
                     alert.dismiss(animated: true, completion: nil)
                 }))
                 self.present(alert, animated: true, completion: nil)
@@ -215,7 +215,12 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
 
             }else{
                 print("restriced manually")
-                
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+                        self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
+                        self.view.layoutIfNeeded()
+                    })
+                }
             }
         })
         
