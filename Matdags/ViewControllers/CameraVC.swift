@@ -16,7 +16,10 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     var image: UIImage?
     
+    @IBOutlet var CameraView: UIView!
+    @IBOutlet weak var AllowCameraViewOutlet: UIView!
     @IBOutlet weak var flashBtn: UIButton!
+    @IBOutlet weak var AllowCameraViewTopConstraint: NSLayoutConstraint!
     
     let imagePicker = UIImagePickerController()
     
@@ -25,13 +28,68 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCaptureSession()
-        setupDevice()
-        setupInputOutput()
-        setupPreviewLayer()
-        startRunningCaptureSession()
+        AllowCameraViewTopConstraint.constant = view.frame.height
+        
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            
+            self.setupCaptureSession()
+            self.setupDevice()
+            self.setupInputOutput()
+            self.setupPreviewLayer()
+            self.startRunningCaptureSession()
+
+        case .notDetermined:
+            
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+                self.AllowCameraViewTopConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            })
+            
+        case .denied:
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.createAlertCamera(title: "Kan inte använda kameran", message: "För att kunna använda kameran måste du gå in i dina inställningar på telefonen och ge Superfoodie rättigheter till din kamera.")
+            }
+            return
+            
+        case .restricted:
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.createAlertCamera(title: "Kan inte använda kameran", message: "Det finns begränsningar som gör att du inte får använda kameran")
+            }
+            return
+            
+        }
+    }
+    
+    @IBAction func AllowButtonAction(_ sender: Any) {
+        AVCaptureDevice.requestAccess(for: .video) { granted in
+            if granted {
+                DispatchQueue.main.asyncAfter(deadline: .now()) { UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.AllowCameraViewTopConstraint.constant = self.view.frame.height
+                    self.view.layoutIfNeeded()
+                    self.setupCaptureSession()
+                    self.setupDevice()
+                    self.setupInputOutput()
+                    self.setupPreviewLayer()
+                    self.startRunningCaptureSession()
+                })
+                }
+                
+            }else{
+                print("NEJ TACK!")
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
         
     }
+    
+    @IBAction func DeclineButtonAction(_ sender: Any) {
+        print("NEJ TACK IGEN")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -50,8 +108,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
         
         photoOutput?.capturePhoto(with: settings, delegate: self)
-        
-        
+
     }
     
     @IBAction func openPhotoLibraryButton(sender: AnyObject) {
@@ -79,13 +136,16 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     func setupCaptureSession(){
+        print("one")
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
     }
     
     func setupDevice() {
+        print("two")
+        
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
         let devices = deviceDiscoverySession.devices
-        
+
         for device in devices{
             if device.position == AVCaptureDevice.Position.back{
                 backCamera = device
@@ -97,17 +157,20 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     func setupInputOutput(){
+        
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
             photoOutput = AVCapturePhotoOutput()
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
+            print("three")
         } catch {
             print("\n \(error) \n")
         }
     }
     func setupPreviewLayer(){
+        print("four")
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session:captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
@@ -116,6 +179,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     func startRunningCaptureSession(){
+        print("five")
         captureSession.startRunning()
     }
     
