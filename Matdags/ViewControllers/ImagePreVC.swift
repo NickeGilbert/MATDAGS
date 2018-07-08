@@ -211,6 +211,12 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                         self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
                         self.view.layoutIfNeeded()
                     })
+                    let alert = UIAlertController(title: "Photo saved", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Oh Yeah", style: UIAlertActionStyle.default, handler:{ action in
+                        alert.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
 
             }else{
