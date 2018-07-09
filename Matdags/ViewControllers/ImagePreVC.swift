@@ -20,6 +20,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var AllowSavePhotoView: UIView!
     @IBOutlet weak var AllowSavePhotoViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var saveButtonOutlet: UIButton!
     
     var CIFilterNames = ["CIPhotoEffectChrome",
                          "CIPhotoEffectFade",
@@ -65,7 +66,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
 
         descriptionFieldLines.isHidden = true
         filterScrollView.isHidden = true
-        filterButton.setImage(UIImage(named: "filter"), for: .normal)
+        filterButton.setImage(UIImage(named: "filterUse2Final"), for: .normal)
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentUse2Final"), for: .normal)
         } else {
@@ -125,7 +126,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-    
         descriptionFieldLines.isHidden = true
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
@@ -156,6 +156,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
             case .authorized:
               print("already auth")
               UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil)
+              saveButtonOutlet.setImage(UIImage(named: "ImagePreVCSaveActive.png"), for: .normal)
               
               let alert = UIAlertController(title: "Photo saved", message: "", preferredStyle: UIAlertControllerStyle.alert)
               
@@ -207,6 +208,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                 print("access given")
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil)
+                    self.saveButtonOutlet.setImage(UIImage(named: "ImagePreVCSaveActive.png"), for: .normal)
                     UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
                         self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
                         self.view.layoutIfNeeded()
@@ -280,7 +282,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     
     @IBAction func commentClick(_ sender: UIButton) {
         addToolbar()
-        commentBtn.setImage(UIImage(named: "commentButton50orange"), for: .normal)
+        commentBtn.setImage(UIImage(named: "ImagePreVCCommentActive"), for: .normal)
         if descriptionFieldLines.isHidden == true {
             descriptionFieldLines.isHidden = false
             descriptionFieldLines.becomeFirstResponder()
@@ -293,10 +295,10 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         
         if filterScrollView.isHidden {
             filterScrollView.isHidden = false
-            filterButton.setImage(UIImage(named: "filterUse2Final"), for: .normal)
+            filterButton.setImage(UIImage(named: "filterUse2"), for: .normal)
         } else {
             filterScrollView.isHidden = true
-            filterButton.setImage(UIImage(named: "filter"), for: .normal)
+            filterButton.setImage(UIImage(named: "filterUse2Final"), for: .normal)
         }
     }
     
