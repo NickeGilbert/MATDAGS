@@ -18,4 +18,5 @@ class User: NSObject {
     var uid: String!
     var vegi : Bool?
     var stars : Int!
+    var userDescription : String!
 }

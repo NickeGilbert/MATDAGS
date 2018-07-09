@@ -599,7 +599,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of9-fs-zpr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of9-fs-zpr">
                                 <rect key="frame" x="30" y="194" width="315" height="201.66666666666663"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -879,7 +879,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ACP-Vh-ap7">
-                                        <rect key="frame" x="0.0" y="90" width="375" height="568"/>
+                                        <rect key="frame" x="0.0" y="106" width="375" height="552"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="iEA-86-vgJ">
                                             <size key="itemSize" width="105" height="105"/>
@@ -937,22 +937,34 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xS-wU-DfU" userLabel="description">
+                                        <rect key="frame" x="50" y="85" width="275" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="A9f-jN-bWK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Xk5-OK-FjE" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="150" id="1Es-Gn-M3L"/>
                                     <constraint firstItem="Xk5-OK-FjE" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" constant="50" id="1Hm-t1-c5V"/>
+                                    <constraint firstItem="ACP-Vh-ap7" firstAttribute="top" secondItem="0xS-wU-DfU" secondAttribute="bottom" constant="20" id="7ae-aa-TtC"/>
                                     <constraint firstItem="LgR-jC-Tpn" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="10" id="865-To-kwE"/>
                                     <constraint firstItem="R2M-1M-qIm" firstAttribute="top" secondItem="BWv-pV-Ovt" secondAttribute="bottom" constant="5" id="8mL-MP-Yd3"/>
                                     <constraint firstAttribute="trailing" secondItem="R2M-1M-qIm" secondAttribute="trailing" constant="20" id="97h-qy-AAy"/>
+                                    <constraint firstAttribute="trailing" secondItem="0xS-wU-DfU" secondAttribute="trailing" constant="50" id="9Jl-NX-fEA"/>
                                     <constraint firstItem="ACP-Vh-ap7" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" id="HFI-Gb-zqE"/>
                                     <constraint firstItem="BWv-pV-Ovt" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="10" id="LcJ-jZ-jua"/>
+                                    <constraint firstItem="0xS-wU-DfU" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" constant="50" id="Oa1-df-uyX"/>
                                     <constraint firstAttribute="bottom" secondItem="ACP-Vh-ap7" secondAttribute="bottom" id="OjO-xm-wLO"/>
                                     <constraint firstAttribute="trailing" secondItem="Xk5-OK-FjE" secondAttribute="trailing" constant="50" id="Rn9-WG-dkO"/>
                                     <constraint firstItem="LgR-jC-Tpn" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" constant="20" id="XUb-4c-q08"/>
                                     <constraint firstAttribute="trailing" secondItem="ACP-Vh-ap7" secondAttribute="trailing" id="a3S-m8-bkh"/>
                                     <constraint firstAttribute="trailing" secondItem="BWv-pV-Ovt" secondAttribute="trailing" constant="20" id="b6T-Uk-AUv"/>
-                                    <constraint firstItem="ACP-Vh-ap7" firstAttribute="top" secondItem="R2M-1M-qIm" secondAttribute="bottom" constant="25" id="rkU-Y7-0y7"/>
+                                    <constraint firstItem="0xS-wU-DfU" firstAttribute="top" secondItem="6qx-4q-1Tl" secondAttribute="top" constant="85" id="gU4-dU-qL1"/>
                                     <constraint firstItem="0pZ-IM-U5X" firstAttribute="leading" secondItem="6qx-4q-1Tl" secondAttribute="leading" constant="20" id="u3p-wt-Fyk"/>
                                     <constraint firstItem="0pZ-IM-U5X" firstAttribute="top" secondItem="LgR-jC-Tpn" secondAttribute="bottom" constant="5" id="yZN-7D-RMw"/>
                                 </constraints>
@@ -1144,10 +1156,13 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="ProfileCollectionFeedTopConstraint" destination="7ae-aa-TtC" id="D6Y-8R-oLv"/>
                         <outlet property="bendView" destination="cGd-Q5-HSB" id="mHi-Jb-UGI"/>
                         <outlet property="commentsTextView" destination="cT7-SZ-sOd" id="7LP-IY-XEc"/>
                         <outlet property="commentsView" destination="cba-wu-ERG" id="PKi-vY-Wcq"/>
                         <outlet property="commentsViewTopConstraint" destination="nH7-wp-FAJ" id="qfu-3a-PrA"/>
+                        <outlet property="descriptionLabel" destination="0xS-wU-DfU" id="wHP-x4-NAw"/>
+                        <outlet property="descriptionLabelHeightConstraint" destination="A9f-jN-bWK" id="hNy-YX-kVt"/>
                         <outlet property="followers" destination="R2M-1M-qIm" id="F3w-Lb-RD7"/>
                         <outlet property="followersLabel" destination="BWv-pV-Ovt" id="rws-PK-ug9"/>
                         <outlet property="following" destination="0pZ-IM-U5X" id="mv9-23-4Vl"/>
@@ -1516,7 +1531,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="nWk-yA-OE6"/>
-                                <exclude reference="grF-2O-Nyl"/>
                             </mask>
                         </variation>
                     </view>
@@ -1733,11 +1747,6 @@
                             <constraint firstItem="p8l-NS-oP7" firstAttribute="top" secondItem="heI-6Q-TLX" secondAttribute="top" constant="35" id="r7M-MG-yIL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mD4-1X-hTS"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="csS-et-CpN"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="AllowCameraViewOutlet" destination="csS-et-CpN" id="N90-rl-R3L"/>

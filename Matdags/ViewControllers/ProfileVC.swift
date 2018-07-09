@@ -32,6 +32,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsTextView: UITextView!
     
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ProfileCollectionFeedTopConstraint: NSLayoutConstraint!
+    
+    
     var yourPostsId = [String]()
     var FBdata : Any?
     var titleName = ""
@@ -74,6 +79,16 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         settingsViewInner.clipsToBounds = true
         commentsViewTopConstraint.constant = view.frame.height
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
+        
+    }
+    
+    func fixDescriptionLabel() {
+        if descriptionLabel.text != "" {
+            descriptionLabelHeightConstraint.constant = 50
+        }else{
+            descriptionLabelHeightConstraint.constant = 1
+        }
+        ProfileCollectionFeedTopConstraint.constant = 20
     }
 
     
@@ -81,11 +96,17 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         if posts.isEmpty {
             loadData()
         }
+
+        fixDescriptionLabel()
+//        descriptionLabel.sizeToFit()
+//        print(descriptionLabel.frame.height) // använd när animering ska göras, behövs nog inte pga collectionview constanten uppdateras också vid byte av text.
+        
+        
+        
     }
     
     @IBAction func profileDescriptionAction(_ sender: Any) {
-        
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
                 self.commentsViewTopConstraint.constant = 0
@@ -122,8 +143,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     @objc func ImagePageVCDoneEditing() {
-        if commentsTextView.text != "" {
-            
             UploadProfileDescription(in: dispatchGroup, text: commentsTextView.text)
             self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
@@ -132,17 +151,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     self.commentsViewTopConstraint.constant = self.view.frame.height
                 })
             }
-            
-        } else {
-            commentsTextView.resignFirstResponder()
-            self.view.endEditing(true)
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-                    self.commentsViewTopConstraint.constant = self.view.frame.height
-                })
-            }
-        }
     }
+    
     
     @IBAction func openSettingsAction(_ sender: Any) {
         tabBarController?.tabBar.isHidden = true
@@ -226,10 +236,19 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             if let tempSnapshot = snapshot.value as? [String : Any] {
                 let appendInfo = User()
                 appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
-                if appendInfo.profileImageURL != ""  {
+                if appendInfo.profileImageURL != "" {
                     prefs.set(appendInfo.profileImageURL!, forKey: "userProfilePhoto")
                     self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
                 } else {
+                    return
+                }
+                appendInfo.userDescription = "\(tempSnapshot["userDescription"] as! String)"
+                if appendInfo.userDescription != "" {
+                    self.descriptionLabel.text = appendInfo.userDescription
+                    self.fixDescriptionLabel()
+                    print("AAAALLL GOOD?")
+                }else{
+                    print("Jepp det är tomt...")
                     return
                 }
             }
@@ -340,8 +359,10 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         AppDelegate.instance().showActivityIndicator()
         let uid = Auth.auth().currentUser?.uid
         let database = Database.database().reference(withPath: "Users/\(uid!)")
-        database.child("description").setValue(text)
+        database.child("userDescription").setValue(text)
         AppDelegate.instance().dismissActivityIndicator()
+        descriptionLabel.text = text
+        fixDescriptionLabel()
     }
 
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {
