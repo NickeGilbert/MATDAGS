@@ -7,5 +7,3 @@
 //
 
 import UIKit
-
-var zeroImages = "Foton du tagit och foton från människor du följer visas här!"

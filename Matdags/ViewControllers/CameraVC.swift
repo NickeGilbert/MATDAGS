@@ -21,12 +21,28 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var flashBtn: UIButton!
     @IBOutlet weak var AllowCameraViewTopConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var useOfCameraTitle: UILabel!
+    @IBOutlet weak var useOfCameraDescription: UILabel!
+    @IBOutlet weak var useOfCameraApproval: UILabel!
+    @IBOutlet weak var denyLabel: UILabel!
+    @IBOutlet weak var approveLabel: UILabel!
+    @IBOutlet weak var thanksLabel: UILabel!
+    
+    
+    
     let imagePicker = UIImagePickerController()
     
     var flashControlState: FlashState = .off
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        useOfCameraTitle.text = NSLocalizedString("useOfCameraTitle", comment: "")
+        useOfCameraDescription.text = NSLocalizedString("useOfCameraDescription", comment: "")
+        useOfCameraApproval.text = NSLocalizedString("useOfCameraApproval", comment: "")
+        denyLabel.text = NSLocalizedString("denyLabel", comment: "")
+        approveLabel.text = NSLocalizedString("approveLabel", comment: "")
+        thanksLabel.text = NSLocalizedString("thanksLabel", comment: "")
         
         AllowCameraViewTopConstraint.constant = view.frame.height
         

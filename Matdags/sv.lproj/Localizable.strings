@@ -56,6 +56,7 @@
 "DeleteAccountText" = "Är du säker på att du vill ta bort ditt konto?";
 "deleteAccountYES" = "JA";
 "deleteAccountNO" = "NEJ";
+"zeroImagesTextLabel" = "Inga bilder att visa än, när du lägger upp bilder kommer de visas här!";
 
 //FOLLOWERSVC
 "zeroImagesTextMessage" = "Foton du tagit och foton från människor du följer visas här!";
@@ -81,9 +82,7 @@
 "userIsBlockedTitle" = "Användaren är blockerad";
 "userIsBlockedMessage" = "Du kan inte längre sen bilder från denna användaren";
 "userClose" = "Stäng";
-
-
-
+"zeroCommentsLabel" = "Ingen har skrivit en kommentar än, sno förstaplatsen!";
 
 //IMAGEPRE VC
 "saveImageTitle" = "Hurra!";
@@ -95,3 +94,20 @@
 "logOut" = "Logga ut";
 "closeTitle" = "Stäng";
 "logoutButton" = "Logga ut";
+
+//CAMERA VC
+"useOfCameraTitle" = "Superfoodie's användning av kameran";
+"useOfCameraDescription" = "Skulle du vilja lägga upp dina egna bilder och bli en del av denna app och dess användare?";
+"useOfCameraApproval" = "Godkänn Superfoodie's rätt till att använda kameran";
+"denyLabel" = "Håller inte med";
+"approveLabel" = "Såklart";
+"thanksLabel" = "Tack sötnos!";
+
+
+//IMAGEPREVIEW VC
+"storageTitleLabel" = "Superfooide's användning av lagring";
+"storageDescriptionLabel" = "Om du vill spara bilderna som du tagit med Superfoodie, så behöver vi din tillåtelse till att göra så.";
+"storageApprovalLabel" = "Godkänn att Superfoodie får spara dina bilder";
+"denyLabel" = "Absolut inte";
+"approveLabel" = "Absolut!";
+"thanksLabel" = "Tack!";
