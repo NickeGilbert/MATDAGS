@@ -47,6 +47,7 @@ extension UIViewController {
                         "alias" : username!,
                         "date" : result,
                         "uid" : uid,
+                        "userDescription" : "",
                         "profileImageURL" : "http://graph.facebook.com/"+FBSDKAccessToken.current().userID+"/picture?type=large",
                         "email" : useremail!] as [String : Any]
             database.updateChildValues(feed)
@@ -71,6 +72,7 @@ extension UIViewController {
                         "alias" : username!,
                         "date" : result,
                         "uid" : uid,
+                        "userDescription" : "",
                         "profileImageURL" : "",
                         "email" : useremail!] as [String : Any]
             database.updateChildValues(feed)
