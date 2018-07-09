@@ -62,7 +62,8 @@ extension ImagePageVC {
             subviews.removeAll()
             let puid = self.posts[0].userID!
             let dbref = Database.database().reference(withPath: "Users/\(puid)/Posts")
-            dbref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { (snapshot) in
+//            dbref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { (snapshot) in
+            dbref.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String : AnyObject] {
                     for (_, post) in dictionary {
                         let appendPost = Subview()
@@ -84,6 +85,7 @@ extension ImagePageVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("SUBVIEW COUNT: ", self.subviews.count)
         return self.subviews.count
     }
     
