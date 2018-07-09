@@ -28,6 +28,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
     
+    @IBOutlet weak var commentsView: UIView!
+    @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentsTextView: UITextView!
     
     var yourPostsId = [String]()
     var FBdata : Any?
@@ -69,11 +72,75 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         settingsViewTopConstraint.constant = view.bounds.size.height
         settingsViewInner.layer.cornerRadius = 10
         settingsViewInner.clipsToBounds = true
+        commentsViewTopConstraint.constant = view.frame.height
+        commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         if posts.isEmpty {
             loadData()
+        }
+    }
+    
+    @IBAction func profileDescriptionAction(_ sender: Any) {
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                self.commentsViewTopConstraint.constant = 0
+            })
+        }
+
+        addToolbar()
+        commentsTextView.text = ""
+        commentsTextView.becomeFirstResponder()
+    }
+    
+    
+    func addToolbar() {
+        
+        let numberToolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        numberToolbar.barStyle = .default
+        numberToolbar.items = [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.ImagePageVCClose)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(self.ImagePageVCDoneEditing)),]
+        
+        numberToolbar.sizeToFit()
+        commentsTextView.inputAccessoryView = numberToolbar
+    }
+    
+    @objc func ImagePageVCClose() {
+        commentsTextView.text = ""
+        self.view.endEditing(true)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                self.commentsViewTopConstraint.constant = self.view.frame.height
+            })
+        }
+    }
+    
+    @objc func ImagePageVCDoneEditing() {
+        if commentsTextView.text != "" {
+            
+            UploadProfileDescription(in: dispatchGroup, text: commentsTextView.text)
+            self.commentsTextView.resignFirstResponder()
+            self.view.endEditing(true)
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.commentsViewTopConstraint.constant = self.view.frame.height
+                })
+            }
+            
+        } else {
+            commentsTextView.resignFirstResponder()
+            self.view.endEditing(true)
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.commentsViewTopConstraint.constant = self.view.frame.height
+                })
+            }
         }
     }
     
@@ -267,6 +334,14 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func UploadProfileDescription(in dispatchGroup: DispatchGroup, text : String){
+        AppDelegate.instance().showActivityIndicator()
+        let uid = Auth.auth().currentUser?.uid
+        let database = Database.database().reference(withPath: "Users/\(uid!)")
+        database.child("description").setValue(text)
+        AppDelegate.instance().dismissActivityIndicator()
     }
 
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {

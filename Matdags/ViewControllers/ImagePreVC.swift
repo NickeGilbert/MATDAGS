@@ -7,6 +7,7 @@ import UIKit
 import AVFoundation
 import Firebase
 import CoreImage
+import Photos
 
 class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIToolbarDelegate {
     
@@ -17,6 +18,8 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var AllowSavePhotoView: UIView!
+    @IBOutlet weak var AllowSavePhotoViewTopConstraint: NSLayoutConstraint!
     
     var CIFilterNames = ["CIPhotoEffectChrome",
                          "CIPhotoEffectFade",
@@ -51,7 +54,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         
         menuView.layer.cornerRadius = 10
         menuView.clipsToBounds = true
-
+        AllowSavePhotoViewTopConstraint.constant = view.frame.height
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -147,12 +150,93 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     }
     
     @IBAction func saveLocalButton(_ sender: Any) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        print("\n Image saved to local library. \n")
-        let alert = UIAlertController(title: NSLocalizedString("saveImageTitle", comment: ""), message: NSLocalizedString("saveImageMessage", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        
+            let status = PHPhotoLibrary.authorizationStatus()
+            switch status {
+            case .authorized:
+              print("already auth")
+              UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil)
+              
+              let alert = UIAlertController(title: "Photo saved", message: "", preferredStyle: UIAlertControllerStyle.alert)
+              
+              alert.addAction(UIAlertAction(title: "Oh Yeah", style: UIAlertActionStyle.default, handler:{ action in
+                alert.dismiss(animated: true, completion: nil)
+              }))
+              self.present(alert, animated: true, completion: nil)
+                
+            case .denied:
+                print("permission denied")
+                
+                let alert = UIAlertController(title: "Can't save photo", message: "We dont have the permissions, go to Settings and add the rights for Superfoodie", preferredStyle: UIAlertControllerStyle.alert)
+                
+                alert.addAction(UIAlertAction(title: "Alright", style: UIAlertActionStyle.default, handler:{ action in
+                    alert.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
+            case .notDetermined:
+                print("Permission Not Determined")
+                
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.AllowSavePhotoViewTopConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                })
+                
+                
+            case .restricted:
+                print("permission restricted")
+                
+            default:
+                break
+            }
+        
     }
+    
+    @IBAction func declineButtonAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+            self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+
+    
+    @IBAction func ApprovButtonAction(_ sender: Any) {
+        PHPhotoLibrary.requestAuthorization({ (status) in
+            if status == PHAuthorizationStatus.authorized{
+                print("access given")
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil)
+                    UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+                        self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
+                        self.view.layoutIfNeeded()
+                    })
+                    let alert = UIAlertController(title: "Photo saved", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Oh Yeah", style: UIAlertActionStyle.default, handler:{ action in
+                        alert.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
+
+            }else{
+                print("restriced manually")
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+                        self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
+                        self.view.layoutIfNeeded()
+                    })
+                }
+            }
+        })
+        
+    }
+    
+    
+    
+    
+    
+    
     
     @IBAction func vegFoodAction(_ sender: UIButton) {
         if vegFoodBool  == false {
