@@ -57,6 +57,7 @@
 "DeleteAccountText" = "Are you sure u wanna delete your account?";
 "deleteAccountYES" = "YES";
 "deleteAccountNO" = "NO";
+"zeroImagesTextLabel" = "No pictures to show yet, every picture you take will be displayed here!";
 
 //FOLLOWERS VC
 "zeroImagesTextMessage" = "Pictures you have taken and pictures from people you are following will be displayed here!";
@@ -82,6 +83,7 @@
 "userIsBlockedTitle" = "The user has been blocked";
 "userIsBlockedMessage" = "You will no longer be able to see images from this user";
 "userClose" = "Close";
+"zeroCommentsLabel" = "Nobody have commented yet, steal first place!";
 
 
 
@@ -96,4 +98,23 @@
 "logOut" = "Log out";
 "closeTitle" = "Close";
 "logoutButton" = "Log out";
+
+//CAMERA VC
+
+"useOfCameraTitle" = "Superfoodie use of camera";
+"useOfCameraDescription" = "Want to upload you own image and be a part of this app and it's users?";
+"useOfCameraApproval" = "Approve Superfoodie rights to the camera below";
+"denyLabel" = "Don't think so";
+"approveLabel" = "Absolutely";
+"thanksLabel" = "Thanks suger!";
+
+
+//IMAGEPREVIEW VC
+
+"storageTitleLabel" = "Superfoodie's use of storage";
+"storageDescriptionLabel" = "If you want to save images you've taken with Superfoodie, we need to have the rights to do it";
+"storageApprovalLabel" = "Approve Superfoodie right to Photo library below";
+"denyLabel" = "Naah..";
+"approveLabel" = "Sure!";
+"thanksLabel" = "Thanks!";
 

@@ -19,6 +19,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
     
     @IBOutlet weak var bendView: UIView!
+    @IBOutlet weak var zeroImagesTextLabel: UILabel!
+    
+    
     
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
@@ -67,7 +70,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         profileSettingsButtonOutlet.isHidden = false
         getFollwersCounting()
         
-        
+        zeroImagesTextLabel.text = NSLocalizedString("zeroImagesTextLabel", comment: "<#T##String#>")
         followingLabel.text = NSLocalizedString("followingLabel", comment: "")
         followersLabel.text = NSLocalizedString("followerLabel", comment: "")
         

@@ -1173,6 +1173,7 @@
                         <outlet property="profileSettingsButtonOutlet" destination="5bs-t6-os4" id="huf-iI-9aL"/>
                         <outlet property="settingsViewInner" destination="IlV-6K-DSz" id="vLA-sD-Q00"/>
                         <outlet property="settingsViewTopConstraint" destination="eO0-KZ-oxt" id="twd-4n-ZYL"/>
+                        <outlet property="zeroImagesTextLabel" destination="Xk5-OK-FjE" id="9yB-Ry-dfm"/>
                         <segue destination="As2-HR-siM" kind="show" identifier="imagePageSegProfile" id="l83-R4-lZS"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="profileLogout" id="1uw-Wz-lgf"/>
                     </connections>
@@ -1537,13 +1538,18 @@
                     <connections>
                         <outlet property="AllowSavePhotoView" destination="grF-2O-Nyl" id="jsz-kG-TFs"/>
                         <outlet property="AllowSavePhotoViewTopConstraint" destination="7LZ-83-5kJ" id="B5M-lj-8dG"/>
+                        <outlet property="approveLabel" destination="Ry0-jR-dF6" id="F2w-kB-eMc"/>
                         <outlet property="commentBtn" destination="Dwm-Dz-lPi" id="5VQ-Pf-qmw"/>
+                        <outlet property="denyLabel" destination="ZWq-7s-u6D" id="f4v-5P-kSJ"/>
                         <outlet property="descriptionFieldLines" destination="Bl1-iS-nHd" id="2fu-7i-ZV2"/>
                         <outlet property="filterButton" destination="hBh-Jl-bbp" id="7x8-hP-3td"/>
                         <outlet property="filterScrollView" destination="iQc-0R-Jpu" id="hZD-Bl-b7a"/>
                         <outlet property="menuView" destination="sBF-A8-2bW" id="7uz-41-srg"/>
                         <outlet property="photo" destination="cUn-EM-FWZ" id="gZn-oE-St5"/>
-                        <outlet property="saveButtonOutlet" destination="Wha-fx-ceG" id="pHI-bZ-Lv4"/>
+                        <outlet property="storageApprovalLabel" destination="uXE-qL-G9v" id="wDG-qU-3Yx"/>
+                        <outlet property="storageDescriptionLabel" destination="1qh-8d-uat" id="VFj-rK-ERl"/>
+                        <outlet property="storageTitleLabel" destination="e5L-yJ-hrS" id="ATl-rR-sq9"/>
+                        <outlet property="thanksLabel" destination="Ydr-Nk-UDi" id="lMb-S8-Usg"/>
                         <outlet property="vegFood" destination="m3d-i9-TOS" id="rvs-LR-QmU"/>
                     </connections>
                 </viewController>
@@ -1752,7 +1758,13 @@
                         <outlet property="AllowCameraViewOutlet" destination="csS-et-CpN" id="N90-rl-R3L"/>
                         <outlet property="AllowCameraViewTopConstraint" destination="dp8-pK-95K" id="vsa-Qz-f0y"/>
                         <outlet property="CameraView" destination="heI-6Q-TLX" id="yVI-dW-yv2"/>
+                        <outlet property="approveLabel" destination="9I3-id-QxR" id="AR9-A8-A9L"/>
+                        <outlet property="denyLabel" destination="1UT-L4-yb0" id="jkv-Vu-XSg"/>
                         <outlet property="flashBtn" destination="iSd-Hz-bjG" id="e6I-KF-U8O"/>
+                        <outlet property="thanksLabel" destination="0tX-LA-MgX" id="L0v-xF-BKr"/>
+                        <outlet property="useOfCameraApproval" destination="pa5-6w-j0z" id="Byj-Hr-8Ua"/>
+                        <outlet property="useOfCameraDescription" destination="DHW-em-1k3" id="2iR-39-Co5"/>
+                        <outlet property="useOfCameraTitle" destination="gPK-he-4Mg" id="RhY-2b-GeZ"/>
                         <segue destination="2ez-7q-i8j" kind="presentation" identifier="showPhoto" animates="NO" id="FN4-zJ-XHp"/>
                     </connections>
                 </viewController>
@@ -2522,6 +2534,7 @@
                         <outlet property="topSubView" destination="XQz-Jm-hsB" id="GSa-lt-caR"/>
                         <outlet property="unfollowingButton" destination="Et4-X9-KV7" id="34f-0l-BYi"/>
                         <outlet property="vegiIcon" destination="dVT-hk-Pe4" id="pCz-dn-wo3"/>
+                        <outlet property="zeroCommentsLabel" destination="npm-aC-Faw" id="n66-Yl-lFa"/>
                         <outletCollection property="starButtons" destination="khE-OO-ToV" collectionClass="NSMutableArray" id="m2O-s4-t5M"/>
                         <outletCollection property="starButtons" destination="o4m-Em-2k4" collectionClass="NSMutableArray" id="5nV-Se-Iir"/>
                         <outletCollection property="starButtons" destination="MUx-kd-fnZ" collectionClass="NSMutableArray" id="SNa-FA-9tt"/>
@@ -2887,8 +2900,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
-        <segue reference="qav-lz-AQ2"/>
-        <segue reference="1uw-Wz-lgf"/>
+        <segue reference="jqz-7P-XQE"/>
+        <segue reference="Pq7-cy-tEF"/>
+        <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
 </document>

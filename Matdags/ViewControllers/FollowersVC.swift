@@ -29,7 +29,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
         self.zeroImagesMessage.isHidden = true
-        zeroImagesMessage.text = zeroImages
         
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true

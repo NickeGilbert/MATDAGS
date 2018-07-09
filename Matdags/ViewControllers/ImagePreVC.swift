@@ -22,6 +22,14 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     @IBOutlet weak var AllowSavePhotoViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var saveButtonOutlet: UIButton!
     
+    @IBOutlet weak var storageTitleLabel: UILabel!
+    @IBOutlet weak var storageDescriptionLabel: UILabel!
+    @IBOutlet weak var storageApprovalLabel: UILabel!
+    @IBOutlet weak var denyLabel: UILabel!
+    @IBOutlet weak var approveLabel: UILabel!
+    @IBOutlet weak var thanksLabel: UILabel!
+    
+    
     var CIFilterNames = ["CIPhotoEffectChrome",
                          "CIPhotoEffectFade",
                          "CIPhotoEffectInstant",
@@ -42,6 +50,12 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        storageTitleLabel.text = NSLocalizedString("storageTitleLabel", comment: "")
+        storageDescriptionLabel.text = NSLocalizedString("storageDescriptionLabel", comment: "")
+        storageApprovalLabel.text = NSLocalizedString("storageApprovalLabel", comment: "")
+        denyLabel.text = NSLocalizedString("denyLabel", comment: "")
+        thanksLabel.text = NSLocalizedString("thanksLabel", comment: "")
         
         photo.image = self.image
         
