@@ -52,6 +52,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var users = [User]()
     var fromSearch = false
     var seguePostID : String!
+    var descriptionToggleBool = false
     
     //Database
     let db = Database.database().reference()
@@ -83,6 +84,47 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         commentsViewTopConstraint.constant = view.frame.height
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
         
+        descriptionLabel.clipsToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+        descriptionLabel.isUserInteractionEnabled = true
+        descriptionLabel.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        print("BOOLEN :", descriptionToggleBool)
+        if descriptionToggleBool == false {
+            if descriptionLabel.text != "" {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.descriptionLabel.numberOfLines = 0
+                    self.descriptionLabel.sizeToFit()
+                    self.descriptionLabel.layoutIfNeeded()
+                    self.ProfileCollectionFeedTopConstraint.constant = 20
+                    self.profileCollectionFeed.layoutIfNeeded()
+//                    UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
+//
+//                    })
+                }
+                descriptionToggleBool = true
+            }
+        }else{
+            if descriptionLabel.text != "" {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.descriptionLabel.numberOfLines = 2
+//                    self.descriptionLabel.sizeToFit()
+                    self.descriptionLabelHeightConstraint.constant = 50
+                    self.descriptionLabel.layoutIfNeeded()
+//                    self.ProfileCollectionFeedTopConstraint.constant = 20
+                    self.profileCollectionFeed.layoutIfNeeded()
+//                    UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
+//
+//                    })
+                }
+                descriptionToggleBool = false
+            }
+        }
+        
     }
     
     func fixDescriptionLabel() {
@@ -92,6 +134,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             descriptionLabelHeightConstraint.constant = 1
         }
         ProfileCollectionFeedTopConstraint.constant = 20
+        profileCollectionFeed.layoutIfNeeded()
     }
 
     
@@ -108,6 +151,8 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         
     }
     
+    
+    
     @IBAction func profileDescriptionAction(_ sender: Any) {
 
         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -117,7 +162,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
 
         addToolbar()
-        commentsTextView.text = ""
+        if descriptionLabel.text != "" {
+            commentsTextView.text = descriptionLabel.text
+        }else{
+            commentsTextView.text = ""
+        }
         commentsTextView.becomeFirstResponder()
     }
     
