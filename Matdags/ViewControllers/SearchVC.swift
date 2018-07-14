@@ -22,6 +22,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var ScrollViewSearchSubView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var descriptionLabelSearchSubView: UILabel!
+    @IBOutlet weak var noDescriptionTextImageView: UIImageView!
     
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -209,7 +210,18 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         } else {
             self.subviewProfileImage.image = defaultProfileImage
         }
+        
+        if username.userDescription != "" {
+            self.descriptionLabelSearchSubView.text = username.userDescription!
+            self.descriptionLabelSearchSubView.textColor = UIColor.darkGray
+            self.noDescriptionTextImageView.isHidden = true
+        }else{
+            self.descriptionLabelSearchSubView.text = "Nupp, no information about this user. Hmmm.. Mysterious indeed"
+            self.descriptionLabelSearchSubView.textColor = UIColor.lightGray
+            self.noDescriptionTextImageView.isHidden = false
+        }
     }
+    
     
     func searchForUser() {
         let inputText = searchController.searchBar.text
@@ -220,7 +232,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
                     appendUser.alias = each["alias"] as? String
                     appendUser.uid = each["uid"] as? String
                     appendUser.profileImageURL = each["profileImageURL"] as? String
-                    
+                    appendUser.userDescription = each["userDescription"] as? String
                     self.users.append(appendUser)
                     self.searchUsersTableView.insertRows(at: [IndexPath(row: self.users.count-1, section: 0)], with: .none)
                 }

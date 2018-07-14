@@ -528,16 +528,25 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rnd-C4-1XH" userLabel="ScrollInfoView">
-                                                        <rect key="frame" x="375" y="0.0" width="375" height="491"/>
+                                                        <rect key="frame" x="375" y="0.0" width="375" height="484"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIf-hh-WJg" userLabel="description">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIf-hh-WJg" userLabel="description">
                                                                 <rect key="frame" x="15" y="0.0" width="650" height="23.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Hmmm" translatesAutoresizingMaskIntoConstraints="NO" id="LT7-4k-vCo">
+                                                                <rect key="frame" x="120" y="73.333333333333329" width="90" height="130"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="130" id="7d1-FJ-xhF"/>
+                                                                    <constraint firstAttribute="width" constant="90" id="UFg-oL-mFm"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="LT7-4k-vCo" firstAttribute="top" secondItem="YIf-hh-WJg" secondAttribute="bottom" constant="50" id="0NY-CH-vgg"/>
+                                                            <constraint firstItem="LT7-4k-vCo" firstAttribute="centerX" secondItem="Rnd-C4-1XH" secondAttribute="centerX" id="QAi-c2-yg5"/>
                                                             <constraint firstAttribute="trailing" secondItem="YIf-hh-WJg" secondAttribute="trailing" constant="15" id="SNB-Om-iWU"/>
                                                             <constraint firstItem="YIf-hh-WJg" firstAttribute="top" secondItem="Rnd-C4-1XH" secondAttribute="top" id="g19-yP-IUh"/>
                                                             <constraint firstItem="YIf-hh-WJg" firstAttribute="leading" secondItem="Rnd-C4-1XH" secondAttribute="leading" constant="15" id="vY8-Nk-WHC"/>
@@ -630,6 +639,7 @@
                     <connections>
                         <outlet property="ScrollViewSearchSubView" destination="KUZ-Ib-dNi" id="G2l-0F-2bA"/>
                         <outlet property="descriptionLabelSearchSubView" destination="YIf-hh-WJg" id="vqy-15-47f"/>
+                        <outlet property="noDescriptionTextImageView" destination="LT7-4k-vCo" id="j2V-gL-O2Q"/>
                         <outlet property="pageControl" destination="myc-2Q-bhm" id="GAl-Zl-dYu"/>
                         <outlet property="searchUsersTableView" destination="03B-wQ-ZeK" id="8OD-YG-Kv1"/>
                         <outlet property="subview" destination="Ov9-gQ-xAZ" id="JMu-mc-RIm"/>
@@ -3041,6 +3051,7 @@
         <image name="CameraVCFlashOff" width="70" height="70"/>
         <image name="CameraVCStorage" width="70" height="70"/>
         <image name="CameraVCTakePicture" width="70" height="70"/>
+        <image name="Hmmm" width="90" height="130"/>
         <image name="SaveButtonUse2Final" width="45" height="45"/>
         <image name="approveCheck" width="45" height="45"/>
         <image name="bakgrund1" width="611" height="1086"/>
