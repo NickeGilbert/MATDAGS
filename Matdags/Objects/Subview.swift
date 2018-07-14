@@ -16,4 +16,5 @@ class Subview: NSObject {
     var vegi : Bool?
     var comments : [String]!
     var usersRated : Double!
+    var userDescription : String!
 }

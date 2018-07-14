@@ -35,8 +35,22 @@ extension ImagePageVC {
             let getInfo = User()
             let puid = self.posts[0].userID!
             let dbref = Database.database().reference(withPath: "Users/\(puid)")
+            print("DBREF: ",dbref)
             dbref.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let firstSnapshot = snapshot.value as? [String : Any] {
+                    
+                    getInfo.userDescription = firstSnapshot["userDescription"] as? String
+
+                    if getInfo.userDescription != ""  {
+                        self.descriptionLabelSubView.text = getInfo.userDescription!
+                        print("\nHämtade info")
+                    } else {
+                        self.descriptionLabelSubView.text = "There is no information about this user. Hmmm.. Mysterious indeed"
+                        self.descriptionLabelSubView.textColor = UIColor.lightGray
+                        print("\n Något fel \n")
+
+                    }
+                    
                     getInfo.profileImageURL = firstSnapshot["profileImageURL"] as? String
                     if getInfo.profileImageURL != ""  {
                         self.subviewProfileImage.downloadImage(from: getInfo.profileImageURL)
@@ -47,6 +61,8 @@ extension ImagePageVC {
                         print("\n profileImageURL not found \n")
                         return
                     }
+                    
+                    
                 } else {
                     print("\nCouldnt fetch profile image for subview.")
                     completionHandler(true)
@@ -70,6 +86,7 @@ extension ImagePageVC {
                         appendPost.pathToImage256 = post["pathToImage256"] as? String
                         appendPost.postID = post["postID"] as? String
                         appendPost.vegi = post["vegetarian"] as? Bool
+                        
                         self.subviews.append(appendPost)
                         completionHandler(true)
                     }
@@ -83,6 +100,34 @@ extension ImagePageVC {
             completionHandler(true)
         }
     }
+    
+//    func downloadUserInfo(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
+//        if subviews.count == 0 {
+//            subviews.removeAll()
+//            let puid = self.posts[0].userID!
+//            let dbref = Database.database().reference(withPath: "Users/\(puid)/Posts")
+//            //            dbref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { (snapshot) in
+//            dbref.queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+//                if let dictionary = snapshot.value as? [String : AnyObject] {
+//                    for (_, post) in dictionary {
+//                        let appendPost = Subview()
+//                        appendPost.pathToImage256 = post["pathToImage256"] as? String
+//                        appendPost.postID = post["postID"] as? String
+//                        appendPost.vegi = post["vegetarian"] as? Bool
+//
+//                        self.subviews.append(appendPost)
+//                        completionHandler(true)
+//                    }
+//                } else {
+//                    completionHandler(true)
+//                    print("\nCouldnt download data for subview.")
+//                }
+//                self.subviewCollectionFeed.reloadData()
+//            })
+//        } else {
+//            completionHandler(true)
+//        }
+//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("SUBVIEW COUNT: ", self.subviews.count)

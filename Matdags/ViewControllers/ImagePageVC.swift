@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     //Main view outlets
     @IBOutlet weak var vegiIcon: UIImageView!
@@ -58,6 +58,11 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var bendView: UIView!
     @IBOutlet weak var bendView2: UIView!
     @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var ScrollViewHorizSubView: UIScrollView!
+    @IBOutlet weak var descriptionLabelSubView: UILabel!
+    
     
     
     let dispatchGroup = DispatchGroup()
@@ -117,6 +122,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         topSubView.layer.zPosition = 3
         commentsView.layer.zPosition = 3
         settingsView.layer.zPosition = 3
+        
+        ScrollViewHorizSubView.delegate = self
+        pageControl.numberOfPages = 2
+        pageControl.currentPage = 0
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == ScrollViewHorizSubView {
+            let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+            pageControl.currentPage = Int(pageIndex)
+        }
     }
     
     // new test swipe down daniel
@@ -159,7 +176,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.sortAfterFetch()
             
         })
-        
         
     }
     
@@ -431,8 +447,10 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.settingsOverlayView.isHidden = true
                 self.topSubView.isHidden = false
                 self.subviewUsername.text = self.posts[0].alias
+
             })
         }
+        
     }
     
     
