@@ -437,7 +437,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.commentsRef.removeAllObservers()
             self.dismiss(animated: true, completion: nil)
         })
-        
     }
 
   
@@ -450,7 +449,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
             })
         }
-        
     }
     
     
