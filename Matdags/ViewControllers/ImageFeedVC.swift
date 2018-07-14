@@ -246,59 +246,61 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         var storleken = CGSize()
 
-        let n = Int(arc4random_uniform(2))
-        let onePart = self.view.frame.width / 3.2
-        let twoPart = onePart + onePart + 8
-        let topCounter = Int(arc4random_uniform(2))
-        
-        func left() {
-            if cellCounter == 3 { // fungerande från vänster
-                if n == 0 {
-                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                    cellCounter = 1
-                    cellCounter2 = 2
-                } else {
-                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
-                    cellCounter = -1
-                    cellCounter2 = 0
-                }
-                
-            }else{
-                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                cellCounter += 1
-                cellCounter2 += 1
-            }
-        }
-        
-        func right(){
-            if cellCounter2 == 4 { // fungerande från höger
-                if n == 0 {
-                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                    cellCounter2 = 2
-                    cellCounter = 1
-                } else {
-                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
-                    cellCounter2 = 0
-                    cellCounter = -1
-                }
-                
-            }else{
-                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                cellCounter2 += 1
-                cellCounter += 1
-            }
-        }
-        
-        if topCounter == 0 {
-            left()
-        }else{
-            right()
-        }
+//        let n = Int(arc4random_uniform(2))
+//        let onePart = self.view.frame.width / 3.2
+//        let twoPart = onePart + onePart + 8
+//        let topCounter = Int(arc4random_uniform(2))
+//
+//        func left() {
+//            if cellCounter == 3 { // fungerande från vänster
+//                if n == 0 {
+//                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                    cellCounter = 1
+//                    cellCounter2 = 2
+//                } else {
+//                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+//                    cellCounter = -1
+//                    cellCounter2 = 0
+//                }
+//
+//            }else{
+//                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                cellCounter += 1
+//                cellCounter2 += 1
+//            }
+//        }
+//
+//        func right(){
+//            if cellCounter2 == 4 { // fungerande från höger
+//                if n == 0 {
+//                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                    cellCounter2 = 2
+//                    cellCounter = 1
+//                } else {
+//                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+//                    cellCounter2 = 0
+//                    cellCounter = -1
+//                }
+//
+//            }else{
+//                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                cellCounter2 += 1
+//                cellCounter += 1
+//            }
+//        }
+//
+//        if topCounter == 0 {
+//            left()
+//        }else{
+//            right()
+//        }
         
         //print("Cellcounter 1 : ", cellCounter)
         //print("CellCounter 2 : ", cellCounter2)
         //print("---------------")
         
+        
+        storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
         return storleken
     }
     

@@ -62,6 +62,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var ScrollViewHorizSubView: UIScrollView!
     @IBOutlet weak var descriptionLabelSubView: UILabel!
+    @IBOutlet weak var noDiscriptionTextImageView: UIImageView!
     
     
     

@@ -43,10 +43,12 @@ extension ImagePageVC {
 
                     if getInfo.userDescription != ""  {
                         self.descriptionLabelSubView.text = getInfo.userDescription!
+                        self.noDiscriptionTextImageView.isHidden = true
                         print("\nHämtade info")
                     } else {
                         self.descriptionLabelSubView.text = "There is no information about this user. Hmmm.. Mysterious indeed"
                         self.descriptionLabelSubView.textColor = UIColor.lightGray
+                        self.noDiscriptionTextImageView.isHidden = false
                         print("\n Något fel \n")
 
                     }
