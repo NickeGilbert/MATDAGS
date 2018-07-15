@@ -1139,7 +1139,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hu-cX-Gev">
-                                                <rect key="frame" x="112.33333333333331" y="152" width="150" height="30"/>
+                                                <rect key="frame" x="112.33333333333331" y="207" width="150" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="es3-9c-FFl"/>
                                                     <constraint firstAttribute="height" constant="30" id="p7X-8n-VGM"/>
@@ -1167,13 +1167,13 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFk-u6-Yi6">
-                                                <rect key="frame" x="112.66666666666669" y="212" width="150" height="30"/>
+                                                <rect key="frame" x="112.66666666666669" y="152" width="150" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="PdB-WK-1cb"/>
-                                                    <constraint firstAttribute="width" constant="150" id="fx0-Qa-BLv"/>
+                                                    <constraint firstAttribute="width" constant="150" id="I25-4e-tyI"/>
+                                                    <constraint firstAttribute="height" constant="30" id="uzM-3U-3Iw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <state key="normal" title="Profile description">
+                                                <state key="normal" title="Profile bio">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -1184,16 +1184,16 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="HXM-ab-8in" firstAttribute="top" secondItem="IlV-6K-DSz" secondAttribute="top" constant="25" id="48z-V8-WMc"/>
+                                            <constraint firstItem="pFk-u6-Yi6" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="7my-oQ-gUV"/>
                                             <constraint firstItem="Gck-JG-M5b" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" constant="100" id="CQD-M6-5RH"/>
+                                            <constraint firstItem="pFk-u6-Yi6" firstAttribute="top" secondItem="hjv-fa-C6m" secondAttribute="bottom" constant="25" id="J3b-8u-IIz"/>
                                             <constraint firstAttribute="height" constant="400" id="MZT-c8-Uey"/>
                                             <constraint firstItem="HXM-ab-8in" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" id="NVx-NU-P7s"/>
-                                            <constraint firstItem="pFk-u6-Yi6" firstAttribute="top" secondItem="0hu-cX-Gev" secondAttribute="bottom" constant="30" id="TVG-pW-Th1"/>
-                                            <constraint firstItem="pFk-u6-Yi6" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="WJm-XE-bbZ"/>
                                             <constraint firstItem="Gck-JG-M5b" firstAttribute="top" secondItem="HXM-ab-8in" secondAttribute="bottom" constant="25" id="YnO-wl-2YE"/>
                                             <constraint firstItem="hjv-fa-C6m" firstAttribute="top" secondItem="Gck-JG-M5b" secondAttribute="bottom" constant="25" id="YpY-3L-Xyq"/>
                                             <constraint firstAttribute="trailing" secondItem="HXM-ab-8in" secondAttribute="trailing" id="coe-xe-twr"/>
-                                            <constraint firstItem="0hu-cX-Gev" firstAttribute="top" secondItem="hjv-fa-C6m" secondAttribute="bottom" constant="25" id="fHD-Qf-stv"/>
                                             <constraint firstItem="hjv-fa-C6m" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="feT-nB-CwU"/>
+                                            <constraint firstItem="0hu-cX-Gev" firstAttribute="top" secondItem="pFk-u6-Yi6" secondAttribute="bottom" constant="25" id="n3v-TB-vo0"/>
                                             <constraint firstAttribute="trailing" secondItem="Gck-JG-M5b" secondAttribute="trailing" constant="100" id="rJh-oA-6e6"/>
                                             <constraint firstItem="0hu-cX-Gev" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="sEd-tD-sbi"/>
                                         </constraints>
@@ -1254,12 +1254,6 @@
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="Igg-zh-6IO" secondAttribute="trailing" id="rCy-0y-Ugo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="7xC-Jy-NIf"/>
-                                <exclude reference="cba-wu-ERG"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -1306,7 +1300,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4473" y="1567"/>
+            <point key="canvasLocation" x="1676" y="1012"/>
         </scene>
         <!--ImagePreviewVC-->
         <scene sceneID="ard-oB-FFI">
@@ -1650,7 +1644,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="nWk-yA-OE6"/>
-                                <exclude reference="grF-2O-Nyl"/>
                             </mask>
                         </variation>
                     </view>
@@ -2503,13 +2496,13 @@
                                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4Q-qb-Amm">
-                                                <rect key="frame" x="0.0" y="190" width="355" height="499"/>
+                                                <rect key="frame" x="0.0" y="190" width="355" height="548"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blG-6J-ePS" userLabel="ScrollCollectionView">
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="548"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="499"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="548"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
                                                                     <size key="itemSize" width="101" height="101"/>
@@ -2734,7 +2727,7 @@
                 <swipeGestureRecognizer direction="right" id="fNl-2b-zWO"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2ex-fQ-t2R"/>
             </objects>
-            <point key="canvasLocation" x="1881.5999999999999" y="1010.8374384236454"/>
+            <point key="canvasLocation" x="4294" y="239"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -3089,8 +3082,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
-        <segue reference="Xnk-uj-Z3I"/>
+        <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
 </document>
