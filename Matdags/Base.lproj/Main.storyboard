@@ -1113,8 +1113,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xC-Jy-NIf" userLabel="settingsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-Ki-5G3" userLabel="closeButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-Ki-5G3" userLabel="closeButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="432"/>
                                         <connections>
                                             <action selector="closeSettingsAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Ky8-rS-lib"/>
                                         </connections>
@@ -1201,10 +1201,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="IlV-6K-DSz" secondAttribute="trailing" id="04u-Ni-4dB"/>
-                                    <constraint firstItem="IlV-6K-DSz" firstAttribute="top" secondItem="CyX-Ki-5G3" secondAttribute="bottom" id="O4F-V6-ff3"/>
                                     <constraint firstItem="IlV-6K-DSz" firstAttribute="leading" secondItem="7xC-Jy-NIf" secondAttribute="leading" id="WeC-hG-cBL"/>
                                     <constraint firstAttribute="bottom" secondItem="IlV-6K-DSz" secondAttribute="bottom" id="fgy-hD-our"/>
                                     <constraint firstItem="CyX-Ki-5G3" firstAttribute="top" secondItem="7xC-Jy-NIf" secondAttribute="top" id="rJP-e2-x6U"/>
+                                    <constraint firstItem="IlV-6K-DSz" firstAttribute="top" secondItem="CyX-Ki-5G3" secondAttribute="bottom" constant="-20" id="rbL-1s-8ng"/>
                                     <constraint firstAttribute="trailing" secondItem="CyX-Ki-5G3" secondAttribute="trailing" id="vlh-Sk-Eas"/>
                                     <constraint firstItem="CyX-Ki-5G3" firstAttribute="leading" secondItem="7xC-Jy-NIf" secondAttribute="leading" id="y1x-ld-rz6"/>
                                 </constraints>
@@ -1254,6 +1254,11 @@
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="Igg-zh-6IO" secondAttribute="trailing" id="rCy-0y-Ugo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cba-wu-ERG"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -1280,6 +1285,7 @@
                         <outlet property="profileSettingsButtonOutlet" destination="5bs-t6-os4" id="huf-iI-9aL"/>
                         <outlet property="scrollVIewOutlet" destination="KET-9F-R12" id="0yS-dI-7e7"/>
                         <outlet property="settingsView" destination="7xC-Jy-NIf" id="utQ-Mo-TL1"/>
+                        <outlet property="settingsViewCloseButton" destination="CyX-Ki-5G3" id="fCq-dC-j4h"/>
                         <outlet property="settingsViewInner" destination="IlV-6K-DSz" id="vLA-sD-Q00"/>
                         <outlet property="settingsViewTopConstraint" destination="eO0-KZ-oxt" id="twd-4n-ZYL"/>
                         <outlet property="wrapperHeightConstraint" destination="io3-Qv-IEt" id="JUe-Zt-1jU"/>
@@ -2210,8 +2216,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z86-Oj-koP" userLabel="settingsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-se-Cek" userLabel="closeButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-se-Cek" userLabel="closeButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="422"/>
                                         <connections>
                                             <action selector="closeSettingsAction:" destination="As2-HR-siM" eventType="touchUpInside" id="O3E-JI-oak"/>
                                         </connections>
@@ -2298,12 +2304,12 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="c0T-WF-KNX" secondAttribute="trailing" id="2jo-IT-Hg6"/>
-                                    <constraint firstItem="c0T-WF-KNX" firstAttribute="top" secondItem="s8M-se-Cek" secondAttribute="bottom" id="DEN-xB-z3K"/>
                                     <constraint firstItem="s8M-se-Cek" firstAttribute="top" secondItem="Z86-Oj-koP" secondAttribute="top" id="F6l-5h-4Vf"/>
                                     <constraint firstAttribute="trailing" secondItem="s8M-se-Cek" secondAttribute="trailing" id="HzN-fd-svg"/>
                                     <constraint firstAttribute="bottom" secondItem="c0T-WF-KNX" secondAttribute="bottom" id="WWj-WY-lQC"/>
                                     <constraint firstItem="s8M-se-Cek" firstAttribute="leading" secondItem="Z86-Oj-koP" secondAttribute="leading" id="cMJ-e7-A6U"/>
                                     <constraint firstItem="c0T-WF-KNX" firstAttribute="leading" secondItem="Z86-Oj-koP" secondAttribute="leading" id="e6W-3I-I0q"/>
+                                    <constraint firstItem="c0T-WF-KNX" firstAttribute="top" secondItem="s8M-se-Cek" secondAttribute="bottom" constant="-10" id="iF8-Nu-mRc"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-hq-MOK" userLabel="commentsView">
@@ -2496,13 +2502,13 @@
                                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4Q-qb-Amm">
-                                                <rect key="frame" x="0.0" y="190" width="355" height="548"/>
+                                                <rect key="frame" x="0.0" y="190" width="355" height="499"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blG-6J-ePS" userLabel="ScrollCollectionView">
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="548"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="548"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="499"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
                                                                     <size key="itemSize" width="101" height="101"/>
@@ -2669,7 +2675,9 @@
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="uJr-hq-MOK"/>
                                 <exclude reference="3ws-by-1OO"/>
+                                <exclude reference="XQz-Jm-hsB"/>
                             </mask>
                         </variation>
                     </view>
@@ -2702,6 +2710,7 @@
                         <outlet property="scrollView" destination="Zs8-gX-2Ep" id="IwG-c6-dwl"/>
                         <outlet property="settingsOverlayView" destination="3ws-by-1OO" id="Ssr-rO-DXC"/>
                         <outlet property="settingsView" destination="Z86-Oj-koP" id="KG7-Hf-Vg8"/>
+                        <outlet property="settingsViewCloseButton" destination="s8M-se-Cek" id="FOT-7u-2Tq"/>
                         <outlet property="settingsViewInner" destination="c0T-WF-KNX" id="Le7-Xu-X9G"/>
                         <outlet property="settingsViewTopConstraint" destination="hA0-PT-rC1" id="51O-0T-uxv"/>
                         <outlet property="subview" destination="XVj-Tu-c8h" id="ikr-I0-OKe"/>
@@ -2834,8 +2843,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxG-s1-rhJ" userLabel="settingsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUD-wY-vY3" userLabel="closeButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="412"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUD-wY-vY3" userLabel="closeButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="422"/>
                                         <connections>
                                             <action selector="closeSettingsAction:" destination="ypM-Uw-J9l" eventType="touchUpInside" id="xKt-Xl-2P8"/>
                                         </connections>
@@ -2906,7 +2915,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="TUD-wY-vY3" secondAttribute="trailing" id="8yL-Sn-uOj"/>
                                     <constraint firstItem="TUD-wY-vY3" firstAttribute="leading" secondItem="jxG-s1-rhJ" secondAttribute="leading" id="EkW-D6-VVZ"/>
-                                    <constraint firstItem="VK1-jY-PSg" firstAttribute="top" secondItem="TUD-wY-vY3" secondAttribute="bottom" id="Lyz-aH-FgR"/>
+                                    <constraint firstItem="VK1-jY-PSg" firstAttribute="top" secondItem="TUD-wY-vY3" secondAttribute="bottom" constant="-10" id="IDi-NU-q6U"/>
                                     <constraint firstAttribute="trailing" secondItem="VK1-jY-PSg" secondAttribute="trailing" id="c6z-Nc-tGx"/>
                                     <constraint firstAttribute="bottom" secondItem="VK1-jY-PSg" secondAttribute="bottom" id="gVX-jK-GY4"/>
                                     <constraint firstItem="TUD-wY-vY3" firstAttribute="top" secondItem="jxG-s1-rhJ" secondAttribute="top" id="h2T-8d-0wo"/>
@@ -3033,6 +3042,7 @@
                         <outlet property="logoutButton" destination="VEf-ai-GII" id="8JI-bB-Hdt"/>
                         <outlet property="settingsOverlayView" destination="MVV-vv-GTK" id="N4f-M3-Azd"/>
                         <outlet property="settingsView" destination="5rY-3X-jiu" id="ZaJ-cw-AUZ"/>
+                        <outlet property="settingsViewCloseButton" destination="TUD-wY-vY3" id="ebZ-Pc-yaN"/>
                         <outlet property="settingsViewInner" destination="VK1-jY-PSg" id="Uz3-ut-UIe"/>
                         <outlet property="settingsViewTopConstraint" destination="cDA-ro-ruS" id="Qkl-V3-jlD"/>
                         <outlet property="vegiClickButton" destination="Fmn-sb-rkR" id="263-YU-mlV"/>
@@ -3082,8 +3092,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
+        <segue reference="lIt-D9-Es6"/>
         <segue reference="Pq7-cy-tEF"/>
-        <segue reference="1uw-Wz-lgf"/>
+        <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
 </document>

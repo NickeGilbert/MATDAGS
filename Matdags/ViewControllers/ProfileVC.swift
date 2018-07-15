@@ -41,6 +41,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     @IBOutlet weak var scrollVIewOutlet: UIScrollView!
     @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsViewCloseButton: UIButton!
     
     var yourPostsId = [String]()
     var FBdata : Any?
@@ -163,14 +164,25 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     @IBAction func openSettingsAction(_ sender: Any) {
         tabBarController?.tabBar.isHidden = true
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+        let animations = {
             self.settingsViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
-        })
+        }
+        let completion = { (finished: Bool) in
+                self.settingsViewCloseButton.backgroundColor = UIColor.black
+                self.settingsViewCloseButton.alpha = 0.1
+                self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.2,
+                       animations: animations,
+                       completion: completion)
         
     }
     
     @IBAction func closeSettingsAction(_ sender: Any) {
+        self.settingsViewCloseButton.backgroundColor = UIColor.clear
+        self.settingsViewCloseButton.alpha = 0
+        self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
             self.settingsViewTopConstraint.constant = self.view.bounds.size.height
             self.tabBarController?.tabBar.isHidden = false

@@ -63,6 +63,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var ScrollViewHorizSubView: UIScrollView!
     @IBOutlet weak var descriptionLabelSubView: UILabel!
     @IBOutlet weak var noDiscriptionTextImageView: UIImageView!
+    @IBOutlet weak var settingsViewCloseButton: UIButton!
     
     
     
@@ -182,13 +183,28 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     
     @IBAction func openSettingsAction(_ sender: Any) {
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+//        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+//            self.settingsViewTopConstraint.constant = 0
+//            self.view.layoutIfNeeded()
+//        })
+        
+        let animations = {
             self.settingsViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
-        })
+        }
+        let completion = { (finished: Bool) in
+            self.settingsViewCloseButton.backgroundColor = UIColor.black
+            self.settingsViewCloseButton.alpha = 0.1
+            self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.2,
+                       animations: animations,
+                       completion: completion)
     }
     
     @IBAction func closeSettingsAction(_ sender: Any) {
+        self.settingsViewCloseButton.backgroundColor = UIColor.clear
+        self.settingsViewCloseButton.alpha = 0
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
             self.settingsViewTopConstraint.constant = self.view.bounds.size.height
             self.view.layoutIfNeeded()

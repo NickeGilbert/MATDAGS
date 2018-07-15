@@ -17,6 +17,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var settingsViewCloseButton: UIButton!
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
@@ -66,12 +67,22 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBAction func openSettingsAction(_ sender: Any) {
         tabBarController?.tabBar.isHidden = true
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+        let animations = {
             self.settingsViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
-        })
+        }
+        let completion = { (finished: Bool) in
+            self.settingsViewCloseButton.backgroundColor = UIColor.black
+            self.settingsViewCloseButton.alpha = 0.1
+            self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.2,
+                       animations: animations,
+                       completion: completion)
     }
     @IBAction func closeSettingsAction(_ sender: Any) {
+        self.settingsViewCloseButton.backgroundColor = UIColor.clear
+        self.settingsViewCloseButton.alpha = 0
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
             self.settingsViewTopConstraint.constant = self.view.bounds.size.height
             self.tabBarController?.tabBar.isHidden = false
