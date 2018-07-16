@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 
-class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     //Main view outlets
     @IBOutlet weak var vegiIcon: UIImageView!
@@ -58,6 +58,13 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var bendView: UIView!
     @IBOutlet weak var bendView2: UIView!
     @IBOutlet weak var bendViewInnerTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var ScrollViewHorizSubView: UIScrollView!
+    @IBOutlet weak var descriptionLabelSubView: UILabel!
+    @IBOutlet weak var noDiscriptionTextImageView: UIImageView!
+    @IBOutlet weak var settingsViewCloseButton: UIButton!
+    
     
     
     let dispatchGroup = DispatchGroup()
@@ -117,6 +124,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         topSubView.layer.zPosition = 3
         commentsView.layer.zPosition = 3
         settingsView.layer.zPosition = 3
+        
+        ScrollViewHorizSubView.delegate = self
+        pageControl.numberOfPages = 2
+        pageControl.currentPage = 0
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == ScrollViewHorizSubView {
+            let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+            pageControl.currentPage = Int(pageIndex)
+        }
     }
     
     // new test swipe down daniel
@@ -160,18 +179,32 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
         })
         
-        
     }
     
     
     @IBAction func openSettingsAction(_ sender: Any) {
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+//        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+//            self.settingsViewTopConstraint.constant = 0
+//            self.view.layoutIfNeeded()
+//        })
+        
+        let animations = {
             self.settingsViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
-        })
+        }
+        let completion = { (finished: Bool) in
+            self.settingsViewCloseButton.backgroundColor = UIColor.black
+            self.settingsViewCloseButton.alpha = 0.1
+            self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.2,
+                       animations: animations,
+                       completion: completion)
     }
     
     @IBAction func closeSettingsAction(_ sender: Any) {
+        self.settingsViewCloseButton.backgroundColor = UIColor.clear
+        self.settingsViewCloseButton.alpha = 0
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
             self.settingsViewTopConstraint.constant = self.view.bounds.size.height
             self.view.layoutIfNeeded()
@@ -421,7 +454,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.commentsRef.removeAllObservers()
             self.dismiss(animated: true, completion: nil)
         })
-        
     }
 
   
@@ -431,6 +463,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.settingsOverlayView.isHidden = true
                 self.topSubView.isHidden = false
                 self.subviewUsername.text = self.posts[0].alias
+
             })
         }
     }

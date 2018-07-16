@@ -8,7 +8,7 @@ import Firebase
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarControllerDelegate {
+class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarControllerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var subviewUnfollowBtn: UIButton!
     @IBOutlet weak var subview: UIView!
@@ -18,6 +18,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBOutlet var searchUsersTableView: UITableView!
     @IBOutlet weak var subviewFollowButton: UIButton!
     @IBOutlet weak var topSubView: UIView!
+    
+    @IBOutlet weak var ScrollViewSearchSubView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var descriptionLabelSearchSubView: UILabel!
+    @IBOutlet weak var noDescriptionTextImageView: UIImageView!
+    
     
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
@@ -75,6 +81,17 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         self.searchController.searchBar.backgroundImage = UIImage()
         self.searchController.searchBar.barTintColor = UIColor.white
         self.searchController.searchBar.tintColor = UIColor.lightGray
+        
+        ScrollViewSearchSubView.delegate = self
+        pageControl.numberOfPages = 2
+        pageControl.currentPage = 0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == ScrollViewSearchSubView {
+            let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+            pageControl.currentPage = Int(pageIndex)
+        }
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -86,16 +103,12 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        
-        
-        
         if topSubView.isHidden == false {
             
         }else{
             searchController.searchBar.becomeFirstResponder()
             self.searchController.searchBar.isHidden = false
         }
-        
         
     }
 
@@ -197,7 +210,18 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         } else {
             self.subviewProfileImage.image = defaultProfileImage
         }
+        
+        if username.userDescription != "" {
+            self.descriptionLabelSearchSubView.text = username.userDescription!
+            self.descriptionLabelSearchSubView.textColor = UIColor.darkGray
+            self.noDescriptionTextImageView.isHidden = true
+        }else{
+            self.descriptionLabelSearchSubView.text = "Nupp, no information about this user. Hmmm.. Mysterious indeed"
+            self.descriptionLabelSearchSubView.textColor = UIColor.lightGray
+            self.noDescriptionTextImageView.isHidden = false
+        }
     }
+    
     
     func searchForUser() {
         let inputText = searchController.searchBar.text
@@ -208,6 +232,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
                     appendUser.alias = each["alias"] as? String
                     appendUser.uid = each["uid"] as? String
                     appendUser.profileImageURL = each["profileImageURL"] as? String
+                    appendUser.userDescription = each["userDescription"] as? String
                     self.users.append(appendUser)
                     self.searchUsersTableView.insertRows(at: [IndexPath(row: self.users.count-1, section: 0)], with: .none)
                 }

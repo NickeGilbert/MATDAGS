@@ -17,11 +17,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePictureOutlet: UIImageView!
     @IBOutlet weak var profileSettingsButtonOutlet: UIButton!
+    @IBOutlet weak var wrapperHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backgroundWhiteOutlet: UIView!
     
     @IBOutlet weak var bendView: UIView!
     @IBOutlet weak var zeroImagesTextLabel: UILabel!
-    
-    
     
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
@@ -35,6 +35,14 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsTextView: UITextView!
     
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ProfileCollectionFeedTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var scrollVIewOutlet: UIScrollView!
+    @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsViewCloseButton: UIButton!
+    
     var yourPostsId = [String]()
     var FBdata : Any?
     var titleName = ""
@@ -47,6 +55,9 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     var users = [User]()
     var fromSearch = false
     var seguePostID : String!
+    var descriptionToggleBool = false
+    var cellSize : CGFloat = 130
+    var cellCounter = 0
     
     //Database
     let db = Database.database().reference()
@@ -59,7 +70,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
         resizeImage()
-        getUserInfo()
+//        getUserInfo()
         
         profileNameLabel.text = ""
         profileSettingsButtonOutlet.isHidden = false
@@ -75,20 +86,31 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         settingsViewTopConstraint.constant = view.bounds.size.height
         settingsViewInner.layer.cornerRadius = 10
         settingsViewInner.clipsToBounds = true
+        backgroundWhiteOutlet.layer.cornerRadius = 10
+        backgroundWhiteOutlet.clipsToBounds = true
         commentsViewTopConstraint.constant = view.frame.height
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
+        
+        descriptionLabel.clipsToBounds = true
+        scrollVIewOutlet.layer.zPosition = 2
+        commentsView.layer.zPosition = 2
+        settingsView.layer.zPosition = 2
+        profileSettingsButtonOutlet.layer.zPosition = 1
+        
     }
 
     
     override func viewDidAppear(_ animated: Bool) {
         if posts.isEmpty {
-            loadData()
+//            loadData() // hämtas i slutet av getUserInfo() så alla constraints fungerar
+            getUserInfo()
         }
     }
     
+    
+    
     @IBAction func profileDescriptionAction(_ sender: Any) {
-        
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
                 self.commentsViewTopConstraint.constant = 0
@@ -96,7 +118,11 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         }
 
         addToolbar()
-        commentsTextView.text = ""
+        if descriptionLabel.text != "" {
+            commentsTextView.text = descriptionLabel.text
+        }else{
+            commentsTextView.text = ""
+        }
         commentsTextView.becomeFirstResponder()
     }
     
@@ -125,8 +151,6 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     }
     
     @objc func ImagePageVCDoneEditing() {
-        if commentsTextView.text != "" {
-            
             UploadProfileDescription(in: dispatchGroup, text: commentsTextView.text)
             self.commentsTextView.resignFirstResponder()
             self.view.endEditing(true)
@@ -135,28 +159,30 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
                     self.commentsViewTopConstraint.constant = self.view.frame.height
                 })
             }
-            
-        } else {
-            commentsTextView.resignFirstResponder()
-            self.view.endEditing(true)
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-                    self.commentsViewTopConstraint.constant = self.view.frame.height
-                })
-            }
-        }
     }
+    
     
     @IBAction func openSettingsAction(_ sender: Any) {
         tabBarController?.tabBar.isHidden = true
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+        let animations = {
             self.settingsViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
-        })
+        }
+        let completion = { (finished: Bool) in
+                self.settingsViewCloseButton.backgroundColor = UIColor.black
+                self.settingsViewCloseButton.alpha = 0.1
+                self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.2,
+                       animations: animations,
+                       completion: completion)
         
     }
     
     @IBAction func closeSettingsAction(_ sender: Any) {
+        self.settingsViewCloseButton.backgroundColor = UIColor.clear
+        self.settingsViewCloseButton.alpha = 0
+        self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
             self.settingsViewTopConstraint.constant = self.view.bounds.size.height
             self.tabBarController?.tabBar.isHidden = false
@@ -181,6 +207,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             self.getFollwersCounting()
             self.profileCollectionFeed.reloadData()
         }
+        
     }
     
     func getFollwersCounting() {
@@ -221,6 +248,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         })
     }
     
+    
     func getUserInfo() {
         let uid = Auth.auth().currentUser!.uid
         let dbref = Database.database().reference(withPath: "Users/\(uid)")
@@ -229,24 +257,66 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
             if let tempSnapshot = snapshot.value as? [String : Any] {
                 let appendInfo = User()
                 appendInfo.profileImageURL = tempSnapshot["profileImageURL"] as? String
-                if appendInfo.profileImageURL != ""  {
+                if appendInfo.profileImageURL != "" {
                     prefs.set(appendInfo.profileImageURL!, forKey: "userProfilePhoto")
                     self.profilePictureOutlet.downloadImage(from: appendInfo.profileImageURL )
                 } else {
                     return
                 }
+                appendInfo.userDescription = "\(tempSnapshot["userDescription"] as! String)"
+                if appendInfo.userDescription != "" {
+                    self.descriptionLabel.text = appendInfo.userDescription
+                    
+                   self.fixLabelAndScrollView()
+                    
+//                    self.fixDescriptionLabel()
+                    self.loadData()
+                    print("AAAALLL GOOD?")
+                }else{
+                    print("Jepp det är tomt...")
+                    self.fixLabelAndScrollView()
+                    self.loadData()
+                    return
+                }
             }
         })
+    }
+    
+    func fixLabelAndScrollView() {
+        DispatchQueue.main.asyncAfter(deadline: .now()){
+            print("AAAAAAAAAA")
+            self.descriptionLabel.sizeToFit()
+            print("DDDDDDDDDD")
+            self.wrapperHeightConstraint.constant = self.wrapperHeightConstraint.constant + self.descriptionLabel.frame.height
+//            self.view.layoutIfNeeded()
+//            self.profileCollectionFeed.layoutIfNeeded()
+//            self.scrollVIewOutlet.layoutIfNeeded()
+            self.profileCollectionFeed.reloadData()
+            print("ADWADAWDAWD")
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCell", for: indexPath) as! ProfileCell
         
         let cachedImages = cell.viewWithTag(1) as? UIImageView
+        
+        cellCounter += 1
+        
+        if cellCounter == 3 {
+//            print("-------")
+//            print("Before : ", wrapperHeightConstraint.constant)
+            wrapperHeightConstraint.constant = wrapperHeightConstraint.constant + cellSize
+//            print("After: ,",wrapperHeightConstraint.constant)
+//            print("-------")
+            cellCounter = 0
+        }
         
         cell.myProfileImageCollection.image = nil
         cell.vegiIcon.isHidden = true
@@ -307,6 +377,7 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+        
         return size
     }
     
@@ -343,8 +414,13 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         AppDelegate.instance().showActivityIndicator()
         let uid = Auth.auth().currentUser?.uid
         let database = Database.database().reference(withPath: "Users/\(uid!)")
-        database.child("description").setValue(text)
+        database.child("userDescription").setValue(text)
         AppDelegate.instance().dismissActivityIndicator()
+        self.wrapperHeightConstraint.constant = self.wrapperHeightConstraint.constant - self.descriptionLabel.frame.height
+        descriptionLabel.text = text
+        descriptionLabel.sizeToFit()
+        self.wrapperHeightConstraint.constant = self.wrapperHeightConstraint.constant + self.descriptionLabel.frame.height
+//        fixDescriptionLabel()
     }
 
     func UploadImageToFirebase(in dispatchGroup: DispatchGroup) {

@@ -17,6 +17,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var settingsViewCloseButton: UIButton!
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
@@ -66,12 +67,22 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBAction func openSettingsAction(_ sender: Any) {
         tabBarController?.tabBar.isHidden = true
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
+        let animations = {
             self.settingsViewTopConstraint.constant = 0
             self.view.layoutIfNeeded()
-        })
+        }
+        let completion = { (finished: Bool) in
+            self.settingsViewCloseButton.backgroundColor = UIColor.black
+            self.settingsViewCloseButton.alpha = 0.1
+            self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.2,
+                       animations: animations,
+                       completion: completion)
     }
     @IBAction func closeSettingsAction(_ sender: Any) {
+        self.settingsViewCloseButton.backgroundColor = UIColor.clear
+        self.settingsViewCloseButton.alpha = 0
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
             self.settingsViewTopConstraint.constant = self.view.bounds.size.height
             self.tabBarController?.tabBar.isHidden = false
@@ -246,59 +257,61 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         var storleken = CGSize()
 
-        let n = Int(arc4random_uniform(2))
-        let onePart = self.view.frame.width / 3.2
-        let twoPart = onePart + onePart + 8
-        let topCounter = Int(arc4random_uniform(2))
-        
-        func left() {
-            if cellCounter == 3 { // fungerande från vänster
-                if n == 0 {
-                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                    cellCounter = 1
-                    cellCounter2 = 2
-                } else {
-                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
-                    cellCounter = -1
-                    cellCounter2 = 0
-                }
-                
-            }else{
-                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                cellCounter += 1
-                cellCounter2 += 1
-            }
-        }
-        
-        func right(){
-            if cellCounter2 == 4 { // fungerande från höger
-                if n == 0 {
-                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                    cellCounter2 = 2
-                    cellCounter = 1
-                } else {
-                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
-                    cellCounter2 = 0
-                    cellCounter = -1
-                }
-                
-            }else{
-                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
-                cellCounter2 += 1
-                cellCounter += 1
-            }
-        }
-        
-        if topCounter == 0 {
-            left()
-        }else{
-            right()
-        }
+//        let n = Int(arc4random_uniform(2))
+//        let onePart = self.view.frame.width / 3.2
+//        let twoPart = onePart + onePart + 8
+//        let topCounter = Int(arc4random_uniform(2))
+//
+//        func left() {
+//            if cellCounter == 3 { // fungerande från vänster
+//                if n == 0 {
+//                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                    cellCounter = 1
+//                    cellCounter2 = 2
+//                } else {
+//                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+//                    cellCounter = -1
+//                    cellCounter2 = 0
+//                }
+//
+//            }else{
+//                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                cellCounter += 1
+//                cellCounter2 += 1
+//            }
+//        }
+//
+//        func right(){
+//            if cellCounter2 == 4 { // fungerande från höger
+//                if n == 0 {
+//                    storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                    cellCounter2 = 2
+//                    cellCounter = 1
+//                } else {
+//                    storleken = CGSize(width: twoPart, height: self.view.frame.width/3.2)
+//                    cellCounter2 = 0
+//                    cellCounter = -1
+//                }
+//
+//            }else{
+//                storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
+//                cellCounter2 += 1
+//                cellCounter += 1
+//            }
+//        }
+//
+//        if topCounter == 0 {
+//            left()
+//        }else{
+//            right()
+//        }
         
         //print("Cellcounter 1 : ", cellCounter)
         //print("CellCounter 2 : ", cellCounter2)
         //print("---------------")
         
+        
+        storleken = CGSize(width: self.view.frame.width/3.2, height: self.view.frame.width/3.2)
         return storleken
     }
     

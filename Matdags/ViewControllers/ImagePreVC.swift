@@ -285,6 +285,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         self.view.endEditing(true)
         
         descriptionFieldLines.isHidden = true
+        menuView.isHidden = false
         filterScrollView.isHidden = true
         filterButton.setImage(UIImage(named: "filter"), for: .normal)
         if descriptionFieldLines.text == "" {
@@ -295,6 +296,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     }
     
     @IBAction func commentClick(_ sender: UIButton) {
+        menuView.isHidden = true
         addToolbar()
         commentBtn.setImage(UIImage(named: "ImagePreVCCommentActive"), for: .normal)
         if descriptionFieldLines.isHidden == true {
