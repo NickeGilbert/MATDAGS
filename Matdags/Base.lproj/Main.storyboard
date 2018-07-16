@@ -357,7 +357,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="729"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="201" id="6mp-ae-b9P" customClass="SearchCell" customModule="Matdags" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="201" id="6mp-ae-b9P" customClass="SearchCell" customModule="Matdags" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="201"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6mp-ae-b9P" id="Tto-Qa-YHJ">
@@ -1254,11 +1254,6 @@
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="Igg-zh-6IO" secondAttribute="trailing" id="rCy-0y-Ugo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="cba-wu-ERG"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -2105,7 +2100,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaD-hG-VUU" userLabel="commentName">
-                                                            <rect key="frame" x="20" y="21" width="364" height="25"/>
+                                                            <rect key="frame" x="20" y="21" width="325" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="CnI-3i-712"/>
                                                             </constraints>
@@ -2114,7 +2109,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBN-gI-jgP" userLabel="commetsText">
-                                                            <rect key="frame" x="20" y="56.666666666666657" width="369" height="123"/>
+                                                            <rect key="frame" x="20" y="56.666666666666657" width="330" height="123"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -2695,13 +2690,6 @@
                             <constraint firstItem="3ws-by-1OO" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="z2W-0u-Y4F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="uJr-hq-MOK"/>
-                                <exclude reference="3ws-by-1OO"/>
-                                <exclude reference="XQz-Jm-hsB"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="ScrollViewHorizSubView" destination="X4Q-qb-Amm" id="ZfP-cz-kbA"/>
@@ -3061,7 +3049,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionFeed" destination="TAp-li-cdH" id="NYa-mG-oL4"/>
-                        <outlet property="logoutButton" destination="VEf-ai-GII" id="8JI-bB-Hdt"/>
+                        <outlet property="logoutButton" destination="dMd-Zv-zGk" id="JgT-w5-nV3"/>
                         <outlet property="settingsOverlayView" destination="MVV-vv-GTK" id="N4f-M3-Azd"/>
                         <outlet property="settingsView" destination="5rY-3X-jiu" id="ZaJ-cw-AUZ"/>
                         <outlet property="settingsViewCloseButton" destination="TUD-wY-vY3" id="ebZ-Pc-yaN"/>
@@ -3114,8 +3102,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="lIt-D9-Es6"/>
         <segue reference="qav-lz-AQ2"/>
-        <segue reference="l1h-Lg-NhA"/>
+        <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
 </document>
