@@ -23,7 +23,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var descriptionLabelSearchSubView: UILabel!
     @IBOutlet weak var noDescriptionTextImageView: UIImageView!
+    @IBOutlet weak var noPicturesImageView: UIImageView!
     
+    @IBOutlet weak var subViewNoImagesLabel: UILabel!
     
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
@@ -65,6 +67,9 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         subviewFollowButton.backgroundColor = followUserBtn
         subviewUnfollowBtn.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
         subviewFollowButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
+        subViewNoImagesLabel.text = "Not one image? Not one?! Oh well, no true foodie yet - to be continued..!"
+        subViewNoImagesLabel.isHidden = true
+        subViewNoImagesLabel.sizeToFit()
 
         subviewFollowButton.layer.cornerRadius = 5
         subviewFollowButton.isHidden = true

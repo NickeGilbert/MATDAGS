@@ -478,8 +478,8 @@
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUZ-Ib-dNi">
                                                 <rect key="frame" x="0.0" y="185" width="355" height="484"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rU-8W-9Hh" userLabel="ScrollCollectionView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rU-8W-9Hh" userLabel="ScrollCollectionView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="484"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9GM-4R-t9x">
                                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="484"/>
@@ -519,11 +519,29 @@
                                                                     <outlet property="delegate" destination="daa-NH-ElQ" id="D2J-2X-VU1"/>
                                                                 </connections>
                                                             </collectionView>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0n3-jG-0Zb">
+                                                                <rect key="frame" x="15" y="0.0" width="325" height="23.333333333333332"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoPictures" translatesAutoresizingMaskIntoConstraints="NO" id="zD4-8Z-UbO">
+                                                                <rect key="frame" x="127" y="73.333333333333314" width="100" height="130"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="5vo-ys-wUt"/>
+                                                                    <constraint firstAttribute="height" constant="130" id="zbd-ok-tkH"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="0n3-jG-0Zb" firstAttribute="leading" secondItem="3rU-8W-9Hh" secondAttribute="leading" constant="15" id="1Bh-eW-eso"/>
                                                             <constraint firstItem="9GM-4R-t9x" firstAttribute="leading" secondItem="3rU-8W-9Hh" secondAttribute="leading" id="B1s-ts-MS7"/>
                                                             <constraint firstItem="9GM-4R-t9x" firstAttribute="top" secondItem="3rU-8W-9Hh" secondAttribute="top" id="EKK-Pj-NMu"/>
+                                                            <constraint firstItem="zD4-8Z-UbO" firstAttribute="centerX" secondItem="3rU-8W-9Hh" secondAttribute="centerX" id="T3H-0Z-hGI"/>
+                                                            <constraint firstItem="zD4-8Z-UbO" firstAttribute="top" secondItem="0n3-jG-0Zb" secondAttribute="bottom" constant="50" id="gsR-zW-Dtf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="0n3-jG-0Zb" secondAttribute="trailing" constant="15" id="hFh-Gl-C5g"/>
                                                             <constraint firstAttribute="bottom" secondItem="9GM-4R-t9x" secondAttribute="bottom" id="jGf-vl-JLw"/>
+                                                            <constraint firstItem="0n3-jG-0Zb" firstAttribute="top" secondItem="3rU-8W-9Hh" secondAttribute="top" id="nNz-mM-Hdk"/>
                                                             <constraint firstAttribute="trailing" secondItem="9GM-4R-t9x" secondAttribute="trailing" id="sJP-du-9Qw"/>
                                                         </constraints>
                                                     </view>
@@ -639,8 +657,10 @@
                         <outlet property="ScrollViewSearchSubView" destination="KUZ-Ib-dNi" id="G2l-0F-2bA"/>
                         <outlet property="descriptionLabelSearchSubView" destination="YIf-hh-WJg" id="vqy-15-47f"/>
                         <outlet property="noDescriptionTextImageView" destination="LT7-4k-vCo" id="j2V-gL-O2Q"/>
+                        <outlet property="noPicturesImageView" destination="zD4-8Z-UbO" id="j60-yf-Mk5"/>
                         <outlet property="pageControl" destination="myc-2Q-bhm" id="GAl-Zl-dYu"/>
                         <outlet property="searchUsersTableView" destination="03B-wQ-ZeK" id="8OD-YG-Kv1"/>
+                        <outlet property="subViewNoImagesLabel" destination="0n3-jG-0Zb" id="hAk-Uq-kI0"/>
                         <outlet property="subview" destination="Ov9-gQ-xAZ" id="JMu-mc-RIm"/>
                         <outlet property="subviewCollectionFeed" destination="9GM-4R-t9x" id="AAT-JT-QK9"/>
                         <outlet property="subviewFollowButton" destination="Il3-Eq-ogL" id="SDS-Ub-WXh"/>
@@ -659,7 +679,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="728" y="1011.576354679803"/>
+            <point key="canvasLocation" x="727.20000000000005" y="1011.576354679803"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="i1r-WW-hF1">
@@ -675,10 +695,17 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FollowHeart" translatesAutoresizingMaskIntoConstraints="NO" id="Mcb-HK-9uB">
+                                <rect key="frame" x="142" y="405.66666666666669" width="90" height="130.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="B2L-2g-Oz5"/>
+                                    <constraint firstAttribute="height" constant="130" id="Qqs-d2-x3R"/>
+                                </constraints>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-U9-wWi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                                 <color key="backgroundColor" red="1" green="0.82842117370000001" blue="0.56450263810000001" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lAa-2o-ouY">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="lAa-2o-ouY">
                                     <size key="itemSize" width="370" height="370"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -828,7 +855,9 @@
                             <constraint firstItem="of9-fs-zpr" firstAttribute="leading" secondItem="46U-GM-woM" secondAttribute="leading" constant="30" id="5ro-7R-lzE"/>
                             <constraint firstItem="aJv-U9-wWi" firstAttribute="top" secondItem="fiA-Do-8Zh" secondAttribute="top" id="Q8q-HW-WRs"/>
                             <constraint firstItem="46U-GM-woM" firstAttribute="bottom" secondItem="of9-fs-zpr" secondAttribute="bottom" constant="333.32999999999998" id="Qmv-Zf-fHw"/>
+                            <constraint firstItem="Mcb-HK-9uB" firstAttribute="centerX" secondItem="fiA-Do-8Zh" secondAttribute="centerX" id="TBa-S3-fyV"/>
                             <constraint firstItem="aJv-U9-wWi" firstAttribute="bottom" secondItem="fiA-Do-8Zh" secondAttribute="bottom" id="VlN-gh-vV0"/>
+                            <constraint firstItem="Mcb-HK-9uB" firstAttribute="top" secondItem="of9-fs-zpr" secondAttribute="bottom" constant="10" id="Vyu-KK-JZl"/>
                             <constraint firstItem="aJv-U9-wWi" firstAttribute="trailing" secondItem="fiA-Do-8Zh" secondAttribute="trailing" id="knH-ok-fRM"/>
                             <constraint firstItem="of9-fs-zpr" firstAttribute="top" secondItem="46U-GM-woM" secondAttribute="top" constant="150" id="nKn-9d-1V1"/>
                             <constraint firstItem="aJv-U9-wWi" firstAttribute="leading" secondItem="fiA-Do-8Zh" secondAttribute="leading" id="zbj-Cn-2OI"/>
@@ -844,6 +873,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="feedCollectionView" destination="aJv-U9-wWi" id="eXe-RT-B8K"/>
+                        <outlet property="zeroImagesImage" destination="Mcb-HK-9uB" id="0T7-KZ-hdL"/>
                         <outlet property="zeroImagesMessage" destination="of9-fs-zpr" id="mGs-77-4B2"/>
                         <segue destination="As2-HR-siM" kind="show" identifier="imagePageSeg" id="jqz-7P-XQE"/>
                     </connections>
@@ -1254,6 +1284,12 @@
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="Igg-zh-6IO" secondAttribute="trailing" id="rCy-0y-Ugo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="7xC-Jy-NIf"/>
+                                <exclude reference="cba-wu-ERG"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -2519,13 +2555,13 @@
                                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4Q-qb-Amm">
-                                                <rect key="frame" x="0.0" y="190" width="355" height="499"/>
+                                                <rect key="frame" x="0.0" y="190" width="355" height="548"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blG-6J-ePS" userLabel="ScrollCollectionView">
                                                         <rect key="frame" x="0.0" y="0.0" width="325" height="548"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="73x-ZL-psa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="499"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="548"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="6Js-dF-h7f">
                                                                     <size key="itemSize" width="101" height="101"/>
@@ -3076,7 +3112,9 @@
         <image name="CameraVCFlashOff" width="70" height="70"/>
         <image name="CameraVCStorage" width="70" height="70"/>
         <image name="CameraVCTakePicture" width="70" height="70"/>
+        <image name="FollowHeart" width="90" height="130"/>
         <image name="Hmmm" width="90" height="130"/>
+        <image name="NoPictures" width="100" height="130"/>
         <image name="SaveButtonUse2Final" width="45" height="45"/>
         <image name="approveCheck" width="45" height="45"/>
         <image name="bakgrund1" width="611" height="1086"/>
@@ -3102,8 +3140,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lIt-D9-Es6"/>
+        <segue reference="jqz-7P-XQE"/>
         <segue reference="qav-lz-AQ2"/>
-        <segue reference="Xnk-uj-Z3I"/>
+        <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
 </document>

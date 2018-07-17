@@ -156,6 +156,16 @@ extension SearchVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        subViewNoImagesLabel.isHidden = true
+        noPicturesImageView.isHidden = true
+        
+        if self.posts.count < 1 {
+            subViewNoImagesLabel.isHidden = false
+            noPicturesImageView.isHidden = false
+        }else{
+            subViewNoImagesLabel.isHidden = true
+            noPicturesImageView.isHidden = true
+        }
         return self.posts.count
     }
     

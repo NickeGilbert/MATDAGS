@@ -10,6 +10,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBOutlet var feedCollectionView: UICollectionView!
     @IBOutlet weak var zeroImagesMessage: UILabel!
+    @IBOutlet weak var zeroImagesImage: UIImageView!
     
     var posts = [Post]()
     var users = [User]()
@@ -29,6 +30,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
         self.zeroImagesMessage.isHidden = true
+        zeroImagesImage.isHidden = true
         
         self.refresher = UIRefreshControl()
         self.feedCollectionView!.alwaysBounceVertical = true
@@ -45,6 +47,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if posts.isEmpty {
             loadData()
             zeroImagesMessage.isHidden = false
+            zeroImagesImage.isHidden = false
         }
     }
     
@@ -98,6 +101,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                         
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true
+                                                    self.zeroImagesImage.isHidden = true
                                                     print("POSTS: ", self.posts)
 
                                                 }
