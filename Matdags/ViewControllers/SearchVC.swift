@@ -26,6 +26,8 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     @IBOutlet weak var noPicturesImageView: UIImageView!
     
     @IBOutlet weak var subViewNoImagesLabel: UILabel!
+    @IBOutlet weak var transperantCloseButton: UIButton!
+    @IBOutlet weak var topSubviewTopConstraint: NSLayoutConstraint!
     
     let searchController = UISearchController(searchResultsController: nil)
     let dispatchGroup = DispatchGroup()
@@ -60,6 +62,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         
         //SubView
         topSubView.isHidden = true
+        topSubviewTopConstraint.constant = view.frame.height
 
         subview.layer.cornerRadius = 10
         subview.clipsToBounds = true
@@ -102,6 +105,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         self.searchController.isActive = false
         topSubView.isHidden = true
+        topSubviewTopConstraint.constant = view.frame.height
     }
 
     
@@ -178,6 +182,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.searchController.searchBar.endEditing(true)
         self.searchController.searchBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
         guard let cell = searchUsersTableView.cellForRow(at: indexPath) as? SearchCell else { return }
         let username = users[indexPath.row]
         let ownUserID = username.uid
@@ -186,6 +191,21 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
 
         self.userId = users[indexPath.row].uid
         self.topSubView.isHidden = false
+        
+        let animations = {
+            self.topSubviewTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+        let completion = { (finished: Bool) in
+//            self.settingsViewCloseButton.backgroundColor = UIColor.black
+            self.transperantCloseButton.alpha = 0.2
+            self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.3,
+                       animations: animations,
+                       completion: completion)
+        
+        
         let userId = users[indexPath.row].uid
         self.subview.isHidden = false
         self.subviewUsername.text = username.alias
@@ -250,6 +270,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         searchBar.text = ""
         searchUsersTableView.reloadData()
         self.topSubView.isHidden = true
+        topSubviewTopConstraint.constant = view.frame.height
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -269,12 +290,14 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             isSearching = false
             users = []
             self.topSubView.isHidden = true
+            self.topSubviewTopConstraint.constant = view.frame.height
             searchUsersTableView.reloadData()
             
         } else {
             isSearching = true
             users = []
             self.topSubView.isHidden = true
+            self.topSubviewTopConstraint.constant = view.frame.height
             searchUsersTableView.reloadData()
             
             filterUsers()

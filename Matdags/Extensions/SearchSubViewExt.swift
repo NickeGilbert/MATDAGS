@@ -12,12 +12,26 @@ import Firebase
 extension SearchVC {
     
     @IBAction func closeSubview(_ sender: Any) {
-        topSubView.isHidden = true
+        
+        let animations = {
+            self.topSubviewTopConstraint.constant = self.view.frame.height
+            self.view.layoutIfNeeded()
+        }
+        let completion = { (finished: Bool) in
+            self.transperantCloseButton.alpha = 0
+            self.view.layoutIfNeeded()
+            self.topSubView.isHidden = true
+        }
+        UIView.animate(withDuration: 0.3,
+                       animations: animations,
+                       completion: completion)
+
         posts.removeAll()
         self.subviewCollectionFeed.reloadData()
         self.subviewProfileImage.image = nil
         self.subviewUsername.text = nil
         self.searchController.searchBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func subviewFollowUser(_ sender: Any) {
@@ -182,7 +196,7 @@ extension SearchVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.view.frame.width/3.5, height: self.view.frame.width/3.5)
+        let size = CGSize(width: self.view.frame.width/3.3, height: self.view.frame.width/3.3)
         return size
     }
     
