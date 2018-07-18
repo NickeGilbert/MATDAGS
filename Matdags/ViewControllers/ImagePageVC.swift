@@ -23,6 +23,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsOverlayView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableViewConstraintH: NSLayoutConstraint!
+    @IBOutlet weak var transperantCloseButton: UIButton!
     
     //Old settings view outlets - cleanup later
     @IBOutlet weak var imagePageSettingsView: UIView!
@@ -44,6 +45,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var subviewCollectionFeed: UICollectionView!
     @IBOutlet weak var subviewFollowButton: UIButton!
     @IBOutlet weak var subviewUnfollowButton: UIButton!
+    @IBOutlet weak var topSubviewTopConstraint: NSLayoutConstraint!
     
     //Settings view outlets
     @IBOutlet weak var deleteThisImageButton: UIButton!
@@ -200,6 +202,25 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         UIView.animate(withDuration: 0.2,
                        animations: animations,
                        completion: completion)
+    }
+    
+    func closeSubView() {
+        self.transperantCloseButton.alpha = 0
+        let animations = {
+            self.topSubviewTopConstraint.constant = self.view.frame.height
+            self.view.layoutIfNeeded()
+        }
+        let completion = { (finished: Bool) in
+            self.topSubView.isHidden = true
+            
+        }
+        UIView.animate(withDuration: 0.25,
+                       animations: animations,
+                       completion: completion)
+    }
+    
+    @IBAction func transperantCloseSubviewAction(_ sender: Any) {
+        closeSubView()
     }
     
     @IBAction func closeSettingsAction(_ sender: Any) {
@@ -463,6 +484,18 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.settingsOverlayView.isHidden = true
                 self.topSubView.isHidden = false
                 self.subviewUsername.text = self.posts[0].alias
+                
+                let animations = {
+                    self.topSubviewTopConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }
+                let completion = { (finished: Bool) in
+                    self.transperantCloseButton.alpha = 0.2
+                    self.view.layoutIfNeeded()
+                }
+                UIView.animate(withDuration: 0.25,
+                               animations: animations,
+                               completion: completion)
 
             })
         }
@@ -675,6 +708,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         subviewFollowButton.isHidden = true
         subviewUnfollowButton.isHidden = true
         vegiIcon.isHidden = true
+        
+        topSubviewTopConstraint.constant = view.frame.height
         topSubView.isHidden = true
         subview.isHidden = false
 //        commentsTextView.delegate = self

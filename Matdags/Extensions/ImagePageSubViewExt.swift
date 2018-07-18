@@ -155,7 +155,7 @@ extension ImagePageVC {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        let size = CGSize(width: view.frame.width/3.5, height: view.frame.width/3.5)
+        let size = CGSize(width: view.frame.width/3.3, height: view.frame.width/3.3)
         return size
     }
 
@@ -181,7 +181,7 @@ extension ImagePageVC {
     }
     
     @IBAction func closeSubview(_ sender: Any) {
-        topSubView.isHidden = true
+        closeSubView()
     }
     
 }
