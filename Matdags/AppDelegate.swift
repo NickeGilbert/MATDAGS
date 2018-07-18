@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             container = UIView()
             container.frame = window.frame
             container.center = window.center
-            container.backgroundColor = UIColor(white: 0, alpha: 0.8)
+            container.backgroundColor = UIColor(white: 0, alpha: 0.4)
             actIdc.frame = CGRect(x: 0, y:0, width: 40, height: 40)
             actIdc.hidesWhenStopped = true
             actIdc.center = CGPoint(x : container.frame.size.width / 2, y : container.frame.size.height / 2 )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakgrund1" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-4F-wMr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="o4i-xj-fzj">
                                 <rect key="frame" x="87.5" y="64" width="200" height="70"/>
@@ -27,26 +27,22 @@
                                     <constraint firstAttribute="height" constant="70" id="wkq-d9-0GQ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Superfoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeK-rO-w5s">
-                                <rect key="frame" x="0.0" y="60" width="375" height="75"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="NkI-Ru-8iG">
+                                <rect key="frame" x="70" y="333" width="234" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="bBe-Y0-j0N"/>
+                                    <constraint firstAttribute="width" constant="234" id="b0U-Ng-IR7"/>
+                                    <constraint firstAttribute="height" constant="66" id="yH1-t2-tsF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="45"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="shadowOffset" width="0.0" height="1"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RkL-4F-wMr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Jh-Es-bnb"/>
                             <constraint firstItem="RkL-4F-wMr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5bj-cn-dwY"/>
                             <constraint firstItem="o4i-xj-fzj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="64" id="Bu6-aA-iL9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WeK-rO-w5s" secondAttribute="trailing" id="LXw-9H-yuS"/>
                             <constraint firstItem="o4i-xj-fzj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="N8B-0I-Epm"/>
-                            <constraint firstItem="WeK-rO-w5s" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="fzR-no-t4v"/>
-                            <constraint firstItem="WeK-rO-w5s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jk8-hK-zBb"/>
+                            <constraint firstItem="NkI-Ru-8iG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bfY-sD-XhR"/>
+                            <constraint firstItem="NkI-Ru-8iG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="iab-Ag-lMz"/>
                             <constraint firstItem="RkL-4F-wMr" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="pK1-zM-yvD"/>
                             <constraint firstItem="RkL-4F-wMr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="wYH-9o-ji7"/>
                         </constraints>
@@ -64,7 +60,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bakgrund1" width="916" height="1629"/>
-        <image name="logoMatdags" width="150" height="45"/>
+        <image name="LogoFinal" width="350" height="100"/>
+        <image name="bakgrund1" width="611" height="1086"/>
+        <image name="logoMatdags" width="100" height="30"/>
     </resources>
 </document>
