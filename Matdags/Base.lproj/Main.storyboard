@@ -1290,12 +1290,6 @@
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="Igg-zh-6IO" secondAttribute="trailing" id="rCy-0y-Ugo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="7xC-Jy-NIf"/>
-                                <exclude reference="cba-wu-ERG"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -3170,8 +3164,8 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
-        <segue reference="Xnk-uj-Z3I"/>
+        <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
 </document>

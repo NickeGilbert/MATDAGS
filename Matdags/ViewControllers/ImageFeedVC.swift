@@ -132,7 +132,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                         }
         }))
         
-        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("closeTitle", comment: "<#T##String#>"), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
@@ -211,7 +211,7 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "Stäng", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("closeTitle", comment: ""), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
