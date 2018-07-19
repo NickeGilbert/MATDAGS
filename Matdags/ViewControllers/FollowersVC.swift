@@ -98,11 +98,12 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     appendPost.vegi = post["vegetarian"] as? Bool ?? false
                                                     appendPost.usersRated = post["usersRated"] as? Int ?? 0
                                                     appendPost.pathProfileImage = post["profileImageURL"] as? String ?? ""
-                                                        
+//                                                    appendPost.commenter = post["comments"] as? Array<Any>
+                                                    
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true
                                                     self.zeroImagesImage.isHidden = true
-                                                    print("POSTS: ", self.posts)
+//                                                    print("POSTS: ", self.posts)
 
                                                 }
                                             }
@@ -134,6 +135,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
         let cachedImages = cell.viewWithTag(1) as? UIImageView
         
+        cell.CellBottomView.layer.cornerRadius = 10
+        cell.CellBottomView.clipsToBounds = true
         cell.imageFeedView.image = nil
         cell.faceImageView.layer.cornerRadius = cell.faceImageView.frame.height / 2
         cell.faceImageView.clipsToBounds = true
@@ -179,12 +182,14 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 }
             }
             cell.usernameLabel.text = self.posts[indexPath.row].alias
+
             cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         }
         
         cell.backgroundColor = UIColor.white
-        cell.bottomView.layer.cornerRadius = 7
-        cell.bottomView.clipsToBounds = true
+//        cell.bottomView.layer.cornerRadius = 7
+//        cell.bottomView.clipsToBounds = true
+
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         
@@ -194,7 +199,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 100)
+//            let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 100)
+        let storleken = CGSize(width: self.view.frame.width - 20, height: self.view.frame.width + 200)
             return storleken
     }
     
