@@ -2737,6 +2737,11 @@
                             <constraint firstItem="3ws-by-1OO" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="z2W-0u-Y4F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3ws-by-1OO"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="ScrollViewHorizSubView" destination="X4Q-qb-Amm" id="ZfP-cz-kbA"/>

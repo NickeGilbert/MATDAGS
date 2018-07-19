@@ -185,10 +185,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     
     @IBAction func openSettingsAction(_ sender: Any) {
-//        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
-//            self.settingsViewTopConstraint.constant = 0
-//            self.view.layoutIfNeeded()
-//        })
         
         let animations = {
             self.settingsViewTopConstraint.constant = 0
@@ -237,7 +233,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
 
     @IBAction func blockUserAction(_ sender: Any) {
-        reportUsers()
+        reportThisUser()
     }
  
     @IBAction func eraseImageAction(_ sender: Any) {
@@ -273,7 +269,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.present(alert, animated: true)
     }
     
-    func sdfjshdfjshdfjhs() {
+    func reportThisUser() {
         let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""),
                                       message: NSLocalizedString("blockUserMessage", comment: ""),
                                       preferredStyle: .alert)
