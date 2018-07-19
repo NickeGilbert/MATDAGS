@@ -222,7 +222,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                 print("access given")
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil)
-                    self.saveButtonOutlet.setImage(UIImage(named: "ImagePreVCSaveActive.png"), for: .normal)
+                    self.saveButtonOutlet.setImage(UIImage(named: "ImagePreVCSaveActive"), for: .normal)
                     UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
                         self.AllowSavePhotoViewTopConstraint.constant = self.view.frame.height
                         self.view.layoutIfNeeded()

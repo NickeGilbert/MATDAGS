@@ -685,7 +685,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3624.8000000000002" y="238.66995073891627"/>
+            <point key="canvasLocation" x="1676" y="1032"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="i1r-WW-hF1">
@@ -1337,7 +1337,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1676" y="1012"/>
+            <point key="canvasLocation" x="732" y="1032"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jyB-PT-LEV">
@@ -1359,7 +1359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcU-iZ-2Ty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2743" y="1311"/>
+            <point key="canvasLocation" x="4140" y="1534"/>
         </scene>
         <!--ImagePreviewVC-->
         <scene sceneID="ard-oB-FFI">
@@ -1717,6 +1717,7 @@
                         <outlet property="filterScrollView" destination="iQc-0R-Jpu" id="hZD-Bl-b7a"/>
                         <outlet property="menuView" destination="sBF-A8-2bW" id="7uz-41-srg"/>
                         <outlet property="photo" destination="cUn-EM-FWZ" id="gZn-oE-St5"/>
+                        <outlet property="saveButtonOutlet" destination="Wha-fx-ceG" id="fde-sg-KuO"/>
                         <outlet property="storageApprovalLabel" destination="uXE-qL-G9v" id="wDG-qU-3Yx"/>
                         <outlet property="storageDescriptionLabel" destination="1qh-8d-uat" id="VFj-rK-ERl"/>
                         <outlet property="storageTitleLabel" destination="e5L-yJ-hrS" id="ATl-rR-sq9"/>
@@ -3164,7 +3165,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
