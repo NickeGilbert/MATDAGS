@@ -15,6 +15,7 @@ class FollowersCell: UICollectionViewCell {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var faceImageView: UIImageView!
     @IBOutlet weak var CellBottomView: UIView!
+    @IBOutlet weak var commentCountLabel: UILabel!
     
     @IBOutlet weak var mySubviewCollectionFeed: UIImageView!
     

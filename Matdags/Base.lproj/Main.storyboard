@@ -748,6 +748,15 @@
                                                                         <constraint firstAttribute="width" constant="35" id="lXU-q0-sxe"/>
                                                                     </constraints>
                                                                 </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0R-Jk-APq">
+                                                                    <rect key="frame" x="60" y="60" width="300" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="30" id="72x-Hv-LNn"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zl-hu-3CA" userLabel="starview">
                                                                     <rect key="frame" x="5" y="15" width="170" height="30"/>
                                                                     <subviews>
@@ -798,28 +807,40 @@
                                                                         <constraint firstAttribute="width" constant="170" id="d5G-5I-Ufc"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0R-Jk-APq">
-                                                                    <rect key="frame" x="60" y="60" width="300" height="30"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iU-fp-lgq">
+                                                                    <rect key="frame" x="325" y="16" width="35" height="35"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="72x-Hv-LNn"/>
+                                                                        <constraint firstAttribute="width" constant="35" id="uOA-M7-SYO"/>
+                                                                        <constraint firstAttribute="height" constant="35" id="yLY-K6-cdf"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="commentUse2Final" translatesAutoresizingMaskIntoConstraints="NO" id="UGz-we-gwU">
+                                                                    <rect key="frame" x="290" y="16" width="35" height="35"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="35" id="N2W-Wk-qSn"/>
+                                                                        <constraint firstAttribute="width" constant="35" id="gnW-14-tBz"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="h0R-Jk-APq" secondAttribute="trailing" constant="10" id="3sh-dz-RE5"/>
                                                                 <constraint firstItem="h0R-Jk-APq" firstAttribute="leading" secondItem="ajt-5P-Cp6" secondAttribute="trailing" constant="10" id="Bl4-iX-tHx"/>
                                                                 <constraint firstItem="3Zl-hu-3CA" firstAttribute="top" secondItem="8qp-3m-wNj" secondAttribute="top" constant="15" id="DJZ-gc-kWy"/>
+                                                                <constraint firstItem="2iU-fp-lgq" firstAttribute="top" secondItem="8qp-3m-wNj" secondAttribute="top" constant="16" id="Mof-f7-9vc"/>
+                                                                <constraint firstItem="2iU-fp-lgq" firstAttribute="leading" secondItem="UGz-we-gwU" secondAttribute="trailing" id="TgG-Ye-cXX"/>
                                                                 <constraint firstItem="UZ6-VW-Cm7" firstAttribute="leading" secondItem="3Zl-hu-3CA" secondAttribute="trailing" constant="5" id="Wy0-nk-HTg"/>
+                                                                <constraint firstAttribute="trailing" secondItem="2iU-fp-lgq" secondAttribute="trailing" constant="10" id="a9y-uV-EHe"/>
                                                                 <constraint firstItem="ajt-5P-Cp6" firstAttribute="top" secondItem="3Zl-hu-3CA" secondAttribute="bottom" constant="10" id="bVZ-PQ-uVr"/>
                                                                 <constraint firstItem="3Zl-hu-3CA" firstAttribute="leading" secondItem="8qp-3m-wNj" secondAttribute="leading" constant="5" id="ecV-in-r6I"/>
                                                                 <constraint firstAttribute="height" constant="135" id="eeE-5N-ENj"/>
                                                                 <constraint firstItem="h0R-Jk-APq" firstAttribute="top" secondItem="3Zl-hu-3CA" secondAttribute="bottom" constant="15" id="hKN-Qn-Bcw"/>
                                                                 <constraint firstItem="UZ6-VW-Cm7" firstAttribute="top" secondItem="8qp-3m-wNj" secondAttribute="top" constant="16" id="hyL-TM-AaB"/>
                                                                 <constraint firstItem="ajt-5P-Cp6" firstAttribute="leading" secondItem="8qp-3m-wNj" secondAttribute="leading" constant="15" id="uJq-jz-Y1A"/>
+                                                                <constraint firstItem="UGz-we-gwU" firstAttribute="top" secondItem="8qp-3m-wNj" secondAttribute="top" constant="16" id="vSJ-1y-T9P"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -845,6 +866,7 @@
                                         <connections>
                                             <outlet property="CellBottomView" destination="8qp-3m-wNj" id="E5l-bO-7SH"/>
                                             <outlet property="bottomView" destination="3Zl-hu-3CA" id="QyN-Nw-t8S"/>
+                                            <outlet property="commentCountLabel" destination="2iU-fp-lgq" id="ffB-sw-rAh"/>
                                             <outlet property="faceImageView" destination="ajt-5P-Cp6" id="wFh-rU-45R"/>
                                             <outlet property="imageFeedView" destination="a0b-Qj-CIY" id="afh-xU-LHe"/>
                                             <outlet property="usernameLabel" destination="h0R-Jk-APq" id="gNi-L7-q1h"/>
@@ -2747,7 +2769,10 @@
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="Z86-Oj-koP"/>
+                                <exclude reference="uJr-hq-MOK"/>
                                 <exclude reference="3ws-by-1OO"/>
+                                <exclude reference="XQz-Jm-hsB"/>
                             </mask>
                         </variation>
                     </view>
