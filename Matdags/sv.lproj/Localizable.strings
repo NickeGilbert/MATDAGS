@@ -7,6 +7,14 @@
 */
 
 //SVENSKA
+//TABBAR
+
+"home" = "Hem";
+"favorite" = "Favoriter";
+"profile" = "Profil";
+"search" = "Sök";
+
+
 //LOGIN VC
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Lösenord";
@@ -43,11 +51,11 @@
 "infoTitle" = "Användardata";
 "infoMessage" = "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter.";
 
-
-
 //SEARCH VC
 "followButton" = "FÖLJ";
 "followingButton" = "FÖLJER";
+"noImageText" = "Inte en ända bild? Inte ens en!? Jaja, ingen riktig foodie än - fortsättning följer..!";
+"noBioText" = "Hepp, ingen information om denna användaren. Hmmm... Mystiskt";
 
 //PROFILE VC
 "followingLabel" = "Följer";
@@ -57,6 +65,10 @@
 "deleteAccountYES" = "JA";
 "deleteAccountNO" = "NEJ";
 "zeroImagesTextLabel" = "Inga bilder att visa än, när du lägger upp bilder kommer de visas här!";
+"settingsLabel" = "Inställningar";
+"changeProfilePictureButton" = "Ändra profilbild";
+"profileBioButton" = "Profil biografi";
+"deleteAccount" = "Radera kontot";
 
 //FOLLOWERSVC
 "zeroImagesTextMessage" = "Foton du tagit och foton från människor du följer visas här!";
@@ -83,6 +95,10 @@
 "userIsBlockedMessage" = "Du kan inte längre sen bilder från denna användaren";
 "userClose" = "Stäng";
 "zeroCommentsLabel" = "Ingen har skrivit en kommentar än, sno förstaplatsen!";
+"settingsLabel" = "Inställningar";
+"blockUser" = "Blockera användaren";
+"reportImage" = "Rapportera bilden";
+"eraseImage" = "Radera bilden";
 
 //IMAGEPRE VC
 "saveImageTitle" = "Hurra!";
@@ -94,6 +110,8 @@
 "logOut" = "Logga ut";
 "closeTitle" = "Stäng";
 "logoutButton" = "Logga ut";
+"vegetarianButton" = "Vegetariskt";
+"settingsLabel" = "Inställningar";
 
 //CAMERA VC
 "useOfCameraTitle" = "Superfoodie's användning av kameran";
@@ -111,3 +129,7 @@
 "denyLabel" = "Absolut inte";
 "approveLabel" = "Absolut!";
 "thanksLabel" = "Tack!";
+"saveLabel" = "Spara";
+"filterLabel" = "Filter";
+"descriptionLabel" = "Beskrivning";
+"vegoLabel" = "Vego";

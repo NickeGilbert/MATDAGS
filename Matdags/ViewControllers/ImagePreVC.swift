@@ -29,6 +29,11 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     @IBOutlet weak var approveLabel: UILabel!
     @IBOutlet weak var thanksLabel: UILabel!
     
+    @IBOutlet weak var saveLabel: UILabel!
+    @IBOutlet weak var vegoLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var filterLabel: UILabel!
+    
     
     var CIFilterNames = ["CIPhotoEffectChrome",
                          "CIPhotoEffectFade",
@@ -56,6 +61,11 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
         storageApprovalLabel.text = NSLocalizedString("storageApprovalLabel", comment: "")
         denyLabel.text = NSLocalizedString("denyLabel", comment: "")
         thanksLabel.text = NSLocalizedString("thanksLabel", comment: "")
+        saveLabel.text = NSLocalizedString("saveLabel", comment: "")
+        filterLabel.text = NSLocalizedString("filterLabel", comment: "")
+        descriptionLabel.text = NSLocalizedString("descriptionLabel", comment: "")
+        vegoLabel.text = NSLocalizedString("vegoLabel", comment: "")
+        
         
         photo.image = self.image
         

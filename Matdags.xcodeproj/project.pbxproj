@@ -65,6 +65,7 @@
 		A4DA9FB820B89FC9006FED91 /* reportUserPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DA9FB720B89FC9006FED91 /* reportUserPosts.swift */; };
 		A4E10DDC1FAF8274001A4F09 /* ImagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E10DDB1FAF8274001A4F09 /* ImagePageVC.swift */; };
 		A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */; };
+		E65DE8382101E5A900F30A17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65DE8372101E5A900F30A17 /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,8 @@
 		A4E643551F98F01B00DC1FD2 /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		A9863A7C97BD19910CA42BF3 /* Pods_Matdags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matdags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2FBC78928FB9B9A2D38EE1 /* Pods-Matdags.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matdags.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Matdags/Pods-Matdags.debug.xcconfig"; sourceTree = "<group>"; };
+		E65DE8362101E40300F30A17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		E65DE8372101E5A900F30A17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +233,7 @@
 				A40BAD2D1FA73BD2007E7BE1 /* Matdags.entitlements */,
 				0A706CBB1F73B70800B0345C /* AppDelegate.swift */,
 				0A706CBF1F73B70800B0345C /* Main.storyboard */,
+				E65DE8372101E5A900F30A17 /* TabBarViewController.swift */,
 				0A706CC41F73B70800B0345C /* LaunchScreen.storyboard */,
 				0A706CC21F73B70800B0345C /* Assets.xcassets */,
 				A42DD9FB1F73DA5800D04740 /* GoogleService-Info.plist */,
@@ -476,6 +480,7 @@
 				A460CC7820A35F5300DBDE23 /* ImagePageText.swift in Sources */,
 				A4E643561F98F01B00DC1FD2 /* FollowersCell.swift in Sources */,
 				A43C3152202646320058ADCE /* LoginAlertText.swift in Sources */,
+				E65DE8382101E5A900F30A17 /* TabBarViewController.swift in Sources */,
 				0ABFCB331F862C340086DE20 /* ProfileVC.swift in Sources */,
 				A485559320176246008F8C1F /* Enums.swift in Sources */,
 				A43C315620264E700058ADCE /* SupportingFile.m in Sources */,
@@ -525,6 +530,7 @@
 			children = (
 				0A706CC01F73B70800B0345C /* Base */,
 				A4B4D85A20D4248100F3A4B8 /* sv */,
+				E65DE8362101E40300F30A17 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -676,7 +682,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
@@ -710,7 +716,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Matdags/Matdags.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7QWGSR322M;
+				DEVELOPMENT_TEAM = 87587NY5AL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",

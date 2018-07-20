@@ -54,6 +54,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
     @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsLabel: UILabel!
     
     
     //Fix views in diffrent views outlets
@@ -106,7 +107,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         clickUITapGestureRecognizer.delegate = self
         settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
         
-        zeroCommentsLabel.text = NSLocalizedString("zeroCommentsLabel", comment: "<#T##String#>")
+        zeroCommentsLabel.text = NSLocalizedString("zeroCommentsLabel", comment: "")
+        settingsLabel.text = NSLocalizedString("settingsLabel", comment: "")
+        blockThisUserButton.setTitle(NSLocalizedString("blockUser", comment: ""), for: .normal)
+        reportThisImageButton.setTitle(NSLocalizedString("reportImage", comment: ""), for: .normal)
+        deleteThisImageButton.setTitle(NSLocalizedString("eraseImage", comment: ""), for: .normal)
+        
         commentsTextView.contentInset = UIEdgeInsetsMake(40, 5, 5, 5)
         bendView.layer.cornerRadius = 10
         bendView.clipsToBounds = true
@@ -271,7 +277,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func reportThisUser() {
         let alert = UIAlertController(title: NSLocalizedString("blockUserTitle", comment: ""),
-                                      message: NSLocalizedString("blockUserMessage", comment: ""),
+                                      message: NSLocalizedString("", comment: ""),
                                       preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("blockUser", comment: ""),

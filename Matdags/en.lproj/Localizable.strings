@@ -7,6 +7,13 @@
 */
 
 //ENGLISH
+//TABBAR
+"home" = "Home";
+"favorite" = "Favorite";
+"profile" = "Profile";
+"search" = "Search";
+
+
 //LOGIN VC
 "emailPlaceholder" = "Email";
 "passwordPlaceholder" = "Password";
@@ -49,6 +56,8 @@
 //SEARCH VC
 "followButton" = "FOLLOW";
 "followingButton" = "FOLLOWING";
+"noImageText" = "Not one image? Not one?! Oh well, no true foodie yet - to be continued..!";
+"noBioText" = "Nupp, no information about this user. Hmmm... Mysterious indeed";
 
 //PROFILE VC
 "followingLabel" = "Following";
@@ -58,6 +67,10 @@
 "deleteAccountYES" = "YES";
 "deleteAccountNO" = "NO";
 "zeroImagesTextLabel" = "No pictures to show yet, every picture you take will be displayed here!";
+"settingsLabel" = "Settings";
+"changeProfilePictureButton" = "Change profile picture";
+"profileBioButton" = "Profile bio";
+"deleteAccount" = "Delete Account";
 
 //FOLLOWERS VC
 "zeroImagesTextMessage" = "Pictures you have taken and pictures from people you are following will be displayed here!";
@@ -78,15 +91,15 @@
 "deleteImageMessage" = "This cannot be undone";
 "delete" = "Remove";
 "blockUserTitle" = "Would you like to block this user?";
-"blockUserMessage" = "Keep in mind that to not abuse this service, it might lead to you getting blocked from this app";
 "blockUser" = "Block";
 "userIsBlockedTitle" = "The user has been blocked";
 "userIsBlockedMessage" = "You will no longer be able to see images from this user";
 "userClose" = "Close";
 "zeroCommentsLabel" = "Nobody have commented yet, steal first place!";
-
-
-
+"settingsLabel" = "Settings";
+"blockUser" = "Block user";
+"reportImage" = "Report image";
+"eraseImage" = "Erase image";
 
 //IMAGEPRE VC
 "saveImageTitle" = "Hurray!";
@@ -98,6 +111,8 @@
 "logOut" = "Log out";
 "closeTitle" = "Close";
 "logoutButton" = "Log out";
+"vegetarianButton" = "Vegetarian";
+"settingsLabel" = "Settings";
 
 //CAMERA VC
 
@@ -117,4 +132,8 @@
 "denyLabel" = "Naah..";
 "approveLabel" = "Sure!";
 "thanksLabel" = "Thanks!";
+"saveLabel" = "Save";
+"filterLabel" = "Filter";
+"descriptionLabel" = "Description";
+"vegoLabel" = "Vego";
 

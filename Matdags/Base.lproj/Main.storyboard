@@ -931,7 +931,7 @@
         <!--TabBarC-->
         <scene sceneID="t4O-Bj-2ec">
             <objects>
-                <tabBarController id="LgI-ON-4hY" userLabel="TabBarC" sceneMemberID="viewController">
+                <tabBarController id="LgI-ON-4hY" userLabel="TabBarC" customClass="TabBarViewController" customModule="Matdags" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ZW2-cD-MAI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1320,6 +1320,11 @@
                             <constraint firstItem="zwZ-zg-AZ4" firstAttribute="trailing" secondItem="Igg-zh-6IO" secondAttribute="trailing" id="rCy-0y-Ugo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cba-wu-ERG"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bgv-3n-cJK" appends="YES" id="Wil-mz-vaF"/>
                             <outletCollection property="gestureRecognizers" destination="jW5-kI-01d" appends="YES" id="ia3-rm-naR"/>
@@ -1332,19 +1337,23 @@
                         <outlet property="ProfileCollectionFeedTopConstraint" destination="7ae-aa-TtC" id="D6Y-8R-oLv"/>
                         <outlet property="backgroundWhiteOutlet" destination="Igg-zh-6IO" id="52Q-TL-tEl"/>
                         <outlet property="bendView" destination="cGd-Q5-HSB" id="mHi-Jb-UGI"/>
+                        <outlet property="changeProfilePictureButton" destination="hjv-fa-C6m" id="4ee-jz-UDG"/>
                         <outlet property="commentsTextView" destination="cT7-SZ-sOd" id="7LP-IY-XEc"/>
                         <outlet property="commentsView" destination="cba-wu-ERG" id="PKi-vY-Wcq"/>
                         <outlet property="commentsViewTopConstraint" destination="nH7-wp-FAJ" id="qfu-3a-PrA"/>
+                        <outlet property="deleteAccountButton" destination="0hu-cX-Gev" id="aXg-Co-7RB"/>
                         <outlet property="descriptionLabel" destination="0xS-wU-DfU" id="wHP-x4-NAw"/>
                         <outlet property="followers" destination="R2M-1M-qIm" id="F3w-Lb-RD7"/>
                         <outlet property="followersLabel" destination="BWv-pV-Ovt" id="rws-PK-ug9"/>
                         <outlet property="following" destination="0pZ-IM-U5X" id="mv9-23-4Vl"/>
                         <outlet property="followingLabel" destination="LgR-jC-Tpn" id="ala-Gv-17o"/>
+                        <outlet property="profileBioButton" destination="pFk-u6-Yi6" id="wKa-YF-azL"/>
                         <outlet property="profileCollectionFeed" destination="ACP-Vh-ap7" id="Oqt-Ld-bWg"/>
                         <outlet property="profileNameLabel" destination="IWr-3y-d8T" id="toA-cT-qS1"/>
                         <outlet property="profilePictureOutlet" destination="Zv7-sa-0uO" id="G9z-ds-Cn4"/>
                         <outlet property="profileSettingsButtonOutlet" destination="5bs-t6-os4" id="huf-iI-9aL"/>
                         <outlet property="scrollVIewOutlet" destination="KET-9F-R12" id="0yS-dI-7e7"/>
+                        <outlet property="settingsLabel" destination="HXM-ab-8in" id="Pw4-0C-Gpj"/>
                         <outlet property="settingsView" destination="7xC-Jy-NIf" id="utQ-Mo-TL1"/>
                         <outlet property="settingsViewCloseButton" destination="CyX-Ki-5G3" id="fCq-dC-j4h"/>
                         <outlet property="settingsViewInner" destination="IlV-6K-DSz" id="vLA-sD-Q00"/>
@@ -1733,6 +1742,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="nWk-yA-OE6"/>
+                                <exclude reference="grF-2O-Nyl"/>
                             </mask>
                         </variation>
                     </view>
@@ -1743,16 +1753,20 @@
                         <outlet property="commentBtn" destination="Dwm-Dz-lPi" id="5VQ-Pf-qmw"/>
                         <outlet property="denyLabel" destination="ZWq-7s-u6D" id="f4v-5P-kSJ"/>
                         <outlet property="descriptionFieldLines" destination="Bl1-iS-nHd" id="2fu-7i-ZV2"/>
+                        <outlet property="descriptionLabel" destination="XdE-8a-snP" id="jzw-UI-Wus"/>
                         <outlet property="filterButton" destination="hBh-Jl-bbp" id="7x8-hP-3td"/>
+                        <outlet property="filterLabel" destination="AGS-AZ-AH1" id="zc7-FL-81g"/>
                         <outlet property="filterScrollView" destination="iQc-0R-Jpu" id="hZD-Bl-b7a"/>
                         <outlet property="menuView" destination="sBF-A8-2bW" id="7uz-41-srg"/>
                         <outlet property="photo" destination="cUn-EM-FWZ" id="gZn-oE-St5"/>
                         <outlet property="saveButtonOutlet" destination="Wha-fx-ceG" id="fde-sg-KuO"/>
+                        <outlet property="saveLabel" destination="XfS-5h-K5J" id="DBn-fN-1Ve"/>
                         <outlet property="storageApprovalLabel" destination="uXE-qL-G9v" id="wDG-qU-3Yx"/>
                         <outlet property="storageDescriptionLabel" destination="1qh-8d-uat" id="VFj-rK-ERl"/>
                         <outlet property="storageTitleLabel" destination="e5L-yJ-hrS" id="ATl-rR-sq9"/>
                         <outlet property="thanksLabel" destination="Ydr-Nk-UDi" id="lMb-S8-Usg"/>
                         <outlet property="vegFood" destination="m3d-i9-TOS" id="rvs-LR-QmU"/>
+                        <outlet property="vegoLabel" destination="boY-kr-Mr1" id="G3d-pF-62V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbv-vd-J5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2767,14 +2781,6 @@
                             <constraint firstItem="3ws-by-1OO" firstAttribute="trailing" secondItem="kbd-fN-5ia" secondAttribute="trailing" id="z2W-0u-Y4F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Z86-Oj-koP"/>
-                                <exclude reference="uJr-hq-MOK"/>
-                                <exclude reference="3ws-by-1OO"/>
-                                <exclude reference="XQz-Jm-hsB"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="ScrollViewHorizSubView" destination="X4Q-qb-Amm" id="ZfP-cz-kbA"/>
@@ -2803,6 +2809,7 @@
                         <outlet property="reportImage" destination="8Z6-bS-EeC" id="VyJ-aL-VOZ"/>
                         <outlet property="reportThisImageButton" destination="G8Y-wI-xNB" id="qof-h0-B1a"/>
                         <outlet property="scrollView" destination="Zs8-gX-2Ep" id="IwG-c6-dwl"/>
+                        <outlet property="settingsLabel" destination="Rpl-Na-cz0" id="zSZ-gz-hCO"/>
                         <outlet property="settingsOverlayView" destination="3ws-by-1OO" id="Ssr-rO-DXC"/>
                         <outlet property="settingsView" destination="Z86-Oj-koP" id="KG7-Hf-Vg8"/>
                         <outlet property="settingsViewCloseButton" destination="s8M-se-Cek" id="FOT-7u-2Tq"/>
@@ -3147,11 +3154,13 @@
                     <connections>
                         <outlet property="collectionFeed" destination="TAp-li-cdH" id="NYa-mG-oL4"/>
                         <outlet property="logoutButton" destination="dMd-Zv-zGk" id="JgT-w5-nV3"/>
+                        <outlet property="settingsLabel" destination="DWl-Ft-yDF" id="Rcw-gM-Hdu"/>
                         <outlet property="settingsOverlayView" destination="MVV-vv-GTK" id="N4f-M3-Azd"/>
                         <outlet property="settingsView" destination="5rY-3X-jiu" id="ZaJ-cw-AUZ"/>
                         <outlet property="settingsViewCloseButton" destination="TUD-wY-vY3" id="ebZ-Pc-yaN"/>
                         <outlet property="settingsViewInner" destination="VK1-jY-PSg" id="Uz3-ut-UIe"/>
                         <outlet property="settingsViewTopConstraint" destination="cDA-ro-ruS" id="Qkl-V3-jlD"/>
+                        <outlet property="vegetarianButton" destination="ThF-1M-xc2" id="rTX-uf-0NI"/>
                         <outlet property="vegiClickButton" destination="Fmn-sb-rkR" id="263-YU-mlV"/>
                         <outlet property="vegiClickImage" destination="WQf-pN-tvI" id="FjI-7Y-cve"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Xnk-uj-Z3I"/>
@@ -3203,7 +3212,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jqz-7P-XQE"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="Pq7-cy-tEF"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>

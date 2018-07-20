@@ -30,6 +30,12 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
     
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
+    @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var changeProfilePictureButton: UIButton!
+    @IBOutlet weak var profileBioButton: UIButton!
+    @IBOutlet weak var deleteAccountButton: UIButton!
+    
+    
     
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
@@ -76,9 +82,13 @@ class ProfileVC: UIViewController , UICollectionViewDelegate, UICollectionViewDa
         profileSettingsButtonOutlet.isHidden = false
         getFollwersCounting()
         
-        zeroImagesTextLabel.text = NSLocalizedString("zeroImagesTextLabel", comment: "<#T##String#>")
+        zeroImagesTextLabel.text = NSLocalizedString("zeroImagesTextLabel", comment: "")
         followingLabel.text = NSLocalizedString("followingLabel", comment: "")
         followersLabel.text = NSLocalizedString("followerLabel", comment: "")
+        settingsLabel.text = NSLocalizedString("settingsLabel", comment: "")
+        changeProfilePictureButton.setTitle(NSLocalizedString("changeProfilePictureButton", comment: ""), for: .normal)
+        profileBioButton.setTitle(NSLocalizedString("profileBioButton", comment: ""), for: .normal)
+        deleteAccountButton.setTitle(NSLocalizedString("deleteAccount", comment: ""), for: .normal)
         
         bendView.layer.cornerRadius = 10
         bendView.clipsToBounds = true

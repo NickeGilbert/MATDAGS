@@ -18,6 +18,10 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var settingsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsViewInner: UIView!
     @IBOutlet weak var settingsViewCloseButton: UIButton!
+    @IBOutlet weak var vegetarianButton: UIButton!
+    @IBOutlet weak var settingsLabel: UILabel!
+    
+    
     
     let dispatchGroup = DispatchGroup()
     var posts = [Post]()
@@ -33,8 +37,11 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         logoutButton.setTitle(NSLocalizedString("logoutButton", comment: ""), for: .normal)
+        vegetarianButton.setTitle(NSLocalizedString("vegetarianButton", comment: ""), for: .normal)
+        settingsLabel.text = NSLocalizedString("settingsLabel", comment: "")
+        
         refresher = UIRefreshControl()
         collectionFeed!.alwaysBounceVertical = true
         refresher.tintColor = UIColor.lightGray

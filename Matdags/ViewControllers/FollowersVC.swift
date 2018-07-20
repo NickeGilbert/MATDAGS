@@ -25,7 +25,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     let alias = Auth.auth().currentUser?.displayName
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")

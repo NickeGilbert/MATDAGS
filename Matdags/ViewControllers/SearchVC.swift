@@ -70,7 +70,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
         subviewFollowButton.backgroundColor = followUserBtn
         subviewUnfollowBtn.setTitle(NSLocalizedString("followingButton", comment: ""), for: .normal)
         subviewFollowButton.setTitle(NSLocalizedString("followButton", comment: ""), for: .normal)
-        subViewNoImagesLabel.text = "Not one image? Not one?! Oh well, no true foodie yet - to be continued..!"
+        subViewNoImagesLabel.text = NSLocalizedString("noImageText", comment: "")
         subViewNoImagesLabel.isHidden = true
         subViewNoImagesLabel.sizeToFit()
 
@@ -241,7 +241,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITa
             self.descriptionLabelSearchSubView.textColor = UIColor.darkGray
             self.noDescriptionTextImageView.isHidden = true
         }else{
-            self.descriptionLabelSearchSubView.text = "Nupp, no information about this user. Hmmm.. Mysterious indeed"
+            self.descriptionLabelSearchSubView.text = NSLocalizedString("noBioText", comment: "")
             self.descriptionLabelSearchSubView.textColor = UIColor.lightGray
             self.noDescriptionTextImageView.isHidden = false
         }
