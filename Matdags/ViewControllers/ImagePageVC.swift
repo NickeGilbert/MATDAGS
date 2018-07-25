@@ -341,6 +341,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //            print(snapshot.value!)
             self.comments.append(snapshot)
             self.commentsTableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: 0)], with: .automatic)
+            
+            let size = self.comments.count
+            print("HOW MANY COMMENTS", size)
         })
         commentsRef.observe(.childRemoved, with: { (snapshot) -> Void in
             let index = self.indexOfMessage(snapshot)

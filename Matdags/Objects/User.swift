@@ -19,4 +19,5 @@ class User: NSObject {
     var vegi : Bool?
     var stars : Int!
     var userDescription : String!
+    var comments : String!
 }

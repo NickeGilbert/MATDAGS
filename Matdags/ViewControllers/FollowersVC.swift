@@ -17,7 +17,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var seguePostID : String!
     var following = [String]()
     var refresher : UIRefreshControl!
-    
+
     let dispatchGroup = DispatchGroup()
     
     let uid = Auth.auth().currentUser?.uid
@@ -39,9 +39,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.feedCollectionView!.addSubview(refresher)
         self.feedCollectionView.delegate = self
         self.feedCollectionView.dataSource = self
-
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         if posts.isEmpty {
             loadData()
