@@ -80,6 +80,8 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                             }
                             self.following.append(Auth.auth().currentUser!.uid)
                             
+                            var commentCount : Int = 0
+                            
                             ref.child("Posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
                                 if let postsSnap = snap.value as? [String: AnyObject] {
                                     for (_,post) in postsSnap {
@@ -96,6 +98,17 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     appendPost.vegi = post["vegetarian"] as? Bool ?? false
                                                     appendPost.usersRated = post["usersRated"] as? Int ?? 0
                                                     appendPost.pathProfileImage = post["profileImageURL"] as? String ?? ""
+                                                    let hejSnap = post["comments"] as? [String: AnyObject]
+                                                    if hejSnap != nil {
+                                                        for (_,post) in hejSnap! {
+                                                            commentCount += 1
+                                                        }
+                                                        appendPost.commenter = "\(commentCount)"
+                                                        print(appendPost.commenter!)
+                                                        commentCount = 0
+                                                    }
+                                                    
+//                                                    print("hejsnapp: ", hejSnap)
 //                                                    appendPost.commenter = post["comments"] as? Array<Any>
                                                     
                                                     self.posts.append(appendPost)
@@ -182,6 +195,10 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             cell.usernameLabel.text = self.posts[indexPath.row].alias
 
             cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
+        }
+        
+        if self.posts[indexPath.row].commenter != nil {
+            cell.commentCountLabel.text = self.posts[indexPath.row].commenter
         }
         
         cell.backgroundColor = UIColor.white
