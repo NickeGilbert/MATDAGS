@@ -28,7 +28,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
 
         zeroImagesMessage.text = NSLocalizedString("zeroImagesTextMessage", comment: "")
-        self.zeroImagesMessage.isHidden = true
+        zeroImagesMessage.isHidden = true
         zeroImagesImage.isHidden = true
         
         self.refresher = UIRefreshControl()
@@ -43,9 +43,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
     override func viewDidAppear(_ animated: Bool) {
         if posts.isEmpty {
-            loadData()
+            print("EMPTY POSTS")
+            feedCollectionView.backgroundColor = UIColor.clear
             zeroImagesMessage.isHidden = false
             zeroImagesImage.isHidden = false
+            loadData()
         }
     }
     
@@ -110,10 +112,11 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                     
 //                                                    print("hejsnapp: ", hejSnap)
 //                                                    appendPost.commenter = post["comments"] as? Array<Any>
-                                                    
+                                                    print("Print :", appendPost )
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true
                                                     self.zeroImagesImage.isHidden = true
+                                                    self.feedCollectionView.backgroundColor = UIColor.groupTableViewBackground
 //                                                    print("POSTS: ", self.posts)
 
                                                 }

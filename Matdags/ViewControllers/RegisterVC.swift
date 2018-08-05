@@ -77,8 +77,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 }
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     print("\n BEKRÄFTELSEMAIL  \n")
-                    
+                self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
                 self.createAlertRegister(title: validateTitle, message: validateMessage)
+                
                 }
             }
         })
