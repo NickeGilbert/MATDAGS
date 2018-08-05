@@ -77,9 +77,17 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 }
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     print("\n BEKRÄFTELSEMAIL  \n")
-                self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
-                self.createAlertRegister(title: validateTitle, message: validateMessage)
-                
+
+                    func alertShit(title:String, message:String) {
+                        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{ action in
+                            self.performSegue(withIdentifier: "loggaIn", sender: AnyObject.self)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                    alertShit(title: validateTitle, message: validateMessage)
+
                 }
             }
         })
