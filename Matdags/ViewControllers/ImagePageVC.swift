@@ -123,7 +123,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         settingsViewInner.clipsToBounds = true
         myImageView.isUserInteractionEnabled = false
         
-        bendViewInnerTopConstraint.constant = myImageViewBack.frame.height - 13
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         self.view.addGestureRecognizer(panGesture)
         closeButton.layer.zPosition = 1
@@ -169,6 +169,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         comments.removeAll()
         commentsRef = commentsRef.child("Posts/\(seguePostID!)/comments")
         observeComments()
+//        print("my image view back hight: ", myImageViewBack.frame.height)
+//        
+//        bendViewInnerTopConstraint.constant = myImageViewBack.frame.height - 70
         
         //Sort UI before fetching data.
         sortBeforeFetch()
