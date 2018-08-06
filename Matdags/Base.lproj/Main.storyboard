@@ -1197,31 +1197,17 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gck-JG-M5b" userLabel="devider">
-                                                <rect key="frame" x="100" y="71" width="175" height="1"/>
+                                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gck-JG-M5b" userLabel="devider">
+                                                <rect key="frame" x="90" y="71" width="195" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="3ru-Oi-xeH"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hu-cX-Gev">
-                                                <rect key="frame" x="112.66666666666669" y="207" width="150" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="es3-9c-FFl"/>
-                                                    <constraint firstAttribute="height" constant="30" id="p7X-8n-VGM"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <state key="normal" title="Delete Accout">
-                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="deleteAccountAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Pa8-Aa-wNe"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjv-fa-C6m">
-                                                <rect key="frame" x="100" y="97" width="175" height="30"/>
+                                                <rect key="frame" x="100" y="97" width="175" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Dc2-KL-LLA"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Dc2-KL-LLA"/>
                                                     <constraint firstAttribute="width" constant="175" id="XR1-hK-gE3"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -1233,10 +1219,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFk-u6-Yi6">
-                                                <rect key="frame" x="113" y="152" width="150" height="30"/>
+                                                <rect key="frame" x="113" y="147" width="150" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="I25-4e-tyI"/>
-                                                    <constraint firstAttribute="height" constant="30" id="uzM-3U-3Iw"/>
+                                                    <constraint firstAttribute="height" constant="40" id="uzM-3U-3Iw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <state key="normal" title="Profile bio">
@@ -1246,21 +1232,35 @@
                                                     <action selector="profileDescriptionAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="dEF-0c-Ama"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hu-cX-Gev">
+                                                <rect key="frame" x="112.66666666666669" y="197" width="150" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="es3-9c-FFl"/>
+                                                    <constraint firstAttribute="height" constant="40" id="p7X-8n-VGM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <state key="normal" title="Delete Accout">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteAccountAction:" destination="1IS-aF-BiB" eventType="touchUpInside" id="Pa8-Aa-wNe"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="HXM-ab-8in" firstAttribute="top" secondItem="IlV-6K-DSz" secondAttribute="top" constant="25" id="48z-V8-WMc"/>
                                             <constraint firstItem="pFk-u6-Yi6" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="7my-oQ-gUV"/>
-                                            <constraint firstItem="Gck-JG-M5b" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" constant="100" id="CQD-M6-5RH"/>
-                                            <constraint firstItem="pFk-u6-Yi6" firstAttribute="top" secondItem="hjv-fa-C6m" secondAttribute="bottom" constant="25" id="J3b-8u-IIz"/>
+                                            <constraint firstItem="Gck-JG-M5b" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" constant="90" id="CQD-M6-5RH"/>
+                                            <constraint firstItem="pFk-u6-Yi6" firstAttribute="top" secondItem="hjv-fa-C6m" secondAttribute="bottom" constant="10" id="J3b-8u-IIz"/>
                                             <constraint firstAttribute="height" constant="400" id="MZT-c8-Uey"/>
                                             <constraint firstItem="HXM-ab-8in" firstAttribute="leading" secondItem="IlV-6K-DSz" secondAttribute="leading" id="NVx-NU-P7s"/>
                                             <constraint firstItem="Gck-JG-M5b" firstAttribute="top" secondItem="HXM-ab-8in" secondAttribute="bottom" constant="25" id="YnO-wl-2YE"/>
                                             <constraint firstItem="hjv-fa-C6m" firstAttribute="top" secondItem="Gck-JG-M5b" secondAttribute="bottom" constant="25" id="YpY-3L-Xyq"/>
                                             <constraint firstAttribute="trailing" secondItem="HXM-ab-8in" secondAttribute="trailing" id="coe-xe-twr"/>
                                             <constraint firstItem="hjv-fa-C6m" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="feT-nB-CwU"/>
-                                            <constraint firstItem="0hu-cX-Gev" firstAttribute="top" secondItem="pFk-u6-Yi6" secondAttribute="bottom" constant="25" id="n3v-TB-vo0"/>
-                                            <constraint firstAttribute="trailing" secondItem="Gck-JG-M5b" secondAttribute="trailing" constant="100" id="rJh-oA-6e6"/>
+                                            <constraint firstItem="0hu-cX-Gev" firstAttribute="top" secondItem="pFk-u6-Yi6" secondAttribute="bottom" constant="10" id="n3v-TB-vo0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gck-JG-M5b" secondAttribute="trailing" constant="90" id="rJh-oA-6e6"/>
                                             <constraint firstItem="0hu-cX-Gev" firstAttribute="centerX" secondItem="IlV-6K-DSz" secondAttribute="centerX" id="sEd-tD-sbi"/>
                                         </constraints>
                                     </view>
@@ -2332,18 +2332,18 @@
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Roo-Sc-IDl" userLabel="devider">
-                                                <rect key="frame" x="100" y="71" width="175" height="1"/>
+                                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Roo-Sc-IDl" userLabel="devider">
+                                                <rect key="frame" x="90" y="71" width="195" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="S0c-Mo-ABN"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8Y-wI-xNB" userLabel="ReportImage">
-                                                <rect key="frame" x="113" y="97" width="150" height="50"/>
+                                                <rect key="frame" x="113" y="97" width="150" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="RHz-P6-max"/>
-                                                    <constraint firstAttribute="height" constant="50" id="wdr-XY-BRk"/>
+                                                    <constraint firstAttribute="height" constant="40" id="wdr-XY-BRk"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <state key="normal" title="Report image">
@@ -2354,10 +2354,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGr-ru-goL" userLabel="BlockUser">
-                                                <rect key="frame" x="113" y="147" width="150" height="50"/>
+                                                <rect key="frame" x="113" y="147" width="150" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="A9i-7P-v7l"/>
-                                                    <constraint firstAttribute="height" constant="50" id="kLB-Ul-RY5"/>
+                                                    <constraint firstAttribute="height" constant="40" id="kLB-Ul-RY5"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <state key="normal" title="Block user">
@@ -2368,9 +2368,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjO-3I-hTR" userLabel="EraseImage">
-                                                <rect key="frame" x="113" y="197" width="150" height="50"/>
+                                                <rect key="frame" x="113" y="197" width="150" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="AZM-hz-KEE"/>
+                                                    <constraint firstAttribute="height" constant="40" id="AZM-hz-KEE"/>
                                                     <constraint firstAttribute="width" constant="150" id="abC-iM-f8D"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -2386,17 +2386,17 @@
                                         <constraints>
                                             <constraint firstItem="Rpl-Na-cz0" firstAttribute="top" secondItem="c0T-WF-KNX" secondAttribute="top" constant="25" id="CY4-WZ-ZL4"/>
                                             <constraint firstItem="G8Y-wI-xNB" firstAttribute="top" secondItem="Roo-Sc-IDl" secondAttribute="bottom" constant="25" id="Fid-dA-Zz3"/>
-                                            <constraint firstItem="Roo-Sc-IDl" firstAttribute="leading" secondItem="c0T-WF-KNX" secondAttribute="leading" constant="100" id="MRI-nS-wzs"/>
+                                            <constraint firstItem="Roo-Sc-IDl" firstAttribute="leading" secondItem="c0T-WF-KNX" secondAttribute="leading" constant="90" id="MRI-nS-wzs"/>
                                             <constraint firstAttribute="trailing" secondItem="Rpl-Na-cz0" secondAttribute="trailing" id="SXC-M9-gC1"/>
                                             <constraint firstItem="wjO-3I-hTR" firstAttribute="centerX" secondItem="c0T-WF-KNX" secondAttribute="centerX" id="VTo-tV-67f"/>
                                             <constraint firstItem="dGr-ru-goL" firstAttribute="centerX" secondItem="c0T-WF-KNX" secondAttribute="centerX" id="W8A-wt-faH"/>
                                             <constraint firstAttribute="height" constant="400" id="ZaI-5l-8Rh"/>
                                             <constraint firstItem="G8Y-wI-xNB" firstAttribute="centerX" secondItem="c0T-WF-KNX" secondAttribute="centerX" id="bfI-NJ-2PZ"/>
                                             <constraint firstItem="Rpl-Na-cz0" firstAttribute="leading" secondItem="c0T-WF-KNX" secondAttribute="leading" id="bk5-YS-AO1"/>
-                                            <constraint firstItem="wjO-3I-hTR" firstAttribute="top" secondItem="dGr-ru-goL" secondAttribute="bottom" id="ciO-3Z-vDB"/>
-                                            <constraint firstItem="dGr-ru-goL" firstAttribute="top" secondItem="G8Y-wI-xNB" secondAttribute="bottom" id="hZN-Aw-WeA"/>
+                                            <constraint firstItem="wjO-3I-hTR" firstAttribute="top" secondItem="dGr-ru-goL" secondAttribute="bottom" constant="10" id="ciO-3Z-vDB"/>
+                                            <constraint firstItem="dGr-ru-goL" firstAttribute="top" secondItem="G8Y-wI-xNB" secondAttribute="bottom" constant="10" id="hZN-Aw-WeA"/>
                                             <constraint firstItem="Roo-Sc-IDl" firstAttribute="top" secondItem="Rpl-Na-cz0" secondAttribute="bottom" constant="25" id="zEh-Hw-bqF"/>
-                                            <constraint firstAttribute="trailing" secondItem="Roo-Sc-IDl" secondAttribute="trailing" constant="100" id="zYP-xW-aPt"/>
+                                            <constraint firstAttribute="trailing" secondItem="Roo-Sc-IDl" secondAttribute="trailing" constant="90" id="zYP-xW-aPt"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2975,8 +2975,8 @@
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9u-0G-ZtX" userLabel="devider">
-                                                <rect key="frame" x="100" y="71" width="175" height="1"/>
+                                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9u-0G-ZtX" userLabel="devider">
+                                                <rect key="frame" x="90" y="71" width="195" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="gXh-ws-Df9"/>
@@ -2997,7 +2997,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMd-Zv-zGk">
-                                                <rect key="frame" x="113" y="162" width="150" height="40"/>
+                                                <rect key="frame" x="113" y="147" width="150" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="5rI-Cd-6Ea"/>
                                                     <constraint firstAttribute="width" constant="150" id="umZ-4h-BuO"/>
@@ -3012,16 +3012,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="dMd-Zv-zGk" firstAttribute="top" secondItem="ThF-1M-xc2" secondAttribute="bottom" constant="25" id="1kV-qZ-kDh"/>
+                                            <constraint firstItem="dMd-Zv-zGk" firstAttribute="top" secondItem="ThF-1M-xc2" secondAttribute="bottom" constant="10" id="1kV-qZ-kDh"/>
                                             <constraint firstItem="DWl-Ft-yDF" firstAttribute="leading" secondItem="VK1-jY-PSg" secondAttribute="leading" id="Hqn-Ub-r8k"/>
                                             <constraint firstItem="L9u-0G-ZtX" firstAttribute="top" secondItem="DWl-Ft-yDF" secondAttribute="bottom" constant="25" id="b1O-nX-aav"/>
                                             <constraint firstAttribute="height" constant="400" id="csF-Bt-yF3"/>
                                             <constraint firstItem="ThF-1M-xc2" firstAttribute="top" secondItem="L9u-0G-ZtX" secondAttribute="bottom" constant="25" id="eyp-Vy-ZUm"/>
-                                            <constraint firstItem="L9u-0G-ZtX" firstAttribute="leading" secondItem="VK1-jY-PSg" secondAttribute="leading" constant="100" id="hCM-WK-dfo"/>
+                                            <constraint firstItem="L9u-0G-ZtX" firstAttribute="leading" secondItem="VK1-jY-PSg" secondAttribute="leading" constant="90" id="hCM-WK-dfo"/>
                                             <constraint firstItem="dMd-Zv-zGk" firstAttribute="centerX" secondItem="VK1-jY-PSg" secondAttribute="centerX" id="kuq-mN-c2l"/>
                                             <constraint firstItem="DWl-Ft-yDF" firstAttribute="top" secondItem="VK1-jY-PSg" secondAttribute="top" constant="25" id="pMA-XX-E7P"/>
                                             <constraint firstAttribute="trailing" secondItem="DWl-Ft-yDF" secondAttribute="trailing" id="sQe-oc-k4N"/>
-                                            <constraint firstAttribute="trailing" secondItem="L9u-0G-ZtX" secondAttribute="trailing" constant="100" id="wb7-5S-Qr4"/>
+                                            <constraint firstAttribute="trailing" secondItem="L9u-0G-ZtX" secondAttribute="trailing" constant="90" id="wb7-5S-Qr4"/>
                                             <constraint firstItem="ThF-1M-xc2" firstAttribute="centerX" secondItem="VK1-jY-PSg" secondAttribute="centerX" id="xVH-5h-HPg"/>
                                         </constraints>
                                     </view>
@@ -3216,7 +3216,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="lIt-D9-Es6"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="Xnk-uj-Z3I"/>
     </inferredMetricsTieBreakers>
