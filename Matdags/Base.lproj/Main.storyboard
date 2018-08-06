@@ -2149,9 +2149,9 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBd-xM-Mhx" userLabel="divider">
-                                        <rect key="frame" x="50" y="624.66666666666663" width="275" height="1"/>
-                                        <color key="backgroundColor" white="0.67000000000000004" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBd-xM-Mhx" userLabel="divider">
+                                        <rect key="frame" x="90" y="624.66666666666663" width="195" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Hlb-1Z-lxo"/>
                                         </constraints>
@@ -2259,7 +2259,7 @@
                                     <constraint firstAttribute="bottom" secondItem="x5X-cE-ELd" secondAttribute="bottom" constant="-100" id="CF0-by-yp8"/>
                                     <constraint firstItem="Ym5-8W-WRJ" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" id="Dwo-eG-egn"/>
                                     <constraint firstItem="dVT-hk-Pe4" firstAttribute="leading" secondItem="K6Q-8d-FO2" secondAttribute="trailing" constant="15" id="E5t-Vu-2Jg"/>
-                                    <constraint firstAttribute="trailing" secondItem="KBd-xM-Mhx" secondAttribute="trailing" constant="50" id="Fhh-qa-fYd"/>
+                                    <constraint firstAttribute="trailing" secondItem="KBd-xM-Mhx" secondAttribute="trailing" constant="90" id="Fhh-qa-fYd"/>
                                     <constraint firstItem="Et4-X9-KV7" firstAttribute="top" secondItem="jx8-5r-HBK" secondAttribute="bottom" constant="20" id="GIv-C6-xtg"/>
                                     <constraint firstAttribute="bottom" secondItem="f17-TZ-hP6" secondAttribute="bottom" id="GZ8-FV-5ox"/>
                                     <constraint firstItem="pQX-xi-eA3" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" id="Gcm-Mt-2mi"/>
@@ -2274,7 +2274,7 @@
                                     <constraint firstItem="YFQ-ed-rU3" firstAttribute="top" secondItem="SYW-pk-e4K" secondAttribute="bottom" constant="15" id="Vuy-21-Tct"/>
                                     <constraint firstAttribute="trailing" secondItem="YFQ-ed-rU3" secondAttribute="trailing" constant="15" id="Wbf-1j-Bhd"/>
                                     <constraint firstAttribute="trailing" secondItem="npm-aC-Faw" secondAttribute="trailing" constant="50" id="WfS-6k-VeV"/>
-                                    <constraint firstItem="KBd-xM-Mhx" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" constant="50" id="Wu6-Cg-T0f"/>
+                                    <constraint firstItem="KBd-xM-Mhx" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" constant="90" id="Wu6-Cg-T0f"/>
                                     <constraint firstItem="Qgk-9n-uLP" firstAttribute="leading" secondItem="Zs8-gX-2Ep" secondAttribute="leading" id="cbL-Be-BZ7"/>
                                     <constraint firstItem="Qgk-9n-uLP" firstAttribute="width" secondItem="Zs8-gX-2Ep" secondAttribute="width" id="dcs-Xv-Zqa"/>
                                     <constraint firstItem="npm-aC-Faw" firstAttribute="top" secondItem="KBd-xM-Mhx" secondAttribute="bottom" constant="25" id="egQ-uF-nR9"/>
@@ -2781,7 +2781,10 @@
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="Z86-Oj-koP"/>
+                                <exclude reference="uJr-hq-MOK"/>
                                 <exclude reference="3ws-by-1OO"/>
+                                <exclude reference="XQz-Jm-hsB"/>
                             </mask>
                         </variation>
                     </view>
