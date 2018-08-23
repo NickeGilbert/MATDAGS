@@ -11,6 +11,7 @@ import UIKit
 class SearchSubViewCell: UICollectionViewCell {
     
     @IBOutlet weak var mySubviewCollectionFeed: UIImageView!
+    @IBOutlet weak var mySubviewCollectionVegiIcon: UIImageView!
     
     var userID: String!
     var alias: String!

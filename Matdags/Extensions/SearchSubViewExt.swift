@@ -187,6 +187,10 @@ extension SearchVC {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "subviewCell", for: indexPath) as! SearchSubViewCell
         cell.mySubviewCollectionFeed.image = nil
         cell.layer.cornerRadius = 5
+        cell.mySubviewCollectionVegiIcon.isHidden = true
+        if self.posts[indexPath.row].vegi == true {
+            cell.mySubviewCollectionVegiIcon.isHidden = false
+        }
         if self.posts[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.posts[indexPath.row].pathToImage256)
         } else {

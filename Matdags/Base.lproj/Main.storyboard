@@ -502,6 +502,13 @@
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFM-SP-eXs">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="102" height="95"/>
                                                                                 </imageView>
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-q3-FNm">
+                                                                                    <rect key="frame" x="85" y="2" width="15" height="15"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="15" id="Ea6-Nh-sW4"/>
+                                                                                        <constraint firstAttribute="width" constant="15" id="aFy-2V-Loi"/>
+                                                                                    </constraints>
+                                                                                </imageView>
                                                                             </subviews>
                                                                         </view>
                                                                         <constraints>
@@ -509,9 +516,12 @@
                                                                             <constraint firstItem="aFM-SP-eXs" firstAttribute="top" secondItem="28f-04-Tfq" secondAttribute="top" id="bIx-XE-5w7"/>
                                                                             <constraint firstAttribute="trailing" secondItem="aFM-SP-eXs" secondAttribute="trailing" id="iEz-5H-Rio"/>
                                                                             <constraint firstAttribute="bottom" secondItem="aFM-SP-eXs" secondAttribute="bottom" id="oEh-dT-WbC"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="K2M-q3-FNm" secondAttribute="trailing" constant="2" id="tRO-72-tiY"/>
+                                                                            <constraint firstItem="K2M-q3-FNm" firstAttribute="top" secondItem="28f-04-Tfq" secondAttribute="top" constant="2" id="uYE-IP-yls"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <outlet property="mySubviewCollectionFeed" destination="aFM-SP-eXs" id="nv8-mi-p1y"/>
+                                                                            <outlet property="mySubviewCollectionVegiIcon" destination="K2M-q3-FNm" id="4hw-5m-lNY"/>
                                                                         </connections>
                                                                     </collectionViewCell>
                                                                 </cells>
@@ -685,7 +695,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1676" y="1032"/>
+            <point key="canvasLocation" x="1676" y="1031.5270935960591"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="i1r-WW-hF1">
@@ -3226,7 +3236,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l83-R4-lZS"/>
+        <segue reference="nf1-k1-DaM"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
