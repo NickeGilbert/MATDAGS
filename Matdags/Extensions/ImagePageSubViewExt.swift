@@ -165,8 +165,33 @@ extension ImagePageVC {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        self.performSegue(withIdentifier: "imagePageSubviewSegue", sender: indexPath)
+ 
+        
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(ImagePageVC.handleLongPress))
+        
+        self.subviewCollectionFeed.addGestureRecognizer(tap)
 
     }
+    
+    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
+        if gesture.state != .ended {
+            return
+        }
+        
+        let p = gesture.location(in: self.subviewCollectionFeed)
+        
+        if let indexPath = self.subviewCollectionFeed.indexPathForItem(at: p) {
+            // get the cell at indexPath (the one you long pressed)
+            let cell = self.subviewCollectionFeed.cellForItem(at: indexPath)
+            // do stuff with the cell
+        } else {
+            print("couldn't find index path")
+        }
+    }
+    
+    
+    
+    
 //
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if(segue.identifier == "imagePageSubviewSegue")
@@ -189,4 +214,31 @@ extension ImagePageVC {
         closeSubView()
     }
     
+
+    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) {
+
+        print("GONA HANDLE ZOOM")
+
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

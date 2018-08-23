@@ -68,8 +68,6 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var noDiscriptionTextImageView: UIImageView!
     @IBOutlet weak var settingsViewCloseButton: UIButton!
     
-    
-    
     let dispatchGroup = DispatchGroup()
     let uid = Auth.auth().currentUser!.uid
     let db = Database.database()
@@ -102,6 +100,12 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(ImagePageVC.handleLongPress))
+        self.subviewCollectionFeed.addGestureRecognizer(tap)
+        
+        
+        
         
         let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         clickUITapGestureRecognizer.delegate = self
