@@ -142,6 +142,10 @@ extension ImagePageVC {
         let cachedImages = cell.viewWithTag(1) as? UIImageView
         cell.layer.cornerRadius = 5
         cell.mySubviewCollectionFeed.image = nil
+        cell.mySubviewCollectionVegiIcon.isHidden = true
+        if self.subviews[indexPath.row].vegi == true {
+            cell.mySubviewCollectionVegiIcon.isHidden = false
+        }
         if self.subviews[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
         } else {
@@ -159,10 +163,11 @@ extension ImagePageVC {
         return size
     }
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        self.performSegue(withIdentifier: "imagePageSubviewSegue", sender: indexPath)
-//    }
-//    
+
+    }
+//
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if(segue.identifier == "imagePageSubviewSegue")
 //        {

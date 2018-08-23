@@ -10,4 +10,6 @@ import UIKit
 
 class ImagePageSubViewCell: UICollectionViewCell {
     @IBOutlet weak var mySubviewCollectionFeed: UIImageView!
+    @IBOutlet weak var mySubviewCollectionVegiIcon: UIImageView!
+    
 }

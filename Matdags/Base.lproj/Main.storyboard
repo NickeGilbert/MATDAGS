@@ -354,7 +354,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="201" id="6mp-ae-b9P" customClass="SearchCell" customModule="Matdags" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="201" id="6mp-ae-b9P" customClass="SearchCell" customModule="Matdags" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="201"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6mp-ae-b9P" id="Tto-Qa-YHJ">
@@ -1322,6 +1322,7 @@
                         <viewLayoutGuide key="safeArea" id="zwZ-zg-AZ4"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="7xC-Jy-NIf"/>
                                 <exclude reference="cba-wu-ERG"/>
                             </mask>
                         </variation>
@@ -1770,7 +1771,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbv-vd-J5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3480.8000000000002" y="-531.2807881773399"/>
+            <point key="canvasLocation" x="3342" y="-531"/>
         </scene>
         <!--CameraVC-->
         <scene sceneID="hhI-Ad-C3A">
@@ -1985,7 +1986,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVl-jS-qfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2652" y="-531.2807881773399"/>
+            <point key="canvasLocation" x="2500" y="-531"/>
         </scene>
         <!--ImagePageVC-->
         <scene sceneID="NVu-FX-m50">
@@ -2180,7 +2181,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaD-hG-VUU" userLabel="commentName">
-                                                            <rect key="frame" x="20" y="21" width="364" height="25"/>
+                                                            <rect key="frame" x="20" y="21" width="325" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="CnI-3i-712"/>
                                                             </constraints>
@@ -2189,7 +2190,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBN-gI-jgP" userLabel="commetsText">
-                                                            <rect key="frame" x="20" y="56.666666666666657" width="369" height="123"/>
+                                                            <rect key="frame" x="20" y="56.666666666666657" width="330" height="123"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -2629,8 +2630,15 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
-                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jYL-M7-9hO">
+                                                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jYL-M7-9hO">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                                                                </imageView>
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="iBe-uO-nXp">
+                                                                                    <rect key="frame" x="84" y="2" width="15" height="15"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="15" id="f3E-Tq-P7g"/>
+                                                                                        <constraint firstAttribute="width" constant="15" id="nLt-z8-6OY"/>
+                                                                                    </constraints>
                                                                                 </imageView>
                                                                             </subviews>
                                                                         </view>
@@ -2638,11 +2646,14 @@
                                                                         <constraints>
                                                                             <constraint firstItem="jYL-M7-9hO" firstAttribute="top" secondItem="leg-z7-SU6" secondAttribute="top" id="Lje-MG-jMW"/>
                                                                             <constraint firstAttribute="trailing" secondItem="jYL-M7-9hO" secondAttribute="trailing" id="Na9-m7-gV2"/>
+                                                                            <constraint firstItem="iBe-uO-nXp" firstAttribute="top" secondItem="leg-z7-SU6" secondAttribute="top" constant="2" id="PWT-BX-Xu5"/>
                                                                             <constraint firstItem="jYL-M7-9hO" firstAttribute="leading" secondItem="leg-z7-SU6" secondAttribute="leading" id="RWi-vH-Vox"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="iBe-uO-nXp" secondAttribute="trailing" constant="2" id="Y5j-Hq-pQF"/>
                                                                             <constraint firstAttribute="bottom" secondItem="jYL-M7-9hO" secondAttribute="bottom" id="otI-uC-eIP"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <outlet property="mySubviewCollectionFeed" destination="jYL-M7-9hO" id="EKS-H0-aDX"/>
+                                                                            <outlet property="mySubviewCollectionVegiIcon" destination="iBe-uO-nXp" id="nbl-ET-ZBb"/>
                                                                         </connections>
                                                                     </collectionViewCell>
                                                                 </cells>
@@ -2781,10 +2792,7 @@
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Z86-Oj-koP"/>
-                                <exclude reference="uJr-hq-MOK"/>
                                 <exclude reference="3ws-by-1OO"/>
-                                <exclude reference="XQz-Jm-hsB"/>
                             </mask>
                         </variation>
                     </view>
@@ -2845,7 +2853,7 @@
                 <swipeGestureRecognizer direction="right" id="fNl-2b-zWO"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2ex-fQ-t2R"/>
             </objects>
-            <point key="canvasLocation" x="2500" y="239"/>
+            <point key="canvasLocation" x="2500" y="238.66995073891627"/>
         </scene>
         <!--ImageFeedVC-->
         <scene sceneID="Yks-g0-8TY">
@@ -3218,7 +3226,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="l83-R4-lZS"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
