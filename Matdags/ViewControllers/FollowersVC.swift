@@ -106,13 +106,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                                                             commentCount += 1
                                                         }
                                                         appendPost.commenter = "\(commentCount)"
-                                                        print(appendPost.commenter!)
+//                                                        print(appendPost.commenter!)
                                                         commentCount = 0
                                                     }
                                                     
 //                                                    print("hejsnapp: ", hejSnap)
 //                                                    appendPost.commenter = post["comments"] as? Array<Any>
-                                                    print("Print :", appendPost )
+//                                                    print("Print :", appendPost )
                                                     self.posts.append(appendPost)
                                                     self.zeroImagesMessage.isHidden = true
                                                     self.zeroImagesImage.isHidden = true
@@ -199,14 +199,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
             cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         }
-        
+//        print("KOMMENTARER", self.posts[indexPath.row].commenter)
+        cell.commentCountLabel.text = "0"
         if self.posts[indexPath.row].commenter != nil {
             cell.commentCountLabel.text = self.posts[indexPath.row].commenter
         }
         
         cell.backgroundColor = UIColor.white
-//        cell.bottomView.layer.cornerRadius = 7
-//        cell.bottomView.clipsToBounds = true
 
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
