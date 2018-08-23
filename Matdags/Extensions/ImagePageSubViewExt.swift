@@ -149,12 +149,15 @@ extension ImagePageVC {
         }
         if self.subviews[indexPath.row].pathToImage256 != nil {
             cell.mySubviewCollectionFeed.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
+            
         } else {
             print("\n \(indexPath.row) could not return a value for pathToImage256 from Post. \n")
         }
         
         cachedImages?.sd_setImage(with: URL(string: self.subviews[indexPath.row].pathToImage256))
         
+        myImage = self.subviews[indexPath.row].pathToImage256
+        print(myImage, "HELLO")
         return cell
     }
     
@@ -175,21 +178,17 @@ extension ImagePageVC {
         }
         
         let p = gesture.location(in: self.subviewCollectionFeed)
-        
         if let indexPath = self.subviewCollectionFeed.indexPathForItem(at: p) {
-            // get the cell at indexPath (the one you long pressed)]
-            
             let cell = self.subviewCollectionFeed.cellForItem(at: indexPath)
             
-           //Do stuff with the cell
-
             startingFrame = cell?.superview?.convert((cell?.frame)!, to: nil)
-            print(startingFrame, "FRAME")
             
             let zoomImageView = UIImageView(frame: startingFrame!)
             zoomImageView.backgroundColor = UIColor.red
-            //Här ska det läggas till vilken bild som ska visas
-          //  zoomImageView.image = imageView?.image
+            
+            //Här ska det läggas till vilken bild som ska visas men jag vet inte hur jag ska göra det
+          //  zoomImageView.image = myImage as? UIImage
+            print(zoomImageView, "WIERD")
             
             
             zoomImageView.isUserInteractionEnabled = true
@@ -212,50 +211,10 @@ extension ImagePageVC {
                     zoomImageView.center = keyWindow.center
                 }, completion: nil)
             }
-            
-            
-            
         } else {
             print("couldn't find index path")
         }
     }
-    
-//    func performZoomForImageView(startingImageView: UIImageView) {
-//        print("Performing zoom")
-//
-//        let startinFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
-//        print(startinFrame, "FRAME")
-//
-//        let zoomImageView = UIImageView(frame: startinFrame!)
-//        //  zoomImageView.backgroundColor = UIColor.red
-//        //  zoomImageView.image = imageView?.image
-//
-//        if let keyWindow = UIApplication.shared.keyWindow {
-//            keyWindow.addSubview(zoomImageView)
-//
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-//                zoomImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: startinFrame!.height)
-//
-//                zoomImageView.center = keyWindow.center
-//            }, completion: nil)
-//        }
-//    }
-    
-    
-    
-    
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "imagePageSubviewSegue")
-//        {
-//            let selectedCell = sender as! NSIndexPath
-//            let selectedRow = selectedCell.row
-//            let imagePage = segue.destination as! ImagePageVC
-//            imagePage.seguePostID = self.posts[selectedRow].postID
-//        } else {
-//            print("\n Segue with identifier (imagePage) not found. \n")
-//        }
-//    }
     
     @IBAction func closeCommentButton(_ sender: UIButton) {
         commentsView.isHidden = true
@@ -268,8 +227,8 @@ extension ImagePageVC {
     
     @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
         if let zoomOutImageView = tapGesture.view {
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
-                
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 zoomOutImageView.frame = self.startingFrame!
                 self.blackBackgroundView?.alpha = 0
             }, completion: { (completed) in
@@ -278,6 +237,23 @@ extension ImagePageVC {
         }
     }
 
+    
+    
+    
+    
+    
+    //
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if(segue.identifier == "imagePageSubviewSegue")
+    //        {
+    //            let selectedCell = sender as! NSIndexPath
+    //            let selectedRow = selectedCell.row
+    //            let imagePage = segue.destination as! ImagePageVC
+    //            imagePage.seguePostID = self.posts[selectedRow].postID
+    //        } else {
+    //            print("\n Segue with identifier (imagePage) not found. \n")
+    //        }
+    //    }
 }
 
 

@@ -97,6 +97,8 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var startingFrame : CGRect?
     var blackBackgroundView : UIView?
     
+    var myImage : String?
+    
     public var minimumVelocityToHide = 1500 as CGFloat
     public var minimumScreenRatioToHide = 0.5 as CGFloat
     public var animationDuration = 0.2 as TimeInterval
