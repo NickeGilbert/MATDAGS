@@ -141,7 +141,7 @@ extension ImagePageVC {
                 for button in self.starButtons {
                     for i in 0...self.starsHighlighted-1 {
                         if button.tag <= i {
-                            button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                            button.setImage(#imageLiteral(resourceName: "YellowStarUSE"), for: .normal)
                         }
                     }
                 }
@@ -155,10 +155,10 @@ extension ImagePageVC {
         print(starsHighlighted)
         
         for button in starButtons {
-            button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "GrayStarUSE"), for: .normal)
             
             if button.tag <= starsHighlighted-1 {
-                button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                button.setImage(#imageLiteral(resourceName: "YellowStarUSE"), for: .normal)
             }
         }
     }
