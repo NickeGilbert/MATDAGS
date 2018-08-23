@@ -35,7 +35,7 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.feedCollectionView!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.lightGray
         self.refresher.attributedTitle = NSAttributedString(string: "Hello")
-        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.refresher.addTarget(self, action: #selector(loadDataRefresh), for: .valueChanged)
         self.feedCollectionView!.addSubview(refresher)
         self.feedCollectionView.delegate = self
         self.feedCollectionView.dataSource = self
@@ -56,6 +56,16 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.posts.sort(by: {$0.date > $1.date})
             self.feedCollectionView.reloadData()
             self.stopRefresher()
+        }
+        
+    }
+    
+    @objc func loadDataRefresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+            self.feedCollectionView.backgroundColor = UIColor.clear
+            self.zeroImagesMessage.isHidden = false
+            self.zeroImagesImage.isHidden = false
+            self.loadData()
         }
     }
     
