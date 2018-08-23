@@ -94,6 +94,9 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var checkBlockedUsers = [String]()
     var myBlockedUsers = [String]()
     
+    var startingFrame : CGRect?
+    var blackBackgroundView : UIView?
+    
     public var minimumVelocityToHide = 1500 as CGFloat
     public var minimumScreenRatioToHide = 0.5 as CGFloat
     public var animationDuration = 0.2 as TimeInterval
@@ -101,7 +104,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap = UILongPressGestureRecognizer(target: self, action: #selector(ImagePageVC.handleLongPress))
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(ImagePageVC.handlePress))
         self.subviewCollectionFeed.addGestureRecognizer(tap)
         
         

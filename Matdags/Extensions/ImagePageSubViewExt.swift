@@ -139,6 +139,7 @@ extension ImagePageVC {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePageSubviewCell", for: indexPath) as! ImagePageSubViewCell
         
+        
         let cachedImages = cell.viewWithTag(1) as? UIImageView
         cell.layer.cornerRadius = 5
         cell.mySubviewCollectionFeed.image = nil
@@ -164,16 +165,11 @@ extension ImagePageVC {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "imagePageSubviewSegue", sender: indexPath)
- 
-        
-        let tap = UILongPressGestureRecognizer(target: self, action: #selector(ImagePageVC.handleLongPress))
-        
-        self.subviewCollectionFeed.addGestureRecognizer(tap)
+//                self.performSegue(withIdentifier: "imagePageSubviewSegue", sender: indexPath)
 
     }
     
-    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
+    @objc func handlePress(gesture : UITapGestureRecognizer!) {
         if gesture.state != .ended {
             return
         }
@@ -181,13 +177,69 @@ extension ImagePageVC {
         let p = gesture.location(in: self.subviewCollectionFeed)
         
         if let indexPath = self.subviewCollectionFeed.indexPathForItem(at: p) {
-            // get the cell at indexPath (the one you long pressed)
+            // get the cell at indexPath (the one you long pressed)]
+            
             let cell = self.subviewCollectionFeed.cellForItem(at: indexPath)
-            // do stuff with the cell
+            
+           //Do stuff with the cell
+
+            startingFrame = cell?.superview?.convert((cell?.frame)!, to: nil)
+            print(startingFrame, "FRAME")
+            
+            let zoomImageView = UIImageView(frame: startingFrame!)
+            zoomImageView.backgroundColor = UIColor.red
+            //Här ska det läggas till vilken bild som ska visas
+          //  zoomImageView.image = imageView?.image
+            
+            
+            zoomImageView.isUserInteractionEnabled = true
+            zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+            
+            if let keyWindow = UIApplication.shared.keyWindow {
+                blackBackgroundView = UIView(frame: keyWindow.frame)
+                blackBackgroundView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                blackBackgroundView?.alpha = 0
+                keyWindow.addSubview(blackBackgroundView!)
+                
+                keyWindow.addSubview(zoomImageView)
+                
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                    self.blackBackgroundView?.alpha = 0.75
+                    let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
+                    
+                    zoomImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
+                    
+                    zoomImageView.center = keyWindow.center
+                }, completion: nil)
+            }
+            
+            
+            
         } else {
             print("couldn't find index path")
         }
     }
+    
+//    func performZoomForImageView(startingImageView: UIImageView) {
+//        print("Performing zoom")
+//
+//        let startinFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
+//        print(startinFrame, "FRAME")
+//
+//        let zoomImageView = UIImageView(frame: startinFrame!)
+//        //  zoomImageView.backgroundColor = UIColor.red
+//        //  zoomImageView.image = imageView?.image
+//
+//        if let keyWindow = UIApplication.shared.keyWindow {
+//            keyWindow.addSubview(zoomImageView)
+//
+//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+//                zoomImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: startinFrame!.height)
+//
+//                zoomImageView.center = keyWindow.center
+//            }, completion: nil)
+//        }
+//    }
     
     
     
@@ -214,13 +266,18 @@ extension ImagePageVC {
         closeSubView()
     }
     
-
-    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) {
-
-        print("GONA HANDLE ZOOM")
-
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
+        if let zoomOutImageView = tapGesture.view {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                
+                zoomOutImageView.frame = self.startingFrame!
+                self.blackBackgroundView?.alpha = 0
+            }, completion: { (completed) in
+                
+            })
+        }
     }
-    
+
 }
 
 
