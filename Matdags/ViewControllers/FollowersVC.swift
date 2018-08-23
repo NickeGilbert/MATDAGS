@@ -192,13 +192,13 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let usersrated = self.posts[indexPath.row].usersRated
             if rating != nil {
                 for button in cell.starButtonArray {
-                    button.setImage(#imageLiteral(resourceName: "emptystar30"), for: .normal)
+                    button.setImage(#imageLiteral(resourceName: "GrayStarUSE"), for: .normal)
                     if Int(rating!) > 0 {
                         if Int(usersrated!) > 0 {
                             let a = rating! / usersrated!
                             for i in 0...Int(a)-1 {
                                 if button.tag <= i {
-                                    button.setImage(#imageLiteral(resourceName: "fullstar30"), for: .normal)
+                                    button.setImage(#imageLiteral(resourceName: "YellowStarUSE"), for: .normal)
                                 }
                             }
                         }
@@ -209,7 +209,6 @@ class FollowersVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
             cachedImages?.sd_setImage(with: URL(string: self.posts[indexPath.row].pathToImage))
         }
-//        print("KOMMENTARER", self.posts[indexPath.row].commenter)
         cell.commentCountLabel.text = "0"
         if self.posts[indexPath.row].commenter != nil {
             cell.commentCountLabel.text = self.posts[indexPath.row].commenter

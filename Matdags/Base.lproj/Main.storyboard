@@ -775,38 +775,68 @@
                                                                             <subviews>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-Lz-sNa" userLabel="StarButton1">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                                                    <state key="normal" image="emptystar30">
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="30" id="3po-Tx-EdP"/>
+                                                                                        <constraint firstAttribute="width" constant="30" id="JBy-ct-4d3"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="GrayStarUSE">
                                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     </state>
                                                                                 </button>
                                                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-OH-qWi" userLabel="StarButton2">
                                                                                     <rect key="frame" x="30" y="0.0" width="30" height="30"/>
-                                                                                    <state key="normal" image="emptystar30">
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="30" id="2Qg-Zv-i6l"/>
+                                                                                        <constraint firstAttribute="height" constant="30" id="HkT-Lq-6MX"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="GrayStarUSE">
                                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     </state>
                                                                                 </button>
                                                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzy-oO-Ign" userLabel="StarButton3">
                                                                                     <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                                                                    <state key="normal" image="emptystar30">
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="30" id="H6p-04-Clk"/>
+                                                                                        <constraint firstAttribute="height" constant="30" id="ip1-qY-uZT"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="GrayStarUSE">
                                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     </state>
                                                                                 </button>
                                                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v55-NH-lwd" userLabel="StarButton4">
                                                                                     <rect key="frame" x="90" y="0.0" width="30" height="30"/>
-                                                                                    <state key="normal" image="emptystar30">
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="30" id="6WV-9Y-xIB"/>
+                                                                                        <constraint firstAttribute="height" constant="30" id="Lvw-Qs-ms2"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="GrayStarUSE">
                                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     </state>
                                                                                 </button>
                                                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zx-yP-U6e" userLabel="StarButton5">
                                                                                     <rect key="frame" x="120" y="0.0" width="30" height="30"/>
-                                                                                    <state key="normal" image="emptystar30">
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="30" id="70b-Jd-Prk"/>
+                                                                                        <constraint firstAttribute="height" constant="30" id="Qi5-Ko-wF8"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="GrayStarUSE">
                                                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     </state>
                                                                                 </button>
                                                                             </subviews>
                                                                             <constraints>
+                                                                                <constraint firstItem="G0p-OH-qWi" firstAttribute="top" secondItem="EEi-u7-Xpj" secondAttribute="top" id="1kg-hF-IKy"/>
+                                                                                <constraint firstItem="v55-NH-lwd" firstAttribute="top" secondItem="EEi-u7-Xpj" secondAttribute="top" id="89e-18-O1v"/>
+                                                                                <constraint firstItem="v55-NH-lwd" firstAttribute="leading" secondItem="Zzy-oO-Ign" secondAttribute="trailing" id="B7y-pU-dIY"/>
+                                                                                <constraint firstItem="3YF-Lz-sNa" firstAttribute="leading" secondItem="EEi-u7-Xpj" secondAttribute="leading" id="Dgu-FA-DpT"/>
+                                                                                <constraint firstItem="7Zx-yP-U6e" firstAttribute="leading" secondItem="v55-NH-lwd" secondAttribute="trailing" id="F0f-ms-m4s"/>
+                                                                                <constraint firstItem="Zzy-oO-Ign" firstAttribute="leading" secondItem="G0p-OH-qWi" secondAttribute="trailing" id="N9E-Su-Shy"/>
+                                                                                <constraint firstItem="3YF-Lz-sNa" firstAttribute="top" secondItem="EEi-u7-Xpj" secondAttribute="top" id="WbN-SJ-kEO"/>
+                                                                                <constraint firstItem="G0p-OH-qWi" firstAttribute="leading" secondItem="3YF-Lz-sNa" secondAttribute="trailing" id="bEg-43-GM7"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="elP-ag-7Nk"/>
+                                                                                <constraint firstItem="7Zx-yP-U6e" firstAttribute="top" secondItem="EEi-u7-Xpj" secondAttribute="top" id="jWb-Yu-LuN"/>
                                                                                 <constraint firstAttribute="width" constant="150" id="o9K-5J-GLu"/>
+                                                                                <constraint firstItem="Zzy-oO-Ign" firstAttribute="top" secondItem="EEi-u7-Xpj" secondAttribute="top" id="wo2-nH-vqZ"/>
                                                                             </constraints>
                                                                         </stackView>
                                                                     </subviews>
@@ -2035,6 +2065,13 @@
                                         <rect key="frame" x="0.0" y="469" width="375" height="376.66666666666674"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQX-xi-eA3" userLabel="bendViewInner">
+                                        <rect key="frame" x="0.0" y="453" width="375" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="oGg-gx-Lse"/>
+                                        </constraints>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegButton50" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-hk-Pe4">
                                         <rect key="frame" x="180" y="480" width="30" height="30"/>
                                         <constraints>
@@ -2045,45 +2082,65 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="K6Q-8d-FO2" userLabel="StarStack">
                                         <rect key="frame" x="15" y="479" width="150" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5k9-at-ZR9" userLabel="star1">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5k9-at-ZR9" userLabel="star1">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="emptystar30">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="Eoc-hY-dTo"/>
+                                                    <constraint firstAttribute="height" constant="30" id="ZU3-Od-eYI"/>
+                                                </constraints>
+                                                <state key="normal" image="GrayStarUSE">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="1uT-Yg-JPn"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noh-zZ-PvY" userLabel="star2">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noh-zZ-PvY" userLabel="star2">
                                                 <rect key="frame" x="31" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="emptystar30">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="dXm-zs-B6k"/>
+                                                    <constraint firstAttribute="height" constant="30" id="dih-1D-lKW"/>
+                                                </constraints>
+                                                <state key="normal" image="GrayStarUSE">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="s7i-bI-8nS"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khE-OO-ToV" userLabel="star3">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khE-OO-ToV" userLabel="star3">
                                                 <rect key="frame" x="62" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="emptystar30">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Jxv-8o-AsA"/>
+                                                    <constraint firstAttribute="width" constant="30" id="Kap-Nd-JY3"/>
+                                                </constraints>
+                                                <state key="normal" image="GrayStarUSE">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="f1t-Bc-VO7"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUx-kd-fnZ" userLabel="star4">
-                                                <rect key="frame" x="93" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="emptystar30">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUx-kd-fnZ" userLabel="star4">
+                                                <rect key="frame" x="93" y="0.0" width="26" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="axI-wm-pQW"/>
+                                                    <constraint firstAttribute="width" constant="30" id="euP-KN-t6T"/>
+                                                </constraints>
+                                                <state key="normal" image="GrayStarUSE">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="starButtonsTapped:" destination="As2-HR-siM" eventType="touchUpInside" id="evD-0v-Epc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-Em-2k4" userLabel="star5">
-                                                <rect key="frame" x="124" y="0.0" width="26" height="30"/>
-                                                <state key="normal" image="emptystar30">
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4m-Em-2k4" userLabel="star5">
+                                                <rect key="frame" x="120" y="0.0" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="TIN-DB-UzV"/>
+                                                    <constraint firstAttribute="height" constant="30" id="eNe-FS-b7p"/>
+                                                </constraints>
+                                                <state key="normal" image="GrayStarUSE">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -2093,7 +2150,17 @@
                                         </subviews>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="5k9-at-ZR9" firstAttribute="leading" secondItem="K6Q-8d-FO2" secondAttribute="leading" id="4nl-lO-kxG"/>
+                                            <constraint firstItem="khE-OO-ToV" firstAttribute="top" secondItem="K6Q-8d-FO2" secondAttribute="top" id="938-Ox-8Tc"/>
+                                            <constraint firstItem="5k9-at-ZR9" firstAttribute="top" secondItem="K6Q-8d-FO2" secondAttribute="top" id="J6g-u1-PEF"/>
+                                            <constraint firstItem="o4m-Em-2k4" firstAttribute="top" secondItem="K6Q-8d-FO2" secondAttribute="top" id="YDu-lP-ywJ"/>
+                                            <constraint firstItem="noh-zZ-PvY" firstAttribute="top" secondItem="K6Q-8d-FO2" secondAttribute="top" id="cBd-UV-g6R"/>
                                             <constraint firstAttribute="height" constant="30" id="ehD-3S-3K9"/>
+                                            <constraint firstItem="o4m-Em-2k4" firstAttribute="leading" secondItem="MUx-kd-fnZ" secondAttribute="trailing" id="hXj-va-R7C"/>
+                                            <constraint firstItem="MUx-kd-fnZ" firstAttribute="top" secondItem="K6Q-8d-FO2" secondAttribute="top" id="mXA-uA-jtJ"/>
+                                            <constraint firstItem="noh-zZ-PvY" firstAttribute="leading" secondItem="5k9-at-ZR9" secondAttribute="trailing" id="sSu-nl-SKE"/>
+                                            <constraint firstItem="MUx-kd-fnZ" firstAttribute="leading" secondItem="khE-OO-ToV" secondAttribute="trailing" id="ukw-Ys-MbA"/>
+                                            <constraint firstItem="khE-OO-ToV" firstAttribute="leading" secondItem="noh-zZ-PvY" secondAttribute="trailing" id="xKG-ng-GCG"/>
                                             <constraint firstAttribute="width" constant="150" id="xfw-Td-4Xy"/>
                                         </constraints>
                                         <connections>
@@ -2251,13 +2318,6 @@
                                             <constraint firstAttribute="height" constant="35" id="ylp-JU-fX2"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQX-xi-eA3" userLabel="bendViewInner">
-                                        <rect key="frame" x="0.0" y="453" width="375" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="oGg-gx-Lse"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="f17-TZ-hP6" firstAttribute="top" secondItem="KBd-xM-Mhx" secondAttribute="bottom" constant="20" id="0II-RX-JSu"/>
@@ -2802,7 +2862,10 @@
                         <viewLayoutGuide key="safeArea" id="kbd-fN-5ia"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="Z86-Oj-koP"/>
+                                <exclude reference="uJr-hq-MOK"/>
                                 <exclude reference="3ws-by-1OO"/>
+                                <exclude reference="XQz-Jm-hsB"/>
                             </mask>
                         </variation>
                     </view>
@@ -3206,6 +3269,7 @@
         <image name="CameraVCStorage" width="70" height="70"/>
         <image name="CameraVCTakePicture" width="70" height="70"/>
         <image name="FollowHeart" width="90" height="130"/>
+        <image name="GrayStarUSE" width="45" height="45"/>
         <image name="Hmmm" width="90" height="130"/>
         <image name="LogoFinal" width="350" height="100"/>
         <image name="LogoFinal115x35" width="115" height="35"/>
@@ -3217,7 +3281,6 @@
         <image name="closeUse2Final" width="45" height="45"/>
         <image name="commentUse2Final" width="45" height="45"/>
         <image name="declineCheck" width="45" height="45"/>
-        <image name="emptystar30" width="30" height="30"/>
         <image name="favoriterButton2Final" width="45" height="45"/>
         <image name="filterUse2Final" width="45" height="45"/>
         <image name="homeButton2Final" width="45" height="45"/>
@@ -3236,7 +3299,7 @@
         <image name="vegButtonUseSettings2Final" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nf1-k1-DaM"/>
+        <segue reference="jqz-7P-XQE"/>
         <segue reference="qav-lz-AQ2"/>
         <segue reference="1uw-Wz-lgf"/>
     </inferredMetricsTieBreakers>
