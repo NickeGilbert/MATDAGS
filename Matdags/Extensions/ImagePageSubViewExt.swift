@@ -273,7 +273,7 @@ extension ImagePageVC {
                 zoomOutImageView.frame = self.startingFrame!
                 self.blackBackgroundView?.alpha = 0
             }, completion: { (completed) in
-                
+                zoomOutImageView.removeFromSuperview()
             })
         }
     }
