@@ -156,8 +156,8 @@ extension ImagePageVC {
         
         cachedImages?.sd_setImage(with: URL(string: self.subviews[indexPath.row].pathToImage256))
         
-        myImage = self.subviews[indexPath.row].pathToImage256
-        print(myImage, "HELLO")
+      //  myImage = self.subviews[indexPath.row].pathToImage256
+     //   print(myImage, "HELLO")
         return cell
     }
     
@@ -187,7 +187,7 @@ extension ImagePageVC {
             zoomImageView.backgroundColor = UIColor.red
             
             //Här ska det läggas till vilken bild som ska visas men jag vet inte hur jag ska göra det
-          //  zoomImageView.image = myImage as? UIImage
+            //zoomImageView.image = zoomedSubviewImage?.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
             print(zoomImageView, "WIERD")
             
             

@@ -97,7 +97,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var startingFrame : CGRect?
     var blackBackgroundView : UIView?
     
-    var myImage : String?
+    var zoomedSubviewImage : UIImageView?
     
     public var minimumVelocityToHide = 1500 as CGFloat
     public var minimumScreenRatioToHide = 0.5 as CGFloat
@@ -108,10 +108,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         let tap = UILongPressGestureRecognizer(target: self, action: #selector(ImagePageVC.handlePress))
         self.subviewCollectionFeed.addGestureRecognizer(tap)
-        
-        
-        
-        
+   
         let clickUITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onSelect(_:)))
         clickUITapGestureRecognizer.delegate = self
         settingsOverlayView?.addGestureRecognizer(clickUITapGestureRecognizer)
