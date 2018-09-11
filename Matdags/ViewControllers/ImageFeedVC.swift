@@ -21,9 +21,6 @@ class ImageFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var vegetarianButton: UIButton!
     @IBOutlet weak var settingsLabel: UILabel!
     
-    
-    
-    let dispatchGroup = DispatchGroup()
     var posts = [Post]()
     var refresher : UIRefreshControl!
     var cellCounter : Int = 0

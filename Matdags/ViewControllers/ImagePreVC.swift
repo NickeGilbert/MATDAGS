@@ -46,6 +46,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     var vegFoodBool : Bool = false
     var commentBool : Bool = false
     var hiddenTextfield = true
+    var currentFilter = -1
     
     //CIFilter Stuff
     let context = CIContext()
@@ -135,26 +136,32 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     }
     
     @objc func previewImageButtonClicked(sender: UIButton) {
-        photo.image = self.image!
-        
-        let coreImage = CIImage(image: photo.image!)
-        let filter = CIFilter(name: "\(CIFilterNames[sender.tag])")
-        filter!.setDefaults()
-        filter!.setValue(coreImage, forKey: kCIInputImageKey)
-        let filteredImageData = filter?.value(forKey: kCIOutputImageKey) as! CIImage
-        let filteredImageRef = context.createCGImage(filteredImageData, from: filteredImageData.extent)
-        let imageForPhoto = UIImage(cgImage: filteredImageRef!, scale: photo.image!.scale, orientation: photo.image!.imageOrientation)
-        
-        photo.image = imageForPhoto
-        
+        print("\nSender: \(sender.tag)")
+        print("\nCurrent filter: \(currentFilter)")
+        if sender.tag == currentFilter {
+            photo.image = self.image
+            currentFilter = -1
+        }  else {
+            currentFilter = sender.tag
+            photo.image = self.image!
+            
+            let coreImage = CIImage(image: photo.image!)
+            let filter = CIFilter(name: "\(CIFilterNames[sender.tag])")
+            filter!.setDefaults()
+            filter!.setValue(coreImage, forKey: kCIInputImageKey)
+            let filteredImageData = filter?.value(forKey: kCIOutputImageKey) as! CIImage
+            let filteredImageRef = context.createCGImage(filteredImageData, from: filteredImageData.extent)
+            let imageForPhoto = UIImage(cgImage: filteredImageRef!, scale: photo.image!.scale, orientation: photo.image!.imageOrientation)
+            
+            photo.image = imageForPhoto
+        }
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         descriptionFieldLines.isHidden = true
         if descriptionFieldLines.text == "" {
             commentBtn.setImage(UIImage(named: "commentButton50"), for: .normal)
-        }else{
-
         }
         return true
     }
@@ -162,12 +169,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let text = textField.text!
-//        let maxLength = text.count + string.count - range.length
-//        return maxLength <= 10
-//    }
     
     @IBAction func postButton(_ sender: Any) {
         UploadImageToFirebase(in: dispatchGroup)
@@ -210,9 +211,6 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                 
             case .restricted:
                 print("permission restricted")
-                
-            default:
-                break
             }
         
     }
@@ -390,6 +388,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
             dispatchGroup.enter()
             let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
+                    //ToDo: Notify user that an error occured.
                     dispatchGroup.leave()
                     AppDelegate.instance().dismissActivityIndicator()
                     print(error!)
@@ -402,6 +401,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                     usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL)
                     print("\n Image uploaded! \n")
                 } else {
+                    //ToDo: Notify user that an error occured.
                     print("\n Could not allocate URL for full size image. \n")
                     dispatchGroup.leave()
                     AppDelegate.instance().dismissActivityIndicator()
@@ -415,6 +415,7 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
             dispatchGroup.enter()
             let uploadTask256 = imageRef256.putData(imageData256, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
+                    //ToDo: Notify user that an error occured.
                     dispatchGroup.leave()
                     AppDelegate.instance().dismissActivityIndicator()
                     print(error!)
@@ -427,8 +428,9 @@ class ImagePreVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIT
                     usrdatabase.child("\(uid!)").child("Posts").child("\(key)").updateChildValues(postURL)
                     print("\n Thumbnail uploaded! \n")
                 } else {
-                    print("\n Could not allocate URL for resized image. \n")
+                    //ToDo: Notify user that an error occured.
                     dispatchGroup.leave()
+                    print("\n Could not allocate URL for resized image. \n")
                     AppDelegate.instance().dismissActivityIndicator()
                 }
                 dispatchGroup.leave()
