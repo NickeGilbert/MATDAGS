@@ -156,7 +156,11 @@ extension ImagePageVC {
         
         cachedImages?.sd_setImage(with: URL(string: self.subviews[indexPath.row].pathToImage256))
         
-      //  myImage = self.subviews[indexPath.row].pathToImage256
+        
+        zoomedSubviewImage = self.subviews[indexPath.row].pathToImage256
+        print(zoomedSubviewImage, "wierd1")
+        
+       // myImage = self.subviews[indexPath.row].pathToImage256
      //   print(myImage, "HELLO")
         return cell
     }
@@ -177,17 +181,18 @@ extension ImagePageVC {
             return
         }
         
-        let p = gesture.location(in: self.subviewCollectionFeed)
-        if let indexPath = self.subviewCollectionFeed.indexPathForItem(at: p) {
+        let g = gesture.location(in: self.subviewCollectionFeed)
+        if let indexPath = self.subviewCollectionFeed.indexPathForItem(at: g) {
             let cell = self.subviewCollectionFeed.cellForItem(at: indexPath)
             
             startingFrame = cell?.superview?.convert((cell?.frame)!, to: nil)
             
             let zoomImageView = UIImageView(frame: startingFrame!)
-            zoomImageView.backgroundColor = UIColor.red
+          //  zoomImageView.backgroundColor = UIColor.red
             
             //Här ska det läggas till vilken bild som ska visas men jag vet inte hur jag ska göra det
-            //zoomImageView.image = zoomedSubviewImage?.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
+           // zoomImageView.image
+            zoomImageView.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
             print(zoomImageView, "WIERD")
             
             
@@ -228,7 +233,7 @@ extension ImagePageVC {
     @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) {
         if let zoomOutImageView = tapGesture.view {
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 zoomOutImageView.frame = self.startingFrame!
                 self.blackBackgroundView?.alpha = 0
             }, completion: { (completed) in
