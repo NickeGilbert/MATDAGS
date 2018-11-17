@@ -77,7 +77,7 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         AppDelegate.instance().showActivityIndicator()
         if error != nil {
-            print("\(error)")
+            print("\(String(describing: error))")
             AppDelegate.instance().dismissActivityIndicator()
             return
         } else {

@@ -374,7 +374,7 @@ class ImagePageVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func getInfoForIncremation(completionHandler: @escaping ((_ exist : Bool) -> Void)) {
         let getInfo = Post()
-        let dbref = db.reference(withPath: "Posts/\(self.posts[0].postID)")
+        let dbref = db.reference(withPath: "Posts/\(String(describing: self.posts[0].postID))")
         dbref.observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 getInfo.rating = dict["rating"] as? Int ?? 0
