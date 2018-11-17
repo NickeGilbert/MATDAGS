@@ -190,7 +190,6 @@ extension ImagePageVC {
             let zoomImageView = UIImageView(frame: startingFrame!)
           //  zoomImageView.backgroundColor = UIColor.red
             
-            //Här ska det läggas till vilken bild som ska visas men jag vet inte hur jag ska göra det
            // zoomImageView.image
             zoomImageView.downloadImage(from: self.subviews[indexPath.row].pathToImage256)
             print(zoomImageView, "WIERD")
