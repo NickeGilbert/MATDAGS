@@ -1,22 +1,113 @@
-//
 //  AppDelegate.swift
 //  Matdags
-//
 //  Created by Kevin Henriksson on 2017-09-21.
 //  Copyright © 2017 Matdags. All rights reserved.
-//
 
 import UIKit
+import Firebase
+import FBSDKLoginKit
+import FBSDKCoreKit
+
+struct GlobalVariables {
+    static var posts = [Post]()
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    override init() {
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = false
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+    }
 
     var window: UIWindow?
-
+    var actIdc = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var container : UIView!
+    var follows = [Follow]()
+    var posts = GlobalVariables.posts
+    
+    class func instance() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    func showActivityIndicator() {
+        if let window = window {
+            container = UIView()
+            container.frame = window.frame
+            container.center = window.center
+            container.backgroundColor = UIColor(white: 0, alpha: 0.4)
+            actIdc.frame = CGRect(x: 0, y:0, width: 40, height: 40)
+            actIdc.hidesWhenStopped = true
+            actIdc.center = CGPoint(x : container.frame.size.width / 2, y : container.frame.size.height / 2 )
+            container.addSubview(actIdc)
+            window.addSubview(container)
+            actIdc.startAnimating()
+        }
+    }
+    
+    func dismissActivityIndicator () {
+        if let _ = window {
+            container.removeFromSuperview()
+        }
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func countFollow() {
+        let uid = Auth.auth().currentUser!.uid
+        let dbref = Database.database().reference(withPath: "Users/\(uid)")
+        dbref.observeSingleEvent(of: .value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                for (_, count) in dictionary {
+                    let appendFollow = Follow()
+                    appendFollow.followerCount = count["followerCount"] as? Int
+                    appendFollow.followingCount = count["followingCount"] as? Int
+                    self.follows.append(appendFollow)
+                }
+            }
+        }
+    }
+    
+    //Orientation
+    var orientationLock = UIInterfaceOrientationMask.portrait
+    var myOrientation: UIInterfaceOrientationMask = .portrait
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return myOrientation
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FBSDKApplicationDelegate.sharedInstance().application(application,
+            didFinishLaunchingWithOptions: launchOptions)
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        
+        return handled
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -43,4 +134,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

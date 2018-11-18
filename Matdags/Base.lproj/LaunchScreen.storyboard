@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +14,54 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakgrund1" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-4F-wMr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMatdags" translatesAutoresizingMaskIntoConstraints="NO" id="o4i-xj-fzj">
+                                <rect key="frame" x="87.5" y="64" width="200" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="7zL-Ac-CtY"/>
+                                    <constraint firstAttribute="height" constant="70" id="wkq-d9-0GQ"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="NkI-Ru-8iG">
+                                <rect key="frame" x="70" y="333" width="234" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="234" id="b0U-Ng-IR7"/>
+                                    <constraint firstAttribute="height" constant="66" id="yH1-t2-tsF"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Jh-Es-bnb"/>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5bj-cn-dwY"/>
+                            <constraint firstItem="o4i-xj-fzj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="64" id="Bu6-aA-iL9"/>
+                            <constraint firstItem="o4i-xj-fzj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="N8B-0I-Epm"/>
+                            <constraint firstItem="NkI-Ru-8iG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bfY-sD-XhR"/>
+                            <constraint firstItem="NkI-Ru-8iG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="iab-Ag-lMz"/>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="pK1-zM-yvD"/>
+                            <constraint firstItem="RkL-4F-wMr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="wYH-9o-ji7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="o4i-xj-fzj"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LogoFinal" width="350" height="100"/>
+        <image name="bakgrund1" width="611" height="1086"/>
+        <image name="logoMatdags" width="100" height="30"/>
+    </resources>
 </document>

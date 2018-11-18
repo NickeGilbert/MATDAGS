@@ -1,0 +1,231 @@
+
+/* Class = "UIButton"; normalTitle = "Delete Accout"; ObjectID = "0hu-cX-Gev"; */
+"0hu-cX-Gev.normalTitle" = "Delete Accout";
+
+/* Class = "UILabel"; text = "label"; ObjectID = "0n3-jG-0Zb"; */
+"0n3-jG-0Zb.text" = "label";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0pZ-IM-U5X"; */
+"0pZ-IM-U5X.text" = "0";
+
+/* Class = "UILabel"; text = "Många thanks!"; ObjectID = "0tX-LA-MgX"; */
+"0tX-LA-MgX.text" = "Många thanks!";
+
+/* Class = "UILabel"; text = "Don't think so.."; ObjectID = "1UT-L4-yb0"; */
+"1UT-L4-yb0.text" = "Don't think so..";
+
+/* Class = "UITabBarItem"; title = "Favorite"; ObjectID = "1Um-M8-3VX"; */
+"1Um-M8-3VX.title" = "Favorite";
+
+/* Class = "UILabel"; text = "If you want to save images you've taken with Superfoodie, we need to have the rights to do it."; ObjectID = "1qh-8d-uat"; */
+"1qh-8d-uat.text" = "If you want to save images you've taken with Superfoodie, we need to have the rights to do it.";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "2iU-fp-lgq"; */
+"2iU-fp-lgq.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "3rH-1x-48R"; */
+"3rH-1x-48R.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Anmäl bild"; ObjectID = "8Z6-bS-EeC"; */
+"8Z6-bS-EeC.normalTitle" = "Anmäl bild";
+
+/* Class = "UIButton"; normalTitle = "username"; ObjectID = "8bX-0q-PyZ"; */
+"8bX-0q-PyZ.normalTitle" = "username";
+
+/* Class = "UILabel"; text = "Absolutely!"; ObjectID = "9I3-id-QxR"; */
+"9I3-id-QxR.text" = "Absolutely!";
+
+/* Class = "UILabel"; text = "Filter"; ObjectID = "AGS-AZ-AH1"; */
+"AGS-AZ-AH1.text" = "Filter";
+
+/* Class = "UIButton"; normalTitle = "Registrera"; ObjectID = "BFq-ui-eaI"; */
+"BFq-ui-eaI.normalTitle" = "Registrera";
+
+/* Class = "UILabel"; text = "Följare"; ObjectID = "BWv-pV-Ovt"; */
+"BWv-pV-Ovt.text" = "Följare";
+
+/* Class = "UIButton"; normalTitle = "Info"; ObjectID = "D1E-0w-DoR"; */
+"D1E-0w-DoR.normalTitle" = "Info";
+
+/* Class = "UILabel"; text = "Want to upload your own images and be a part of this app and it's users?"; ObjectID = "DHW-em-1k3"; */
+"DHW-em-1k3.text" = "Want to upload your own images and be a part of this app and it's users?";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "DWl-Ft-yDF"; */
+"DWl-Ft-yDF.text" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "FÖLJER"; ObjectID = "Et4-X9-KV7"; */
+"Et4-X9-KV7.normalTitle" = "FÖLJER";
+
+/* Class = "UIButton"; normalTitle = "Vego"; ObjectID = "Fmn-sb-rkR"; */
+"Fmn-sb-rkR.normalTitle" = "Vego";
+
+/* Class = "UIButton"; normalTitle = "Report image"; ObjectID = "G8Y-wI-xNB"; */
+"G8Y-wI-xNB.normalTitle" = "Report image";
+
+/* Class = "UIButton"; normalTitle = "Radera bild"; ObjectID = "HBR-Dt-sIw"; */
+"HBR-Dt-sIw.normalTitle" = "Radera bild";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "HXM-ab-8in"; */
+"HXM-ab-8in.text" = "Settings";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "IWr-3y-d8T"; */
+"IWr-3y-d8T.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "FÖLJ"; ObjectID = "Il3-Eq-ogL"; */
+"Il3-Eq-ogL.normalTitle" = "FÖLJ";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "LVP-FS-hsQ"; */
+"LVP-FS-hsQ.text" = "username";
+
+/* Class = "UILabel"; text = "Följer"; ObjectID = "LgR-jC-Tpn"; */
+"LgR-jC-Tpn.text" = "Följer";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PaD-hG-VUU"; */
+"PaD-hG-VUU.text" = "Label";
+
+/* Class = "UILabel"; text = "Superfoodie"; ObjectID = "Qva-js-xUC"; */
+"Qva-js-xUC.text" = "Superfoodie";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "R2M-1M-qIm"; */
+"R2M-1M-qIm.text" = "0";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "Rpl-Na-cz0"; */
+"Rpl-Na-cz0.text" = "Settings";
+
+/* Class = "UILabel"; text = "Sure!"; ObjectID = "Ry0-jR-dF6"; */
+"Ry0-jR-dF6.text" = "Sure!";
+
+/* Class = "UITextField"; placeholder = "Lösenord"; ObjectID = "S4a-eJ-mDF"; */
+"S4a-eJ-mDF.placeholder" = "Lösenord";
+
+/* Class = "UIButton"; normalTitle = "FÖLJ"; ObjectID = "SYW-pk-e4K"; */
+"SYW-pk-e4K.normalTitle" = "FÖLJ";
+
+/* Class = "UIButton"; normalTitle = "Vegetarian"; ObjectID = "ThF-1M-xc2"; */
+"ThF-1M-xc2.normalTitle" = "Vegetarian";
+
+/* Class = "UIButton"; normalTitle = "FÖLJ"; ObjectID = "URZ-ON-1vI"; */
+"URZ-ON-1vI.normalTitle" = "FÖLJ";
+
+/* Class = "UIButton"; normalTitle = "FÖLJER"; ObjectID = "UXh-I3-2DF"; */
+"UXh-I3-2DF.normalTitle" = "FÖLJER";
+
+/* Class = "UIButton"; normalTitle = "Logga ut"; ObjectID = "VEf-ai-GII"; */
+"VEf-ai-GII.normalTitle" = "Logga ut";
+
+/* Class = "UITextField"; placeholder = "Upprepa Lösenord"; ObjectID = "Vgv-u7-xhh"; */
+"Vgv-u7-xhh.placeholder" = "Upprepa Lösenord";
+
+/* Class = "UILabel"; text = "Beskrivning"; ObjectID = "XdE-8a-snP"; */
+"XdE-8a-snP.text" = "Beskrivning";
+
+/* Class = "UILabel"; text = "Spara"; ObjectID = "XfS-5h-K5J"; */
+"XfS-5h-K5J.text" = "Spara";
+
+/* Class = "UILabel"; text = "Inga bilder att visa än, när du lägger upp bilder kommer de visas här!"; ObjectID = "Xk5-OK-FjE"; */
+"Xk5-OK-FjE.text" = "Inga bilder att visa än, när du lägger upp bilder kommer de visas här!";
+
+/* Class = "UILabel"; text = "Beskrivning"; ObjectID = "YFQ-ed-rU3"; */
+"YFQ-ed-rU3.text" = "Beskrivning";
+
+/* Class = "UILabel"; text = "description"; ObjectID = "YIf-hh-WJg"; */
+"YIf-hh-WJg.text" = "description";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "YSK-Fo-yrz"; */
+"YSK-Fo-yrz.text" = "username";
+
+/* Class = "UILabel"; text = "Arigato!"; ObjectID = "Ydr-Nk-UDi"; */
+"Ydr-Nk-UDi.text" = "Arigato!";
+
+/* Class = "UIButton"; normalTitle = "Logga in"; ObjectID = "Ylk-cS-VPh"; */
+"Ylk-cS-VPh.normalTitle" = "Logga in";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Z73-ED-0zL"; */
+"Z73-ED-0zL.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Naah.."; ObjectID = "ZWq-7s-u6D"; */
+"ZWq-7s-u6D.text" = "Naah..";
+
+/* Class = "UILabel"; text = "Vego"; ObjectID = "boY-kr-Mr1"; */
+"boY-kr-Mr1.text" = "Vego";
+
+/* Class = "UIButton"; normalTitle = "FÖLJER"; ObjectID = "d57-2Q-n2J"; */
+"d57-2Q-n2J.normalTitle" = "FÖLJER";
+
+/* Class = "UIButton"; normalTitle = "Block user"; ObjectID = "dGr-ru-goL"; */
+"dGr-ru-goL.normalTitle" = "Block user";
+
+/* Class = "UIButton"; normalTitle = "Logga ut"; ObjectID = "dMd-Zv-zGk"; */
+"dMd-Zv-zGk.normalTitle" = "Logga ut";
+
+/* Class = "UILabel"; text = "Superfoodie use of storage"; ObjectID = "e5L-yJ-hrS"; */
+"e5L-yJ-hrS.text" = "Superfoodie use of storage";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "e9t-XX-NrY"; */
+"e9t-XX-NrY.title" = "Home";
+
+/* Class = "UILabel"; text = "Eller"; ObjectID = "feq-2p-exR"; */
+"feq-2p-exR.text" = "Eller";
+
+/* Class = "UILabel"; text = "Superfoodie use of camera"; ObjectID = "gPK-he-4Mg"; */
+"gPK-he-4Mg.text" = "Superfoodie use of camera";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "h0R-Jk-APq"; */
+"h0R-Jk-APq.text" = "username";
+
+/* Class = "UIButton"; normalTitle = "Visa Lösenord"; ObjectID = "hGu-6i-kzd"; */
+"hGu-6i-kzd.normalTitle" = "Visa Lösenord";
+
+/* Class = "UIButton"; selectedTitle = "Dölj Lösenord"; ObjectID = "hGu-6i-kzd"; */
+"hGu-6i-kzd.selectedTitle" = "Dölj Lösenord";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hfS-Ia-P7f"; */
+"hfS-Ia-P7f.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Change profile picture"; ObjectID = "hjv-fa-C6m"; */
+"hjv-fa-C6m.normalTitle" = "Change profile picture";
+
+/* Class = "UITextField"; placeholder = "Användarnamn"; ObjectID = "k5m-v6-3NY"; */
+"k5m-v6-3NY.placeholder" = "Användarnamn";
+
+/* Class = "UIButton"; normalTitle = "Blockera användare"; ObjectID = "kLe-wf-Imq"; */
+"kLe-wf-Imq.normalTitle" = "Blockera användare";
+
+/* Class = "UITabBarItem"; title = "Profile"; ObjectID = "lP8-fs-3y6"; */
+"lP8-fs-3y6.title" = "Profile";
+
+/* Class = "UILabel"; text = "label"; ObjectID = "nBN-gI-jgP"; */
+"nBN-gI-jgP.text" = "label";
+
+/* Class = "UILabel"; text = "Ingen har skrivit en kommentar än, sno förstaplatsen!"; ObjectID = "npm-aC-Faw"; */
+"npm-aC-Faw.text" = "Ingen har skrivit en kommentar än, sno förstaplatsen!";
+
+/* Class = "UIButton"; normalTitle = "Profile bio"; ObjectID = "pFk-u6-Yi6"; */
+"pFk-u6-Yi6.normalTitle" = "Profile bio";
+
+/* Class = "UILabel"; text = "Approve Superfoodie rights to the camera below"; ObjectID = "pa5-6w-j0z"; */
+"pa5-6w-j0z.text" = "Approve Superfoodie rights to the camera below";
+
+/* Class = "UILabel"; text = "Superfoodie"; ObjectID = "q7J-QY-FHS"; */
+"q7J-QY-FHS.text" = "Superfoodie";
+
+/* Class = "UILabel"; text = "Användarnamn"; ObjectID = "s6o-ir-c87"; */
+"s6o-ir-c87.text" = "Användarnamn";
+
+/* Class = "UITabBarItem"; title = "Search"; ObjectID = "uN5-7r-vK9"; */
+"uN5-7r-vK9.title" = "Search";
+
+/* Class = "UILabel"; text = "Approve Superfoodie rights to Photo library below"; ObjectID = "uXE-qL-G9v"; */
+"uXE-qL-G9v.text" = "Approve Superfoodie rights to Photo library below";
+
+/* Class = "UIButton"; normalTitle = "Registrera"; ObjectID = "wDt-4h-gMm"; */
+"wDt-4h-gMm.normalTitle" = "Registrera";
+
+/* Class = "UIButton"; normalTitle = "Erase image"; ObjectID = "wjO-3I-hTR"; */
+"wjO-3I-hTR.normalTitle" = "Erase image";
+
+/* Class = "UITextField"; placeholder = "Lösenord"; ObjectID = "xV9-dy-edu"; */
+"xV9-dy-edu.placeholder" = "Lösenord";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "ycj-nc-8Co"; */
+"ycj-nc-8Co.placeholder" = "Email";

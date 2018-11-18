@@ -1,0 +1,135 @@
+/* 
+  Localizable.strings
+  Matdags
+
+  Created by Nicklas Gilbertson on 2018-06-15.
+  Copyright © 2018 Matdags. All rights reserved.
+*/
+
+//SVENSKA
+//TABBAR
+
+"home" = "Hem";
+"favorite" = "Favoriter";
+"profile" = "Profil";
+"search" = "Sök";
+
+
+//LOGIN VC
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Lösenord";
+"LoginButton" = "Logga in";
+"orLabel" = "Eller";
+"RegisterButton" = "Registrera";
+"mailLoginErrorTitle" = "Error";
+"mailLoginErrorMessage" = "Någonting gick fel. Pröva igen!";
+"facebookLoginErrorTitle" = "Problem";
+"facebookLoginErrorMessage" = "Någonting gick fel. Pröva igen!";
+"verifyTitle" = "Verifiera";
+"verifyMessage" = "Var vänlig och godkänn dit konta på din mail";
+
+//REGISTER VC
+"emailPlaceholder" = "Email";
+"usernamePlaceholder" = "Användarnamn";
+"passwordPlaceholder" = "Lösenord";
+"rePasswordPlaceholder" = "Upprepa Lösenord";
+"showPasswordPlaceholder" = "Visa Lösenord";
+"registerButton" = "Registrera";
+"infoButton" = "Info";
+"emptyMail" = "Mailadress";
+"emptyMailMessage" = "Du måste ange en mailadress";
+"passwordTitle" = "Stämmer inte överens";
+"passwordMessage" = "Lösenorden måste vara identiska";
+"username" = "Användarnamn";
+"usernameMessage" = "Ditt användarnamn får inte vara tomt";
+"errorTitle" = "Problem";
+"errorMessage" = "Något problem uppstod, vänligen försök igen";
+"passwordLenghtTitle" = "Lösenordslängd";
+"passwordLenghtMessage" = "Lösenordet måste vara längre än 5 tecken, vänligen försök igen";
+"validateTitle" = "Okay";
+"validateMessage" = "Du måste gå och Validera ditt konto på din mail!";
+"infoTitle" = "Användardata";
+"infoMessage" = "Informationen du ger ifrån dig genom att skapa ett konto med din mailadress, alias och lösenord varken delas till andra eller används av oss själva förutom för att möjliggöra inloggning med historik på flera enheter.";
+
+//SEARCH VC
+"followButton" = "FÖLJ";
+"followingButton" = "FÖLJER";
+"noImageText" = "Inte en ända bild? Inte ens en!? Jaja, ingen riktig foodie än - fortsättning följer..!";
+"noBioText" = "Hepp, ingen information om denna användaren. Hmmm... Mystiskt";
+
+//PROFILE VC
+"followingLabel" = "Följer";
+"followerLabel" = "Följare";
+"DeleteAccountHeader" = "Radera konto";
+"DeleteAccountText" = "Är du säker på att du vill ta bort ditt konto?";
+"deleteAccountYES" = "JA";
+"deleteAccountNO" = "NEJ";
+"zeroImagesTextLabel" = "Inga bilder att visa än, när du lägger upp bilder kommer de visas här!";
+"settingsLabel" = "Inställningar";
+"changeProfilePictureButton" = "Ändra profilbild";
+"profileBioButton" = "Profil biografi";
+"deleteAccount" = "Radera kontot";
+
+//FOLLOWERSVC
+"zeroImagesTextMessage" = "Foton du tagit och foton från människor du följer visas här!";
+
+//IMAGEPAGE VC
+"followButton" = "FÖLJ";
+"followingButton" = "FÖLJER";
+"deleteImage" = "Radera bild";
+"blockUser" = "Blockera användare";
+"reportImage" = "Anmäl bild";
+"reportImageTitle" = "Vill du anmäla denna bilden?";
+"reportImageMessage" = "Tänk på att inte missbruka denna tjäst då du själv kan bli avstängd";
+"reportTitle" = "Anmäl";
+"reportSent" = "En anmälan har blivit skickad";
+"reportSentMessage" = "Vi kommer att ta en titt på bilden";
+"closeReport" = "Stäng";
+"deleteImageTitle" = "Vill du radera bilden?";
+"deleteImageMessage" = "Detta kan inte bli ogjort!";
+"delete" = "Ta bort";
+"blockUserTitle" = "Vill du blockera användaren?";
+"blockUserMessage" = "Tänk på att inte missbruka denna tjänst då du själv kan bli avstäng";
+"blockUser" = "Blockera";
+"userIsBlockedTitle" = "Användaren är blockerad";
+"userIsBlockedMessage" = "Du kan inte längre sen bilder från denna användaren";
+"userClose" = "Stäng";
+"zeroCommentsLabel" = "Ingen har skrivit en kommentar än, sno förstaplatsen!";
+"settingsLabel" = "Inställningar";
+"blockUser" = "Blockera användaren";
+"reportImage" = "Rapportera bilden";
+"eraseImage" = "Radera bilden";
+
+//IMAGEPRE VC
+"saveImageTitle" = "Hurra!";
+"saveImageMessage" = "Bilden sparades på din telefon!";
+
+//IMAGEFEED VC
+"logoutTitle" = "Vill du logga ut?";
+"logoutMessage" = "Du kan logga in igen";
+"logOut" = "Logga ut";
+"closeTitle" = "Stäng";
+"logoutButton" = "Logga ut";
+"vegetarianButton" = "Vegetariskt";
+"settingsLabel" = "Inställningar";
+
+//CAMERA VC
+"useOfCameraTitle" = "Superfoodie's användning av kameran";
+"useOfCameraDescription" = "Skulle du vilja lägga upp dina egna bilder och bli en del av denna app och dess användare?";
+"useOfCameraApproval" = "Godkänn Superfoodie's rätt till att använda kameran";
+"denyLabel" = "Håller inte med";
+"approveLabel" = "Såklart";
+"thanksLabel" = "Tack sötnos!";
+
+
+//IMAGEPREVIEW VC
+"storageTitleLabel" = "Superfooide's användning av lagring";
+"storageDescriptionLabel" = "Om du vill spara bilderna som du tagit med Superfoodie, så behöver vi din tillåtelse till att göra så.";
+"storageApprovalLabel" = "Godkänn att Superfoodie får spara dina bilder";
+"denyLabel" = "Absolut inte";
+"approveLabel" = "Absolut!";
+"thanksLabel" = "Tack!";
+"saveLabel" = "Spara";
+"filterLabel" = "Filter";
+"descriptionLabel" = "Beskrivning";
+"vegoLabel" = "Vego";
